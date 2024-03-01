@@ -2,7 +2,7 @@
 
 `Análise e Desenvolvimento de Sistemas `
 
-`Desenvolvimento de Aplicação Mobile`
+`Desenvolvimento de Aplicação  em um Ambiente de Negócio`
 
 `3º SEMESTRE`
 
