@@ -1,23 +1,26 @@
-# TÍTULO DO PROJETO
+# Pet Lovers
 
-`CURSO`
+`Análise e Desenvolvimento de Sistemas `
 
-`DISCIPLINA`
+`Desenvolvimento de Aplicação Mobile`
 
-`SEMESTRE`
+`3º SEMESTRE`
 
 Descrever resumidamente, em um ou dois parágrafos, o projeto que está sendo desenvolvido.
 
 ## Integrantes
 
-* Nome completo do aluno 1
-* Nome completo do aluno 2
-* Nome completo do aluno 3
-* Nome completo do aluno 4
+* Ana Beatriz Leite de Souza
+* Alissa Nishihara
+* Fernanda Bandeira Pinheiro
+* Liana Cristina Vieira Santos Nagasawa
+* Maria Teresa Abreu Martins De Paiva Azevedo
+* Pedro Victor Ferreira De Assis
+
 
 ## Orientador
 
-* Nome completo do professor 1
+* Wesley Dias Maciel
 
 ## Instruções de utilização
 
