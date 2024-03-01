@@ -2,7 +2,7 @@
 
 `Análise e Desenvolvimento de Sistemas `
 
-`Desenvolvimento de Aplicação  em um Ambiente de Negócio`
+`Desenvolvimento de Aplicação em um Ambiente de Negócio`
 
 `3º SEMESTRE`
 
