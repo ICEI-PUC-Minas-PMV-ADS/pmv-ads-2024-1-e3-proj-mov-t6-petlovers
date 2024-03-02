@@ -16,12 +16,19 @@ Nesse momento, o grupo pode optar por fazer uso  de ferramentas como Design Thin
 
 ## Objetivos
 
-Aqui você deve descrever os objetivos do trabalho indicando que o objetivo geral é desenvolver um software para solucionar o problema apresentado acima. 
+Objetivo Geral:
 
-Apresente também alguns (pelo menos 2) objetivos específicos dependendo de onde você vai querer concentrar a sua prática investigativa, ou como você vai aprofundar no seu trabalho.
- 
-> **Links Úteis**:
-> - [Objetivo geral e objetivo específico: como fazer e quais verbos utilizar](https://blog.mettzer.com/diferenca-entre-objetivo-geral-e-objetivo-especifico/)
+Desenvolver uma plataforma acessível que promova a reprodução responsável e o bem-estar animal, conectando proprietários de cachorros que desejam encontrar parceiros adequados para cruzamento.
+
+Objetivos Específicos:
+
+- Garantir uma experiência de navegação intuitiva e simplificada para os usuários, facilitando a exploração do aplicativo e a seleção dos perfis de cachorros mais adequados às suas preferências e necessidades;
+
+- Criar um sistema de notificações  que alerte os usuários instantaneamente sobre novos matches;
+
+- Integrar ferramentas de comunicação para facilitar o contato entre os usuários interessados em cruzar seus cachorros;
+
+- Implementar algoritmos de busca  para garantir que os resultados sejam relevantes e correspondam às preferências dos usuários.
 
 ## Justificativa
 
