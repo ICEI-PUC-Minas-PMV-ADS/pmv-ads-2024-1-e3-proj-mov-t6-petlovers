@@ -73,36 +73,40 @@ Obs.: todas as informações para gerar os indicadores devem estar no diagrama d
 
 ## Requisitos
 
-As tabelas que se seguem apresentam os requisitos funcionais e não funcionais que detalham o escopo do projeto. Para determinar a prioridade de requisitos, aplicar uma técnica de priorização de requisitos e detalhar como a técnica foi aplicada.
+As tabelas que se seguem apresentam os requisitos funcionais e não funcionais que detalham o escopo do projeto. 
 
 ### Requisitos Funcionais
 
 |ID    | Descrição do Requisito  | Prioridade |
 |------|-----------------------------------------|----|
-|RF-001| Permitir que o usuário cadastre tarefas | ALTA | 
-|RF-002| Emitir um relatório de tarefas no mês   | MÉDIA |
+|RF-001| O sistema deve possuir área de cadastro de usuário | ALTA | 
+|RF-002| O sistema deve permitir cadastro vários perfis por usuário   | MÉDIA |**
+|RF-003| O sistema deve permitir cadastro com Upload de imagem   | MÉDIA |
+|RF-004| O sistema deve permitir que o usuário altere as informações de seu cadastro| MÉDIA |
+|RF-005| O sistema deve permitir que o usuário delete seu cadastro| MÉDIA |
+|RF-006| O sistema deve ter uma área para buscar perfil de outro usuário   | MÉDIA |
+|RF-007| O sistema deve permitir que o usuário visualize outros perfis  | MÉDIA |
+|RF-008| O sistema deve permitir que o usuário consiga selecionar o perfil de outro usuário| MÉDIA |
+|RF-009| O sistema deve permitir que o usuário recuse algum perfil | MÉDIA |
+|RF-010| O sistema deve emitir notificação ao usuário selecionado | MÉDIA |
+|RF-011| O sistema deve exibir o icone de Mensagens Instantâneas para os usuários que se escolheram  | MÉDIA |
+|RF-012| O sistema deve permitir que os usuários avaliem a experiência | MÉDIA |**
+
+
 
 ### Requisitos não Funcionais
 
 |ID     | Descrição do Requisito  |Prioridade |
 |-------|-------------------------|----|
-|RNF-001| O sistema deve ser responsivo para rodar em um dispositivos móvel | MÉDIA | 
-|RNF-002| Deve processar requisições do usuário em no máximo 3s |  BAIXA | 
+|RNF-01|	Na página principal, deve-se deixar claro o propósito do site |	MÉDIA |
+|RNF-02|	O sistema deve ser responsivo |	MÉDIA |
+|RNF-03|	O sistema deve ter bom nível de contraste entre os elementos da tela em conformidade |	MÉDIA |
+|RNF-04|	Compatibilidade com principais navegadores (Chrome, Firefox, Opera, Safari) |	MÉDIA |
+|RNF-05|	A resposta de uma busca não pode demorar mais que 5 segundos. |	MÉDIA |
+|RNF-06|	O sistema deve passar segurança aos usuários ao colocar seus dados pessoais. |	MÉDIA |
+|RNF-07|	Inclusão de ALTs (descrições de imagens) nas fotos e ilustrações (RNF) |	MÉDIA |
+|RNF-08|	O sistema deve armazenar senhas dos usuários criptografadas |	MÉDIA |
 
-Com base nas Histórias de Usuário, enumere os requisitos da sua solução. Classifique esses requisitos em dois grupos:
-
-- [Requisitos Funcionais
- (RF)](https://pt.wikipedia.org/wiki/Requisito_funcional):
- correspondem a uma funcionalidade que deve estar presente na
-  plataforma (ex: cadastro de usuário).
-- [Requisitos Não Funcionais
-  (RNF)](https://pt.wikipedia.org/wiki/Requisito_n%C3%A3o_funcional):
-  correspondem a uma característica técnica, seja de usabilidade,
-  desempenho, confiabilidade, segurança ou outro (ex: suporte a
-  dispositivos iOS e Android).
-Lembre-se que cada requisito deve corresponder à uma e somente uma
-característica alvo da sua solução. Além disso, certifique-se de que
-todos os aspectos capturados nas Histórias de Usuário foram cobertos.
 
 ## Restrições
 
