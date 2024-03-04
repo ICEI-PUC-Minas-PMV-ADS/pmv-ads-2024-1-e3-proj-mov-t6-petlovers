@@ -114,10 +114,12 @@ O projeto está restrito pelos itens apresentados na tabela a seguir.
 
 |ID| Restrição                                             |
 |--|-------------------------------------------------------|
-|01| O projeto deverá ser entregue até o final do semestre |
-|02| Não pode ser desenvolvido um módulo de backend        |
+|01| O projeto deverá ser entregue até o final do semestre (07/2024) |
+|02| Vídeo de 2 minutos sobre o problema e a solução proposta |
+|03| Atender todas as normas ABNT |
+|04| O grupo deverá utilizar o repositório específico do curso ADS |
+|05| O projeto deverá ser desenvolvido por integrantes do grupo, não poderá ser terceirizado |
 
-Enumere as restrições à sua solução. Lembre-se de que as restrições geralmente limitam a solução candidata.
 
 > **Links Úteis**:
 > - [O que são Requisitos Funcionais e Requisitos Não Funcionais?](https://codificar.com.br/requisitos-funcionais-nao-funcionais/)
