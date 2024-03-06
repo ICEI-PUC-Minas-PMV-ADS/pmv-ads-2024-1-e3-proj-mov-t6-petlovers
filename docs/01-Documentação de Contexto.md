@@ -24,7 +24,7 @@ Objetivos Específicos:
 
 - Garantir uma experiência de navegação intuitiva e simplificada para os usuários, facilitando a exploração do aplicativo e a seleção dos perfis de cachorros mais adequados às suas preferências e necessidades;
 
-- Criar um sistema de notificações  que alerte os usuários instantaneamente sobre novos matches;
+- Criar um sistema de notificações  que alerte os usuários instantaneamente sobre novos <b>matches</b>;
 
 - Integrar ferramentas de comunicação para facilitar o contato entre os usuários interessados em cruzar seus cachorros;
 
