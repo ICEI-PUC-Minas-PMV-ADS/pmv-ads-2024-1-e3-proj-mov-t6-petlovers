@@ -125,7 +125,8 @@ A matriz de rastreabilidade é uma ferramenta usada para facilitar a visualizaç
 
 Ela deve contemplar todos os elementos relevantes que fazem parte do sistema, conforme a figura  apresentada a seguir.
 
-
+- RF - Requisito funcional
+- RNF - Requisito não funcional
 
 <img width="1434" alt="image" src="https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2024-1-e3-proj-mov-t6-petlovers/assets/93337008/3bd6eccf-7af8-48d7-86b4-cea503e16eaf">
 
