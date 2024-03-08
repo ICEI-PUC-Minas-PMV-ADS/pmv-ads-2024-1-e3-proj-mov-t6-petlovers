@@ -134,26 +134,34 @@ Ela deve contemplar todos os elementos relevantes que fazem parte do sistema, co
 
 # Gerenciamento de Projeto
 
-De acordo com o PMBoK v6 as dez áreas que constituem os pilares para gerenciar projetos, e que caracterizam a multidisciplinaridade envolvida, são: Integração, Escopo, Cronograma (Tempo), Custos, Qualidade, Recursos, Comunicações, Riscos, Aquisições, Partes Interessadas. Para desenvolver projetos um profissional deve se preocupar em gerenciar todas essas dez áreas. Elas se complementam e se relacionam, de tal forma que não se deve apenas examinar uma área de forma estanque. É preciso considerar, por exemplo, que as áreas de Escopo, Cronograma e Custos estão muito relacionadas. Assim, se eu amplio o escopo de um projeto eu posso afetar seu cronograma e seus custos.
+De acordo com o PMBoK v6 as dez áreas que constituem os pilares para gerenciar projetos, e que caracterizam a multidisciplinaridade envolvida, são: Integração, Escopo, Cronograma (Tempo), Custos, Qualidade, Recursos, Comunicações, Riscos, Aquisições, Partes Interessadas. Nesta seção é apresentado o gerenciamento de tempo, equipe e custos do projeto PetLovers.
 
 ## Gerenciamento de Tempo
 
-Com diagramas bem organizados que permitem gerenciar o tempo nos projetos, o gerente de projetos agenda e coordena tarefas dentro de um projeto para estimar o tempo necessário de conclusão.
+O projeto tem ao todo a duração de 144 dias, divididos em cinco etapas. Na Etapa 1, será feita a definição do projeto, a documentação de contexto e a especificação de problema. Na Etapa 2, será especificada a metodologia, a arquitetura da solução e o projeto de interface. Também serão iniciados a programação de funcionalidades e os planos e registros de testes, atividades que seguem na Etapa 3 e 4. Na última etapa, a Etapa 5, serão feitos os ajustes finais e a apresentação final do projeto. 
 
-![Diagrama de rede simplificado notação francesa (método francês)](img/02-diagrama-rede-simplificado.png)
+O diagrama abaixo contém o tempo para desenvolvimento e as atividades correspondentes de cada etapa: 
 
-O gráfico de Gantt ou diagrama de Gantt também é uma ferramenta visual utilizada para controlar e gerenciar o cronograma de atividades de um projeto. Com ele, é possível listar tudo que precisa ser feito para colocar o projeto em prática, dividir em atividades e estimar o tempo necessário para executá-las.
+<img width="900" alt="Capture" src="img/diagramaRede_gerenciamentoTempo.png">
 
-![Gráfico de Gantt](img/02-grafico-gantt.png)
+O gráfico de Gantt ou diagrama de Gantt também auxilia no controle e gerenciamento do cronograma de atividades, possibilitando listar, dividir em atividades e estimar o tempo necessário para executá-las. Nele, estão delimitados os prazos de realização de cada uma das atividades necessárias para a conclusão do projeto.
+
+<div align="center">
+<img width="650" alt="Capture" src="img/diagramaGantt_gerenciamentoTempo.png">
+</div>
 
 ## Gerenciamento de Equipe
 
-O gerenciamento adequado de tarefas contribuirá para que o projeto alcance altos níveis de produtividade. Por isso, é fundamental que ocorra a gestão de tarefas e de pessoas, de modo que os times envolvidos no projeto possam ser facilmente gerenciados. 
+O gerenciamento adequado de tarefas contribuirá para que o projeto alcance altos níveis de produtividade. Por isso, é fundamental que ocorra a gestão de tarefas e de pessoas, de modo que os times envolvidos no projeto possam ser facilmente gerenciados.
 
-![Simple Project Timeline](img/02-project-timeline.png)
+A equipe responsável pelo PetLovers é composta por seis pessoas. As tarefas de idealização e documentação do projeto serão dividas entre os membros do time, enquanto nas tarefas relativas desenvolvimento todos estarão envolvidos, conforme organizado no quadro abaixo:
+
+<div align="center">
+<img width="650" alt="Capture" src="img/diagrama_gerenciamentoEquipe.png">
+</div>
 
 ## Gestão de Orçamento
 
-O processo de determinar o orçamento do projeto é uma tarefa que depende, além dos produtos (saídas) dos processos anteriores do gerenciamento de custos, também de produtos oferecidos por outros processos de gerenciamento, como o escopo e o tempo.
+O processo de determinar o orçamento do projeto é uma tarefa que depende, além dos produtos (saídas) dos processos anteriores do gerenciamento de custos, também de produtos oferecidos por outros processos de gerenciamento, como o escopo e o tempo. Para a realização do atual trabalho, é estimado o salário dos desenvolvedores, o equipamento de trabalho necessário e os custos com servidor. A seguir, estão listados os recursos necessários, seus respectivos custos, os custos agregados e os custos totais do projeto, considerando o prazo de cinco meses para sua execução.
 
-![Orçamento](img/02-orcamento.png)
+<img width="900" alt="Capture" src="img/diagrama_Orcamento.png">
