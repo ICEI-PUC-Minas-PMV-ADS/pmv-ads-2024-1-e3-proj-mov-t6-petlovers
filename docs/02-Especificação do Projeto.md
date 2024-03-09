@@ -61,7 +61,7 @@ Apresente aqui os principais indicadores de desempenho e algumas metas para o pr
 |-------------|-------------|-------------|-------------|-------------|-------------|
 |Total de cadastros realizados|Acompanhar o crescimento de acessos à plataforma|Monitorar o número de usuários cadastrados|Número de perfis no banco de dados|Banco de dados|Crescimento da aplicação|
 |Número de downloads|Acompanhar o crescimento do aplicativo|Obter o número de vezes em que o aplicativo foi baixado|Número de downloads|Loja de aplicativos|Crescimento da aplicação|
-|índice de satisfação do usuário|Melhorar a experiência do usuário|Análise de feedback sobre o aplicativo|Média das classificações dos usuários|Pesquisa de satisfação|Satisfação do usuário|
+|Índice de satisfação do usuário|Melhorar a experiência do usuário|Análise de feedback sobre o aplicativo|Média das classificações dos usuários|Pesquisa de satisfação|Satisfação do usuário|
 |Taxa de retenção de usuários|Manter e aumentar a base de usuários|Mede a porcentagem de usuários que retornam à aplicação regularmente após o primeiro uso|Relação entre usuários ativos no mês atual e novos usuários no mês|Banco de dados|Engajamento e fidelidade dos usuários|
 |Taxa de correspondência de raças (matchs)|Aumentar as chances de encontros bem sucedidos|Mede a porcentagem de correspondências entre donos de cachorros da mesma caça|(Número de correspondências bem sucedidas/total de tentativas de correspondência)x100%|Registro de interações na aplicação/banco de dados|Eficácia da aplicação|
 
