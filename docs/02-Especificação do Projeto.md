@@ -1,11 +1,5 @@
 # Especificações do Projeto
 
-<span style="color:red">Pré-requisitos: <a href="1-Documentação de Contexto.md"> Documentação de Contexto</a></span>
-
-Definição do problema e ideia de solução a partir da perspectiva do usuário. É composta pela definição do  diagrama de personas, histórias de usuários, requisitos funcionais e não funcionais além das restrições do projeto.
-
-Apresente uma visão geral do que será abordado nesta parte do documento, enumerando as técnicas e/ou ferramentas utilizadas para realizar a especificações do projeto
-
 ## Personas
 
 Grupo de pessoas que busca uma rede de pesquisa para encontrar parceiros para seus Pets.
@@ -29,12 +23,12 @@ Com base na análise das personas forma identificadas as seguintes histórias de
 |EU COMO... `PERSONA`| QUERO/PRECISO ... `FUNCIONALIDADE` |PARA ... `MOTIVO/VALOR`                 |
 |--------------------|------------------------------------|----------------------------------------|
 |Samantha  | Buscar perfis de acordo com a preferência          |Filtrar a pesquisa para ser mais objetiva  |
-|Fernanda     | Ter informações sobre a localidade do outro PET   | Saber a localização para encontro |
+|Fernanda     | Ter informações sobre a localidade do outro <b>PET</b>   | Saber a localização para encontro |
 |Samantha     | Registrar informações sobre seu cão   |Para segurança ao escolher outro pet.|
 |Fernanda     | Manter contato com o outro usuário    |Permite melhor troca de informações |
-|Samantha    | Atualização de perfil para novos registros | Para ter informações mais atualizadas sobre a saúde do PET |
-|Fernanda     | Realizar cadastro de mais de um PET  | Para encontrar outros pares para seus outros PETS |
-|Samantha     | Adicionar fotos ao perfil              | Permite melhor visualização/conhecimento do parceiro para seu PET. |
+|Samantha    | Atualização de perfil para novos registros | Para ter informações mais atualizadas sobre a saúde do <b>PET</b>  |
+|Fernanda     | Realizar cadastro de mais de um <b>PET</b>   | Para encontrar outros pares para seus outros <b>PETS</b>  |
+|Samantha     | Adicionar fotos ao perfil              | Permite melhor visualização/conhecimento do parceiro para seu <b>PET</b> . |
 
 
 
@@ -43,11 +37,11 @@ Com base na análise das personas forma identificadas as seguintes histórias de
 
 ### Análise da Situação Atual
 
-Diante da dificuldade de tutores ao tentar encontrar parceiros ideais da mesma raça para cruzamento com seus pets, surgiu a necessidade da criação do aplicativo PetLovers para ajudar os tutores que procuram por uma experiência eficaz, amigável e segura para seus pets.
+Diante da dificuldade de tutores ao tentar encontrar parceiros ideais da mesma raça para cruzamento com seus <b>pets</b> , surgiu a necessidade da criação do aplicativo PetLovers para ajudar os tutores que procuram por uma experiência eficaz, amigável e segura para seus pets.
 
 ### Descrição Geral da Proposta
 
-A proposta do aplicativo PerLovers é oferecer uma plataforma onde seja possível conectar de forma fácil, dinâmica e segura tutores de cachorros que buscam por pets compatíveis para cruzamento, para uma reprodução responsável e garantindo o bem-estar animal.
+A proposta do aplicativo PetLovers é oferecer uma plataforma onde seja possível conectar de forma fácil, dinâmica e segura tutores de cachorros que buscam por <b>pets</b>  compatíveis para cruzamento, para uma reprodução responsável e garantindo o bem-estar animal.
 
 ### Processo 
 
