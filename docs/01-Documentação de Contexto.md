@@ -12,7 +12,7 @@ Em resumo, proporcionar uma experiência amigável e eficaz, onde os donos possa
 
 
 ## Problema
-Muitos donos de cães enfrentam dificuldades ao tentar encontrar parceiros ideais para cruzamento de seus pets da mesma raça. As opções tradicionais podem ser limitadas e pouco confiáveis, levando a encontros aleatórios que não levam em consideração fatores importantes como histórico de saúde, personalidade e compatibilidade genética. Além disso, a falta de uma plataforma específica para esse propósito pode tornar o processo demorado e frustrante.
+Muitos donos de cães enfrentam dificuldades ao tentar encontrar parceiros ideais para cruzamento de seus <b>pets</b> da mesma raça. As opções tradicionais podem ser limitadas e pouco confiáveis, levando a encontros aleatórios que não levam em consideração fatores importantes como histórico de saúde, personalidade e compatibilidade genética. Além disso, a falta de uma plataforma específica para esse propósito pode tornar o processo demorado e frustrante.
 
 ## Objetivos
 
@@ -36,4 +36,4 @@ O Petlovers surge como uma solução para resolver esses desafios comuns enfrent
 
 ## Público-Alvo
 
-O público-alvo do Petlovers é composto por donos de cães que desejam encontrar parceiros para cruzamento de seus pets da mesma raça. Isso inclui donos de cães de raças específicas que buscam garantir a pureza da linhagem de seus animais, bem como criadores responsáveis que procuram fazer cruzamentos planejados para melhorar características genéticas ou preservar características desejáveis em determinadas raças. Além disso, o Petlovers também atrai pessoas que valorizam a saúde e o bem-estar dos cães e desejam garantir que os filhotes resultantes do cruzamento sejam criados em um ambiente seguro e amoroso.
+O público-alvo do Petlovers é composto por donos de cães que desejam encontrar parceiros para cruzamento de seus <b>pets</b> da mesma raça. Isso inclui donos de cães de raças específicas que buscam garantir a pureza da linhagem de seus animais, bem como criadores responsáveis que procuram fazer cruzamentos planejados para melhorar características genéticas ou preservar características desejáveis em determinadas raças. Além disso, o Petlovers também atrai pessoas que valorizam a saúde e o bem-estar dos cães e desejam garantir que os filhotes resultantes do cruzamento sejam criados em um ambiente seguro e amoroso.
