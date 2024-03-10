@@ -45,7 +45,7 @@ A proposta do aplicativo PetLovers é oferecer uma plataforma onde seja possíve
 
 ### Processo 
 
-![Processo 1](img/diagram.svg)
+![Processo 1](img/diagram2.svg)
 
 ## Indicadores de Desempenho
 
