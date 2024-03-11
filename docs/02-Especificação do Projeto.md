@@ -1,26 +1,20 @@
 # Especificações do Projeto
 
-<span style="color:red">Pré-requisitos: <a href="1-Documentação de Contexto.md"> Documentação de Contexto</a></span>
-
-Definição do problema e ideia de solução a partir da perspectiva do usuário. É composta pela definição do  diagrama de personas, histórias de usuários, requisitos funcionais e não funcionais além das restrições do projeto.
-
-Apresente uma visão geral do que será abordado nesta parte do documento, enumerando as técnicas e/ou ferramentas utilizadas para realizar a especificações do projeto
-
 ## Personas
 
-Pedro Paulo tem 26 anos, é arquiteto recém-formado e autônomo. Pensa em se desenvolver profissionalmente através de um mestrado fora do país, pois adora viajar, é solteiro e sempre quis fazer um intercâmbio. Está buscando uma agência que o ajude a encontrar universidades na Europa que aceitem alunos estrangeiros.
+Grupo de pessoas que busca uma rede de pesquisa para encontrar parceiros para seus Pets.
 
-Enumere e detalhe as personas da sua solução. Para tanto, baseie-se tanto nos documentos disponibilizados na disciplina e/ou nos seguintes links:
+|Samantha Nogueira   | Informações:                          | **Problema**               |     
+|--------------------|----------------------------------|--------------------------------------|
+| <img width="400" alt="Capture" src="https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2024-1-e3-proj-mov-t6-petlovers/assets/110791034/b9a65fb6-8d69-46ad-a19c-b147de517c91"> | **Idade:** 23 anos  <br> <br> **Sobre**:  Jovem adulta. Mora sozinha desde os 18 e se sentia maior parte do seu dia sozinha e ansiosa. Ganhou Zeca aos 18 de seus pais, para que lhe fizesse companhia durante sua nova fase.  | Samantha ao sair para o trabalho, percebe que Zeca se sente muito sozinho. A mesma por receio, gostaria de encontrar uma parceira para ele, com a mesma idade e raça, para que ela conseguisse um dos filhotes para fazer companhia a Zeca e mantivesse contato com a parceira.    |
+|**•Informações do PET:** <br>●	Nome: Zeca <br>●Idade: 5 anos <br>● Raça: Corgi <br>●È vermifugado e com vacinas em dia: SIM |**Hobbies,História:** <br>● •	Samantha é uma jovem adulta independente. Começou a sua vida sozinha aos 18 anos e desde então tem Zeca como seu companheiro e amigo do dia a dia.   |
 
-> **Links Úteis**:
-> - [Rock Content](https://rockcontent.com/blog/personas/)
-> - [Hotmart](https://blog.hotmart.com/pt-br/como-criar-persona-negocio/)
-> - [O que é persona?](https://resultadosdigitais.com.br/blog/persona-o-que-e/)
-> - [Persona x Público-alvo](https://flammo.com.br/blog/persona-e-publico-alvo-qual-a-diferenca/)
-> - [Mapa de Empatia](https://resultadosdigitais.com.br/blog/mapa-da-empatia/)
-> - [Mapa de Stalkeholders](https://www.racecomunicacao.com.br/blog/como-fazer-o-mapeamento-de-stakeholders/)
->
-Lembre-se que você deve ser enumerar e descrever precisamente e personalizada todos os clientes ideais que sua solução almeja.
+
+|Fernanda Ribeiro   | Informações:                          | **Problema**               |     
+|--------------------|----------------------------------|--------------------------------------|
+| <img width="400" alt="Capture" src="https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2024-1-e3-proj-mov-t6-petlovers/assets/110791034/63d2c96c-6d09-4585-bf5e-1915ac13c9a0"> | **Idade:** 27 anos  <br> <br> **Sobre**: Fernanda é dona de Maya, na qual tem como sua fiel amiga desde os 19 anos, que a acompanha em suas aventuras em viagens e trilhas.  | Fernanda vê que Maya ao chegar em uma certa idade precisa de um parceiro/amigo e devido o seu pouco conhecimento da região, vem encontrando dificuldades de um bom amiguinho para sua companheira.   |
+|**•Informações do PET:** <br>●	Nome: MAYA <br>●Idade: 8 ANOS <br>● Raça: Vira-Lata  <br>●È vermifugado e com vacinas em dia: SIM |**Hobbies, História:** <br>● Fernanda tem uma paixão por viajar e conhecer novos lugares, devido a sua rotina frenética, leva sua maior companheira em todas as viagens que faz   |
+
 
 ## Histórias de Usuários
 
@@ -28,47 +22,43 @@ Com base na análise das personas forma identificadas as seguintes histórias de
 
 |EU COMO... `PERSONA`| QUERO/PRECISO ... `FUNCIONALIDADE` |PARA ... `MOTIVO/VALOR`                 |
 |--------------------|------------------------------------|----------------------------------------|
-|Usuário do sistema  | Registrar minhas tarefas           | Não esquecer de fazê-las               |
-|Administrador       | Alterar permissões                 | Permitir que possam administrar contas |
+|Samantha  | Buscar perfis de acordo com a preferência          |Filtrar a pesquisa para ser mais objetiva  |
+|Fernanda     | Ter informações sobre a localidade do outro <b>PET</b>   | Saber a localização para encontro |
+|Samantha     | Registrar informações sobre seu cão   |Para segurança ao escolher outro pet.|
+|Fernanda     | Manter contato com o outro usuário    |Permite melhor troca de informações |
+|Samantha    | Atualização de perfil para novos registros | Para ter informações mais atualizadas sobre a saúde do <b>PET</b>  |
+|Fernanda     | Realizar cadastro de mais de um <b>PET</b>   | Para encontrar outros pares para seus outros <b>PETS</b>  |
+|Samantha     | Adicionar fotos ao perfil              | Permite melhor visualização/conhecimento do parceiro para seu <b>PET</b> . |
 
-Apresente aqui as histórias de usuário que são relevantes para o projeto de sua solução. As Histórias de Usuário consistem em uma ferramenta poderosa para a compreensão e elicitação dos requisitos funcionais e não funcionais da sua aplicação. Se possível, agrupe as histórias de usuário por contexto, para facilitar consultas recorrentes à essa parte do documento.
 
-> **Links Úteis**:
-> - [Histórias de usuários com exemplos e template](https://www.atlassian.com/br/agile/project-management/user-stories)
-> - [Como escrever boas histórias de usuário (User Stories)](https://medium.com/vertice/como-escrever-boas-users-stories-hist%C3%B3rias-de-usu%C3%A1rios-b29c75043fac)
-> - [User Stories: requisitos que humanos entendem](https://www.luiztools.com.br/post/user-stories-descricao-de-requisitos-que-humanos-entendem/)
-> - [Histórias de Usuários: mais exemplos](https://www.reqview.com/doc/user-stories-example.html)
-> - [9 Common User Story Mistakes](https://airfocus.com/blog/user-story-mistakes/)
+
 
 ## Modelagem do Processo de Negócio 
 
 ### Análise da Situação Atual
 
-Apresente aqui os problemas existentes que viabilizam sua proposta. Apresente o modelo do sistema como ele funciona hoje. Caso sua proposta seja inovadora e não existam processos claramente definidos, apresente como as tarefas que o seu sistema pretende implementar são executadas atualmente, mesmo que não se utilize tecnologia computacional. 
+Diante da dificuldade de tutores ao tentar encontrar parceiros ideais da mesma raça para cruzamento com seus <b>pets</b> , surgiu a necessidade da criação do aplicativo PetLovers para ajudar os tutores que procuram por uma experiência eficaz, amigável e segura para seus pets.
 
 ### Descrição Geral da Proposta
 
-Apresente aqui uma descrição da sua proposta abordando seus limites e suas ligações com as estratégias e objetivos do negócio. Apresente aqui as oportunidades de melhorias.
+A proposta do aplicativo PetLovers é oferecer uma plataforma onde seja possível conectar de forma fácil, dinâmica e segura tutores de cachorros que buscam por <b>pets</b>  compatíveis para cruzamento, para uma reprodução responsável e garantindo o bem-estar animal.
 
-### Processo 1 – NOME DO PROCESSO
+### Processo 
 
-Apresente aqui o nome e as oportunidades de melhorias para o processo 1. Em seguida, apresente o modelo do processo 1, descrito no padrão BPMN. 
-
-![Processo 1](img/02-bpmn-proc1.png)
-
-### Processo 2 – NOME DO PROCESSO
-
-Apresente aqui o nome e as oportunidades de melhorias para o processo 2. Em seguida, apresente o modelo do processo 2, descrito no padrão BPMN.
-
-![Processo 2](img/02-bpmn-proc2.png)
+![Processo 1](img/processo-negocio.svg)
 
 ## Indicadores de Desempenho
 
 Apresente aqui os principais indicadores de desempenho e algumas metas para o processo. Atenção: as informações necessárias para gerar os indicadores devem estar contempladas no diagrama de classe. Colocar no mínimo 5 indicadores. 
 
-Usar o seguinte modelo: 
+|INDICADOR|OBJETIVOS|DESCRIÇÃO|CÁLCULO|FONTE DADOS|PERSPECTIVA|
+|-------------|-------------|-------------|-------------|-------------|-------------|
+|Total de cadastros realizados|Acompanhar o crescimento de acessos à plataforma|Monitorar o número de usuários cadastrados|Número de perfis no banco de dados|Banco de dados|Crescimento da aplicação|
+|Número de downloads|Acompanhar o crescimento do aplicativo|Obter o número de vezes em que o aplicativo foi baixado|Número de downloads|Loja de aplicativos|Crescimento da aplicação|
+|Índice de satisfação do usuário|Melhorar a experiência do usuário|Análise de feedback sobre o aplicativo|Média das classificações dos usuários|Pesquisa de satisfação|Satisfação do usuário|
+|Taxa de retenção de usuários|Manter e aumentar a base de usuários|Mede a porcentagem de usuários que retornam à aplicação regularmente após o primeiro uso|Relação entre usuários ativos no mês atual e novos usuários no mês|Banco de dados|Engajamento e fidelidade dos usuários|
+|Taxa de correspondência de raças (matchs)|Aumentar as chances de encontros bem sucedidos|Mede a porcentagem de correspondências entre donos de cachorros da mesma caça|(Número de correspondências bem sucedidas/total de tentativas de correspondência)x100%|Registro de interações na aplicação/banco de dados|Eficácia da aplicação|
 
-![Indicadores de Desempenho](img/02-indic-desemp.png)
 Obs.: todas as informações para gerar os indicadores devem estar no diagrama de classe a ser apresentado a posteriori. 
 
 ## Requisitos
@@ -130,39 +120,45 @@ O projeto está restrito pelos itens apresentados na tabela a seguir.
 
 A matriz de rastreabilidade é uma ferramenta usada para facilitar a visualização dos relacionamento entre requisitos e outros artefatos ou objetos, permitindo a rastreabilidade entre os requisitos e os objetivos de negócio. 
 
-A matriz deve contemplar todos os elementos relevantes que fazem parte do sistema, conforme a figura meramente ilustrativa apresentada a seguir.
+Ela deve contemplar todos os elementos relevantes que fazem parte do sistema, conforme a figura  apresentada a seguir.
 
+- RF - Requisito funcional
+- RNF - Requisito não funcional
 
-![Exemplo de matriz de rastreabilidade](img/02-matriz-rastreabilidade.png)
+<img width="1434" alt="image" src="https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2024-1-e3-proj-mov-t6-petlovers/assets/93337008/3bd6eccf-7af8-48d7-86b4-cea503e16eaf">
 
-> **Links Úteis**:
-> - [Artigo Engenharia de Software 13 - Rastreabilidade](https://www.devmedia.com.br/artigo-engenharia-de-software-13-rastreabilidade/12822/)
-> - [Verificação da rastreabilidade de requisitos usando a integração do IBM Rational RequisitePro e do IBM ClearQuest Test Manager](https://developer.ibm.com/br/tutorials/requirementstraceabilityverificationusingrrpandcctm/)
-> - [IBM Engineering Lifecycle Optimization – Publishing](https://www.ibm.com/br-pt/products/engineering-lifecycle-optimization/publishing/)
 
 
 # Gerenciamento de Projeto
 
-De acordo com o PMBoK v6 as dez áreas que constituem os pilares para gerenciar projetos, e que caracterizam a multidisciplinaridade envolvida, são: Integração, Escopo, Cronograma (Tempo), Custos, Qualidade, Recursos, Comunicações, Riscos, Aquisições, Partes Interessadas. Para desenvolver projetos um profissional deve se preocupar em gerenciar todas essas dez áreas. Elas se complementam e se relacionam, de tal forma que não se deve apenas examinar uma área de forma estanque. É preciso considerar, por exemplo, que as áreas de Escopo, Cronograma e Custos estão muito relacionadas. Assim, se eu amplio o escopo de um projeto eu posso afetar seu cronograma e seus custos.
+De acordo com o PMBoK v6 as dez áreas que constituem os pilares para gerenciar projetos, e que caracterizam a multidisciplinaridade envolvida, são: Integração, Escopo, Cronograma (Tempo), Custos, Qualidade, Recursos, Comunicações, Riscos, Aquisições, Partes Interessadas. Nesta seção é apresentado o gerenciamento de tempo, equipe e custos do projeto PetLovers.
 
 ## Gerenciamento de Tempo
 
-Com diagramas bem organizados que permitem gerenciar o tempo nos projetos, o gerente de projetos agenda e coordena tarefas dentro de um projeto para estimar o tempo necessário de conclusão.
+O projeto tem ao todo a duração de 144 dias, divididos em cinco etapas. Na Etapa 1, será feita a definição do projeto, a documentação de contexto e a especificação de problema. Na Etapa 2, será especificada a metodologia, a arquitetura da solução e o projeto de interface. Também serão iniciados a programação de funcionalidades e os planos e registros de testes, atividades que seguem na Etapa 3 e 4. Na última etapa, a Etapa 5, serão feitos os ajustes finais e a apresentação final do projeto. 
 
-![Diagrama de rede simplificado notação francesa (método francês)](img/02-diagrama-rede-simplificado.png)
+O diagrama abaixo contém o tempo para desenvolvimento e as atividades correspondentes de cada etapa: 
 
-O gráfico de Gantt ou diagrama de Gantt também é uma ferramenta visual utilizada para controlar e gerenciar o cronograma de atividades de um projeto. Com ele, é possível listar tudo que precisa ser feito para colocar o projeto em prática, dividir em atividades e estimar o tempo necessário para executá-las.
+<img width="900" alt="Capture" src="img/diagramaRede_gerenciamentoTempo.png">
 
-![Gráfico de Gantt](img/02-grafico-gantt.png)
+O gráfico de Gantt ou diagrama de Gantt também auxilia no controle e gerenciamento do cronograma de atividades, possibilitando listar, dividir em atividades e estimar o tempo necessário para executá-las. Nele, estão delimitados os prazos de realização de cada uma das atividades necessárias para a conclusão do projeto.
+
+<div align="center">
+<img width="650" alt="Capture" src="img/diagramaGantt_gerenciamentoTempo.png">
+</div>
 
 ## Gerenciamento de Equipe
 
-O gerenciamento adequado de tarefas contribuirá para que o projeto alcance altos níveis de produtividade. Por isso, é fundamental que ocorra a gestão de tarefas e de pessoas, de modo que os times envolvidos no projeto possam ser facilmente gerenciados. 
+O gerenciamento adequado de tarefas contribuirá para que o projeto alcance altos níveis de produtividade. Por isso, é fundamental que ocorra a gestão de tarefas e de pessoas, de modo que os times envolvidos no projeto possam ser facilmente gerenciados.
 
-![Simple Project Timeline](img/02-project-timeline.png)
+A equipe responsável pelo PetLovers é composta por seis pessoas. As tarefas de idealização e documentação do projeto serão dividas entre os membros do time, enquanto nas tarefas relativas desenvolvimento todos estarão envolvidos, conforme organizado no quadro abaixo:
+
+<div align="center">
+<img width="650" alt="Capture" src="img/diagrama_gerenciamentoEquipe.png">
+</div>
 
 ## Gestão de Orçamento
 
-O processo de determinar o orçamento do projeto é uma tarefa que depende, além dos produtos (saídas) dos processos anteriores do gerenciamento de custos, também de produtos oferecidos por outros processos de gerenciamento, como o escopo e o tempo.
+O processo de determinar o orçamento do projeto é uma tarefa que depende, além dos produtos (saídas) dos processos anteriores do gerenciamento de custos, também de produtos oferecidos por outros processos de gerenciamento, como o escopo e o tempo. Para a realização do atual trabalho, é estimado o salário dos desenvolvedores, o equipamento de trabalho necessário e os custos com servidor. A seguir, estão listados os recursos necessários, seus respectivos custos, os custos agregados e os custos totais do projeto, considerando o prazo de cinco meses para sua execução.
 
-![Orçamento](img/02-orcamento.png)
+<img width="900" alt="Capture" src="img/diagrama_Orcamento.png">
