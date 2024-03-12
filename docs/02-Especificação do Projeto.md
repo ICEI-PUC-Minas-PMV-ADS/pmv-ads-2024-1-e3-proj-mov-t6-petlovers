@@ -69,18 +69,14 @@ As tabelas que se seguem apresentam os requisitos funcionais e não funcionais q
 
 |ID    | Descrição do Requisito  | Prioridade |
 |------|-----------------------------------------|----|
-|RF-001| O sistema deve possuir área de cadastro de usuário | ALTA | 
-|RF-002| O sistema deve permitir cadastro vários perfis por usuário   | MÉDIA |**
-|RF-003| O sistema deve permitir cadastro com Upload de imagem   | MÉDIA |
-|RF-004| O sistema deve permitir que o usuário altere as informações de seu cadastro| MÉDIA |
-|RF-005| O sistema deve permitir que o usuário delete seu cadastro| MÉDIA |
-|RF-006| O sistema deve ter uma área para buscar perfil de outro usuário   | MÉDIA |
-|RF-007| O sistema deve permitir que o usuário visualize outros perfis  | MÉDIA |
-|RF-008| O sistema deve permitir que o usuário consiga selecionar o perfil de outro usuário| MÉDIA |
-|RF-009| O sistema deve permitir que o usuário recuse algum perfil | MÉDIA |
-|RF-010| O sistema deve emitir notificação ao usuário selecionado | MÉDIA |
-|RF-011| O sistema deve exibir o icone de Mensagens Instantâneas para os usuários que se escolheram  | MÉDIA |
-|RF-012| O sistema deve permitir que os usuários avaliem a experiência | MÉDIA |**
+|RF-001| O sistema deve possuir área de cadastro de usuário com vários perfis por usuário | ALTA | 
+|RF-002| O sistema deve permitir cadastro com _Upload_ de imagens   | MÉDIA |
+|RF-003| O sistema deve permitir que o usuário altere, atualize e/ou delete as informações de seu cadastro| MÉDIA |
+|RF-004| O sistema deve ter uma área para buscar/filtrar e visualizar o perfil de outros usuários   | MÉDIA |
+|RF-005| O sistema deve permitir que o usuário consiga selecionar ou recusar o perfil de outro usuário| MÉDIA |
+|RF-006| O sistema deve emitir notificação ao usuário selecionado | MÉDIA |
+|RF-007| O sistema deve exibir o icone de mensagens instantâneas para os usuários que se escolheram  | MÉDIA |
+|RF-008| O sistema deve permitir que os usuários avaliem a experiência | MÉDIA |
 
 
 
@@ -88,14 +84,14 @@ As tabelas que se seguem apresentam os requisitos funcionais e não funcionais q
 
 |ID     | Descrição do Requisito  |Prioridade |
 |-------|-------------------------|----|
-|RNF-01|	Na página principal, deve-se deixar claro o propósito do site |	MÉDIA |
-|RNF-02|	O sistema deve ser responsivo |	MÉDIA |
-|RNF-03|	O sistema deve ter bom nível de contraste entre os elementos da tela em conformidade |	MÉDIA |
-|RNF-04|	Compatibilidade com principais navegadores (Chrome, Firefox, Opera, Safari) |	MÉDIA |
-|RNF-05|	A resposta de uma busca não pode demorar mais que 5 segundos. |	MÉDIA |
-|RNF-06|	O sistema deve passar segurança aos usuários ao colocar seus dados pessoais. |	MÉDIA |
-|RNF-07|	Inclusão de ALTs (descrições de imagens) nas fotos e ilustrações (RNF) |	MÉDIA |
-|RNF-08|	O sistema deve armazenar senhas dos usuários criptografadas |	MÉDIA |
+|RNF-001|	Na página principal, deve-se deixar claro o propósito do site |	MÉDIA |
+|RNF-002|	O sistema deve ser responsivo |	MÉDIA |
+|RNF-003|	O sistema deve ter bom nível de contraste entre os elementos da tela em conformidade |	MÉDIA |
+|RNF-004|	Ter compatibilidade com principais navegadores (Chrome, Firefox, Opera, Safari) |	MÉDIA |
+|RNF-005|	A resposta de uma busca não pode demorar mais que 5 segundos |	MÉDIA |
+|RNF-006|	O sistema deve passar segurança aos usuários ao colocar seus dados pessoais |	MÉDIA |
+|RNF-007|	Inclusão de ALTs (descrições de imagens) nas fotos e ilustrações  |	MÉDIA |
+|RNF-008|	O sistema deve armazenar senhas dos usuários criptografadas |	MÉDIA |
 
 
 ## Restrições
@@ -104,8 +100,8 @@ O projeto está restrito pelos itens apresentados na tabela a seguir.
 
 |ID| Restrição                                             |
 |--|-------------------------------------------------------|
-|01| O projeto deverá ser entregue até o final do semestre (07/2024) |
-|02| Vídeo de 2 minutos sobre o problema e a solução proposta |
+|01| O projeto deverá ser entregue até o final do semestre (07/2024)|
+|02| O aplicativo deve-se restringir a utilização do _Framework_ _React_ _Native_ no seu desenvolvimento |
 |03| Atender todas as normas ABNT |
 |04| O grupo deverá utilizar o repositório específico do curso ADS |
 |05| O projeto deverá ser desenvolvido por integrantes do grupo, não poderá ser terceirizado |
