@@ -110,7 +110,8 @@ O projeto está restrito pelos itens apresentados na tabela a seguir.
 
 ## Diagrama de Casos de Uso
 
-<img width="876" alt="Screenshot 2024-03-05 at 10 16 16" src="https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2024-1-e3-proj-mov-t6-petlovers/assets/93337008/698b054c-58bb-4961-9d53-4ff2d9c2e4aa">
+<img width="783" alt="image" src="https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2024-1-e3-proj-mov-t6-petlovers/assets/93337008/2249462c-7aa3-4d7c-b639-29659d8b7c9d">
+
 
 # Matriz de Rastreabilidade
 
