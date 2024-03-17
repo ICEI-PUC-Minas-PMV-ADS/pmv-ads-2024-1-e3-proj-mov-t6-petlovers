@@ -71,7 +71,7 @@ As tabelas que se seguem apresentam os requisitos funcionais e não funcionais q
 |------|-----------------------------------------|----|
 |RF-001| O sistema deve possuir uma área para fazer cadastro de novos usuários a partir de 18 anos. | ALTA | 
 |RF-002| O sistema deve permitir cadastrar o perfil de um animal de estimação, com a opção de fazer o upload de imagens.  | ALTA |
-|RF-003| O sistema deve permitir que o usuário altere ou exclua as informações cadastradas sobre seus <b>pets</b>.| MÉDIA |
+|RF-003| O sistema deve permitir que o usuário altere suas as informações cadastradas e de seu <b>pet</b>.| MÉDIA |
 |RF-004| O sistema deve ter uma área para buscar/filtrar e visualizar o perfil de outros <b>pets</b>.  | MÉDIA |
 |RF-005| O sistema deve permitir que o usuário consiga selecionar (dar <b>match</b>) ou recusar perfis de outros <b>pets</b>.| ALTA|
 |RF-006| O sistema deve emitir notificação ao usuário quando acontece um <b>match</b>. | ALTA |
@@ -110,7 +110,7 @@ O projeto está restrito pelos itens apresentados na tabela a seguir.
 
 ## Diagrama de Casos de Uso
 
-<img width="783" alt="image" src="https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2024-1-e3-proj-mov-t6-petlovers/assets/93337008/2249462c-7aa3-4d7c-b639-29659d8b7c9d">
+![image](https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2024-1-e3-proj-mov-t6-petlovers/assets/93337008/ec4f9804-27a3-449f-8e77-8685f59be406)
 
 
 # Matriz de Rastreabilidade
@@ -122,7 +122,7 @@ Ela deve contemplar todos os elementos relevantes que fazem parte do sistema, co
 - RF - Requisito funcional
 - RNF - Requisito não funcional
 
-<img width="1434" alt="image" src="https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2024-1-e3-proj-mov-t6-petlovers/assets/93337008/3bd6eccf-7af8-48d7-86b4-cea503e16eaf">
+<img width="1167" alt="image" src="https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2024-1-e3-proj-mov-t6-petlovers/assets/93337008/f7b096b1-2b54-449d-b47c-bf5cf0ff451a">
 
 
 
