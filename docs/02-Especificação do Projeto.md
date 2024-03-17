@@ -73,7 +73,7 @@ As tabelas que se seguem apresentam os requisitos funcionais e não funcionais q
 |RF-002| O sistema deve permitir cadastrar o perfil de um animal de estimação, com a opção de fazer o upload de imagens.  | ALTA |
 |RF-003| O sistema deve permitir que o usuário altere suas as informações cadastradas e de seu <b>pet</b>.| MÉDIA |
 |RF-004| O sistema deve ter uma área para buscar/filtrar e visualizar o perfil de outros <b>pets</b>.  | MÉDIA |
-|RF-005| O sistema deve permitir que o usuário consiga selecionar (dar <b>match</b>) ou recusar perfis de outros <b>pets</b>.| ALTA|
+|RF-005| O sistema deve permitir que o usuário consiga selecionar (dar <b>like</b>) ou recusar perfis de outros <b>pets</b>.| ALTA|
 |RF-006| O sistema deve emitir notificação ao usuário quando acontece um <b>match</b>. | ALTA |
 |RF-007|  O sistema deve exibir um ícone de mensagens instantâneas para os usuários que deram <b>match</b>. | ALTA |
 |RF-008| O sistema deve permitir que os usuários avaliem a experiência. | MÉDIA |
@@ -110,7 +110,7 @@ O projeto está restrito pelos itens apresentados na tabela a seguir.
 
 ## Diagrama de Casos de Uso
 
-![image](https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2024-1-e3-proj-mov-t6-petlovers/assets/93337008/ec4f9804-27a3-449f-8e77-8685f59be406)
+<img width="763" alt="image" src="https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2024-1-e3-proj-mov-t6-petlovers/assets/93337008/dfcb6757-dc2e-4e33-be94-2d156a0a2692">
 
 
 # Matriz de Rastreabilidade
