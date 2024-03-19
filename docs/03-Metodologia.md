@@ -19,7 +19,6 @@ foi utilizado para hospedagem do repositório.
 O projeto segue a seguinte convenção para o nome de branches:
 
 - `main`: versão estável já testada do software
-- `unstable`: versão já testada do software, porém instável
 - `testing`: versão em testes do software
 - `dev`: versão de desenvolvimento do software
 
@@ -31,15 +30,11 @@ etiquetas:
 - `enhancement`: uma funcionalidade precisa ser melhorada
 - `feature`: uma nova funcionalidade precisa ser introduzida
 
-Discuta como a configuração do projeto foi feita na ferramenta de versionamento escolhida. Exponha como a gerência de tags, merges, commits e branchs é realizada. Discuta como a gerência de issues foi realizada.
+Foi disponibilizado um repositório para a equipe no Github e, a partir da *branch* *main* serão criadas as branches *testing* e *dev*.  </br> 
+Cada membro do time precisará clonar o repositório, realizar as edições e os desenvolvimentos (na *branch *dev*) e, após a conclusão precisará ser criada uma *pull request* para a *branch* *testing*. </br>
+Somente quando for aprovada, os testes deverão ser realizados.  </br>
+Por fim, os membros deverão criar uma nova *pull* *request*, dessa vez para a *branch* *main*, tendo dois *pipelines* para aplicação, sendo um para o ambiente de teste (*branch* *testing*) e, a partir da *branch*, mais uma para o ambiente de produção. 
 
-> **Links Úteis**:
-> - [Microfundamento: Gerência de Configuração](https://pucminas.instructure.com/courses/87878/)
-> - [Tutorial GitHub](https://guides.github.com/activities/hello-world/)
-> - [Git e Github](https://www.youtube.com/playlist?list=PLHz_AreHm4dm7ZULPAmadvNhH6vk9oNZA)
->  - [Comparando fluxos de trabalho](https://www.atlassian.com/br/git/tutorials/comparing-workflows)
-> - [Understanding the GitHub flow](https://guides.github.com/introduction/flow/)
-> - [The gitflow workflow - in less than 5 mins](https://www.youtube.com/watch?v=1SXpE08hvGs)
 
 ## Gerenciamento do Projeto
 A equipe utiliza metodologias ágeis, tendo escolhido o Scrum como base para definição do processo de desenvolvimento.
