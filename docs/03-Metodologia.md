@@ -7,7 +7,7 @@ As definições ferramentais utilizadas nesse projeto, tanto para manutenção d
 | Ambiente| Plataforma | Link de Acesso |
 |---------|------------|----------------|
 | Repositório de código fonte | GitHub |[Github](https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2024-1-e3-proj-mov-t6-petlovers)|
-| Diagramas | Draw.io | [Draw.io](https://www.canva.com/design/DAF-SRjfrhc/WZFIN5xfBkYXUpTRyveAhw/edit)|
+| Diagramas | Canva | [Canva](https://www.canva.com/design/DAF-SRjfrhc/WZFIN5xfBkYXUpTRyveAhw/edit)|
 | Projeto de Interface e Wireframes | Figma | [Figma](https://www.figma.com/file/2Hs6QHz5WXsqocqcSdncLB/PetLover?type=design&node-id=0%3A1&mode=design&t=3AAeg3pPom0kkpvc-1)|
 | Gerenciamento do Projeto | Github | [Github](https://github.com/orgs/ICEI-PUC-Minas-PMV-ADS/projects/833/views/1)| .|
 
