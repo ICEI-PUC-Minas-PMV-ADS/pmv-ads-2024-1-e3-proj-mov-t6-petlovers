@@ -64,12 +64,8 @@ A equipe utiliza metodologias ágeis, tendo escolhido o Scrum como base para def
 Para organização e distribuição das tarefas desse projeto, a equipe está utilizando o Github, estruturado com Recursos: Backlog, ToDo, In Progress, e Done. 
 O quadro do Github está disponível através da URL: [Github](https://github.com/orgs/ICEI-PUC-Minas-PMV-ADS/projects/833/views/1)
 
-![Tela Github utilizada pelo grupo](img/Muamba.png)
+![Tela Github utilizada pelo grupo](img/Gerenciamento.png.png)
 *Figura 1 - Tela Github utilizada pelo grupo*
-
-Coloque  informações sobre detalhes da implementação do Scrum seguido pelo grupo. O grupo deverá fazer uso do recurso de gerenciamento de projeto oferecido pelo GitHub, que permite acompanhar o andamento do projeto, a execução das tarefas e o status de desenvolvimento da solução.
- 
-
 
 ### Ferramentas
 As ferramentas empregadas no projeto são:
