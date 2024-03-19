@@ -7,9 +7,9 @@ As definições ferramentais utilizadas nesse projeto, tanto para manutenção d
 | Ambiente| Plataforma | Link de Acesso |
 |---------|------------|----------------|
 | Repositório de código fonte | GitHub |[Github](https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2024-1-e3-proj-mov-t6-petlovers)|
-| Diagramas | Draw.io | XXX .|
+| Diagramas | Canva | [Canva](https://www.canva.com/design/DAF-SRjfrhc/WZFIN5xfBkYXUpTRyveAhw/edit)|
 | Projeto de Interface e Wireframes | Figma | [Figma](https://www.figma.com/file/2Hs6QHz5WXsqocqcSdncLB/PetLover?type=design&node-id=0%3A1&mode=design&t=3AAeg3pPom0kkpvc-1)|
-| Gerenciamento do Projeto | xxx | x .|
+| Gerenciamento do Projeto | Github | [Github](https://github.com/orgs/ICEI-PUC-Minas-PMV-ADS/projects/833/views/1)| .|
 
 ## Controle de Versão
 A ferramenta de controle de versão adotada no projeto foi o
@@ -56,12 +56,11 @@ A equipe utiliza metodologias ágeis, tendo escolhido o Scrum como base para def
 
 
 ### Processo
-Para organização e distribuição das tarefas desse projeto, a equipe está utilizando o Trello, estruturado com Recursos: Backlog, ToDo, Doing, Test, Done e Locked. Com etiquetas: Documentação, Desenvolvimento, Infraestrutura, testes, Gerenciamento de Projetos. 
-O quadro do xxx está disponível através da URL: xxx
+Para organização e distribuição das tarefas desse projeto, a equipe está utilizando o Github, estruturado com Recursos: Backlog, ToDo, In Progress, e Done. 
+O quadro do Github está disponível através da URL: [Github](https://github.com/orgs/ICEI-PUC-Minas-PMV-ADS/projects/833/views/1)
 
-Coloque  informações sobre detalhes da implementação do Scrum seguido pelo grupo. O grupo deverá fazer uso do recurso de gerenciamento de projeto oferecido pelo GitHub, que permite acompanhar o andamento do projeto, a execução das tarefas e o status de desenvolvimento da solução.
- 
-
+![Tela Github utilizada pelo grupo](img/Gerenciamento.png.png)
+*Figura 1 - Tela Github utilizada pelo grupo*
 
 ### Ferramentas
 As ferramentas empregadas no projeto são:
