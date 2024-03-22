@@ -1,6 +1,6 @@
 # Template Padrão da Aplicação
 
-O template criado está disponível no [Figma](https://www.figma.com/file/2Hs6QHz5WXsqocqcSdncLB/PetLovers?type=design&mode=design&t=sxFi5xox53fsvRBg-0). Abaixo, estão listados alguns dos elementos que representam a identidade visual da nossa aplicação:
+O template criado está disponível no [Figma](https://www.figma.com/file/2Hs6QHz5WXsqocqcSdncLB/PetLovers?type=design&mode=design&t=sxFi5xox53fsvRBg-0). Abaixo, estão listados os elementos que representam a identidade visual da nossa aplicação:
 
 ### Paleta de cores
 
