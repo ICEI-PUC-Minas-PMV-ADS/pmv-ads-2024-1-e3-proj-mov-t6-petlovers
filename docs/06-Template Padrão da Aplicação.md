@@ -1,17 +1,17 @@
 # Template Padrão da Aplicação
 
-O template criado está disponível no [Figma](https://www.figma.com/file/2Hs6QHz5WXsqocqcSdncLB/PetLovers?type=design&mode=design&t=sxFi5xox53fsvRBg-0). Abaixo, estão listados os elementos que representam a identidade visual da nossa aplicação:
+O template criado está disponível no [Figma](https://www.figma.com/file/2Hs6QHz5WXsqocqcSdncLB/PetLovers?type=design&mode=design&t=sxFi5xox53fsvRBg-0). Abaixo, estão listados os elementos que representam a identidade visual da nossa aplicação:<br><br>
 
 
 ### Paleta de cores
 
-<img width="857" alt="image" src="https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2024-1-e3-proj-mov-t6-petlovers/assets/93337008/89fffd89-89fc-4dfd-934b-d169e15e6a4e">
+<img width="857" alt="image" src="https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2024-1-e3-proj-mov-t6-petlovers/assets/93337008/89fffd89-89fc-4dfd-934b-d169e15e6a4e"><br><br>
 
 
 
 ### Logotipo
 
-<img width="303" alt="image" src="https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2024-1-e3-proj-mov-t6-petlovers/assets/93337008/64bbb095-7934-46ef-b77e-299c0d8f469e"><br>
+<img width="303" alt="image" src="https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2024-1-e3-proj-mov-t6-petlovers/assets/93337008/64bbb095-7934-46ef-b77e-299c0d8f469e"><br><br>
 
 
 ### Home page sem longin
