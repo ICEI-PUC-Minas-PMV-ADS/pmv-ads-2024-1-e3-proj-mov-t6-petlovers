@@ -70,7 +70,7 @@ Na página de cadastro do pet, o usuário deverá fazer o upload de uma imagem, 
 
 Na página de busca/match, por padrão, os cards do sexo oposto serão renderizados antes que o usuário realize alguma busca. O usuário pode pesquisar de acordo com suas preferências, por exemplo: "Poodle marrom em Santos, São Paulo", e todos os perfis cadastrados com essas características serão exibidos.
 
-Haverá ícones interativos para facilitar a interação:
+Haverá ícones interativos para aprimorar a experiência do usuário:
 
 - Ícone de coração (Curtir): indica interesse no perfil exibido;
 - Ícone "x" (recusar): indica falta de interesse no perfil exibido;
