@@ -8,6 +8,16 @@ O template criado está disponível no [Figma](https://www.figma.com/file/2Hs6QH
 <img width="857" alt="image" src="https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2024-1-e3-proj-mov-t6-petlovers/assets/93337008/89fffd89-89fc-4dfd-934b-d169e15e6a4e"><br><br>
 
 
+### Ícones
+
+<img width="510" alt="image" src="https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2024-1-e3-proj-mov-t6-petlovers/assets/93337008/6ba9c791-53c0-4165-9e54-17356cb7edc3"><br><br>
+
+
+### Botões
+
+<img width="947" alt="image" src="https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2024-1-e3-proj-mov-t6-petlovers/assets/93337008/42681a75-ca32-4f53-9437-6ca3403300e9"><br><br>
+
+
 
 ### Logotipo
 
