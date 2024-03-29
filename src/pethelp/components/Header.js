@@ -1,19 +1,21 @@
-import React from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import * as React from 'react';
+import { Avatar, Button, Card, Text } from 'react-native-paper';
 
-const Header = () => {
-  return (
-    <View style={styles.container}>
-      <Text style={styles.text}>Header</Text>
-    </View>
-  );
-};
+const LeftContent = props => <Avatar.Icon {...props} icon="folder" />
 
-const styles = StyleSheet.create({
-  text: {
-    fontSize: 24,
-    fontWeight: 'bold',
-  },
-});
+const Header = () => (
+  <Card>
+    <Card.Title title="Card Title" subtitle="Card Subtitle" left={LeftContent} />
+    <Card.Content>
+      <Text variant="titleLarge">Card title</Text>
+      <Text variant="bodyMedium">Card content</Text>
+    </Card.Content>
+    <Card.Cover source={{ uri: 'https://picsum.photos/700' }} />
+    <Card.Actions>
+      <Button>Cancel</Button>
+      <Button>Ok</Button>
+    </Card.Actions>
+  </Card>
+);
 
 export default Header;

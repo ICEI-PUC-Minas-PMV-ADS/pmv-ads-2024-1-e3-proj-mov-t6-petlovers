@@ -25,6 +25,12 @@
     },
     "web": {
       "favicon": "./assets/favicon.png"
-    }
+    },
+    "extra": {
+      "eas": {
+        "projectId": "84e9ff95-87db-4bf5-bec0-d5763f1d4d23"
+      }
+    },
+    "owner": "alissa.ni"
   }
 }
