@@ -8,11 +8,13 @@ import { Ionicons } from '@expo/vector-icons';
 import Home from './screens/Home';
 import Sobre from './screens/Sobre';
 import Notificacoes from './screens/Notificacoes';
+import Login from './screens/Login';
 
 // Screens names
 const homeName = 'Home';
 const sobreName = 'Sobre nos';
 const notificacoesName = 'Notificacoes';
+const loginName = 'Login';
 
 const Tab = createBottomTabNavigator();
 
@@ -31,6 +33,8 @@ export default function BottomNavigation(){
                             iconName = focused ? 'book' : 'book-outline';
                         } else if (route.name === notificacoesName) {
                             iconName = focused ? 'notifications' : 'notifications-outline';
+                        }else if (route.name === loginName) {
+                            iconName = focused ? 'person' : 'person-outline';
                         }
 
                         return <Ionicons name={iconName} size={size} color={color} />;
@@ -48,6 +52,7 @@ export default function BottomNavigation(){
                 <Tab.Screen name={homeName} component={Home} />
                 <Tab.Screen name={sobreName} component={Sobre} />
                 <Tab.Screen name={notificacoesName} component={Notificacoes} />
+                <Tab.Screen name={loginName} component={Login} />
             </Tab.Navigator>
         </NavigationContainer>
     )

@@ -1,8 +1,8 @@
 import React from 'react';
 import { Text, SafeAreaView, StyleSheet } from 'react-native';
 
-import FormInput from '../components/FormInput';
-import FormButton from '../components/FormButton';
+import FormInput from '../../components/FormInput';
+import FormButton from '../../components/FormButton';
 
 export default function Login() {
   return (

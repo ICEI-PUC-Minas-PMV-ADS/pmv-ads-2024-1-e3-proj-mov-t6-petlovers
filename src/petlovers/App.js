@@ -5,7 +5,7 @@ import { SafeAreaProvider } from 'react-native-safe-area-context';
 //import { useFonts } from 'expo-font';
 
 import Header from './components/Header';
-import Login from './pages/Login'
+import Login from './navigation/screens/Login'
 import Cadastro from './pages/Cadastro';
 import BottomNavigation  from './navigation/BottomNavigation';
 
