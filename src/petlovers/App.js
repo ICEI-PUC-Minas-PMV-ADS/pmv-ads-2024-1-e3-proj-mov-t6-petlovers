@@ -1,9 +1,9 @@
 import * as React from 'react';
-import MainContainer from './navigation/MainContainer';
+import BottomNavigation from './navigation/BottomNavigation';
 
 function App() {
   return(
-    <MainContainer />
+    <BottomNavigation />
   )
 }
 

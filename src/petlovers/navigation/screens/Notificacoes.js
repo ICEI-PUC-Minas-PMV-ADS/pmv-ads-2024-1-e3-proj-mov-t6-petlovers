@@ -6,7 +6,7 @@ export default function Notificacoes() {
         <View style={{ flex:1, alignItems: 'center', justifyContent: 'center'}}> 
             <Text
             onPress={() => navigation.navigate('Home')}
-            style={{ fontSize: 26, fontWeight: 'bold'}}>setting screen</Text>
+            style={{ fontSize: 26, fontWeight: 'bold'}}>Notificacoes</Text>
         </View>
     );
 }

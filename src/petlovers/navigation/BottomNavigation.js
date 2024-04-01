@@ -16,7 +16,7 @@ const notificacoesName ='Notificacoes';
 
 const Tab = createBottomTabNavigator();
 
-export default function MainContainer(){
+export default function BottomNavigation(){
     return (
         <NavigationContainer>
             <Tab.Navigator
