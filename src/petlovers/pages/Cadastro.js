@@ -5,8 +5,8 @@ import { Text, SafeAreaView, StyleSheet } from 'react-native';
 import { Card } from 'react-native-paper';
 
 // or any files within the Snack
-import FormInput from '../../components/FormInput';
-import FormButton from '../../components/FormButton';
+import FormInput from '../components/FormInput';
+import FormButton from '../components/FormButton';
 
 export default function Cadastro() {
   return (
