@@ -1,20 +1,27 @@
-import * as React from 'react';
+import React from 'react';
 import { Appbar } from 'react-native-paper';
 
-
-const Header = () => (
-  <Appbar.Header style={styles.header}>
-      <Appbar.Content title="PetLovers" />
-  </Appbar.Header>
-);
+const Header = () => {
+  return (
+    <Appbar.Header style={styles.header}>
+      <Appbar.Content
+        title="PetLover"
+        titleStyle={styles.title}
+      />
+    </Appbar.Header>
+  );
+};
 
 const styles = {
   header: {
-    backgroundColor: '#827397',
+    backgroundColor: 'white',
   },
   title: {
     fontWeight: 'bold',
+    color: '#5F5B5B',
   },
 };
 
 export default Header;
+
+
