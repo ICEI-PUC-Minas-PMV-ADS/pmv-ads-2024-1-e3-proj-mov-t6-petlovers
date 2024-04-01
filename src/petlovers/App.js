@@ -5,14 +5,13 @@ import { SafeAreaProvider } from 'react-native-safe-area-context';
 //import { useFonts } from 'expo-font';
 
 import Header from './components/Header';
-import Login from './navigation/screens/Login'
-import Cadastro from './pages/Cadastro';
 import BottomNavigation  from './components/BottomNavigation';
 
 export default function App() {
   return (
   <SafeAreaProvider>
-    <BottomNavigation/>
+    <Header />
+    <BottomNavigation />
   </SafeAreaProvider>   
   );
 }
