@@ -5,10 +5,10 @@ import { Ionicons } from '@expo/vector-icons';
 
 
 // Screens
-import Home from './screens/Home';
-import Sobre from './screens/Sobre';
-import Notificacoes from './screens/Notificacoes';
-import Login from './screens/Login';
+import Home from '../navigation/screens/Home';
+import Sobre from '../navigation/screens/Sobre';
+import Notificacoes from '../navigation/screens/Notificacoes';
+import Login from '../navigation/screens/Login';
 
 // Screens names
 const homeName = 'Home';
