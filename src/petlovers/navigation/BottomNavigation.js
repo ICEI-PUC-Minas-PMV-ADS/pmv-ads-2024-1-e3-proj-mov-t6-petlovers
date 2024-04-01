@@ -11,7 +11,7 @@ import Notificacoes from './screens/Notificacoes';
 
 //Screens names
 const homeName = 'Home';
-const sobreName = 'Sobre';
+const sobreName = 'Sobre nos';
 const notificacoesName ='Notificacoes';
 
 const Tab = createBottomTabNavigator();
@@ -36,6 +36,7 @@ export default function BottomNavigation(){
 
                     return <Ionicons name={iconName} size={size} color={color} />
                 },
+                tabBarLabel: () => null // Remover o texto abaixo dos ícones
             })}
             tabBarOptions={{
                 activeTintColor: '#827397',
