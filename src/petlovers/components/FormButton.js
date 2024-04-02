@@ -11,7 +11,7 @@ const MyComponent = (props) => (
 const styles = StyleSheet.create({
   button: {
     backgroundColor: '#827397',
-    width: 300,
+    width: 335,
     marginTop: 10,
     padding: 5,
     textTransform: 'none',
