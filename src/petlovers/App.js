@@ -9,9 +9,10 @@ import BottomNavigation  from './components/BottomNavigation';
 
 export default function App() {
   return (
-  <SafeAreaProvider>
+  <SafeAreaProvider style={styles.container}>
+    <StatusBar style="auto" />
     <Header />
-    <BottomNavigation />
+    <BottomNavigation /> 
   </SafeAreaProvider>   
   );
 }
@@ -19,15 +20,7 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: 'white',
-    padding: 20,
-  },
-  text: {
-    fontSize: 24,
-    fontWeight: 'bold',
-    textAlign: 'center',
+    backgroundColor: 'transparent', 
   },
 });
 

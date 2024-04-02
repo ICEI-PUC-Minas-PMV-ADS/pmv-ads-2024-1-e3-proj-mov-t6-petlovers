@@ -5,7 +5,7 @@ const Header = () => {
   return (
     <Appbar.Header style={styles.header}>
       <Appbar.Content
-        title="PetLover"
+        title="PetLovers"
         titleStyle={styles.title}
       />
     </Appbar.Header>

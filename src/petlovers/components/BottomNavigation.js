@@ -3,8 +3,6 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { Ionicons } from '@expo/vector-icons';
 
-
-// Screens
 import Home from '../pages/Home';
 import Sobre from '../pages/Sobre';
 import Notificacoes from '../pages/Notificacoes';
@@ -24,6 +22,15 @@ export default function BottomNavigation(){
             <Tab.Navigator
                 initialRouteName={homeName}
                 screenOptions={({ route }) => ({
+                    style: { display: 'flex'},
+                    tabBarStyle: {
+                        backgroundColor: 'transparent', 
+                    },
+                    tabBarIconStyle: {
+                        backgroundColor: 'transparent', 
+                    },
+                    tabBarVisible: route.name !== loginName,
+                    headerShown: false,
                     tabBarIcon: ({ focused, color, size }) => {
                         let iconName;
 
@@ -41,13 +48,16 @@ export default function BottomNavigation(){
                     },
                     tabBarActiveTintColor: '#827397',
                     tabBarInactiveTintColor: 'gray',
-                    tabBarLabelStyle: { paddingBottom: 10, fontSize: 10 },
+                    
+                    tabBarStyle: { 
+                        display: 'flex',
+                        height: 60, 
+                        paddingVertical: 5, 
+                    },
 
-                    tabBarLabel: () => null // Remover o texto abaixo dos ícones
+                    tabBarLabel: () => null // Remove o texto abaixo dos ícones
+
                 })}
-                tabBarOptions={{
-                    style: { display: 'flex' } 
-                }}
             >
                 <Tab.Screen name={homeName} component={Home} />
                 <Tab.Screen name={sobreName} component={Sobre} />
