@@ -1,23 +1,33 @@
 import React from 'react';
-import { Text, SafeAreaView, StyleSheet } from 'react-native';
+import { Text, SafeAreaView, StyleSheet, View } from 'react-native';
 
 import FormInput from '../components/FormInput';
 import FormButton from '../components/FormButton';
 
 export default function Login() {
   return (
-    <SafeAreaView>
-      <Text style={styles.title}>Login</Text>
-      <Text style={styles.subtitle}>Entre com seu e-mail e senha</Text>
-      <FormInput label='E-mail' />
-      <FormInput label='Senha' secureTextEntry={true} />
-      <FormButton>Entrar</FormButton>
-      <Text style={styles.signupText}>Não possui conta? Cadastre-se aqui</Text>
+    <SafeAreaView style={styles.safeArea}>
+      <View style={styles.container}>
+        <Text style={styles.title}>Login</Text>
+        <Text style={styles.subtitle}>Entre com seu e-mail e senha</Text>
+        <FormInput label='E-mail' />
+        <FormInput label='Senha' secureTextEntry={true} />
+        <FormButton>Entrar</FormButton>
+        <Text style={styles.signupText}>Não possui conta? Cadastre-se aqui</Text>
+      </View>
     </SafeAreaView>
   );
 }
 
 const styles = StyleSheet.create({
+  safeArea: {
+    flex: 1,
+  },
+  container: {
+    flex: 1,
+    justifyContent: 'center',
+    marginHorizontal: 20, // Adicionando margem horizontal
+  },
   title: {
     fontSize: 24,
     fontWeight: 'bold',
@@ -35,3 +45,4 @@ const styles = StyleSheet.create({
     textAlign: 'center',
   },
 });
+

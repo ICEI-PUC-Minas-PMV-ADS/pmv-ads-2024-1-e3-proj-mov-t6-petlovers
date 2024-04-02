@@ -1,37 +1,32 @@
+import React from 'react';
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, View } from 'react-native';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
-//import { useFonts } from 'expo-font';
 
 import Header from './components/Header';
-import Login from './pages/Login'
-import Cadastro from './pages/Cadastro'
+import BottomNavigation from './components/BottomNavigation';
+
 
 export default function App() {
   return (
     <SafeAreaProvider>
-      <View style={styles.container}>
-      <StatusBar style="auto" />
-        <Login />
+        <View style={styles.container}>
+          <StatusBar style="auto" />
+          <Header />
+          <BottomNavigation />
         </View>
     </SafeAreaProvider>
   );
 }
 
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: 'white',
-    padding: 20,
-  },
-  text: {
-    fontSize: 24,
-    fontWeight: 'bold',
-    textAlign: 'center',
+    backgroundColor: 'transparent',
   },
 });
+
 
 //const loadFonts = async () => {
 //  await useFonts({

@@ -1,0 +1,12 @@
+import * as React from "react";
+import { View, Text } from "react-native";
+
+export default function Sobre({navigation}) {
+    return (
+        <View style={{ flex:1, alignItems: 'center', justifyContent: 'center'}}> 
+            <Text
+            onPress={() => alert('this is the home screen.')}
+            style={{ fontSize: 26, fontWeight: 'bold'}}>Pagina Sobre</Text>
+        </View>
+    );
+}

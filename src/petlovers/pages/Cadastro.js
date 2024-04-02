@@ -8,7 +8,7 @@ import { Card } from 'react-native-paper';
 import FormInput from '../components/FormInput';
 import FormButton from '../components/FormButton';
 
-export default function App() {
+export default function Cadastro() {
   return (
     <SafeAreaView>
       <Text style={styles.title}>Cadastro</Text>
