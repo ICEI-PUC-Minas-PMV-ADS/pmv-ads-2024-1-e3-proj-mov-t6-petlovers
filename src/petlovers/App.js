@@ -1,28 +1,32 @@
+import React from 'react';
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, View } from 'react-native';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 
-//import { useFonts } from 'expo-font';
-
 import Header from './components/Header';
-import BottomNavigation  from './components/BottomNavigation';
+import BottomNavigation from './components/BottomNavigation';
+
 
 export default function App() {
   return (
-  <SafeAreaProvider style={styles.container}>
-    <StatusBar style="auto" />
-    <Header />
-    <BottomNavigation /> 
-  </SafeAreaProvider>   
+    <SafeAreaProvider>
+        <View style={styles.container}>
+          <StatusBar style="auto" />
+          <Header />
+          <BottomNavigation />
+        </View>
+    </SafeAreaProvider>
   );
 }
+
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: 'transparent', 
+    backgroundColor: 'transparent',
   },
 });
+
 
 //const loadFonts = async () => {
 //  await useFonts({
