@@ -37,9 +37,14 @@ Entregar um arquivo banco.sql contendo os scripts de criação das tabelas do ba
 
 ## Tecnologias Utilizadas
 
-Descreva aqui qual(is) tecnologias você vai usar para resolver o seu problema, ou seja, implementar a sua solução. Liste todas as tecnologias envolvidas, linguagens a serem utilizadas, serviços web, frameworks, bibliotecas, IDEs de desenvolvimento, e ferramentas.
+- Linguagem: JavaScript
+- Biblioteca: React Native
+- IDE: Visual Studio Code
+- Ferramenta Wireframes: Figma
+- Ferramenta de Comunicação: Whatsapp e Teams
+- Ferramenta de Gestão de Projeto: Github Projects
+- Sistema de Gerenciamento de Banco de Dados: MySQL
 
-Apresente também uma figura explicando como as tecnologias estão relacionadas ou como uma interação do usuário com o sistema vai ser conduzida, por onde ela passa até retornar uma resposta ao usuário.
 
 ## Hospedagem
 

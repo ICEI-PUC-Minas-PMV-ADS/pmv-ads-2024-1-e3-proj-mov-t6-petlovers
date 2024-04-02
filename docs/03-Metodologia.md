@@ -74,11 +74,11 @@ As ferramentas empregadas no projeto são:
 | Interface | Figma|
 | Diagrama | Draw.io|
 
-O Visual Studio Code foi escolhido por possuir uma integração com o sistema de versão. 
-Como ferramentas de comunicação formam escolhidas o Microsoft Teams, por ser a ferramenta disponibillizada pela Instituição para orientação do projeto, e o WhatsApp,  por facilitar o acesso às informações e promover uma interação mais dinâmica com os membros do projeto. 
-A ferramenta Figma foi escolhida para desenvolver a interface do projeto por permitir que vários membros trabalhem juntos, compartilhando alterações instantaneamente.
-Sendo o GitHub, uma plataforma de desenvolvimento colaborativo que utiliza o sistema de controle de versões chamado Git, foi escolhido por permitir uma colaboração transparente de todos os membros, com alto nível de rastreabilidade de código e de fácil implantação. 
-Por fim, para criar diagramas utilizamos o Draw.io por melhor captar as necessidades da nossa solução, sendo uma ferramenta de custo zero e que permite o compartilhamento com os membros.
+O Visual Studio Code foi escolhido por possuir uma integração com o sistema de versão. </br>
+Como ferramentas de comunicação foram escolhidas o Microsoft Teams, por ser a ferramenta disponibilizada pela Instituição para orientação do projeto, e o WhatsApp,  por facilitar o acesso às informações e promover uma interação mais dinâmica com os membros do projeto. </br>
+A ferramenta Figma foi escolhida para desenvolver a interface do projeto por permitir que vários membros trabalhem juntos, compartilhando alterações instantaneamente.</br>
+Sendo o GitHub, uma plataforma de desenvolvimento colaborativo que utiliza o sistema de controle de versões chamado Git, foi escolhido por permitir uma colaboração transparente de todos os membros, com alto nível de rastreabilidade de código e de fácil implantação.<br> 
+Para criar os diagramas utilizamos o Draw.io, por melhor captar as necessidades da nossa solução, sendo uma ferramenta de custo zero e que permite o compartilhamento com os membros.
 
 
  

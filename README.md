@@ -6,7 +6,7 @@
 
 `3º SEMESTRE`
 
-Descrever resumidamente, em um ou dois parágrafos, o projeto que está sendo desenvolvido.
+Inspirada no conceito do Tinder, nossa aplicação é dedicada aos apaixonados por animais de estimação. O seu propósito principal é facilitar a conexão entre donos de pets em busca de parceiros ideais para a reprodução, promovendo assim a prática responsável e o bem-estar animal.
 
 ## Integrantes
 
