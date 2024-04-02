@@ -11,7 +11,7 @@ Definição de como o software é estruturado em termos dos componentes que faze
 Este diagrama apresenta o estudo do fluxo de interação do usuário com o sistema interativo.
 
 
-![Diagrama de Classes](img/DiagramaClasse_2.jpg)
+![Diagrama de Classes](img/Diagramadeclasse.jpg)
 <br/>*Diagrama de Classes PetLovers*
 
 ## Modelo ER
