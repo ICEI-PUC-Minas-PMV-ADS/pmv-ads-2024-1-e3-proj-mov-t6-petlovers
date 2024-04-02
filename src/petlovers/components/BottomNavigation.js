@@ -5,7 +5,7 @@ import { Ionicons } from '@expo/vector-icons';
 
 import Home from '../pages/Home';
 import Sobre from '../pages/Sobre';
-import Notificacoes from '../pages/Notificacoes';
+import Notificacoes from '../pages/Cadastro'; //Para teste. Depois mudar para '/Notificacoes'
 import Login from '../pages/Login';
 
 // Screens names

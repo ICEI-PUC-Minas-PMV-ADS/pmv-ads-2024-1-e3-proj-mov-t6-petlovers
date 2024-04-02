@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Text, SafeAreaView, StyleSheet } from 'react-native';
+import { Text, SafeAreaView, StyleSheet, View } from 'react-native';
 
 // You can import supported modules from npm
 import { Card } from 'react-native-paper';
@@ -10,7 +10,8 @@ import FormButton from '../components/FormButton';
 
 export default function Cadastro() {
   return (
-    <SafeAreaView>
+    <SafeAreaView style={styles.safeArea}>
+      <View style={styles.container}>
       <Text style={styles.title}>Cadastro</Text>
       <Text style={styles.subtitle}>Informe seus dados para criar uma conta</Text>
       <FormInput label='Nome completo'></FormInput>
@@ -21,11 +22,20 @@ export default function Cadastro() {
       <FormInput label='Confirmar senha' secureTextEntry={true}></FormInput>
       <FormButton>Entrar</FormButton>
       <Text style={styles.subtitle}>Já é cadastrado? Clique aqui para fazer login</Text>
+      </View>
     </SafeAreaView>
   );
 }
 
 const styles = StyleSheet.create({
+  safeArea: {
+    flex: 1,
+  },
+  container: {
+    flex: 1,
+    justifyContent: 'center',
+    marginHorizontal: 20, // Adicionando margem horizontal
+  },
   title: {
     marginTop: 20,
     fontSize: 18,
