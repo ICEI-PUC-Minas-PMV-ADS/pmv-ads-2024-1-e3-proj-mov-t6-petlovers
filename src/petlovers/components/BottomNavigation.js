@@ -1,12 +1,12 @@
 import * as React from "react";
-import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { Ionicons } from '@expo/vector-icons';
 
 import Home from '../pages/Home';
 import Sobre from '../pages/Sobre';
-import Notificacoes from '../pages/Cadastro'; //Para teste. Depois mudar para '/Notificacoes'
+import Notificacoes from '../pages/Notificacoes'; 
 import Login from '../pages/Login';
+
 
 // Screens names
 const homeName = 'Home';
@@ -14,11 +14,11 @@ const sobreName = 'Sobre nos';
 const notificacoesName = 'Notificacoes';
 const loginName = 'Login';
 
+
 const Tab = createBottomTabNavigator();
 
 export default function BottomNavigation(){
     return (
-        <NavigationContainer>
             <Tab.Navigator
                 initialRouteName={homeName}
                 screenOptions={({ route }) => ({
@@ -51,7 +51,7 @@ export default function BottomNavigation(){
                     
                     tabBarStyle: { 
                         display: 'flex',
-                        height: 60, 
+                        height: 90, 
                         paddingVertical: 5, 
                     },
 
@@ -64,6 +64,5 @@ export default function BottomNavigation(){
                 <Tab.Screen name={notificacoesName} component={Notificacoes} />
                 <Tab.Screen name={loginName} component={Login} />
             </Tab.Navigator>
-        </NavigationContainer>
     )
 }

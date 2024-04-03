@@ -1,10 +1,17 @@
 import React from 'react';
 import { Text, SafeAreaView, StyleSheet, View } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 
 import FormInput from '../components/FormInput';
 import FormButton from '../components/FormButton';
 
 export default function Login() {
+  const navigation = useNavigation();
+  
+  const goToCadastro = () => {
+    navigation.navigate('Cadastro');
+  };
+
   return (
     <SafeAreaView style={styles.safeArea}>
       <View style={styles.container}>
@@ -13,7 +20,7 @@ export default function Login() {
         <FormInput label='E-mail' />
         <FormInput label='Senha' secureTextEntry={true} />
         <FormButton>Entrar</FormButton>
-        <Text style={styles.signupText}>Não possui conta? Cadastre-se aqui</Text>
+        <Text style={styles.signupText} onPress={goToCadastro}>Não possui conta? Cadastre-se aqui</Text>
       </View>
     </SafeAreaView>
   );
