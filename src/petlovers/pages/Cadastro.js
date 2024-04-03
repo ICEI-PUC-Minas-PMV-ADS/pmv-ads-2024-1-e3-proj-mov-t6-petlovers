@@ -8,6 +8,7 @@ import { Card } from 'react-native-paper';
 // or any files within the Snack
 import FormInput from '../components/FormInput';
 import FormButton from '../components/FormButton';
+import ArrowLeft from '../components/ArrowLeft';
 
 export default function Cadastro() {
   const navigation = useNavigation();
@@ -18,6 +19,7 @@ export default function Cadastro() {
 
   return (
     <SafeAreaView style={styles.safeArea}>
+      <ArrowLeft style={styles.arrow} />
       <View style={styles.container}>
       <Text style={styles.title}>Cadastro</Text>
       <Text style={styles.subtitle}>Informe seus dados para criar uma conta</Text>
