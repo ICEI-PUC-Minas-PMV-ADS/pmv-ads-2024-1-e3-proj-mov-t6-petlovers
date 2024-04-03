@@ -24,7 +24,7 @@ export default function App() {
           }}>
           <Stack.Screen name='Main' component={MainScreen} />
           <Stack.Screen name="Login" component={Login} />
-          <Stack.Screen name="Cadastro" component={Cadastro} options={{headerShown:true}} />
+          <Stack.Screen name="Cadastro" component={Cadastro}/>
            {/* Colocar aqui mais navegacoes de telas*/}
         </Stack.Navigator>
       </NavigationContainer>
