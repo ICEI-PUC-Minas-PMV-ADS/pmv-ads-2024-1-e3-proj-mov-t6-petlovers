@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Text, SafeAreaView, StyleSheet, View } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 
+
 // You can import supported modules from npm
 import { Card } from 'react-native-paper';
 
