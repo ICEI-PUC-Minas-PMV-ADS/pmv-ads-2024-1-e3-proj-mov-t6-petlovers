@@ -2,53 +2,30 @@ import React from 'react';
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, View } from 'react-native';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
-import { NavigationContainer } from '@react-navigation/native';
-import { createStackNavigator } from '@react-navigation/stack';
 
-import Login from './pages/Login';
-import Cadastro from './pages/Cadastro';
-import BottomNavigation from './components/BottomNavigation';
 import Header from './components/Header';
-
-
-const Stack = createStackNavigator();
+import Navigations from './navigations/Navigations';
 
 export default function App() {
   return (
-<SafeAreaProvider>
-      <NavigationContainer>
-        <Stack.Navigator 
-          screenOptions={{
-            contentStyle: {backgroundColor: '#3f2f25'},
-            headerShown: false,
-          }}>
-          <Stack.Screen name='Main' component={MainScreen} />
-          <Stack.Screen name="Login" component={Login} />
-          <Stack.Screen name="Cadastro" component={Cadastro}/>
-           {/* Colocar aqui mais navegacoes de telas*/}
-        </Stack.Navigator>
-      </NavigationContainer>
+    <SafeAreaProvider>
+      <View style={styles.container}>
+        <StatusBar style="auto" />
+        <Header />
+        <Navigations />
+      </View>
     </SafeAreaProvider>
   );
 }
 
-function MainScreen() {
-  return (
-    <View style={styles.container}>
-      <StatusBar style="auto" />
-      <Header />
-      <BottomNavigation />
-    </View>
-  );
-}
-
-
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: 'transparent',
+    backgroundColor: '#fff', // Defina a cor de fundo desejada
   },
 });
+
+
 
 
 //const loadFonts = async () => {

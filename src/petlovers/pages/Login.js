@@ -4,7 +4,7 @@ import { useNavigation } from '@react-navigation/native';
 
 import FormInput from '../components/FormInput';
 import FormButton from '../components/FormButton';
-import ArrowLeft from '../components/ArrowLeft';
+
 
 export default function Login() {
   const navigation = useNavigation();
@@ -15,7 +15,6 @@ export default function Login() {
 
   return (
     <SafeAreaView style={styles.safeArea}>
-      <ArrowLeft />  
       <View style={styles.container}>
         <Text style={styles.title}>Login</Text>
         <Text style={styles.subtitle}>Entre com seu e-mail e senha</Text>
