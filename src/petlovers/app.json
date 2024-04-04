@@ -9,14 +9,14 @@
     "splash": {
       "image": "./assets/splash.png",
       "resizeMode": "contain",
-      "backgroundColor": "#24180f"
+      "backgroundColor": "white"
     },
     "assetBundlePatterns": [
       "**/*"
     ],
     "ios": {
       "supportsTablet": true,
-      "backgroundColor": "#24180f"
+      "backgroundColor": "white"
     },
     "android": {
       "adaptiveIcon": {
