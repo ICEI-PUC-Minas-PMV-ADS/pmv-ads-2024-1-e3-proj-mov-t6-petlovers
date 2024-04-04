@@ -56,7 +56,7 @@ function TabNavigator() {
                 paddingVertical: 5, 
             },
 
-            tabBarLabel: () => null // Remove o texto abaixo dos ícones
+            tabBarLabel: () => null 
 
         })}
     >
