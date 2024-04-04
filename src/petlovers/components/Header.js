@@ -23,9 +23,9 @@ const styles = {
     marginLeft: -20, 
   },
   content: {
-    alignItems: 'flex-start', // Ajusta o alinhamento do conteúdo para a esquerda
-    justifyContent: 'center', // Centraliza o conteúdo verticalmente
-    flex: 1, // Garante que o conteúdo ocupe todo o espaço disponível
+    alignItems: 'flex-start', 
+    justifyContent: 'center', 
+    flex: 1, 
   },
 };
 

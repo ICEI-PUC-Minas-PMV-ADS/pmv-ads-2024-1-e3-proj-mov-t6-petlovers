@@ -11,7 +11,7 @@ const MyComponent = (props) => (
 const styles = StyleSheet.create({
   button: {
     backgroundColor: '#827397',
-    width: 370,
+    width: 352, //verificar se com esse valor fica certo na sua tela
     marginTop: 10,
     padding: 5,
     textTransform: 'none',
