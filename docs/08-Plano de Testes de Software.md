@@ -1,10 +1,37 @@
 # Plano de Testes de Software
 
-<span style="color:red">Pré-requisitos: <a href="2-Especificação do Projeto.md"> Especificação do Projeto</a></span>, <a href="3-Projeto de Interface.md"> Projeto de Interface</a>
 
-Apresente os cenários de testes utilizados na realização dos testes da sua aplicação. Escolha cenários de testes que demonstrem os requisitos sendo satisfeitos.
+|Caso de Teste         |CT-01  Cadastrar Usuários|
+|----------------------|--------------------------|
+|Requisito Associado   |**RF-01** </br> O sistema deve possuir uma área para fazer cadastro de novos usuários a partir de 18 anos. |
+|Objetivo do Teste| Verificar se é possível realizar o cadastro de um novo usuário, com mais de 18 anos. |
+|Passos |Acessar o aplicativo; </br></br> Selecionar no banner superior a opção "Cadastre o seu pet na nossa comunidade";  </br> Assim que redirecionado para tela "Cadastro", preencher os campos obrigatórios (nome completo, data de nascimento, e-mail, contato, senha e confirmação de senha).|
+|Critério de Êxito|Os caractéres do campo "Senha" e "Confirmaçao de Senha" devem ser mascarados.|
 
-Enumere quais cenários de testes foram selecionados para teste. Neste tópico o grupo deve detalhar quais funcionalidades avaliadas, o grupo de usuários que foi escolhido para participar do teste e as ferramentas utilizadas.
+|Caso de Teste         |CT-02  Cadastrar Usuários|
+|----------------------|--------------------------|
+|Requisito Associado   |**RF-01** </br> O sistema deve possuir uma área para fazer cadastro de novos usuários a partir de 18 anos. |
+|Objetivo do Teste| Verificar se é possível realizar o cadastro de um novo usuário, com mais de 18 anos. |
+|Passos |Acessar o aplicativo; </br>Selecionar no banner superior a opção "Cadastre o seu pet na nossa comunidade";  </br> Assim que redirecionado para tela "Cadastro", preencher os campos: nome completo, data de nascimento no formato MM/dd/yyy.|
+|Critério de Êxito|Exibir uma mensagem solicitando o preenchimento da data de Nascimento no formato dd/MM/yyyy.|
+ 
+|Caso de Teste         |CT-03  Cadastrar Usuários|
+|----------------------|--------------------------|
+|Requisito Associado   |**RF-01** </br> O sistema deve possuir uma área para fazer cadastro de novos usuários a partir de 18 anos. |
+|Objetivo do Teste| Verificar se é possível realizar o cadastro de um novo usuário, com mais de 18 anos. |
+|Passos |Acessar o aplicativo; </br> Selecionar no banner superior a opção "Cadastre o seu pet na nossa comunidade";  </br> Assim que redirecionado para tela "Cadastro", preencher os campos obrigatórios (nome completo, data de nascimento, e-mail, contato, senha e confirmação de senha).</br> Selecionar a opção "cadastrar" para visualizar a próxima tela. |
+|Critério de Êxito|Deverá ir para a próxima tela, pois todos os dados foram preenchidos. |
+
+|Caso de Teste         |CT-04  Cadastrar Usuários|
+|----------------------|--------------------------|
+|Requisito Associado   |**RF-01** </br> O sistema deve possuir uma área para fazer cadastro de novos usuários a partir de 18 anos. |
+|Objetivo do Teste| Verificar se é possível realizar o cadastro de um novo usuário, com mais de 18 anos. |
+|Passos |Acessar o aplicativo; </br> Selecionar no banner superior a opção "Cadastre o seu pet na nossa comunidade";  </br> Assim que redirecionado para tela "Cadastro", preencher os campos obrigatórios (nome completo, data de nascimento para menor de 18 anos, e-mail, contato, senha e confirmação de senha).</br> Selecionar a opção "cadastrar". |
+|Critério de Êxito|O cadastro não é realizado e a mensagem "Para se cadastrar nesse aplicativo é necessário ser maior de 18 anos.|
+
+
+
+
  
 ## Ferramentas de Testes (Opcional)
 
