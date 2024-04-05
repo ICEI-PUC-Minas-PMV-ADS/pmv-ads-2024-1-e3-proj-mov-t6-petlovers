@@ -123,7 +123,8 @@ Ela deve contemplar todos os elementos relevantes que fazem parte do sistema, co
 - RF - Requisito funcional
 - RNF - Requisito não funcional
 
-<img width="1167" alt="image" src="https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2024-1-e3-proj-mov-t6-petlovers/assets/93337008/f7b096b1-2b54-449d-b47c-bf5cf0ff451a">
+<img width="1412" alt="image" src="https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2024-1-e3-proj-mov-t6-petlovers/assets/93337008/da7a3362-ea0f-4c70-aa37-93a2d09ce29d">
+
 
 
 
