@@ -77,6 +77,7 @@ export default function Navigations() {
         <Stack.Navigator>
           <Stack.Screen name="TabNavigator" component={TabNavigator} options={{ headerShown: false }} />
           <Stack.Screen name="Cadastro" component={Cadastro}  options={{ headerShown: false }}/>
+        {/* Criar aqui outras navegacoes  */}
         </Stack.Navigator>
       </NavigationContainer>
     );
