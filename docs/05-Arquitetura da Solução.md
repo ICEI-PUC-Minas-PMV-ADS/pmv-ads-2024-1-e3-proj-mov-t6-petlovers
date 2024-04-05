@@ -33,6 +33,10 @@ O Esquema Relacional corresponde à representação dos dados em tabelas juntame
 
 Entregar um arquivo banco.sql contendo os scripts de criação das tabelas do banco de dados. Este arquivo deverá ser incluído dentro da pasta src\bd.
 
+![modelo fisico](https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2024-1-e3-proj-mov-t6-petlovers/assets/110791034/1e18cb58-2971-4cb5-b30f-5c50078ab783)
+
+
+
 ## Tecnologias Utilizadas
 
 - Linguagem: JavaScript
