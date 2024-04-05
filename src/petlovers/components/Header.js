@@ -1,9 +1,13 @@
 import React from 'react';
 import { Appbar } from 'react-native-paper';
 
-const Header = () => {
+const Header = ({ showHeader }) => {
+  if (!showHeader) {
+    return null;
+  }
+
   return (
-  <Appbar.Header style={styles.header}>
+    <Appbar.Header style={styles.header}>
       <Appbar.Content
         title="PetLovers"
         titleStyle={styles.title}

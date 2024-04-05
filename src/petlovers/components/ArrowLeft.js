@@ -1,10 +1,17 @@
 import React from 'react';
-import { View, TouchableOpacity, StyleSheet } from 'react-native';
+import { TouchableOpacity, StyleSheet } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
+import { useNavigation } from '@react-navigation/native';
 
-const ArrowLeft = ({ onPress }) => {
+const ArrowLeft = () => {
+  const navigation = useNavigation();
+
+  const handlePress = () => { //volta para a tela anterior
+    navigation.goBack();
+  };
+
   return (
-    <TouchableOpacity onPress={onPress} style={styles.container}>
+    <TouchableOpacity onPress={handlePress} style={styles.container}>
       <Ionicons name="arrow-back" size={24} color="black" />
     </TouchableOpacity>
   );
