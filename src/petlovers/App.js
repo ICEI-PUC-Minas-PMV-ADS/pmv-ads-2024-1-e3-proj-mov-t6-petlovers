@@ -7,6 +7,7 @@ import Header from './components/Header';
 import Navigations from './navigations/Navigations';
 
 export default function App() {
+  
   return (
     <SafeAreaProvider>
       <View style={styles.container}>

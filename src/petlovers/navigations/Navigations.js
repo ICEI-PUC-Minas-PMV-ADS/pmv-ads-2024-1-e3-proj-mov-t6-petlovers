@@ -8,6 +8,7 @@ import Sobre from '../pages/Sobre';
 import Login from '../pages/Login';
 import Notificacoes from '../pages/Notificacoes';
 import Cadastro from '../pages/Cadastro';
+import Header from '../components/Header';
 
 
 // Navegacao bottom navigation
@@ -75,8 +76,8 @@ export default function Navigations() {
     return (
       <NavigationContainer>
         <Stack.Navigator>
-          <Stack.Screen name="TabNavigator" component={TabNavigator} options={{ headerShown: false }} />
-          <Stack.Screen name="Cadastro" component={Cadastro}  options={{ headerShown: false }}/>
+          <Stack.Screen name="TabNavigator" component={TabNavigator} options={{ header: () => <Header showHeader={true} /> }}  />
+          <Stack.Screen name="Cadastro" component={Cadastro} options={{ headerShown: false }}  />
         {/* Criar aqui outras navegacoes  */}
         </Stack.Navigator>
       </NavigationContainer>

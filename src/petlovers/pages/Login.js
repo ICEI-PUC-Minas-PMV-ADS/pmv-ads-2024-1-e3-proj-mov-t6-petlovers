@@ -42,12 +42,12 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 24,
     fontWeight: 'bold',
-    marginBottom: 20,
+    marginBottom: 10,
     textAlign: 'center',
   },
   subtitle: {
     fontSize: 15,
-    marginBottom: 20,
+    marginBottom: 25,
     textAlign: 'center',
   },
   signupText: {
