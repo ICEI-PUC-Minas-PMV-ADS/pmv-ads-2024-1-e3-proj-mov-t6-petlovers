@@ -71,7 +71,7 @@ As tabelas que se seguem apresentam os requisitos funcionais e não funcionais q
 |------|-----------------------------------------|----|
 |RF-001| O sistema deve possuir uma área para fazer cadastro de novos usuários a partir de 18 anos. | ALTA | 
 |RF-002| O sistema deve permitir cadastrar o perfil de um animal de estimação, com a opção de fazer o upload de imagens.  | ALTA |
-|RF-003| O sistema deve possibilitar ao usuário a modificação ou exclusão de suas informações cadastradas, bem como as relacionadas ao seu <b>pet</b>.| MÉDIA |
+|RF-003|O sistema deve permitir que o usuário modifique suas informações e as de seu pet, além de oferecer a opção de excluir sua conta.| MÉDIA |
 |RF-004| O sistema deve ter uma área para buscar/filtrar e visualizar o perfil de outros <b>pets</b>.  | MÉDIA |
 |RF-005| O sistema deve permitir que o usuário consiga selecionar (dar <b>like</b>) ou recusar perfis de outros <b>pets</b>.| ALTA|
 |RF-006| O sistema deve emitir notificação ao usuário quando acontece um <b>match</b>. | ALTA |
