@@ -54,6 +54,7 @@ const styles = StyleSheet.create({
   },
   arrowContainer: {
     marginRight: 10,
+    marginTop: 50,
   },
   title: {
     fontSize: 20,
