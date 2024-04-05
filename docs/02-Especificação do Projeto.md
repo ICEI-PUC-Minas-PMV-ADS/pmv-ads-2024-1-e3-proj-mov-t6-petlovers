@@ -77,6 +77,7 @@ As tabelas que se seguem apresentam os requisitos funcionais e não funcionais q
 |RF-006| O sistema deve emitir notificação ao usuário quando acontece um <b>match</b>. | ALTA |
 |RF-007|  O sistema deve exibir um ícone de mensagens instantâneas para os usuários que deram <b>match</b>. | ALTA |
 |RF-008| O sistema deve permitir que os usuários avaliem a experiência. | MÉDIA |
+|RF-009| O site deve incluir uma página de login. | ALTA |
 
 
 
