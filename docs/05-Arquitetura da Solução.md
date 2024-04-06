@@ -19,7 +19,7 @@ Este diagrama apresenta o estudo do fluxo de interação do usuário com o siste
 
 O Modelo ER representa através de um diagrama como as entidades (coisas, objetos) se relacionam entre si na aplicação interativa.]
 
-![Diagrama Relacional](img/Entidade_Relacionamento_PetLovers.jpg)
+![Diagrama Relacional](img/Entidade_Relacionamento_PetLovers.JPG)
 <br/>*Diagrama Relacional PetLovers*
 
 ## Esquema Relacional
