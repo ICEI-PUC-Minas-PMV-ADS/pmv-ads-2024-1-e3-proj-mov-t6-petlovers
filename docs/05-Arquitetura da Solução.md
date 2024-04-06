@@ -12,14 +12,14 @@ Definição de como o software é estruturado em termos dos componentes que faze
 Este diagrama apresenta o estudo do fluxo de interação do usuário com o sistema interativo.
 
 
-![Diagrama de Classes](img/Diagrama_Classes_PetLovers.JPG)
+![Diagrama de Classes](img/Diagrama_Classes_PetLovers1.JPG)
 <br/>*Diagrama de Classes PetLovers*
 
 ## Modelo ER
 
 O Modelo ER representa através de um diagrama como as entidades (coisas, objetos) se relacionam entre si na aplicação interativa.]
 
-![Diagrama Relacional](img/DiagramaRelacional.jpg)
+![Diagrama Relacional](img/Entidade_Relacionamento_PetLovers.jpg)
 <br/>*Diagrama Relacional PetLovers*
 
 ## Esquema Relacional
