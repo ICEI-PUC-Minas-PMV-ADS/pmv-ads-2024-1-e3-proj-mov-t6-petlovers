@@ -93,7 +93,7 @@ Ao clicar no ícone do WhatsApp, uma janela de avaliação será exibida. Nesta 
 Após atribuir a nota desejada, clique em "enviar" ou "cancelar" e verifique se a janela será fechada corretamente. <br> <br>
 
 
-#### 10. RF-009: Página de Login
+#### 10. RF-009: Fazer o login na aplicação
 
 Instruções: <br>
 Acesse a página de login do sistema. <br>
