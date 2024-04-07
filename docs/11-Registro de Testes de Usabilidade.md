@@ -5,13 +5,13 @@ Abaixo segue o relatório que contém as evidências dos testes e relatos dos us
 
 Atividade realizada    | Sucesso S/N | Observações
 -----------------------|-------------|------------
-Cadastro de Novo Usuário|    | 
-Cadastro de Perfil de Animal de Estimação  |  | 
-Modificação de Informações do Usuário   |     |  
-Modificação de Informações do Pet  |    |     |
-Busca e Visualização de Perfis de Outros Pets|                     |       |
-Curtir (Like) ou Recusar Perfis de Outros Pets (dislike) |         |       |
-Notificação de Match - (Teste feito somente pelos desenvolvedores)  |         |       |
-Exibição de Ícone de Mensagens Instantâneas - (Teste feito somente pelos desenvolvedores) |         |       |
-Avaliação da Experiência - (Teste feito somente pelos desenvolvedores) |         |       |
+Criar uma conta|    | 
+Cadastrar perfil do animal de estimação |  | 
+Modificação de informações do usuário   |     |  
+Modificação de informações do pet  |    |     |
+Busca e visualização de perfis de outros pets|                     |       |
+Curtir (Like) ou recusar perfis de outros pets (dislike) |         |       |
+Notificação de match - (Teste feito somente pelos desenvolvedores)  |         |       |
+Exibição de íconecone do whatsapp- (Teste feito somente pelos desenvolvedores) |         |       |
+Avaliação da experiência - (Teste feito somente pelos desenvolvedores) |         |       |
 Fazer o login na aplicação |         |       |
