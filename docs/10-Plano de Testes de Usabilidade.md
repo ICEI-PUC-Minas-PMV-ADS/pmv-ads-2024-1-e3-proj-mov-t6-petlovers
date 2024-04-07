@@ -13,17 +13,7 @@ Avalie a facilidade de uso do sistema e faça anotações sobre qualquer aspecto
 
 ### Tarefas:
 
-#### 1. RF-001: Cadastro de Novo Usuário menor de 18 anos
-
-Instruções: <br>
-Acesse nossa aplicação e na barra inferior clique no ícone do usuário, que irá para a página de login. <br>
-Na página de login, clique no link "Cadastre-se aqui", que será redirecionado para a página de cadastro. <br>
-Tente salvar o formulário sem preenchê-lo, e verifique se os campos obrigatórios e opcionais são corretamente sinalizados. <br>
-No campo data de nascimento, preencha com dados de um usuário menor de 18 anos. <br>
-O cadastro não será concluído. Verifique se uma mensagem que você deve ter 18 anos ou mais aparecerá na tela. <br> <br>
-
-
-#### 2. RF-001: Cadastro de Novo Usuário maior de 18 anos
+#### 1. RF-001: Cadastro de Novo Usuário 
 
 Instruções: <br>
 Acesse nossa aplicação e na barra inferior clique no ícone do usuário, que irá para a página de login. <br>
@@ -34,7 +24,7 @@ O cadastro será concluído após o preenchimento do cadastro do pet.<br> <br>
 
 
 
-#### 3. RF-002: Cadastro de Perfil de Animal de Estimação
+#### 2. RF-002: Cadastro de Perfil de Animal de Estimação
 
 Instruções: <br>
 Ao finalizar o seu cadastro, a tela de cadastro do pet aparecerá simultaneamente. <br>
@@ -46,7 +36,7 @@ Você será redirecionado para o perfil do seu pet.<br> <br>
 
 
 
-#### 4. RF-003: Modificação de Informações do Usuário 
+#### 3. RF-003: Modificação de Informações do Usuário 
 
 Instruções: <br>
 Acesse a área do usuário clicando no ícone do usuário na barra inferior. <br>
@@ -54,7 +44,7 @@ Clique em "editar meus dados". <br>
 Tente alterar algo e verifique se as alterações foram salvas corretamente e refletidas no perfil. <br> <br>
 
 
-#### 5. RF-003: Modificação de Informações do Pet
+#### 4. RF-003: Modificação de Informações do Pet
 
 Instruções: <br>
 Acesse a área do usuário clicando no ícone do usuário. <br>
@@ -63,7 +53,7 @@ Tente alterar algo e verifique se as alterações foram salvas corretamente e re
 
 
 
-#### 6. RF-004: Busca e Visualização de Perfis de Outros Pets
+#### 4. RF-004: Busca e Visualização de Perfis de Outros Pets
 
 Instruções: <br>
 Na home page, clique em "buscar" no banner roxo, ou em "ver mais" na seção abaixo onde há os cards de pets. <br>
@@ -72,7 +62,7 @@ Visualize o perfil de pelo menos um outro pet. <br>
 Verifique se as informações exibidas são de acordo com a sua busca. <br><br>
 
 
-#### 7. RF-005: Curtir (Like) ou Recusar Perfis de Outros Pets (dislike)
+#### 6. RF-005: Curtir (Like) ou Recusar Perfis de Outros Pets (dislike)
 
 Instruções: <br>
 Na página de busca, visualize pelo menos dois perfis de outros pets. <br>
@@ -81,14 +71,14 @@ Verifique se o card do pet selecionado some da tela em ambas as situações. <br
 
 
 
-#### 8. RF-006: Notificação de Match - (Teste feito somente pelos desenvolvedores)
+#### 7. RF-006: Notificação de Match - (Teste feito somente pelos desenvolvedores)
 
 Instruções: <br>
 
 Esse teste em específico será feito pelo o time de desenvolvedores, onde iremos simular um "match" manualmente, usando contas de teste. Vamos configurar dois perfis e fazer com que ambos "dêem like" um no outro para gerar um "match". Dessa forma, poderemos observar se a notificação de "match" é enviada corretamente para os dois usuários. <br><br>
 
 
-#### 9. RF-007: Exibição de Ícone de Mensagens Instantâneas - (Teste feito somente pelos desenvolvedores)
+#### 8. RF-007: Exibição de Ícone de Mensagens Instantâneas - (Teste feito somente pelos desenvolvedores)
 
 Instruções: <br>
 
@@ -96,14 +86,14 @@ Clique em Notificação e no perfil que deu um match. Você será redirecionado 
 Confirme se ao clicar nele você é redirecionado à página do WhatsApp para conversar com o tutor do pet que deu match. <br> <br>
 
 
-#### 10. RF-008: Avaliação da Experiência - (Teste feito somente pelos desenvolvedores)
+#### 09. RF-008: Avaliação da Experiência - (Teste feito somente pelos desenvolvedores)
 
 Instruções: <br>
 Ao clicar no ícone do WhatsApp, uma janela de avaliação será exibida. Nesta janela, você poderá avaliar a experiência utilizando as estrelas, variando de 1 a 5, onde 5 representa a nota mais alta. <br>
 Após atribuir a nota desejada, clique em "enviar" ou "cancelar" e verifique se a janela será fechada corretamente. <br> <br>
 
 
-#### 11. RF-009: Página de Login
+#### 10. RF-009: Página de Login
 
 Instruções: <br>
 Acesse a página de login do sistema. <br>
