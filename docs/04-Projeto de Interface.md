@@ -3,26 +3,19 @@
 
 <span style="color:red">Pré-requisitos: <a href="2-Especificação do Projeto.md"> Documentação de Especificação</a></span>
 
-Visão geral da interação do usuário pelas telas do sistema e protótipo interativo das telas com as funcionalidades que fazem parte do sistema (wireframes).
-
- Apresente as principais interfaces da plataforma. Discuta como ela foi elaborada de forma a atender os requisitos funcionais, não funcionais e histórias de usuário abordados nas <a href="2-Especificação do Projeto.md"> Documentação de Especificação</a>.
+Nesta seção, é apresentada a visão geral da interação do usuário pelas telas do sistema e protótipo interativo das telas com as funcionalidades que fazem parte do sistema (wireframes).
 
 ## Diagrama de Fluxo
 
-O diagrama apresenta o estudo do fluxo de interação do usuário com o sistema interativo e  muitas vezes sem a necessidade do desenho do design das telas da interface. Isso permite que o design das interações seja bem planejado e gere impacto na qualidade no design do wireframe interativo que será desenvolvido logo em seguida.
+O diagrama apresenta o estudo do fluxo de interação do usuário com o sistema. Antes de realizar cadastro e login, o usuário possui acesso à homepage e às páginas com informações sobre o aplicativo. Após cadastro e login, o fluxo na aplicação segue como descrito no diagrama abaixo:
 
-O diagrama de fluxo pode ser desenvolvido com “boxes” que possuem internamente a indicação dos principais elementos de interface - tais como menus e acessos - e funcionalidades, tais como editar, pesquisar, filtrar, configurar - e a conexão entre esses boxes a partir do processo de interação. Você pode ver mais explicações e exemplos https://www.lucidchart.com/blog/how-to-make-a-user-flow-diagram.
-
-![Exemplo de Diagrama de Fluxo](img/diagramafluxo2.jpg)
-
-As referências abaixo irão auxiliá-lo na geração do artefato “Diagramas de Fluxo”.
-
-> **Links Úteis**:
-> - [Fluxograma online: seis sites para fazer gráfico sem instalar nada | Produtividade | TechTudo](https://www.techtudo.com.br/listas/2019/03/fluxograma-online-seis-sites-para-fazer-grafico-sem-instalar-nada.ghtml)
+<div align="center">
+<img width="750" alt="Capture" src="img/fluxograma.png">
+</div>
 
 ## Wireframes
 
-### Home page sem longin
+### Home page sem login
 
 Ao acessar nossa aplicação sem estar logado, o usuário visualizará a página inicial conforme mostrado na imagem abaixo. Se optar por se cadastrar, basta clicar no botão de cadastro para ser redirecionado à tela correspondente. 
 
@@ -31,7 +24,7 @@ Caso clique em "Encontrar um par ideal", ícone do usuário ou notificações, s
 <img width="373" alt="image" src="https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2024-1-e3-proj-mov-t6-petlovers/assets/93337008/0e6fd7d3-a139-4686-9745-0467bb2013f7"> <br><br>
 
 
-### Home page com longin
+### Home page com login
 
 
 Na tela com o usuário logado, ele verá o nome dele no canto superior direito. O botão no banner roxo conterá o nome do pet do usuário e abaixo o botão "Buscar", que redireciona para a tela de busca dos pets.
@@ -81,14 +74,14 @@ Os perfis serão exibidos em cards, um abaixo do outro.
 <img width="331" alt="image" src="https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2024-1-e3-proj-mov-t6-petlovers/assets/93337008/5345ae80-f0d5-467b-999b-a8f41dddfd68"><br><br>
 
 
-### Página de Notificações com match
+### Página de notificações com match
 
 Na página de notificações, o usuário verá todos os matches que possui e a data em que ocorreram. Ao clicar em cada um, será redirecionado para a tela de informações desse pet. Abaixo, haverá uma lupa de pesquisa e os cards de "Encontre um par ideal", caso o usuário queira continuar na busca.
 
 <img width="332" alt="image" src="https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2024-1-e3-proj-mov-t6-petlovers/assets/93337008/e9c01be1-9af8-459b-8a3f-22342a88b446"> <br><br>
 
 
-### Página de Notificações sem match
+### Página de notificações sem match
 
 Na página sem notificações, o usuário verá a frase "Seu perfil ainda não foi curtido de volta." Abaixo disso, haverá a barra de pesquisa e cards para procurar mais pets.
 
@@ -110,7 +103,7 @@ Ao clicar no ícone, uma janela popup aparecerá para permitir que o usuário av
 <img width="313" alt="image" src="https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2024-1-e3-proj-mov-t6-petlovers/assets/93337008/c97d0032-3bb3-4891-b5d5-fb28645526b8"><br><br>
 
 
-### Área usuário
+### Área do usuário
 
 Essa tela contém um link para o usuário visualizar o perfil do seu pet, editar os dados do pet, editar os seus próprios dados, excluir a conta e um botão de logout para sair da aplicação.
 
