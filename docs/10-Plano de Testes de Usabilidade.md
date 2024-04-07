@@ -130,7 +130,7 @@ Segue abaixo os critérios do teste heurístico que serão aplicados: <br>
 
 ### Feedback
 
-Os participantes compartilharão suas opiniões sobre a usabilidade do sistema ao responderem um questionário composto por dez questões. Para responder a essas perguntas, utilizaremos uma escala de resposta conhecida como escala Likert, que varia de 1 a 5. 
+Os participantes compartilharão suas opiniões sobre a usabilidade do sistema ao responderem um questionário composto por perguntas abertas e fechadas, e também utilizaremos uma escala de resposta que varia de 1 a 5, sendo:
 
 1: Muito Insatisfatório  <br>
 2: Insatisfatório  <br>
