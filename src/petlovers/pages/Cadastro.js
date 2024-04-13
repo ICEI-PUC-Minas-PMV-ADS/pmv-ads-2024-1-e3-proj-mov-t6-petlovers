@@ -40,8 +40,8 @@ export default function Cadastro() {
         <View style={styles.subtitleContainer}>
           <Text style={styles.text}>Já é cadastrado?</Text>
           <Text style={styles.text2} onPress={goToLogin}>Clique aqui para fazer login</Text>
-          <Text style={styles.text2} onPress={goToCadastroPet}>Cadastro pet</Text>
         </View>
+        <Text style={[styles.text2, {textAlign: 'center', marginTop: 20}]} onPress={goToCadastroPet}>Cadastro pet</Text> 
       </View>
     </SafeAreaView>
   );
@@ -52,12 +52,6 @@ const styles = StyleSheet.create({
   safeArea: {
     flex: 1,
   },
-  arrow: {
-    flexDirection: 'row',
-    paddingVertical: 10,
-    marginLeft: 15,
-    marginTop: 30,
-  },
   arrowContainer: {
     marginRight: 10,
   },
@@ -66,6 +60,10 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     textAlign: 'center',
     marginTop: 20,
+  },
+  arrow: {
+    marginLeft: 10,
+
   },
   container: {
     flex: 1,

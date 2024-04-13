@@ -1,13 +1,17 @@
 import React, { useState, useEffect } from 'react';
-import { Image, View, Platform, TouchableOpacity, Text, StyleSheet } from 'react-native';
+import { Image, View, Platform, TouchableOpacity, Text, StyleSheet, SafeAreaView} from 'react-native';
 import { AntDesign } from '@expo/vector-icons';
+import ArrowLeft from '../components/ArrowLeft';
 
 
 export default function CadastroPet() {
   const [image, setImage] = useState(null);
   const addImage=()=>{};
+
   return (
-            <View style={imageUploaderStyles.container}>
+    <SafeAreaView>
+        <ArrowLeft />
+         <View style={imageUploaderStyles.container}>
                 {
                     image  && <Image source={{ uri: image }} style={{ width: 200, height: 200 }} />
                 }
@@ -18,6 +22,8 @@ export default function CadastroPet() {
                         </TouchableOpacity>
                     </View>
             </View>
+
+    </SafeAreaView>
   );
 }
 const imageUploaderStyles=StyleSheet.create({
