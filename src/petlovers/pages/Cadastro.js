@@ -14,6 +14,10 @@ export default function Cadastro() {
     navigation.navigate('Login');
   };
 
+  const goToCadastroPet = () => {
+    navigation.navigate('CadastroPet');
+  };
+
   return (
     <SafeAreaView style={styles.safeArea}>
       <View style={styles.arrow}>
@@ -36,6 +40,7 @@ export default function Cadastro() {
         <View style={styles.subtitleContainer}>
           <Text style={styles.text}>Já é cadastrado?</Text>
           <Text style={styles.text2} onPress={goToLogin}>Clique aqui para fazer login</Text>
+          <Text style={styles.text2} onPress={goToCadastroPet}>Cadastro pet</Text>
         </View>
       </View>
     </SafeAreaView>
