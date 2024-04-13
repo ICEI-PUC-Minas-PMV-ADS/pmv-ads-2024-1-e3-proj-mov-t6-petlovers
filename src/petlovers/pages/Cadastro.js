@@ -51,6 +51,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     paddingVertical: 10,
     marginLeft: 15,
+    marginTop: 30,
   },
   arrowContainer: {
     marginRight: 10,
