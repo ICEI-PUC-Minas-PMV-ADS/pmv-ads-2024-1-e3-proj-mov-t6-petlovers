@@ -1,0 +1,9 @@
+{
+    "verbose": true,
+    "ignore": [],
+    "ext": "ts",
+    "delay": "3",
+    "execMap": {
+      "ts": "npx ts-node index.ts"
+    }
+  }
