@@ -19,7 +19,7 @@ const port = 3000;
 // Middleware para analisar o corpo da solicitação JSON
 serverApp.use(express.json());
 
-// Endpoint teste
+// Endpoint test
 serverApp.get('/api/example', (req: Request, res: Response) => {
   res.json({ message: 'Bem-vindo ao PetLovers server!' });
 });
