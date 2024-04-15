@@ -6,6 +6,7 @@ import { Ionicons } from '@expo/vector-icons';
 // Importando os componentes de Formulário e seta de voltar
 import FormInput from '../components/FormInput';
 import FormButton from '../components/FormButton';
+import ArrowLeft from '../components/ArrowLeft';
 
 export default function Cadastro() {
   const navigation = useNavigation();
@@ -21,9 +22,7 @@ export default function Cadastro() {
   return (
     <SafeAreaView style={styles.safeArea}>
       <View style={styles.arrow}>
-        <TouchableOpacity onPress={navigation.goBack} style={styles.arrowContainer}>
-          <Ionicons name="arrow-back" size={24} color="black" />
-        </TouchableOpacity>
+        <ArrowLeft />
       </View>
 
       {/* Conteúdo do formulário */}
