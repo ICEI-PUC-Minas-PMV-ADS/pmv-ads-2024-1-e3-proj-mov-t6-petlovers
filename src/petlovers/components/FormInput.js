@@ -15,7 +15,7 @@ const FormInput = (props) => {
         colors: {
           primary: '#827397',
           text: 'black',
-          placeholder: 'gray',
+          placeholder: 'grey',
           background: 'white',
           surface: 'white',
         },
@@ -29,7 +29,6 @@ const FormInput = (props) => {
 
 const styles = StyleSheet.create({
   input: {
-    width: '300',
     marginBottom: 10,
     //fontFamily: 'Poppins-Regular',
   }

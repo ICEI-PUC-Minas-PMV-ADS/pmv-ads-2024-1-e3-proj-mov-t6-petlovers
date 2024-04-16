@@ -6,6 +6,7 @@ import { Ionicons } from '@expo/vector-icons';
 // Importando os componentes de Formulário e seta de voltar
 import FormInput from '../components/FormInput';
 import FormButton from '../components/FormButton';
+import ArrowLeft from '../components/ArrowLeft';
 
 export default function Cadastro() {
   const navigation = useNavigation();
@@ -21,9 +22,7 @@ export default function Cadastro() {
   return (
     <SafeAreaView style={styles.safeArea}>
       <View style={styles.arrow}>
-        <TouchableOpacity onPress={navigation.goBack} style={styles.arrowContainer}>
-          <Ionicons name="arrow-back" size={24} color="black" />
-        </TouchableOpacity>
+        <ArrowLeft />
       </View>
 
       {/* Conteúdo do formulário */}
@@ -40,8 +39,8 @@ export default function Cadastro() {
         <View style={styles.subtitleContainer}>
           <Text style={styles.text}>Já é cadastrado?</Text>
           <Text style={styles.text2} onPress={goToLogin}>Clique aqui para fazer login</Text>
-          <Text style={styles.text2} onPress={goToCadastroPet}>Cadastro pet</Text>
         </View>
+        <Text style={[styles.text2, {textAlign: 'center', marginTop: 20}]} onPress={goToCadastroPet}>Cadastro pet</Text> 
       </View>
     </SafeAreaView>
   );
@@ -52,12 +51,6 @@ const styles = StyleSheet.create({
   safeArea: {
     flex: 1,
   },
-  arrow: {
-    flexDirection: 'row',
-    paddingVertical: 10,
-    marginLeft: 15,
-    marginTop: 30,
-  },
   arrowContainer: {
     marginRight: 10,
     marginTop: 50,
@@ -67,6 +60,10 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     textAlign: 'center',
     marginTop: 20,
+  },
+  arrow: {
+    marginLeft: 10,
+
   },
   container: {
     flex: 1,

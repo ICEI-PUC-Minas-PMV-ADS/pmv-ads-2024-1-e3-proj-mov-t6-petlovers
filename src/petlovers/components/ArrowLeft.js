@@ -1,5 +1,5 @@
 import React from 'react';
-import { TouchableOpacity, StyleSheet } from 'react-native';
+import { TouchableOpacity, StyleSheet, View } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
 
@@ -11,17 +11,20 @@ const ArrowLeft = () => {
   };
 
   return (
-    <TouchableOpacity onPress={handlePress} style={styles.container}>
-      <Ionicons name="arrow-back" size={24} color="black" />
-    </TouchableOpacity>
+    <View style={styles.arrow}>
+        <TouchableOpacity onPress={navigation.goBack} style={styles.arrowContainer}>
+          <Ionicons name="arrow-back" size={24} color="black" />
+        </TouchableOpacity>
+    </View>
   );
 };
 
 const styles = StyleSheet.create({
-  container: {
-    position: 'absolute',
-    top: 20, 
-    left: 20,
+  arrow: {
+    flexDirection: 'row',
+    paddingVertical: 10,
+    marginLeft: 15,
+    marginTop: 30,
   },
 });
 
