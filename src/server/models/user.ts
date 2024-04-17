@@ -4,6 +4,6 @@ export interface User {
     birth_date: Date;
     whatsapp: string;
     email: string;
-    password: string;
+    //password: string; //Senha é armazenada apenas no Authentication por questões de segurança
   }
   
