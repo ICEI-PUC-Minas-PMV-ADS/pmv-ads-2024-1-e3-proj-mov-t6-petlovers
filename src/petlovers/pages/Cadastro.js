@@ -44,6 +44,8 @@ export default function Cadastro() {
   const validateBirthDate = (text) => {
     if (!text) {
       setBirthDateError("Campo obrigatório");
+    } else if (!/^\d{2}\/\d{2}\/\d{4}$/.test(text)) {
+      setBirthDateError("Formato inválido");
     } else {
       setBirthDateError("");
     }
@@ -54,7 +56,15 @@ export default function Cadastro() {
     if (!text) {
       setWhatsappError("Campo obrigatório");
     } else {
-      setWhatsappError("");
+      // Remove todos os caracteres não numéricos
+      const phoneNumber = text.replace(/\D/g, '');
+  
+      // Verifica se o número possui o DDD (código local) e pelo menos 8 dígitos
+      if (phoneNumber.length < 10) {
+        setWhatsappError("Número inválido");
+      } else {
+        setWhatsappError("");
+      }
     }
     setWhatsapp(text);
   };
@@ -63,68 +73,76 @@ export default function Cadastro() {
     if (!text) {
       setEmailError("Campo obrigatório");
     } else {
-      setEmailError("");
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!emailRegex.test(text)) {
+        setEmailError("Insira um endereço de e-mail válido");
+      } else {
+        setEmailError("");
+      }
     }
     setEmail(text);
   };
 
   const validatePassword = (text) => {
-    if (!text) {
-      setPasswordError("Campo obrigatório");
+    if (!text || text.length < 6) {
+        setPasswordError("A senha deve ter no mínimo 6 caracteres");
     } else {
-      setPasswordError("");
+        setPasswordError("");
     }
     setPassword(text);
-  };
+};
 
-  const handleCadastro = async () => {
-    // Validar os campos antes de enviar a requisição
-    validateFullName(fullName);
-    validateBirthDate(birthDate);
-    validateWhatsapp(whatsapp);
-    validateEmail(email);
-    validatePassword(password);
+const handleCadastro = async () => {
+  // Validar os campos antes de enviar a requisição
+  validateFullName(fullName);
+  validateBirthDate(birthDate);
+  validateWhatsapp(whatsapp);
+  validateEmail(email);
+  validatePassword(password);
 
-    // Verificar se há erros de validação
-    if (
-      !fullNameError &&
-      !birthDateError &&
-      !whatsappError &&
-      !emailError &&
-      !passwordError
-    ) {
-      try {
-        const response = await fetch("http://localhost:3000/api/user", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            full_name: fullName,
-            birth_date: birthDate,
-            whatsapp: whatsapp,
-            email: email,
-            password: password,
-          }),
-        });
+  // Verificar se há erros de validação
+  if (
+    !fullNameError &&
+    !birthDateError &&
+    !whatsappError &&
+    !emailError &&
+    !passwordError
+  ) {
+    try {
+      // Enviar os dados do usuário para o backend
+      const response = await fetch("http://localhost:3000/api/user", {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          fullName,
+          birthDate,
+          whatsapp,
+          email,
+          password,
+        }),
+      });
 
-        if (response.ok) {
-          navigation.navigate("ProximaTela");
-        } else {
-          Alert.alert(
-            "Erro",
-            "Falha ao cadastrar usuário. Por favor, tente novamente."
-          );
-        }
-      } catch (error) {
-        console.error("Erro ao enviar requisição de cadastro:", error);
-        Alert.alert(
-          "Erro",
-          "Falha ao conectar-se ao servidor. Por favor, tente novamente mais tarde."
-        );
+      // Verificar se a solicitação foi bem-sucedida
+      if (response.ok) {
+        // Cadastro bem-sucedido
+        navigation.navigate("ProximaTela");
+      } else {
+        // Exibir mensagem de erro
+        const data = await response.json();
+        Alert.alert("Erro", data.message);
       }
+    } catch (error) {
+      // Exibir mensagem de erro genérica
+      console.error("Erro ao cadastrar usuário:", error);
+      Alert.alert(
+        "Erro",
+        "Falha ao cadastrar usuário. Por favor, tente novamente."
+      );
     }
-  };
+  }
+};
 
   return (
     <SafeAreaView style={styles.safeArea}>
@@ -139,7 +157,7 @@ export default function Cadastro() {
           Informe seus dados para criar uma conta
         </Text>
         <FormInput
-          label="Nome completo"
+          label='Nome completo'
           value={fullName}
           onChangeText={(text) => {
             setFullName(text);
@@ -148,28 +166,28 @@ export default function Cadastro() {
           error={fullNameError}
         />
         <FormInput
-          label="Data de nascimento"
-          keyboardType="number-pad"
+          label='Data de nascimento'
+          keyboardType='number-pad'
           value={birthDate}
           onChangeText={(text) => validateBirthDate(text)}
           error={birthDateError}
         />
         <FormInput
-          label="Contato (WhatsApp)"
-          keyboardType="number-pad"
+          label='Contato (WhatsApp)'
+          keyboardType='number-pad'
           value={whatsapp}
           onChangeText={(text) => validateWhatsapp(text)}
           error={whatsappError}
         />
         <FormInput
-          label="E-mail"
-          keyboardType="email-address"
+          label='E-mail'
+          keyboardType='email-address'
           value={email}
           onChangeText={(text) => validateEmail(text)}
           error={emailError}
         />
         <FormInput
-          label="Senha"
+          label='Senha'
           secureTextEntry={true}
           value={password}
           onChangeText={(text) => validatePassword(text)}
@@ -198,8 +216,8 @@ const styles = StyleSheet.create({
   },
   title: {
     fontSize: 20,
-    fontWeight: "bold",
-    textAlign: "center",
+    fontWeight: 'bold',
+    textAlign: 'center',
     marginTop: 20,
   },
   arrow: {
@@ -211,13 +229,13 @@ const styles = StyleSheet.create({
   },
   subtitle: {
     marginBottom: 30,
-    textAlign: "center",
+    textAlign: 'center',
     marginTop: 10,
     fontSize: 15,
   },
   subtitleContainer: {
-    flexDirection: "row",
-    justifyContent: "center",
+    flexDirection: 'row',
+    justifyContent: 'center',
     marginTop: 20,
   },
   text: {
@@ -225,7 +243,7 @@ const styles = StyleSheet.create({
     fontSize: 15,
   },
   text2: {
-    color: "#827397",
+    color: '#827397',
     fontSize: 15,
   },
 });

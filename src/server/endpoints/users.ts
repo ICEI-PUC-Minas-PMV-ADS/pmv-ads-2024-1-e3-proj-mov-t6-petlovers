@@ -20,7 +20,7 @@ export async function handleUserRequest(req: Request, res: Response) {
     const userRecord = await admin.auth().createUser({
       email: userData.email,
       displayName: firstName,
-      disabled: true, //Temporariamente, apenas para testar a criação de usuário sem senha
+      disabled: false, //Temporariamente, apenas para testar a criação de usuário sem senha
     });
 
     // Firestore Database
