@@ -9,133 +9,90 @@ import {
 } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { Ionicons } from "@expo/vector-icons";
-
-// Importando os componentes de Formulário e seta de voltar
 import FormInput from "../components/FormInput";
 import FormButton from "../components/FormButton";
 import ArrowLeft from "../components/ArrowLeft";
 
 export default function Cadastro() {
   const navigation = useNavigation();
-
   const [fullName, setFullName] = useState("");
+  const [fullNameError, setFullNameError] = useState("");
   const [birthDate, setBirthDate] = useState("");
+  const [birthDateError, setBirthDateError] = useState("");
   const [whatsapp, setWhatsapp] = useState("");
+  const [whatsappError, setWhatsappError] = useState("");
   const [email, setEmail] = useState("");
+  const [emailError, setEmailError] = useState("");
   const [password, setPassword] = useState("");
-  const [confirmPassword, setConfirmPassword] = useState("");
-  const [errors, setErrors] = useState({
-    fullName: "",
-    birthDate: "",
-    whatsapp: "",
-    email: "",
-    password: "",
-    confirmPassword: "",
-  });
-}
+  const [passwordError, setPasswordError] = useState("");
 
-// Função para validar o nome completo
-const validateFullName = () => {
-  if (!fullName) {
-    setErrors((prevState) => ({
-      ...prevState,
-      fullName: "Campo obrigatório",
-    }));
-  } else {
-    setErrors((prevState) => ({ ...prevState, fullName: "" }));
-  }
-};
+  const goToLogin = () => {
+    navigation.navigate("Login");
+  };
 
-// Função para validar a data de nascimento
-const validateBirthDate = () => {
-  if (!/^\d{2}\/\d{2}\/\d{4}$/.test(birthDate)) {
-    setErrors((prevState) => ({
-      ...prevState,
-      birthDate: "Formato inválido (DD/MM/YYYY)",
-    }));
-  } else {
-    setErrors((prevState) => ({ ...prevState, birthDate: "" }));
-  }
-};
-
-// Função para validar o número de WhatsApp
-const validateWhatsapp = () => {
-  if (!/^\d{11}$/.test(whatsapp)) {
-    setErrors((prevState) => ({
-      ...prevState,
-      whatsapp: "Formato inválido",
-    }));
-  } else {
-    setErrors((prevState) => ({ ...prevState, whatsapp: "" }));
-  }
-};
-
-// Função para validar o e-mail
-const validateEmail = () => {
-  if (!/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email)) {
-    setErrors((prevState) => ({ ...prevState, email: "E-mail inválido" }));
-  } else {
-    setErrors((prevState) => ({ ...prevState, email: "" }));
-  }
-};
-
-// Função para validar a senha
-const validatePassword = () => {
-  if (password.length < 6) {
-    setErrors((prevState) => ({
-      ...prevState,
-      password: "A senha deve ter pelo menos 6 caracteres",
-    }));
-  } else {
-    setErrors((prevState) => ({ ...prevState, password: "" }));
-  }
-};
-
-// Função para validar a confirmação de senha
-const validateConfirmPassword = () => {
-  if (password !== confirmPassword) {
-    setErrors((prevState) => ({
-      ...prevState,
-      confirmPassword: "As senhas não coincidem",
-    }));
-  } else {
-    setErrors((prevState) => ({ ...prevState, confirmPassword: "" }));
-  }
-};
-
-const goToLogin = () => {
-  navigation.navigate("Login");
-};
-
-const goToCadastroPet = () => {
-  navigation.navigate("CadastroPet");
-};
-
-const handleCadastro = async () => {
-  // Valida todos os campos antes de enviar a requisição
-  validateFullName();
-  validateBirthDate();
-  validateWhatsapp();
-  validateEmail();
-  validatePassword();
-  validateConfirmPassword();
-
-  // Verifica se há erros de validação
-  if (
-    !errors.fullName &&
-    !errors.birthDate &&
-    !errors.whatsapp &&
-    !errors.email &&
-    !errors.password &&
-    !errors.confirmPassword
-  ) {
-    // Verifica se a senha e a confirmação de senha são iguais
-    if (password !== confirmPassword) {
-      setErrors((prevState) => ({
-        ...prevState,
-        confirmPassword: "As senhas não coincidem",
-      }));
+  const validateFullName = (text) => {
+    if (!text) {
+      setFullNameError("Campo obrigatório");
+    } else if (!/^[a-zA-Z\s]*$/.test(text)) {
+      setFullNameError("Apenas letras são permitidas");
     } else {
+      setFullNameError("");
+    }
+    setFullName(text);
+  };
+
+  const validateBirthDate = (text) => {
+    if (!text) {
+      setBirthDateError("Campo obrigatório");
+    } else {
+      setBirthDateError("");
+    }
+    setBirthDate(text);
+  };
+
+  const validateWhatsapp = (text) => {
+    if (!text) {
+      setWhatsappError("Campo obrigatório");
+    } else {
+      setWhatsappError("");
+    }
+    setWhatsapp(text);
+  };
+
+  const validateEmail = (text) => {
+    if (!text) {
+      setEmailError("Campo obrigatório");
+    } else {
+      setEmailError("");
+    }
+    setEmail(text);
+  };
+
+  const validatePassword = (text) => {
+    if (!text) {
+      setPasswordError("Campo obrigatório");
+    } else {
+      setPasswordError("");
+    }
+    setPassword(text);
+  };
+
+  const handleCadastro = async () => {
+    // Validar os campos antes de enviar a requisição
+    validateFullName(fullName);
+    validateBirthDate(birthDate);
+    validateWhatsapp(whatsapp);
+    validateEmail(email);
+    validatePassword(password);
+
+    // Verificar se há erros de validação
+    if (
+      !fullNameError &&
+      !birthDateError &&
+      !whatsappError &&
+      !emailError &&
+      !passwordError
+    ) {
       try {
         const response = await fetch("http://localhost:3000/api/user", {
           method: "POST",
@@ -152,10 +109,8 @@ const handleCadastro = async () => {
         });
 
         if (response.ok) {
-          // Se a requisição for bem-sucedida, navegue para a próxima tela
           navigation.navigate("ProximaTela");
         } else {
-          // Caso contrário, exiba uma mensagem de erro
           Alert.alert(
             "Erro",
             "Falha ao cadastrar usuário. Por favor, tente novamente."
@@ -169,7 +124,7 @@ const handleCadastro = async () => {
         );
       }
     }
-  }
+  };
 
   return (
     <SafeAreaView style={styles.safeArea}>
@@ -186,50 +141,51 @@ const handleCadastro = async () => {
         <FormInput
           label="Nome completo"
           value={fullName}
-          onChangeText={setFullName}
-        ></FormInput>
+          onChangeText={(text) => {
+            setFullName(text);
+            validateFullName(text);
+          }}
+          error={fullNameError}
+        />
         <FormInput
           label="Data de nascimento"
           keyboardType="number-pad"
           value={birthDate}
-          onChangeText={setBirthDate}
-        ></FormInput>
+          onChangeText={(text) => validateBirthDate(text)}
+          error={birthDateError}
+        />
         <FormInput
           label="Contato (WhatsApp)"
           keyboardType="number-pad"
           value={whatsapp}
-          onChangeText={setWhatsapp}
-        ></FormInput>
+          onChangeText={(text) => validateWhatsapp(text)}
+          error={whatsappError}
+        />
         <FormInput
           label="E-mail"
           keyboardType="email-address"
           value={email}
-          onChangeText={setEmail}
-        ></FormInput>
+          onChangeText={(text) => validateEmail(text)}
+          error={emailError}
+        />
         <FormInput
           label="Senha"
           secureTextEntry={true}
           value={password}
-          onChangeText={setPassword}
-        ></FormInput>
-        <FormInput label="Confirmar senha" secureTextEntry={true}></FormInput>
-        <FormButton>Entrar</FormButton>
+          onChangeText={(text) => validatePassword(text)}
+          error={passwordError}
+        />
+        <FormButton onPress={handleCadastro}>Cadastrar</FormButton>
         <View style={styles.subtitleContainer}>
           <Text style={styles.text}>Já é cadastrado?</Text>
           <Text style={styles.text2} onPress={goToLogin}>
             Clique aqui para fazer login
           </Text>
         </View>
-        <Text
-          style={[styles.text2, { textAlign: "center", marginTop: 20 }]}
-          onPress={goToCadastroPet}
-        >
-          Cadastro pet
-        </Text>
       </View>
     </SafeAreaView>
   );
-};
+}
 
 // Estilos
 const styles = StyleSheet.create({

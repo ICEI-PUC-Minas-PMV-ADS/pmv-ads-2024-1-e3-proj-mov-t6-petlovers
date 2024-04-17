@@ -1,37 +1,47 @@
 import React from 'react';
-import { StyleSheet } from 'react-native';
-import { TextInput, useTheme } from 'react-native-paper';
+import { StyleSheet, View } from 'react-native';
+import { TextInput, useTheme, Text } from 'react-native-paper';
 
-const FormInput = (props) => {
+const FormInput = ({ errorText, value, onChangeText, ...props }) => {
   const { colors } = useTheme();
-  const [text, setText] = React.useState("");
 
   return (
-    <TextInput
-      mode='outlined'
-      value={text}
-      onChangeText={text => setText(text)}
-      theme={{
-        colors: {
-          primary: '#827397',
-          text: 'black',
-          placeholder: 'grey',
-          background: 'white',
-          surface: 'white',
-        },
-        roundness: 10,
-      }}
-      style={styles.input}
-      {...props}
-    />
+    <View style={styles.container}>
+      <TextInput
+        mode='outlined'
+        value={value}
+        onChangeText={onChangeText}
+        theme={{
+          colors: {
+            primary: '#827397',
+            text: 'black',
+            placeholder: 'grey',
+            background: 'white',
+            surface: 'white',            
+          },
+          roundness: 10,
+        }}
+        style={[styles.input, errorText ? styles.inputError : null]}
+        {...props}
+      />
+      {errorText ? <Text style={styles.error}>{errorText}</Text> : null}
+    </View>
   );
 };
 
 const styles = StyleSheet.create({
-  input: {
+  container: {
     marginBottom: 10,
-    //fontFamily: 'Poppins-Regular',
-  }
+  },
+  input: {
+    marginBottom: 5,
+  },
+  error: {
+    color: 'red',
+    fontSize: 12,
+    marginTop: 10,
+    marginBottom: 10,
+  },
 });
 
 export default FormInput;
