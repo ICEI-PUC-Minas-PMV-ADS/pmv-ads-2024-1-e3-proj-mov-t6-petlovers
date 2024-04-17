@@ -2,13 +2,29 @@
 import express, { Express, Request, Response } from "express";
 // Importa a biblioteca dotenv para ler o arquivo .env
 import dotenv from "dotenv";
+import { getAuth,  signInWithEmailAndPassword } from "firebase/auth";
+
 // Importa o endpoint
 import { handlePetRequest } from "./endpoints/pets";
 import { handleUserRequest } from "./endpoints/users";
 import { getFirebaseAdmin } from "./firebase";
 
+const Auth = require('./firebase.ts')
+//import { handleLoginRequest } from "./endpoints/login";
+
+
 // Inicializa o framework de configuração
 dotenv.config();
+
+let userLogged;
+
+getAuth().onAuthStateChanged((user) => {
+  if(user) {
+    userLogged = user;
+  }else {
+    userLogged =null;
+  }
+})
 
 // Inicializa firebase 
 getFirebaseAdmin();
@@ -24,6 +40,20 @@ serverApp.use(express.json());
 serverApp.get('/api/example', (req: Request, res: Response) => {
   res.json({ message: 'Bem-vindo ao PetLovers server!' });
 });
+
+// Endpoint login
+serverApp.post("/api/login", (req: Request, res: Response) => {
+  let getBody = req.body;
+  signInWithEmailAndPassword(getAuth(), getBody.email, getBody.password)
+  .then((login : any) => {
+    if(!login.err) {
+      res.render('/api/example');
+    } else {
+      res.json({ message: 'ERRO!' });
+    }}
+  )
+});
+
 
 // endpoint pets
 serverApp.post("/api/pet", handlePetRequest);

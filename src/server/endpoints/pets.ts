@@ -1,7 +1,7 @@
 import { Request, Response } from "express";
 import admin from "firebase-admin";
 import crypto from "crypto";
-import { Pet } from "../models/pet";
+import { Pet } from "../models/pet"; 
 
 // Funcao para enviar dados pet
 export async function handlePetRequest(req: Request, res: Response) {
