@@ -73,8 +73,8 @@ const CadastroPet = () => {
             onChangeText={setSobre}
             placeholder="Sobre o seu pet..."
             placeholderTextColor="grey"
-            numberOfLines={10}
-            multiline={true}
+            //numberOfLines={10}
+            multiline={false}
             mode="outlined"
           />
           <FormButton style={styles.cadastrarButton} onPress={handleCadastro}>Cadastrar</FormButton>
@@ -98,7 +98,7 @@ const styles = StyleSheet.create({
     marginBottom: 20,
   },
   textArea: {
-    height: 250,
+    height: 100,
     justifyContent: "flex-start",
     marginTop: 20,
   },

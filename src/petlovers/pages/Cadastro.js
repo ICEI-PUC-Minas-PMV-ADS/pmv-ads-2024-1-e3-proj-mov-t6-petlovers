@@ -30,6 +30,10 @@ export default function Cadastro() {
     navigation.navigate("Login");
   };
 
+  const goToCadastroPet = () => {
+    navigation.navigate("CadastroPet");
+  };
+
   /*const validateFullName = (text) => {
     if (!text) {
       console.log("Nome completo é obrigatório");
@@ -215,6 +219,9 @@ export default function Cadastro() {
           <Text style={styles.text}>Já é cadastrado?</Text>
           <Text style={styles.text2} onPress={goToLogin}>
             Clique aqui para fazer login
+          </Text>
+          <Text style={styles.text2} onPress={goToCadastroPet}>
+            Cadastro pet
           </Text>
         </View>
       </View>
