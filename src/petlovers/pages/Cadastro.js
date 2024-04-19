@@ -31,8 +31,8 @@ export default function Cadastro() {
     navigation.navigate("Login");
   };
 
-  const goToCadastroPet = () => {
-    navigation.navigate("CadastroPet");
+  const goToCadastroPet = (userId) => {
+    navigation.navigate("CadastroPet", { userId: userId });
   };
 
   // Função para capitalizar o nome completo
@@ -197,8 +197,12 @@ export default function Cadastro() {
 
       // Verificar se a solicitação foi bem-sucedida
       if (response.ok) {
+        // Extrair o ID do usuário da resposta
+        const responseData = await response.json();
+        const userId = responseData.id;
+
         // Cadastro bem-sucedido
-        navigation.navigate("CadastroPet");
+        goToCadastroPet(userId); // Passa o ID do usuário para a página de cadastro de pet
       } else {
         // Exibir mensagem de erro
         const data = await response.json();

@@ -1,5 +1,6 @@
 export interface Pet {
     id: string;
+    userId: string; // ID do usuário associado ao pet
     name: string;
     age: number;
     city: string;

@@ -10,8 +10,8 @@ export async function handleUserRequest(req: Request, res: Response) {
     console.log(userData);
 
     // Gerar ID
-    const id = crypto.randomUUID();
-    userData.id = id;
+    const userId = crypto.randomUUID();
+    userData.id = userId;
 
     // Extrair o primeiro nome do usuário
     const firstName = userData.full_name.split(" ")[0];
@@ -24,14 +24,17 @@ export async function handleUserRequest(req: Request, res: Response) {
     });
 
     // Firestore Database
-    await admin.firestore().collection("users").doc(id).set({
+    await admin.firestore().collection("users").doc(userId).set({
       full_name: userData.full_name,
       birth_date: userData.birth_date,
       whatsapp: userData.whatsapp,
       email: userData.email,
     });
 
-    return res.status(201).json({ data: userData });
+    // Retornar o ID do usuário no corpo da resposta
+    const responseData = { ...userData, id: userId };
+
+    return res.status(201).json(responseData); 
   } catch (error) {
     console.error("Erro ao cadastrar usuário:", error);
     return res.status(500).json({ message: "Erro interno do servidor" });
