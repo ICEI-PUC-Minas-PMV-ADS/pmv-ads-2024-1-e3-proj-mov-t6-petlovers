@@ -1,50 +1,62 @@
-import React from 'react';
-import { StyleSheet, View } from 'react-native';
-import { TextInput, useTheme, Text } from 'react-native-paper';
+import React from "react";
+import { StyleSheet, View } from "react-native";
+import { TextInput, useTheme, Text } from "react-native-paper";
 
-const FormInput = ({ label, errorText, value, onChangeText, ...props }) => {
+const FormInput = ({ label, value, onChangeText, error, ...props }) => {
   const { colors } = useTheme();
 
-  // Função para formatar a data de nascimento (DD/MM/AAAA)
+  //Função para formatar a data de nascimento
   const formatBirthDate = (text) => {
-    if (text.length === 2 && text.length > value.length) {
-      return text + '/';
-    } else if (text.length === 5 && text.length > value.length) {
-      return text + '/';
+    // Remove todos os caracteres não numéricos
+    text = text.replace(/\D/g, "");
+
+    // Limita a entrada de caracteres
+    text = text.substring(0, 8);
+
+    // Adiciona as barras (/) conforme o usuário digita
+    if (text.length > 2) {
+      // Adiciona a primeira barra
+      text = `${text.substring(0, 2)}/${text.substring(2)}`;
     }
+    if (text.length > 5) {
+      // Adiciona a segunda barra
+      text = `${text.substring(0, 5)}/${text.substring(5)}`;
+    }
+
     return text;
   };
 
   // Função para formatar o número de telefone (DD) XXXX-XXXXX
   const formatPhoneNumber = (text) => {
     // Remove todos os caracteres não numéricos
-    text = text.replace(/\D/g, '');
-  
+    text = text.replace(/\D/g, "");
+
     // Verifica se o texto possui o DDD (código local)
     if (text.length > 2) {
       // Separa o DDD do restante do número
       const ddd = text.substring(0, 2);
       const rest = text.substring(2);
-  
+
       // Verifica se o DDD possui dois dígitos (padrão brasileiro)
       if (ddd.length === 2) {
         // Limita o número de dígitos após o DDD a no máximo 9
         const formattedRest = rest.substring(0, 9);
-  
+
         // Formata o número de telefone
         let formattedNumber = `(${ddd}) `;
-  
+
         // Verifica se o número possui o nono dígito (9º dígito)
         if (formattedRest.length > 4) {
-          formattedNumber += formattedRest.substring(0, 5) + '-' + formattedRest.substring(5);
+          formattedNumber +=
+            formattedRest.substring(0, 5) + "-" + formattedRest.substring(5);
         } else {
           formattedNumber += formattedRest;
         }
-  
+
         return formattedNumber;
       }
     }
-  
+
     // Retorna o texto original se não atender aos critérios de formatação
     return text;
   };
@@ -52,15 +64,14 @@ const FormInput = ({ label, errorText, value, onChangeText, ...props }) => {
   return (
     <View style={styles.container}>
       <TextInput
-        mode='outlined'
+        mode="outlined"
         value={value}
         label={label}
-        //onChangeText={onChangeText}
+        error={error ? true : false}
         onChangeText={(text) => {
-          // Verifica se o label é "Data de nascimento" para aplicar a formatação específica
-          if (label === 'Data de nascimento') {
+          if (label === "Data de nascimento") {
             onChangeText(formatBirthDate(text));
-          } else if (label === 'Contato (WhatsApp)') {
+          } else if (label === "Contato (WhatsApp)") {
             onChangeText(formatPhoneNumber(text));
           } else {
             onChangeText(text);
@@ -68,18 +79,19 @@ const FormInput = ({ label, errorText, value, onChangeText, ...props }) => {
         }}
         theme={{
           colors: {
-            primary: '#827397',
-            text: 'black',
-            placeholder: 'grey',
-            background: 'white',
-            surface: 'white',            
+            primary: "#827397",
+            text: "black",
+            placeholder: "grey",
+            background: "white",
+            surface: "white",
+            error: "red",
           },
           roundness: 10,
         }}
-        style={[styles.input, errorText ? styles.inputError : null]}
+        style={styles.input}
         {...props}
       />
-      {errorText ? <Text style={styles.error}>{errorText}</Text> : null}
+      {error && <Text style={styles.errorText}>{error}</Text>}
     </View>
   );
 };
@@ -91,11 +103,10 @@ const styles = StyleSheet.create({
   input: {
     marginBottom: 5,
   },
-  error: {
-    color: 'red',
+  errorText: {
+    color: "red",
     fontSize: 12,
-    marginTop: 10,
-    marginBottom: 10,
+    marginTop: 5,
   },
 });
 
