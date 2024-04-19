@@ -140,7 +140,7 @@ export default function Cadastro() {
       setPasswordError("A senha deve ter no mínimo 6 caracteres");
       return false;
     } else {
-      setPassWordError(""); // Limpa o erro quando o texto for válido
+      setPasswordError(""); // Limpa o erro quando o texto for válido
       return true;
     }
   };
@@ -169,20 +169,14 @@ export default function Cadastro() {
     }
 
     // Validar a formatação da data de nascimento para o Firestone
-    const { isValid, formattedDate } = validateAndFormatBirthDate(birthDate);
-    if (!isValid) {
+    const birthDateValidation = validateBirthDate(birthDate); // Armazena o resultado da validação
+
+    if (!birthDateValidation.isValid) {
       // Se a data não for válida, não continue
       return;
     }
 
     try {
-      // Converter a data de nascimento para Timestamp
-      const birthDateTimestamp = Date.parse(birthDate);
-      const birthDateFirestore = new firebase.firestore.Timestamp(
-        birthDateTimestamp / 1000, // convertendo de milissegundos para segundos
-        0
-      );
-
       // Capitalizar o nome completo
       const capitalizedFullName = capitalizeFullName(fullName);
 
@@ -194,7 +188,7 @@ export default function Cadastro() {
         },
         body: JSON.stringify({
           full_name: fullName,
-          birth_date: birthDate,
+          birth_date: birthDateValidation.formattedDate, //Usa a data formatada
           whatsapp: whatsapp,
           email: email,
           password: password,
@@ -204,7 +198,7 @@ export default function Cadastro() {
       // Verificar se a solicitação foi bem-sucedida
       if (response.ok) {
         // Cadastro bem-sucedido
-        navigation.navigate("ProximaTela");
+        navigation.navigate("CadastroPet");
       } else {
         // Exibir mensagem de erro
         const data = await response.json();
