@@ -84,8 +84,6 @@ const CadastroPet = () => {
       setImage(result.assets[0].uri);
     }
   };
-  
-
 
   return (
     <SafeAreaView>
