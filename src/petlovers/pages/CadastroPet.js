@@ -9,9 +9,10 @@ import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view
 import ArrowLeft from '../components/ArrowLeft';
 import FormButton from '../components/FormButton';
 import FormInput from '../components/FormInput';
+import validateCadastro from '../services/validateCadastro';
 
 
-const CadastroPet = () => {
+const CadastroPet = ({ navigation }) => {
   const [name, setName] = React.useState("");
   const [age, setAge] = React.useState("");
   const [city, setCity] = React.useState("");
@@ -22,9 +23,13 @@ const CadastroPet = () => {
   const [size, setSize] = React.useState("");
   const [about, setAbout] = React.useState("");
 
+  const [errors, setErrors] = useState({});
+
   const handleCadastro = async () => {
-    if (!name ||!age ||!city ||!state ||!sex ||!color ||!breed ||!size ||!about) {
-      alert("Todos os campos são obrigatórios");
+    const validationErrors = validateCadastro({ name, age, city, state, sex, color, breed, size, about });
+
+    if (Object.keys(validationErrors).length > 0) {
+      setErrors(validationErrors);
       return;
     }
 
@@ -65,6 +70,8 @@ const CadastroPet = () => {
       console.error('Erro ao cadastrar pet:', error);
       Alert.alert('Erro', 'Falha ao cadastrar pet. Por favor, tente novamente.');
     }
+
+    navigation.navigate('Login');
   };
 
   //IMAGE PICKER
@@ -85,6 +92,7 @@ const CadastroPet = () => {
     }
   };
 
+
   return (
     <SafeAreaView>
       <ArrowLeft />
@@ -99,14 +107,22 @@ const CadastroPet = () => {
                {image && <Image source={{ uri: image }} style={styles.image} />}
               </View>
             </View>
-          <FormInput label='Nome pet' value={name} onChangeText={setName} style={styles.input} />
-          <FormInput label='Idade' value={age} onChangeText={setAge} keyboardType="number-pad" style={styles.input} />
+          <FormInput label='Nome pet' value={name} onChangeText={setName} style={styles.input}/>
+          <Text style={styles.errorMessage}>{errors.name}</Text>
+          <FormInput label='Idade' value={age} onChangeText={setAge} keyboardType="number-pad" style={styles.input}/>
+          <Text style={styles.errorMessage}>{errors.age}</Text>
           <FormInput label='Cidade' value={city} onChangeText={setCity} style={styles.input} placeholderTextColor="grey" />
-          <FormInput label='Estado' value={state} onChangeText={setState} style={styles.input} placeholderTextColor="grey" />
+          <Text style={styles.errorMessage}>{errors.city}</Text>
+          <FormInput label='Estado' value={state} onChangeText={setState} style={styles.input} placeholderTextColor="grey"/>
+          <Text style={styles.errorMessage}>{errors.state}</Text>
           <FormInput label='Sexo' value={sex} onChangeText={setSex} style={styles.input} placeholderTextColor="grey" />
+          <Text style={styles.errorMessage}>{errors.sex}</Text>
           <FormInput label='Cor' value={color} onChangeText={setColor} style={styles.input} />
+          <Text style={styles.errorMessage}>{errors.color}</Text>
           <FormInput label='Raça' value={breed} onChangeText={setBreed} style={styles.input} />
+          <Text style={styles.errorMessage}>{errors.breed}</Text>
           <FormInput label='Porte' value={size} onChangeText={setSize} style={styles.input} />
+          <Text style={styles.errorMessage}>{errors.size}</Text>
           <TextInput
             style={styles.textArea}
             value={about}
@@ -117,6 +133,7 @@ const CadastroPet = () => {
             multiline={true}
             mode="outlined"
           />
+           <Text style={styles.errorMessage}>{errors.about}</Text>
           <FormButton style={styles.cadastrarButton} onPress={handleCadastro}>Cadastrar</FormButton>
         </View>
       </KeyboardAwareScrollView >
@@ -181,6 +198,11 @@ const styles = StyleSheet.create({
   input: {
     marginTop: 10,
     color: "grey"
+  },
+  errorMessage: {
+    color: 'red',
+    fontSize: 14,
+    marginTop: 5,
   },
 });
 
