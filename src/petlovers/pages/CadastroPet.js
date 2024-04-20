@@ -29,12 +29,12 @@ const CadastroPet = ({ navigation }) => {
 
   const handleCadastro = async () => {
     const validationErrors = validateCadastroPet({ nome, idade, cidade, estado, sexo, cor, raca, porte, sobre });
-
+  
     if (Object.keys(validationErrors).length > 0) {
       setErrors(validationErrors);
       return;
     }
-
+  
     try {
       const response = await fetch("http://localhost:3000/api/pet", {
         method: "POST",
@@ -54,7 +54,7 @@ const CadastroPet = ({ navigation }) => {
           sobre,
         }),
       });
-
+  
       if (response.ok) {
         Alert.alert("Sucesso", "Pet cadastrado com sucesso!");
         // Limpar os campos após o cadastro
@@ -67,9 +67,10 @@ const CadastroPet = ({ navigation }) => {
         setRaca("");
         setPorte("");
         setSobre("");
-
+  
+        // Limpar os erros
         setErrors({});
-
+  
         navigation.navigate('Login');
       } else {
         throw new Error("Falha ao cadastrar pet");
@@ -83,6 +84,7 @@ const CadastroPet = ({ navigation }) => {
     }
   };
 
+  
   //IMAGE PICKER
   const [image, setImage] = useState(null);
 
