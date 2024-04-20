@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import { TextInput } from 'react-native-paper';
-import { SafeAreaView, StyleSheet, View, Text, ScrollView, Alert, Image , TouchableOpacity} from 'react-native';
+import { SafeAreaView, StyleSheet, View, Text, Alert, Image , TouchableOpacity} from 'react-native';
 import {  } from "expo-status-bar";
 import * as ImagePicker from 'expo-image-picker';
 import Icon from 'react-native-vector-icons/FontAwesome';
-
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 
 import ArrowLeft from '../components/ArrowLeft';
 import FormButton from '../components/FormButton';
@@ -88,15 +88,17 @@ const CadastroPet = () => {
   return (
     <SafeAreaView>
       <ArrowLeft />
-      <ScrollView contentContainerStyle={styles.scrollViewContent}>
+      <KeyboardAwareScrollView >
         <View style={styles.textAreaContainer}>
           <Text style={styles.title}>Cadastre o seu pet</Text>
-          <View style={styles.container}>
-           <TouchableOpacity onPress={pickImage}>
-           <Icon name="camera" size={30} color="#827397" />
-           </TouchableOpacity>
-           {image && <Image source={{ uri: image }} style={styles.image} />}
-         </View>
+            <View style={styles.container}>
+              <View style={styles.imageContainer}>
+                <TouchableOpacity onPress={pickImage} style={styles.cameraButton}>
+                  <Icon name="camera" size={40} color="#827397" />
+                </TouchableOpacity>
+               {image && <Image source={{ uri: image }} style={styles.image} />}
+              </View>
+            </View>
           <FormInput label='Nome pet' value={name} onChangeText={setName} style={styles.input} />
           <FormInput label='Idade' value={age} onChangeText={setAge} keyboardType="number-pad" style={styles.input} />
           <FormInput label='Cidade' value={city} onChangeText={setCity} style={styles.input} placeholderTextColor="grey" />
@@ -117,21 +119,41 @@ const CadastroPet = () => {
           />
           <FormButton style={styles.cadastrarButton} onPress={handleCadastro}>Cadastrar</FormButton>
         </View>
-      </ScrollView>
-
+      </KeyboardAwareScrollView >
     </SafeAreaView>
   );
 };
 
 const styles = StyleSheet.create({
+  scrollViewContent: {
+    flexGrow: 1,
+  },
   container: {
     flex: 1,
     alignItems: "center",
     justifyContent: "center",
   },
-  image: {
+  imageContainer: {
+    alignItems: 'center',
+    justifyContent: 'center',
     width: 200,
     height: 200,
+    borderRadius: 100, 
+    backgroundColor:'white',
+    overflow: 'hidden', 
+  },
+  cameraButton: {
+    position: 'absolute',
+    zIndex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+    width: '100%',
+    height: '100%',
+    color:"#FFFFFF",
+  },
+  image: {
+    width: '100%',
+    height: '100%',
   },
   textAreaContainer: {
     padding: 20,
@@ -143,7 +165,7 @@ const styles = StyleSheet.create({
     marginBottom: 10,
   },
   textArea: {
-    height: 150,
+    height: 120,
     justifyContent: "flex-start",
     marginTop: 20,
   },
@@ -151,7 +173,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#827397',
     width: 352,
     marginTop: 20,
-    marginBottom: 60,
+    marginBottom: 50,
     padding: 5,
     textTransform: 'none',
     borderRadius: 10,
