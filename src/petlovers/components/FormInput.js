@@ -2,6 +2,8 @@ import React from "react";
 import { StyleSheet, View } from "react-native";
 import { TextInput, useTheme, Text } from "react-native-paper";
 
+import { defaultTheme } from "./Themes";
+
 const FormInput = ({ label, value, onChangeText, error, ...props }) => {
   const { colors } = useTheme();
 
@@ -78,15 +80,8 @@ const FormInput = ({ label, value, onChangeText, error, ...props }) => {
           }
         }}
         theme={{
-          colors: {
-            primary: "#827397",
-            text: "black",
-            placeholder: "grey",
-            background: "white",
-            surface: "white",
-            error: "red",
-          },
-          roundness: 10,
+          colors: defaultTheme.colors,
+          roundness: defaultTheme.roundness,
         }}
         style={styles.input}
         {...props}
