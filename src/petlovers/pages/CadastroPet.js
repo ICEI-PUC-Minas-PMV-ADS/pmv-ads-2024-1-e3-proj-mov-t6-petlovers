@@ -262,7 +262,7 @@ const styles = StyleSheet.create({
   },
   errorMessage: {
     color: 'red',
-    fontSize: 14,
+    fontSize: 12,
   },
 });
 
