@@ -1,5 +1,6 @@
 // Importa as bibliotecas do express
 import express, { Express, Request, Response } from "express";
+import cors from "cors";
 // Importa a biblioteca dotenv para ler o arquivo .env
 import dotenv from "dotenv";
 // Importa o endpoint
@@ -19,6 +20,9 @@ const port = 3000;
 
 // Middleware para analisar o corpo da solicitação JSON
 serverApp.use(express.json());
+
+// Middleware para habilitar o CORS
+serverApp.use(cors());
 
 // Endpoint test
 serverApp.get('/api/example', (req: Request, res: Response) => {
