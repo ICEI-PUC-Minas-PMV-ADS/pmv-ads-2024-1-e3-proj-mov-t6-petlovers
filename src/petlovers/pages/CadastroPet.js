@@ -5,6 +5,7 @@ import {  } from "expo-status-bar";
 import * as ImagePicker from 'expo-image-picker';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
+import { useRoute } from "@react-navigation/native";
 
 import ArrowLeft from '../components/ArrowLeft';
 import FormButton from '../components/FormButton';
@@ -25,6 +26,10 @@ const CadastroPet = ({ navigation }) => {
 
   const [errors, setErrors] = useState({});
 
+  const route = useRoute();
+  const userId = route.params.userId; // Recupera o ID do usuário dos parâmetros de navegação
+  console.log("UserID recebido:", userId); // Verificar userId
+
   const handleCadastro = async () => {
     const validationErrors = validateCadastro({ name, age, city, state, sex, color, breed, size, about });
 
@@ -40,6 +45,7 @@ const CadastroPet = ({ navigation }) => {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
+          userId, // Adiciona o ID do usuário ao corpo da requisição
           name,
           age,
           city,
@@ -55,7 +61,6 @@ const CadastroPet = ({ navigation }) => {
       if (!response.ok) {
         throw new Error('Falha ao cadastrar pet');
       }
-
       Alert.alert('Sucesso', 'Pet cadastrado com sucesso!');
       // Limpar os campos após o cadastro
       setName("");
