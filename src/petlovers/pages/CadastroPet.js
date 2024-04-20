@@ -20,10 +20,11 @@ import ArrowLeft from "../components/ArrowLeft";
 import FormButton from "../components/FormButton";
 import FormInput from "../components/FormInput";
 
-const CadastroPet = () => {
+const CadastroPet = ({ navigation }) => {
   const [nome, setNome] = React.useState("");
   const [idade, setIdade] = React.useState("");
   const [cidade, setCidade] = React.useState("");
+  const [estado, setEstado] = React.useState("");
   const [sexo, setSexo] = React.useState("");
   const [cor, setCor] = React.useState("");
   const [raca, setRaca] = React.useState("");
@@ -46,6 +47,7 @@ const CadastroPet = () => {
           nome,
           idade,
           cidade,
+          estado,
           sexo,
           cor,
           raca,
@@ -60,11 +62,14 @@ const CadastroPet = () => {
         setNome("");
         setIdade("");
         setCidade("");
+        setEstado("");
         setSexo("");
         setCor("");
         setRaca("");
         setPorte("");
         setSobre("");
+
+        navigation.navigate('Login');
       } else {
         throw new Error("Falha ao cadastrar pet");
       }
@@ -126,6 +131,13 @@ const CadastroPet = () => {
             label="Cidade"
             value={cidade}
             onChangeText={setCidade}
+            style={styles.input}
+            placeholderTextColor="grey"
+          />
+           <FormInput
+            label="Estado"
+            value={estado}
+            onChangeText={setEstado}
             style={styles.input}
             placeholderTextColor="grey"
           />
