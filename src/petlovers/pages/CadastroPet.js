@@ -1,24 +1,15 @@
 import React, { useState } from 'react';
 import { TextInput } from "react-native-paper";
-import {
-  SafeAreaView,
-  StyleSheet,
-  View,
-  Text,
-  Alert,
-  TouchableOpacity,
-  Image,
-} from "react-native";
+import { SafeAreaView, StyleSheet, View, Text, Alert, TouchableOpacity, Image,} from "react-native";
 import { useRoute } from "@react-navigation/native";
-import {  } from "expo-status-bar";
 import * as ImagePicker from 'expo-image-picker';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 
-
 import ArrowLeft from "../components/ArrowLeft";
 import FormButton from "../components/FormButton";
 import FormInput from "../components/FormInput";
+import validateCadastroPet from '../services/validateCadastroPet';
 
 const CadastroPet = ({ navigation }) => {
   const [nome, setNome] = React.useState("");
@@ -30,12 +21,20 @@ const CadastroPet = ({ navigation }) => {
   const [raca, setRaca] = React.useState("");
   const [porte, setPorte] = React.useState("");
   const [sobre, setSobre] = React.useState("");
+  const [errors, setErrors] = useState({});
 
   const route = useRoute();
   const userId = route.params.userId; // Recupera o ID do usuário dos parâmetros de navegação
   console.log("UserID recebido:", userId); // Verificar userId
 
   const handleCadastro = async () => {
+    const validationErrors = validateCadastroPet({ nome, idade, cidade, estado, sexo, cor, raca, porte, sobre });
+
+    if (Object.keys(validationErrors).length > 0) {
+      setErrors(validationErrors);
+      return;
+    }
+
     try {
       const response = await fetch("http://localhost:3000/api/pet", {
         method: "POST",
@@ -68,6 +67,8 @@ const CadastroPet = ({ navigation }) => {
         setRaca("");
         setPorte("");
         setSobre("");
+
+        setErrors({});
 
         navigation.navigate('Login');
       } else {
@@ -120,6 +121,7 @@ const CadastroPet = ({ navigation }) => {
             onChangeText={setNome}
             style={styles.input}
           />
+          <Text style={styles.errorMessage}>{errors.nome}</Text>
           <FormInput
             label="Idade"
             value={idade}
@@ -127,6 +129,7 @@ const CadastroPet = ({ navigation }) => {
             keyboardType="number-pad"
             style={styles.input}
           />
+          <Text style={styles.errorMessage}>{errors.idade}</Text>
           <FormInput
             label="Cidade"
             value={cidade}
@@ -134,6 +137,7 @@ const CadastroPet = ({ navigation }) => {
             style={styles.input}
             placeholderTextColor="grey"
           />
+          <Text style={styles.errorMessage}>{errors.cidade}</Text>
            <FormInput
             label="Estado"
             value={estado}
@@ -141,6 +145,7 @@ const CadastroPet = ({ navigation }) => {
             style={styles.input}
             placeholderTextColor="grey"
           />
+          <Text style={styles.errorMessage}>{errors.estado}</Text>
           <FormInput
             label="Sexo"
             value={sexo}
@@ -148,24 +153,28 @@ const CadastroPet = ({ navigation }) => {
             style={styles.input}
             placeholderTextColor="grey"
           />
+          <Text style={styles.errorMessage}>{errors.sexo}</Text>
           <FormInput
             label="Cor"
             value={cor}
             onChangeText={setCor}
             style={styles.input}
           />
+          <Text style={styles.errorMessage}>{errors.cor}</Text>
           <FormInput
             label="Raça"
             value={raca}
             onChangeText={setRaca}
             style={styles.input}
           />
+          <Text style={styles.errorMessage}>{errors.raca}</Text>
           <FormInput
             label="Porte"
             value={porte}
             onChangeText={setPorte}
             style={styles.input}
           />
+          <Text style={styles.errorMessage}>{errors.porte}</Text>
           <TextInput
             style={styles.textArea}
             value={sobre}
@@ -176,6 +185,7 @@ const CadastroPet = ({ navigation }) => {
             multiline={false}
             mode="outlined"
           />
+          <Text style={styles.errorMessage}>{errors.sobre}</Text>
           <FormButton style={styles.cadastrarButton} onPress={handleCadastro}>
             Cadastrar
           </FormButton>
@@ -202,6 +212,8 @@ const styles = StyleSheet.create({
     borderRadius: 100, 
     backgroundColor:'white',
     overflow: 'hidden', 
+    marginBottom: 30,
+    marginTop: 30,
   },
   cameraButton: {
     position: 'absolute',
@@ -232,13 +244,12 @@ const styles = StyleSheet.create({
     height: 100,
     height: 120,
     justifyContent: "flex-start",
-    marginTop: 20,
   },
   cadastrarButton: {
     backgroundColor: "#827397",
     backgroundColor: '#827397',
     width: 352,
-    marginTop: 20,
+    marginTop: 10,
     marginBottom: 50,
     padding: 5,
     textTransform: "none",
@@ -246,14 +257,12 @@ const styles = StyleSheet.create({
     borderRadius: 10,
   },
   input: {
-    marginTop: 10,
     color: "grey",
-    color: "grey"
+    color: "grey",
   },
   errorMessage: {
     color: 'red',
     fontSize: 14,
-    marginTop: 5,
   },
 });
 
