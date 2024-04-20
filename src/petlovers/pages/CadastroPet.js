@@ -9,7 +9,7 @@ import {
   Alert,
 } from "react-native";
 import { useRoute } from "@react-navigation/native";
-
+import { getAuth } from "firebase/auth";
 import ArrowLeft from "../components/ArrowLeft";
 import FormButton from "../components/FormButton";
 import FormInput from "../components/FormInput";
@@ -34,9 +34,9 @@ const CadastroPet = () => {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
+          "auth-token": getAuth().currentUser.getIdToken(),
         },
         body: JSON.stringify({
-          userId, // Adiciona o ID do usuário ao corpo da requisição
           nome,
           idade,
           cidade,

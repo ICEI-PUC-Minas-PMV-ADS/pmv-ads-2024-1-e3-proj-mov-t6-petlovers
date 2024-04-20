@@ -7,7 +7,7 @@ import Header from './components/Header';
 import Navigations from './navigations/Navigations';
 
 export default function App() {
-  
+
   return (
     <SafeAreaProvider>
       <View style={styles.container}>
@@ -22,7 +22,7 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff', 
+    backgroundColor: '#fff',
   },
 });
 
