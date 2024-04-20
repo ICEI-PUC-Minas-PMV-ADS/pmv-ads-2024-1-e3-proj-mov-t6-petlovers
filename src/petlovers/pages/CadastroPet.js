@@ -161,7 +161,7 @@ const styles = StyleSheet.create({
   },
   cadastrarButton: {
     backgroundColor: "#827397",
-    width: 352,
+    width: '100%', //Tamanho responsivo. Depois importar o componente na página
     marginTop: 20,
     padding: 5,
     textTransform: "none",
