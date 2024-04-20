@@ -153,10 +153,15 @@ export default function Cadastro() {
   const validateForm = () => {
     return (
       fullName !== "" &&
+      !fullNameError &&
       birthDate !== "" &&
+      !birthDateError &&
       whatsapp !== "" &&
+      !whatsappError &&
       email !== "" &&
-      password !== ""
+      !emailError &&
+      password !== "" &&
+      !passwordError
     );
   };
 
