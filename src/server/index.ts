@@ -1,12 +1,16 @@
 // Importa as bibliotecas do express
-import express, { Express, Request, Response } from "express";
+import express, { Express } from "express";
 import cors from "cors";
-// Importa a biblioteca dotenv para ler o arquivo .env
 import dotenv from "dotenv";
+import multer from 'multer';
+
+
 // Importa o endpoint
 import { handlePetRequest } from "./endpoints/pets";
 import { handleUserRequest } from "./endpoints/users";
 import { getFirebaseAdmin } from "./firebase";
+import {handleImageUploadRequest } from './endpoints/images';
+
 
 // Inicializa o framework de configuração
 dotenv.config();
@@ -24,10 +28,13 @@ serverApp.use(express.json());
 // Middleware para habilitar o CORS
 serverApp.use(cors());
 
-// Endpoint test
-serverApp.get('/api/example', (req: Request, res: Response) => {
-  res.json({ message: 'Bem-vindo ao PetLovers server!' });
-});
+
+const storage = multer.memoryStorage();
+const upload = multer({ storage: storage });
+
+
+//endpoint imagem
+serverApp.post('/api/pet/images', upload.single('file'), handleImageUploadRequest); 
 
 // endpoint pets
 serverApp.post("/api/pet", handlePetRequest);
