@@ -70,6 +70,10 @@ const CadastroPet = ({ navigation }) => {
   
         // Limpar os erros
         setErrors({});
+
+        if (image) {
+          await enviarImagem();
+        }
   
         navigation.navigate('Login');
       } else {
@@ -80,6 +84,36 @@ const CadastroPet = ({ navigation }) => {
       Alert.alert(
         "Erro",
         "Falha ao cadastrar pet. Por favor, tente novamente mais tarde."
+      );
+    }
+  };
+
+
+  const enviarImagem = async () => {
+    try {
+      const formData = new FormData();
+      formData.append('file', {
+        uri: image,
+        name: `pet_${Date.now()}.jpg`,
+        type: 'image/jpg',
+      });
+  
+      const imageUploadResponse = await fetch("http://localhost:3000/api/pet/images", {
+        method: "POST",
+        body: formData,
+        headers: {
+          'Content-Type': 'multipart/form-data',
+        },
+      });
+  
+      if (!imageUploadResponse.ok) {
+        throw new Error("Falha ao fazer upload da imagem");
+      }
+    } catch (error) {
+      console.error("Erro ao enviar imagem:", error);
+      Alert.alert(
+        "Erro",
+        "Falha ao enviar imagem. Por favor, tente novamente mais tarde."
       );
     }
   };
