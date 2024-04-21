@@ -4,6 +4,7 @@ export interface Pet {
     name: string;
     age: number;
     city: string;
+    state: string;
     sex: string;
     color: string;
     breed: string;
