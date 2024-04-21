@@ -1,5 +1,5 @@
 import React from 'react';
-import { Appbar } from 'react-native-paper';
+import { Appbar, Text } from 'react-native-paper';
 
 const Header = ({ showHeader }) => {
   if (!showHeader) {
@@ -13,6 +13,7 @@ const Header = ({ showHeader }) => {
         titleStyle={styles.title}
         style={styles.content}
       />
+      <Text style={styles.nameLogon} >Olá, teste!</Text>
     </Appbar.Header>
   );
 };
@@ -31,6 +32,11 @@ const styles = {
     justifyContent: 'center', 
     flex: 1, 
   },
+  nameLogon:{
+    color: '#5F5B5B',
+    fontSize: 12,
+    marginRight: 15,
+  }
 };
 
 export default Header;
