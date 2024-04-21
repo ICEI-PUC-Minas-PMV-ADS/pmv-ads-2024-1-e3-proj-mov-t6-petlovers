@@ -71,6 +71,7 @@ const CadastroPet = ({ navigation }) => {
         // Limpar os erros
         setErrors({});
 
+
         if (image) {
           await enviarImagem();
         }
@@ -89,6 +90,7 @@ const CadastroPet = ({ navigation }) => {
   };
 
 
+  //Envio da imagem 
   const enviarImagem = async () => {
     try {
       const formData = new FormData();
@@ -106,7 +108,9 @@ const CadastroPet = ({ navigation }) => {
         },
       });
   
-      if (!imageUploadResponse.ok) {
+      if (imageUploadResponse.ok) {
+        setImage(null); 
+      } else {
         throw new Error("Falha ao fazer upload da imagem");
       }
     } catch (error) {
