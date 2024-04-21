@@ -1,6 +1,6 @@
 import { Request, Response, urlencoded } from "express";
 import { ref, uploadBytes } from "firebase/storage";
-import { getStorageApi } from "../firebase";
+import { getStorageApi } from "../index";
 import { uuid } from 'uuidv4';
 
 const STORAGE_URL = 'https://firebasestorage.googleapis.com/v0/b/petlovers-f3fd9.appspot.com/o';

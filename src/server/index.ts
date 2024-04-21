@@ -20,14 +20,19 @@ dotenv.config();
 const serviceAccount = {
   projectId: process.env.FIREBASE_ADMIN_PROJECT_ID,
   privateKey: process.env.FIREBASE_ADMIN_PRIVATE_KEY,
-  clientEmail: process.env.FIREBASE_ADMIN_CLIENT_EMAIL
+  clientEmail: process.env.FIREBASE_ADMIN_CLIENT_EMAIL,
 };
 
 // Inicializa o Firebase Admin
 admin.initializeApp({
-  credential: admin.credential.cert(serviceAccount)
+  credential: admin.credential.cert(serviceAccount),
+  storageBucket: "petlovers-f3fd9.appspot.com"
 });
 
+//acessa o storage do firebase
+export function getStorageApi(){
+  return admin?.storage();
+}
 
 // Cria uma instância servidor com express
 const serverApp: Express = express();
@@ -47,7 +52,7 @@ const upload = multer({ storage: storage });
 serverApp.post('/api/pet/images', upload.single('file'), handleImageUploadRequest);
 
 // endpoint pets
-serverApp.post("/api/pet", authToken, handlePetRequest);
+serverApp.post("/api/pet", handlePetRequest);
 
 // endpoint users
 serverApp.post("/api/user", handleUserRequest);
