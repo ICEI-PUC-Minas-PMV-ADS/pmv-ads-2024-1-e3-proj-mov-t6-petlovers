@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 import { TextInput } from "react-native-paper";
-import { SafeAreaView, StyleSheet, View, Text, Alert, TouchableOpacity, Image,} from "react-native";
+import { SafeAreaView, StyleSheet, View, Text, Alert, TouchableOpacity, Image, } from "react-native";
 import { useRoute } from "@react-navigation/native";
 import * as ImagePicker from 'expo-image-picker';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
-
+import { getAuth } from "firebase/auth";
 import ArrowLeft from "../components/ArrowLeft";
 import FormButton from "../components/FormButton";
 import FormInput from "../components/FormInput";
@@ -29,20 +29,20 @@ const CadastroPet = ({ navigation }) => {
 
   const handleCadastro = async () => {
     const validationErrors = validateCadastroPet({ nome, idade, cidade, estado, sexo, cor, raca, porte, sobre });
-  
+
     if (Object.keys(validationErrors).length > 0) {
       setErrors(validationErrors);
       return;
     }
-  
+
     try {
       const response = await fetch("http://localhost:3000/api/pet", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
+          "auth-token": getAuth().currentUser.getIdToken(),
         },
         body: JSON.stringify({
-          userId, // Adiciona o ID do usuário ao corpo da requisição
           nome,
           idade,
           cidade,
@@ -54,7 +54,7 @@ const CadastroPet = ({ navigation }) => {
           sobre,
         }),
       });
-  
+
       if (response.ok) {
         Alert.alert("Sucesso", "Pet cadastrado com sucesso!");
         // Limpar os campos após o cadastro
@@ -67,7 +67,7 @@ const CadastroPet = ({ navigation }) => {
         setRaca("");
         setPorte("");
         setSobre("");
-  
+
         // Limpar os erros
         setErrors({});
 
@@ -75,7 +75,7 @@ const CadastroPet = ({ navigation }) => {
         if (image) {
           await enviarImagem();
         }
-  
+
         navigation.navigate('Login');
       } else {
         throw new Error("Falha ao cadastrar pet");
@@ -99,7 +99,7 @@ const CadastroPet = ({ navigation }) => {
         name: `pet_${Date.now()}.jpg`,
         type: 'image/jpg',
       });
-  
+
       const imageUploadResponse = await fetch("http://localhost:3000/api/pet/images", {
         method: "POST",
         body: formData,
@@ -107,9 +107,9 @@ const CadastroPet = ({ navigation }) => {
           'Content-Type': 'multipart/form-data',
         },
       });
-  
+
       if (imageUploadResponse.ok) {
-        setImage(null); 
+        setImage(null);
       } else {
         throw new Error("Falha ao fazer upload da imagem");
       }
@@ -122,7 +122,7 @@ const CadastroPet = ({ navigation }) => {
     }
   };
 
-  
+
   //IMAGE PICKER
   const [image, setImage] = useState(null);
 
@@ -148,13 +148,13 @@ const CadastroPet = ({ navigation }) => {
         <View style={styles.textAreaContainer}>
           <Text style={styles.title}>Cadastre o seu pet</Text>
           <View style={styles.container}>
-              <View style={styles.imageContainer}>
-                <TouchableOpacity onPress={pickImage} style={styles.cameraButton}>
-                  <Icon name="camera" size={40} color="#827397" />
-                </TouchableOpacity>
-               {image && <Image source={{ uri: image }} style={styles.image} />}
-              </View>
+            <View style={styles.imageContainer}>
+              <TouchableOpacity onPress={pickImage} style={styles.cameraButton}>
+                <Icon name="camera" size={40} color="#827397" />
+              </TouchableOpacity>
+              {image && <Image source={{ uri: image }} style={styles.image} />}
             </View>
+          </View>
           <FormInput
             label="Nome pet"
             value={nome}
@@ -178,7 +178,7 @@ const CadastroPet = ({ navigation }) => {
             placeholderTextColor="grey"
           />
           <Text style={styles.errorMessage}>{errors.cidade}</Text>
-           <FormInput
+          <FormInput
             label="Estado"
             value={estado}
             onChangeText={setEstado}
@@ -249,9 +249,9 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     width: 200,
     height: 200,
-    borderRadius: 100, 
-    backgroundColor:'white',
-    overflow: 'hidden', 
+    borderRadius: 100,
+    backgroundColor: 'white',
+    overflow: 'hidden',
     marginBottom: 30,
     marginTop: 30,
   },
@@ -262,7 +262,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     width: '100%',
     height: '100%',
-    color:"#FFFFFF",
+    color: "#FFFFFF",
   },
   image: {
     width: '100%',

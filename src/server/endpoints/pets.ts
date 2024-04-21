@@ -4,7 +4,7 @@ import crypto from "crypto";
 import { Pet } from "../models/pet";
 
 // Funcao para enviar dados pet
-export async function handlePetRequest(req: Request, res: Response) {
+export async function handlePetRequest(req: any, res: Response) {
   try {
     const petData: Pet = req.body as Pet;
     console.log(petData);
@@ -12,7 +12,7 @@ export async function handlePetRequest(req: Request, res: Response) {
     const petId = crypto.randomUUID();
 
     // Obter o ID do usuário do corpo da solicitação
-    const userId = req.body.userId;
+    const userId = req.user;
 
     // Verificar se o ID do usuário foi fornecido
     if (!userId) {
