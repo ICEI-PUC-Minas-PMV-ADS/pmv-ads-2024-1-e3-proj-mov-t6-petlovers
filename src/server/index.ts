@@ -6,6 +6,7 @@ import dotenv from "dotenv";
 // Importa o endpoint
 import { handlePetRequest } from "./endpoints/pets";
 import { handleUserRequest } from "./endpoints/users";
+import { handleAllPetsRequest } from "./endpoints/home";
 import { getFirebaseAdmin } from "./firebase";
 
 // Inicializa o framework de configuração
@@ -34,6 +35,9 @@ serverApp.post("/api/pet", handlePetRequest);
 
 // endpoint users
 serverApp.post("/api/user", handleUserRequest);
+
+// endpoint all pets
+serverApp.get("/api/allpets", handleAllPetsRequest);
 
 // Prepara o servidor para iniciar na porta
 serverApp.listen(port, () => {
