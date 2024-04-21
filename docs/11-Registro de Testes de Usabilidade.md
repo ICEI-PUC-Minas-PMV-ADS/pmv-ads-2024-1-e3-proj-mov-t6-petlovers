@@ -51,15 +51,15 @@ Data: 21/04/2024 <br>
 
 Atividade realizada    | Sucesso S/N | Observações
 -----------------------|-------------|------------
-Criar uma conta|  Sim  | 
-Cadastrar perfil do animal de estimação |  Sim | 
-Modificação de informações do usuário   |  Não  |  
-Modificação de informações do pet  | Não |     |
-Busca e visualização de perfis de outros pets| Nao |       |
-Curtir (Like) ou recusar perfis de outros pets (dislike) | Não |       |
-Notificação de match - (Teste feito somente pelos desenvolvedores)  | Não |       |
-Exibição de íconecone do whatsapp- (Teste feito somente pelos desenvolvedores) | Não |       |
-Avaliação da experiência - (Teste feito somente pelos desenvolvedores) | Não |       |
+Criar uma conta|  Sim  | |
+Cadastrar perfil do animal de estimação |  Sim | |
+Modificação de informações do usuário   |  Não  | Funcionalidade em implementação |
+Modificação de informações do pet  | Não | Funcionalidade em implementação |
+Busca e visualização de perfis de outros pets| Nao | Funcionalidade em implementação |
+Curtir (Like) ou recusar perfis de outros pets (dislike) | Não | Funcionalidade em implementação |
+Notificação de match - (Teste feito somente pelos desenvolvedores)  | Não | Funcionalidade em implementação |
+Exibição de íconecone do whatsapp- (Teste feito somente pelos desenvolvedores) | Não | Funcionalidade em implementação |
+Avaliação da experiência - (Teste feito somente pelos desenvolvedores) | Não | Funcionalidade em implementação |
 Fazer o login na aplicação | Sim |       |
 
 <br>
