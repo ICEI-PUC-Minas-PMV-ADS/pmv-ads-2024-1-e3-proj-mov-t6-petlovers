@@ -9,9 +9,13 @@ import {
 } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { Ionicons } from "@expo/vector-icons";
+import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
+
 import FormInput from "../components/FormInput";
 import FormButton from "../components/FormButton";
 import ArrowLeft from "../components/ArrowLeft";
+
+import { defaultTheme } from "../components/Themes";
 
 export default function Cadastro() {
   const navigation = useNavigation();
@@ -149,10 +153,15 @@ export default function Cadastro() {
   const validateForm = () => {
     return (
       fullName !== "" &&
+      !fullNameError &&
       birthDate !== "" &&
+      !birthDateError &&
       whatsapp !== "" &&
+      !whatsappError &&
       email !== "" &&
-      password !== ""
+      !emailError &&
+      password !== "" &&
+      !passwordError
     );
   };
 
@@ -219,113 +228,117 @@ export default function Cadastro() {
   };
 
   return (
-    <SafeAreaView style={styles.safeArea}>
-      <View style={styles.arrow}>
-        <ArrowLeft />
-      </View>
-
-      {/* Conteúdo do formulário */}
-      <View style={styles.container}>
-        <Text style={styles.title}>Cadastro</Text>
-        <Text style={styles.subtitle}>
-          Informe seus dados para criar uma conta
-        </Text>
-        <FormInput
-          label="Nome completo"
-          value={fullName}
-          onChangeText={(text) => {
-            setFullName(text);
-            const isValid = validateFullName(text);
-            if (!isValid) {
-              // Função validateFullName
-            } else {
-              setFullNameError("");
-            }
-          }}
-          error={fullNameError}
-        />
-        <FormInput
-          label="Data de nascimento"
-          keyboardType="number-pad"
-          value={birthDate}
-          onChangeText={(text) => {
-            setBirthDate(text);
-            const isValid = validateBirthDate(text);
-            if (!isValid) {
-              // Função validadeBirthDate
-            } else {
-              setBirthDateError("");
-            }
-          }}
-          error={birthDateError}
-        />
-        <FormInput
-          label="Contato (WhatsApp)"
-          keyboardType="number-pad"
-          value={whatsapp}
-          onChangeText={(text) => {
-            setWhatsapp(text);
-            const isValid = validateWhatsapp(text);
-            if (!isValid) {
-              // Função validateWhatsapp
-            } else {
-              setWhatsappError("");
-            }
-          }}
-          error={whatsappError}
-        />
-        <FormInput
-          label="E-mail"
-          keyboardType="email-address"
-          autoCapitalize="none"
-          value={email}
-          onChangeText={(text) => {
-            setEmail(text);
-            const isValid = validateEmail(text);
-            if (!isValid) {
-              // Função validateEmail
-            } else {
-              setEmailError("");
-            }
-          }}
-          error={emailError}
-        />
-        <FormInput
-          label="Senha"
-          autoCapitalize="none"
-          secureTextEntry={true}
-          value={password}
-          onChangeText={(text) => {
-            setPassword(text);
-            const isValid = validatePassword(text);
-            if (!isValid) {
-              // Função validatePassword
-            } else {
-              setPasswordError("");
-            }
-          }}
-          error={passwordError}
-        />
-        <FormButton onPress={handleCadastro}>Cadastrar</FormButton>
-        <View style={styles.subtitleContainer}>
-          <Text style={styles.text}>Já é cadastrado?</Text>
-          <Text style={styles.text2} onPress={goToLogin}>
-            Clique aqui para fazer login
-          </Text>
-          <Text style={styles.text2} onPress={goToCadastroPet}>
-            Cadastro pet
-          </Text>
+    <KeyboardAwareScrollView>
+      <SafeAreaView style={defaultTheme.safeArea}>
+        <View style={styles.arrow}>
+          <ArrowLeft />
         </View>
-      </View>
-    </SafeAreaView>
+
+        {/* Conteúdo do formulário */}
+        <View style={defaultTheme.container}>
+          <Text style={defaultTheme.title}>Cadastro</Text>
+          <Text style={{...defaultTheme.subtitle, ...styles.subtitle}}>
+            Informe seus dados para criar uma conta
+          </Text>
+          <FormInput
+            label="Nome completo"
+            value={fullName}
+            onChangeText={(text) => {
+              setFullName(text);
+              const isValid = validateFullName(text);
+              if (!isValid) {
+                // Função validateFullName
+              } else {
+                setFullNameError("");
+              }
+            }}
+            error={fullNameError}
+          />
+          <FormInput
+            label="Data de nascimento"
+            keyboardType="number-pad"
+            value={birthDate}
+            onChangeText={(text) => {
+              setBirthDate(text);
+              const isValid = validateBirthDate(text);
+              if (!isValid) {
+                // Função validadeBirthDate
+              } else {
+                setBirthDateError("");
+              }
+            }}
+            error={birthDateError}
+          />
+          <FormInput
+            label="Contato (WhatsApp)"
+            keyboardType="number-pad"
+            value={whatsapp}
+            onChangeText={(text) => {
+              setWhatsapp(text);
+              const isValid = validateWhatsapp(text);
+              if (!isValid) {
+                // Função validateWhatsapp
+              } else {
+                setWhatsappError("");
+              }
+            }}
+            error={whatsappError}
+          />
+          <FormInput
+            label="E-mail"
+            keyboardType="email-address"
+            autoCapitalize="none"
+            value={email}
+            onChangeText={(text) => {
+              setEmail(text);
+              const isValid = validateEmail(text);
+              if (!isValid) {
+                // Função validateEmail
+              } else {
+                setEmailError("");
+              }
+            }}
+            error={emailError}
+          />
+          <FormInput
+            label="Senha"
+            autoCapitalize="none"
+            secureTextEntry={true}
+            value={password}
+            onChangeText={(text) => {
+              setPassword(text);
+              const isValid = validatePassword(text);
+              if (!isValid) {
+                // Função validatePassword
+              } else {
+                setPasswordError("");
+              }
+            }}
+            error={passwordError}
+          />
+          <FormButton onPress={handleCadastro}>Cadastrar</FormButton>
+          <View style={styles.subtitleContainer}>
+            <Text style={{...defaultTheme.text, ...styles.text}}>Já é cadastrado?</Text>
+            <Text
+              style={{ color: defaultTheme.colors.primary, ...defaultTheme.text, ...styles.text }}
+              onPress={goToLogin}
+            >
+              Clique aqui para fazer login
+            </Text>
+          </View>
+
+          {/* Página Cadastro Pet 
+        <Text style={{ color: defaultTheme.colors.primary, ...styles.text}} onPress={goToCadastroPet}>
+            Cadastro pet
+          </Text>*/}
+        </View>
+      </SafeAreaView>
+    </KeyboardAwareScrollView>
   );
 }
 
 // Estilos
 const styles = StyleSheet.create({
-  safeArea: {
-    flex: 1,
-  },
   arrowContainer: {
     marginRight: 10,
     marginTop: 50,
@@ -339,27 +352,15 @@ const styles = StyleSheet.create({
   arrow: {
     marginLeft: 10,
   },
-  container: {
-    flex: 1,
-    padding: 20,
-  },
-  subtitle: {
-    marginBottom: 30,
-    textAlign: "center",
-    marginTop: 10,
-    fontSize: 15,
-  },
   subtitleContainer: {
     flexDirection: "row",
     justifyContent: "center",
     marginTop: 20,
   },
+  subtitle: {
+    marginBottom: 30,
+  },
   text: {
     marginRight: 5,
-    fontSize: 15,
-  },
-  text2: {
-    color: "#827397",
-    fontSize: 15,
   },
 });

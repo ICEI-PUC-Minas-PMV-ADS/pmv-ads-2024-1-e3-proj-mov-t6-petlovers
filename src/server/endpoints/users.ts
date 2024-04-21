@@ -6,8 +6,13 @@ import { User } from "../models/user";
 // Funcao para enviar dados user
 export async function handleUserRequest(req: Request, res: Response) {
   try {
-    const userData: User = req.body as User;
+    const { password, ...userData } = req.body as UserWithPassword; // Extrair a senha
     console.log(userData);
+
+    // Verificar se email e senha foram fornecidos
+    if (!userData.email || !password) {
+      return res.status(400).json({ error: "E-mail e senha são obrigatórios" });
+    }
 
     // Gerar ID
     const userId = crypto.randomUUID();
@@ -19,8 +24,9 @@ export async function handleUserRequest(req: Request, res: Response) {
     // Firebase Authentication
     const userRecord = await admin.auth().createUser({
       email: userData.email,
+      password: password, // Senha fornecida separadamente
       displayName: firstName,
-      disabled: false, //Temporariamente, apenas para testar a criação de usuário sem senha
+      disabled: false, //Temporariamente, apenas para testar a criação de usuário
     });
 
     // Firestore Database
@@ -39,4 +45,8 @@ export async function handleUserRequest(req: Request, res: Response) {
     console.error("Erro ao cadastrar usuário:", error);
     return res.status(500).json({ message: "Erro interno do servidor" });
   }
+}
+
+export interface UserWithPassword extends User {
+  password: string;
 }
