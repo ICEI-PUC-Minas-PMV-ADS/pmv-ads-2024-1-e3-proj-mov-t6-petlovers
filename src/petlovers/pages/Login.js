@@ -1,16 +1,38 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Text, SafeAreaView, StyleSheet, View } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 
+import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 import FormInput from '../components/FormInput';
 import FormButton from '../components/FormButton';
 
-
 export default function Login() {
   const navigation = useNavigation();
-  
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [error, setError] = useState(null);
+
   const goToCadastro = () => {
     navigation.navigate('Cadastro');
+  };
+
+  const goToHome = () => {
+    navigation.navigate('Home');
+  };
+
+  const loginFunction = async () => {
+    const auth = getAuth();
+    signInWithEmailAndPassword(auth, email, password)
+      .then((userCredential) => {
+        // Signed in 
+        goToHome();
+        // ...
+      })
+      .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        setError(error.message);
+      });
   };
 
   return (
@@ -18,9 +40,22 @@ export default function Login() {
       <View style={styles.container}>
         <Text style={styles.title}>Login</Text>
         <Text style={styles.subtitle}>Entre com seu e-mail e senha</Text>
-        <FormInput label='E-mail' />
-        <FormInput label='Senha' secureTextEntry={true} />
-        <FormButton>Entrar</FormButton>
+        <FormInput
+          label="E-mail"
+          keyboardType="email-address"
+          autoCapitalize="none"
+          value={email}
+          onChangeText={(text) => setEmail(text)}
+        />
+        <FormInput
+          label="Senha"
+          autoCapitalize="none"
+          secureTextEntry={true}
+          value={password}
+          onChangeText={(text) => setPassword(text)}
+        />
+        {error && <Text style={styles.errorText}>{error}</Text>}
+        <FormButton onPress={loginFunction}>Entrar</FormButton>
         <View style={styles.signupContainer}>
           <Text style={styles.signupText}>Não possui conta?</Text>
           <Text style={styles.signupText2} onPress={goToCadastro}>Cadastre-se aqui</Text>
@@ -37,7 +72,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: 'center',
-    marginHorizontal: 20, 
+    marginHorizontal: 20,
   },
   title: {
     fontSize: 24,
@@ -56,8 +91,8 @@ const styles = StyleSheet.create({
     marginRight: 5,
   },
   signupContainer: {
-    flexDirection: 'row', 
-    justifyContent: 'center', 
+    flexDirection: 'row',
+    justifyContent: 'center',
     marginTop: 20,
   },
   signupText2: {

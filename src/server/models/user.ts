@@ -5,5 +5,6 @@ export interface User {
     whatsapp: string;
     email: string;
     //password: string; //Senha é armazenada apenas no Authentication por questões de segurança
+    petId: string | null; // ID do pet associado ao usuário
   }
   
