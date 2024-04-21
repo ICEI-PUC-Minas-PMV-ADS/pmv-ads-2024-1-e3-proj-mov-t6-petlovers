@@ -40,9 +40,9 @@ const CadastroPet = ({ navigation }) => {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          "auth-token": getAuth().currentUser.getIdToken(),
         },
         body: JSON.stringify({
+          userId,
           nome,
           idade,
           cidade,
@@ -54,6 +54,7 @@ const CadastroPet = ({ navigation }) => {
           sobre,
         }),
       });
+      console.log("Resposta: " + response.status)
 
       if (response.ok) {
         Alert.alert("Sucesso", "Pet cadastrado com sucesso!");
@@ -81,7 +82,6 @@ const CadastroPet = ({ navigation }) => {
         throw new Error("Falha ao cadastrar pet");
       }
     } catch (error) {
-      console.error("Erro ao cadastrar pet:", error);
       Alert.alert(
         "Erro",
         "Falha ao cadastrar pet. Por favor, tente novamente mais tarde."
@@ -104,7 +104,7 @@ const CadastroPet = ({ navigation }) => {
         method: "POST",
         body: formData,
         headers: {
-          'Content-Type': 'multipart/form-data',
+          'Content-Type': 'multipart/form-data'
         },
       });
 
