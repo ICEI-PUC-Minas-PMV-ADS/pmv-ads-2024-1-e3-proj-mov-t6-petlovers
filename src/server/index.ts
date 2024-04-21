@@ -18,6 +18,7 @@ dotenv.config();
 // Inicializa firebase 
 getFirebaseAdmin();
 
+
 // Cria uma instância servidor com express
 const serverApp: Express = express();
 const port = 3000;
@@ -27,7 +28,6 @@ serverApp.use(express.json());
 
 // Middleware para habilitar o CORS
 serverApp.use(cors());
-
 
 const storage = multer.memoryStorage();
 const upload = multer({ storage: storage });
