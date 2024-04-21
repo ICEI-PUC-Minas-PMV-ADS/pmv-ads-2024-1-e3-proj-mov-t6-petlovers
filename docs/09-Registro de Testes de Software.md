@@ -44,7 +44,7 @@ Relatório com as evidências dos testes de software realizados no sistema pela 
 | Procedimentos (passo à passo) | Acessar o aplicativo; </br> Selecionar no banner superior a opção "Cadastre o seu pet na nossa comunidade";  </br> Na tela "Cadastro", preencher os campos obrigatórios corretamente;  </br> Apertar no botão "Cadastrar";  </br> Verificar se a requisição de cadastro foi bem sucedida;  </br> Observar se o aplicativo leva automaticamente à tela "Cadastro Pet" logo em seguida |
 | Resultado esperado | Os dados do usuário devem constar na Firestore e ele deve ser direcionado à tela "Cadastro Pet" |
 | Avaliação | O servidor recebeu a requisição e os dados foram armazenados corretamente na Firestore, com campo de senha ocultado por segurança. Em seguida, o aplicativo direcionou à tela "Cadastro Pet", que recebeu o ID de usuário como parâmetro  |
-| Evidência | <img width= "200" src="img/registro-cadastro-ct04-01.png"> <img width= "200" src="img/registro-cadastro-ct04-02.png"> |
+| Evidência | <img width= "200" src="img/registro-cadastro-ct04-01.png"> <img width= "200" src="img/registro-cadastro-ct04-02.png"> <br> <img width= "500" src="img/registro-cadastro-ct04-03.png"> |
 
 <br>
 
