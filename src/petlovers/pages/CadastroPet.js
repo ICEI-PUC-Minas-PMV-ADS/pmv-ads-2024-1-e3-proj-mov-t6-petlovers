@@ -11,6 +11,9 @@ import FormButton from "../components/FormButton";
 import FormInput from "../components/FormInput";
 import validateCadastroPet from '../services/validateCadastroPet';
 
+//API URL do cadastro pet
+import { petAPI_URL } from "../apiConfig";
+
 const CadastroPet = ({ navigation }) => {
   const [nome, setNome] = React.useState("");
   const [idade, setIdade] = React.useState("");
@@ -36,7 +39,7 @@ const CadastroPet = ({ navigation }) => {
     }
 
     try {
-      const response = await fetch("http://localhost:3000/api/pet", {
+      const response = await fetch(petAPI_URL, { //API URL do cadastro pet
         method: "POST",
         headers: {
           "Content-Type": "application/json",

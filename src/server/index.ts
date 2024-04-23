@@ -65,6 +65,11 @@ serverApp.listen(port, () => {
   console.log(`[Server]: I am running at http://localhost:${port}`);
 });
 
+// Prepara o servidor para iniciar na porta, ouvindo em todas as interfaces de rede disponíveis
+serverApp.listen(port, '0.0.0.0', () => {
+  console.log(`[Server]: I am running at http://localhost:${port}`);
+});
+
 function authToken(req: any, res: any, next: any) {
   const token = req.headers['auth-token'];
   if (token == null) return res.redirect('/login');
