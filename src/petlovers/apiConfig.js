@@ -2,4 +2,5 @@ export const baseAPI_URL = 'http://192.168.0.110:3000'; // Substituir pelo ender
 
 export const userAPI_URL = `${baseAPI_URL}/api/user`;
 export const petAPI_URL = `${baseAPI_URL}/api/pet`;
+export const petimageAPI_URL = `${baseAPI_URL}/api/pet/images`;
 export const cardpetsAPI_URL = `${baseAPI_URL}/api/allpets`;

@@ -13,6 +13,8 @@ import validateCadastroPet from '../services/validateCadastroPet';
 
 //API URL do cadastro pet
 import { petAPI_URL } from "../apiConfig";
+//API URL do cadastro de imagem pet
+import { petimageAPI_URL } from '../apiConfig';
 
 const CadastroPet = ({ navigation }) => {
   const [nome, setNome] = React.useState("");
@@ -103,7 +105,7 @@ const CadastroPet = ({ navigation }) => {
         type: 'image/jpg',
       });
 
-      const imageUploadResponse = await fetch("http://localhost:3000/api/pet/images", {
+      const imageUploadResponse = await fetch(petimageAPI_URL, { //API URL do cadastro de imagem pet
         method: "POST",
         body: formData,
         headers: {
