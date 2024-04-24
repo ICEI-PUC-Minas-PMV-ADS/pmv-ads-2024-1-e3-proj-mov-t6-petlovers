@@ -22,6 +22,7 @@ const CadastroPet = ({ navigation }) => {
   const [porte, setPorte] = React.useState("");
   const [sobre, setSobre] = React.useState("");
   const [errors, setErrors] = useState({});
+  const [image, setImage] = useState(null);
 
   const route = useRoute();
   const userId = route.params.userId; // Recupera o ID do usuário dos parâmetros de navegação
@@ -68,6 +69,7 @@ const CadastroPet = ({ navigation }) => {
         setRaca("");
         setPorte("");
         setSobre("");
+        setImage("");
 
         // Limpar os erros
         setErrors({});
@@ -124,8 +126,6 @@ const CadastroPet = ({ navigation }) => {
 
 
   //IMAGE PICKER
-  const [image, setImage] = useState(null);
-
   const pickImage = async () => {
     let result = await ImagePicker.launchImageLibraryAsync({
       mediaTypes: ImagePicker.MediaTypeOptions.All,
