@@ -49,7 +49,7 @@ const upload = multer({ storage: storage });
 
 
 //endpoint imagem
-serverApp.post('/api/pet/images', upload.single('file'), handleImageUploadRequest);
+serverApp.post('/api/pet/:id/images', upload.single('file'), handleImageUploadRequest);
 
 // endpoint pets
 serverApp.post("/api/pet", handlePetRequest);

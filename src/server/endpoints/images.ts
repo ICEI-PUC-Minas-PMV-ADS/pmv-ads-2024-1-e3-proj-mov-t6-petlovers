@@ -16,8 +16,7 @@ export async function handleImageUploadRequest(req: Request, res: Response) {
     
     const storage = getStorageApi();
     const token =  uuid();
-    const petData: Pet = req.body as Pet;
-    const petId = crypto.randomUUID();
+    const petId = req.params.id;
     const fileName = `pet_${Date.now()}_${req.file.originalname}`;
     const metadata = {
       metadata: {
@@ -30,17 +29,15 @@ export async function handleImageUploadRequest(req: Request, res: Response) {
       metadata
     });
   
-    let finalUrl = `${STORAGE_URL}/${encodeURIComponent('images/' + token)}?alt=media&token=${token}`;
+    let finalUrl = `${STORAGE_URL}/${encodeURIComponent('images/' + fileName)}?alt=media&token=${token}`;
 
     //salva url na collection pet
     await admin
     .firestore()
     .collection("pets")
     .doc(petId)
-    .set({
-      ...petData,
-      petId: petId, // Associa o pet a img
-      imageURL: `${petData.imageUrl}?alt=media&token=${token}` // add url img com o token
+    .update({
+      imageURL: finalUrl
     });
 
     // Retorna a URL da imagem carregada

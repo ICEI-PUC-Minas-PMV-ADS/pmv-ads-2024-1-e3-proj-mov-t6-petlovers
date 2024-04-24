@@ -32,7 +32,7 @@ export async function handlePetRequest(req: any, res: Response) {
     // Retornar os dados do pet
     const responseData = { ...petData, id: petId };
 
-    return res.status(201).json({ data: responseData });
+    return res.status(201).json(responseData);
   } catch (error) {
     console.error("Erro ao cadastrar pet:", error);
     return res.status(500).json({ message: "Erro interno do servidor" });
