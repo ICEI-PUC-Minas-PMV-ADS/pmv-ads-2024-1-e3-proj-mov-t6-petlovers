@@ -53,6 +53,7 @@ const CadastroPet = ({ navigation }) => {
           raca,
           porte,
           sobre,
+          image
         }),
       });
       console.log("Resposta: " + response.status)
