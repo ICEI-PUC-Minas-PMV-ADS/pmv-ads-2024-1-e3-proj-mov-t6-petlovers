@@ -59,7 +59,11 @@ const CadastroPet = ({ navigation }) => {
       console.log("Resposta: " + response.status)
 
       if (response.ok) {
+        const responseData = await response.json();
+        const petId = responseData.id;
+
         Alert.alert("Sucesso", "Pet cadastrado com sucesso!");
+
         // Limpar os campos após o cadastro
         setNome("");
         setIdade("");
@@ -77,7 +81,7 @@ const CadastroPet = ({ navigation }) => {
 
 
         if (image) {
-          await enviarImagem();
+          await enviarImagem(petId);
         }
 
         navigation.navigate('Login');
@@ -94,7 +98,7 @@ const CadastroPet = ({ navigation }) => {
 
 
   //Envio da imagem 
-  const enviarImagem = async () => {
+  const enviarImagem = async (petId) => {
     try {
       const formData = new FormData();
       formData.append('file', {
@@ -103,7 +107,7 @@ const CadastroPet = ({ navigation }) => {
         type: 'image/jpg',
       });
 
-      const imageUploadResponse = await fetch("http://localhost:3000/api/pet/images", {
+      const imageUploadResponse = await fetch(`http://localhost:3000/api/pet/${petId}/images`, {
         method: "POST",
         body: formData,
         headers: {
