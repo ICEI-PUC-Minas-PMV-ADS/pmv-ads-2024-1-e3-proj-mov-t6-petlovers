@@ -32,9 +32,52 @@ export async function handlePetRequest(req: any, res: Response) {
     // Retornar os dados do pet
     const responseData = { ...petData, id: petId };
 
-    return res.status(201).json({ data: responseData });
+    return res.status(201).json(responseData);
   } catch (error) {
     console.error("Erro ao cadastrar pet:", error);
+    return res.status(500).json({ message: "Erro interno do servidor" });
+  }
+}
+
+
+// Funcao obter dados todos pet
+export async function handleAllPetsRequest(req: Request, res: Response) {
+  try {
+      const responseData: Pet[] = []
+
+      // Firestore Database: Obter todos os pets cadastrados
+      const queryPets = await admin
+          .firestore()
+          .collection("pets")
+          .get();
+
+      // Retornar lista de pets
+      queryPets.forEach((doc: any) => responseData.push(doc.data()));
+      return res.status(200).json({ data: responseData });
+  } catch (error) {
+    console.error("Erro ao obter a lista de pets:", error);
+    return res.status(500).json({ message: "Erro interno do servidor" });
+  }
+}
+
+
+//funcao obter dados de 4 pets 
+export async function handleFourPetsRequest(req: Request, res: Response) {
+  try {
+      const responseData: Pet[] = []
+
+      // obter apenas 4 pets cadastrados
+      const queryPets = await admin
+          .firestore()
+          .collection("pets")
+          .limit(2) 
+          .get();
+
+
+      queryPets.forEach((doc: any) => responseData.push(doc.data()));
+      return res.status(200).json({ data: responseData });
+  } catch (error) {
+    console.error("Erro ao obter a lista de pets:", error);
     return res.status(500).json({ message: "Erro interno do servidor" });
   }
 }

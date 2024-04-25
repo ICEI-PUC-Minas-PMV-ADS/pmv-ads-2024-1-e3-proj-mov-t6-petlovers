@@ -19,4 +19,3 @@ export const pickImage = async () => {
     throw new Error('Falha ao selecionar imagem. Por favor, tente novamente.');
   }
 };
-

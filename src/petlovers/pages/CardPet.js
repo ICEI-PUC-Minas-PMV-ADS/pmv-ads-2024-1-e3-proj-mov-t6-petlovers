@@ -25,10 +25,10 @@ export default function CardPet() {
                 renderItem={({ item }) => (
 
                     <View style={styles.cards1}>
-                        <Image style={styles.imgcards} source={require('../assets/image/caramelo.jpg')} />
+                        <Image style={styles.imgcards} source={{ uri: item.image }} />
                         <Text key={item.id} style={styles.text}>{item.nome}, {item.idade} anos</Text>
                         <View style={styles.local}>
-                            <Ionicons style={styles.icon} name='location-outline' size={25} />
+                            <Ionicons style={styles.icon} name='location-outline' size={19} />
                             <Text key={item.id} style={styles.text1}>{item.cidade}</Text>
                         </View>
                     </View>
@@ -60,6 +60,7 @@ const styles = StyleSheet.create({
         fontSize: 15,
         marginLeft: 5,
         marginTop: 8,
+        marginBottom: 15,
 
 
     },
@@ -70,12 +71,13 @@ const styles = StyleSheet.create({
 
     icon: {
         marginTop: 5,
-        marginLeft: 5,
+        marginLeft: 8,
+        color: "#827397",
     },
     
 
     cards1: {
-        width: 150,
+        width: 160,
         borderRadius: 5,
         backgroundColor: '#ffffff',
         marginRight: 10,
@@ -88,7 +90,7 @@ const styles = StyleSheet.create({
     },
 
     imgcards: {
-        width: 150,
+        width: 160,
         height: 150,
         borderRadius: 5,
         borderBottomRightRadius: 25,

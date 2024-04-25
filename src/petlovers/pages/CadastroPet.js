@@ -27,6 +27,7 @@ const CadastroPet = ({ navigation }) => {
   const [porte, setPorte] = React.useState("");
   const [sobre, setSobre] = React.useState("");
   const [errors, setErrors] = useState({});
+  const [image, setImage] = useState(null);
 
   const route = useRoute();
   const userId = route.params.userId; // Recupera o ID do usuário dos parâmetros de navegação
@@ -57,12 +58,17 @@ const CadastroPet = ({ navigation }) => {
           raca,
           porte,
           sobre,
+          image
         }),
       });
       console.log("Resposta: " + response.status)
 
       if (response.ok) {
+        const responseData = await response.json();
+        const petId = responseData.id;
+
         Alert.alert("Sucesso", "Pet cadastrado com sucesso!");
+
         // Limpar os campos após o cadastro
         setNome("");
         setIdade("");
@@ -73,13 +79,14 @@ const CadastroPet = ({ navigation }) => {
         setRaca("");
         setPorte("");
         setSobre("");
+        setImage("");
 
         // Limpar os erros
         setErrors({});
 
 
         if (image) {
-          await enviarImagem();
+          await enviarImagem(petId);
         }
 
         navigation.navigate('Login');
@@ -96,7 +103,7 @@ const CadastroPet = ({ navigation }) => {
 
 
   //Envio da imagem 
-  const enviarImagem = async () => {
+  const enviarImagem = async (petId) => {
     try {
       const formData = new FormData();
       formData.append('file', {
@@ -129,8 +136,6 @@ const CadastroPet = ({ navigation }) => {
 
 
   //IMAGE PICKER
-  const [image, setImage] = useState(null);
-
   const pickImage = async () => {
     let result = await ImagePicker.launchImageLibraryAsync({
       mediaTypes: ImagePicker.MediaTypeOptions.All,
