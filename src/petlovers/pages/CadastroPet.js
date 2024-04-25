@@ -13,8 +13,6 @@ import validateCadastroPet from '../services/validateCadastroPet';
 
 //API URL do cadastro pet
 import { petAPI_URL } from "../apiConfig";
-//API URL do cadastro de imagem pet
-//import { petimageAPI_URL } from '../apiConfig';
 
 const CadastroPet = ({ navigation }) => {
   const [nome, setNome] = React.useState("");
@@ -105,7 +103,7 @@ const CadastroPet = ({ navigation }) => {
 
 
   //Envio da imagem 
-  const enviarImagem = async (petId) => {
+  const enviarImagem = async (petId, petimageAPI_URL) => {
     try {
       const formData = new FormData();
       formData.append('file', {
