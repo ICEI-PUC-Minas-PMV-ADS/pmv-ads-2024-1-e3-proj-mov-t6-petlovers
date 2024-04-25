@@ -60,11 +60,6 @@ serverApp.post("/api/user", handleUserRequest);
 // endpoint all pets
 serverApp.get("/api/allpets", handleAllPetsRequest);
 
-// Prepara o servidor para iniciar na porta
-serverApp.listen(port, () => {
-  console.log(`[Server]: I am running at http://localhost:${port}`);
-});
-
 // Prepara o servidor para iniciar na porta, ouvindo em todas as interfaces de rede disponíveis
 serverApp.listen(port, '0.0.0.0', () => {
   console.log(`[Server]: I am running at http://localhost:${port}`);
