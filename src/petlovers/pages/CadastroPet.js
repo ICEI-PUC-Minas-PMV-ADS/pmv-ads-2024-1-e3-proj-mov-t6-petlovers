@@ -22,7 +22,7 @@ const CadastroPet = ({ navigation }) => {
   const [porte, setPorte] = React.useState("");
   const [sobre, setSobre] = React.useState("");
   const [errors, setErrors] = useState({});
-  const [image, setImage] = useState(null);
+  const [imageUrl, setImage] = useState(null);
 
   const route = useRoute();
   const userId = route.params.userId; // Recupera o ID do usuário dos parâmetros de navegação
@@ -53,7 +53,6 @@ const CadastroPet = ({ navigation }) => {
           raca,
           porte,
           sobre,
-          image
         }),
       });
       console.log("Resposta: " + response.status)
@@ -80,7 +79,7 @@ const CadastroPet = ({ navigation }) => {
         setErrors({});
 
 
-        if (image) {
+        if (imageUrl) {
           await enviarImagem(petId);
         }
 
@@ -102,8 +101,9 @@ const CadastroPet = ({ navigation }) => {
     try {
       const formData = new FormData();
       formData.append('file', {
-        uri: image,
-        name: `pet_${Date.now()}.jpg`,
+        uri: imageUrl, //ARMAZENA O LOCAL DO ARQUIVO
+        //name: `pet_${Date.now()}.jpg`,
+        name: 'pet_image.jpg',
         type: 'image/jpg',
       });
 
@@ -157,7 +157,7 @@ const CadastroPet = ({ navigation }) => {
               <TouchableOpacity onPress={pickImage} style={styles.cameraButton}>
                 <Icon name="camera" size={40} color="#827397" />
               </TouchableOpacity>
-              {image && <Image source={{ uri: image }} style={styles.image} />}
+              {imageUrl && <Image source={{ uri: imageUrl }} style={styles.image} />} 
             </View>
           </View>
           <FormInput
