@@ -12,6 +12,7 @@ import { handlePetRequest } from "./endpoints/pets";
 import { handleUserRequest } from "./endpoints/users";
 import { handleAllPetsRequest } from "./endpoints/home";
 import { handleImageUploadRequest } from './endpoints/images';
+import { handleFourPetsRequest } from "./endpoints/pets";
 
 
 // Inicializa o framework de configuração
@@ -59,6 +60,10 @@ serverApp.post("/api/user", handleUserRequest);
 
 // endpoint all pets
 serverApp.get("/api/allpets", handleAllPetsRequest);
+
+//endpoint para renderizar 4 pets na home
+serverApp.get("/api/fourpets", handleFourPetsRequest);
+
 
 // Prepara o servidor para iniciar na porta
 serverApp.listen(port, () => {
