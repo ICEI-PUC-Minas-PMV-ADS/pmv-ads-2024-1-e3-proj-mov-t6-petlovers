@@ -22,7 +22,7 @@ export default function CardPet() {
                 renderItem={({ item }) => (
 
                     <View style={styles.cards1}>
-                        <Image style={styles.imgcards} source={{ uri: item.image }} />
+                        <Image style={styles.imgcards} source={{ uri: item.imageURL }} />
                         <Text key={item.id} style={styles.text}>{item.nome}, {item.idade} anos</Text>
                         <View style={styles.local}>
                             <Ionicons style={styles.icon} name='location-outline' size={19} />
