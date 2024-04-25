@@ -57,8 +57,8 @@ if (!state) {
  //Validacao sobre o pet
  if (!about) {
     errors.sobre = "Por favor, forneça informações sobre o seu pet.";
- } else if (about.length > 300) {
-    errors.sobre = "O campo Sobre deve ter no máximo 300 caracteres.";
+ } else if (about.length > 700) {
+    errors.sobre = "O campo Sobre deve ter no máximo 700 caracteres.";
  }
 
     return errors;
