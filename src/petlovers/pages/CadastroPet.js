@@ -14,7 +14,7 @@ import validateCadastroPet from '../services/validateCadastroPet';
 //API URL do cadastro pet
 import { petAPI_URL } from "../apiConfig";
 //API URL do cadastro de imagem pet
-import { petimageAPI_URL } from '../apiConfig';
+//import { petimageAPI_URL } from '../apiConfig';
 
 const CadastroPet = ({ navigation }) => {
   const [nome, setNome] = React.useState("");
@@ -67,6 +67,9 @@ const CadastroPet = ({ navigation }) => {
         const responseData = await response.json();
         const petId = responseData.id;
 
+        // Define a URL da API de imagens do pet com o petId
+        const petimageAPI_URL = `${petAPI_URL}/${petId}/images`;
+
         Alert.alert("Sucesso", "Pet cadastrado com sucesso!");
 
         // Limpar os campos após o cadastro
@@ -86,7 +89,7 @@ const CadastroPet = ({ navigation }) => {
 
 
         if (image) {
-          await enviarImagem(petId);
+          await enviarImagem(petId, petimageAPI_URL);
         }
 
         navigation.navigate('Login');
