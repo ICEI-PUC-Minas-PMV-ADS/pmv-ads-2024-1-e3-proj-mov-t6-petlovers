@@ -2,12 +2,15 @@ import React, { useState, useEffect } from "react";
 import { View, Text, StyleSheet, Image, FlatList } from "react-native";
 import { Ionicons } from '@expo/vector-icons';
 
+//API URL dos cards
+import { cardpetsAPI_URL } from "../apiConfig";
+
 export default function CardPet() {
     const [data, setData] = useState([]);
 
     // Obtem os dados dos pets no backend
     useEffect(() => {
-        fetch("http://localhost:3000/api/fourpets")
+        fetch(cardpetsAPI_URL) //API URL dos cards
             .then((response) => response.json())
             .then((data) => setData(data.data))
             .catch((error) => console.error('Error:', error));
