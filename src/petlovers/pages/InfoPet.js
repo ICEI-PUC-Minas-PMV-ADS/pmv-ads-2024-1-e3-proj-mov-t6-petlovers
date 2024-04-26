@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { SafeAreaView, StyleSheet, View, Text} from "react-native";
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
-import ArrowLeft from "../components/ArrowLeft";
-import CardCoverPet from '../components/CardCoverPet';
 import { Ionicons } from '@expo/vector-icons';
 
 import { cardpetsAPI_URL } from "../apiConfig";
 import CardDetailsPet from "../components/CardDetailsPet";
+import ArrowLeft from "../components/ArrowLeft";
+import CardCoverPet from '../components/CardCoverPet';
 
 export default function InfoPet() {
     return (

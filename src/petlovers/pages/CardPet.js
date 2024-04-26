@@ -29,7 +29,7 @@ export default function CardPet() {
                 horizontal={true}
                 data={data}
                 renderItem={({ item }) => (
-                 <TouchableOpacity onPress={() => handleCardPress()}> 
+                 <TouchableOpacity onPress={() => handleCardPress()} style={{ paddingBottom: 70 }}> 
                     <View style={styles.cards1}>
                         <Image style={styles.imgcards} source={{ uri: item.imageURL }} />
                         <Text key={item.id} style={styles.text}>{item.nome}, {item.idade} anos</Text>
