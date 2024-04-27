@@ -40,7 +40,7 @@ export async function handleUserRequest(req: Request, res: Response) {
     // Retornar o ID do usuário no corpo da resposta
     const responseData = { ...userData, id: userId };
 
-    return res.status(201).json(responseData); 
+    return res.status(201).json(responseData);
   } catch (error) {
     console.error("Erro ao cadastrar usuário:", error);
     return res.status(500).json({ message: "Erro interno do servidor" });
@@ -49,4 +49,31 @@ export async function handleUserRequest(req: Request, res: Response) {
 
 export interface UserWithPassword extends User {
   password: string;
+}
+
+// Funcao para recuperar dados do usuário pelo ID
+export async function getUserById(req: Request, res: Response) {
+  try {
+    const userId = req.params.id; // Obter o ID do usuário dos parâmetros da URL
+
+    // Consultar o Firestore Database para obter os dados do usuário
+    const userDoc = await admin
+      .firestore()
+      .collection("users")
+      .doc(userId)
+      .get();
+
+    // Verificar se o usuário existe
+    if (!userDoc.exists) {
+      return res.status(404).json({ error: "Usuário não encontrado" });
+    }
+
+    // Obter os dados do usuário
+    const userData = userDoc.data();
+
+    return res.status(200).json(userData);
+  } catch (error) {
+    console.error("Erro ao obter usuário:", error);
+    return res.status(500).json({ message: "Erro interno do servidor" });
+  }
 }
