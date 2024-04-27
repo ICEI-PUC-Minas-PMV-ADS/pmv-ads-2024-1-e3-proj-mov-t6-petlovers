@@ -31,19 +31,19 @@ export default function InfoPet({route}) { //rota com os parametros para renderi
             </View>
 
             <View style={{ flexDirection: 'row' }}>
-              <View style={styles.containerlab}>
+              <View style={styles.containerinfo}>
                 <Text style={styles.titlelab}>{sexo}</Text>
                 <Text style={styles.descriptionlab}>Sexo</Text>
               </View>
-              <View style={styles.containerlab}>
+              <View style={styles.containerinfo}>
                 <Text style={styles.titlelab}>{cor}</Text>
                 <Text style={styles.descriptionlab}>Cor</Text>
               </View>
-              <View style={styles.containerlab}>
+              <View style={styles.containerinfo}>
                 <Text style={styles.titlelab}>{raca}</Text>
                 <Text style={styles.descriptionlab}>Raça</Text>
               </View>
-              <View style={styles.containerlab}>
+              <View style={styles.containerinfo}>
                 <Text style={styles.titlelab}>{porte}</Text>
                 <Text style={styles.descriptionlab}>Porte</Text>
               </View>
@@ -55,7 +55,7 @@ export default function InfoPet({route}) { //rota com os parametros para renderi
                 {sobre}{"\n\n"} 
               </Text>
 
-              <Text style={styles.title2}>Tutor</Text>
+              <Text style={styles.titletutor}>Tutor</Text>
               <Text style={[styles.tutor, styles.marginBottom]}>Joana</Text>
             </View>
           </View>
@@ -70,15 +70,15 @@ const styles = StyleSheet.create({
         flex: 1,
         marginHorizontal: 20, // Margem lateral
       },
-      containerlab: {
+      containerinfo: {
         borderWidth: 1,
         borderColor: '#CCCCCC', 
         borderRadius: 8,
         padding: 10,
         marginTop: 20,
-        width: 85,
+        width: 88,
         alignItems: 'center',
-        marginRight: 7,
+        marginRight: 5,
       },
       titlelab: {
         fontSize: 14,
@@ -137,10 +137,9 @@ const styles = StyleSheet.create({
         marginBottom: 5,
         color: "#827397",
       },
-      title2: {
+      titletutor: {
         fontSize: 15,
         fontWeight: 'bold',
-        marginTop: 35,
         marginBottom: 5,
         color: "#827397",
       },
