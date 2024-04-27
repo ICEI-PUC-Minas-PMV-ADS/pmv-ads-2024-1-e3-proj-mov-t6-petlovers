@@ -18,8 +18,9 @@ export default function CardPet() {
             .catch((error) => console.error('Error:', error));
     }, []);
 
+    //navegacao para a tela info com os parametros salvos
     const handleCardPress = (id, nome, idade, cidade, imageURL, estado, sobre, raca, sexo, cor, porte) => {
-        navigation.navigate('InfoPet', { id, nome, idade, cidade, imageURL, estado, sobre, raca, sexo, cor, porte}); //rota para a tela info 
+        navigation.navigate('InfoPet', { id, nome, idade, cidade, imageURL, estado, sobre, raca, sexo, cor, porte}); 
     };
 
     return (
