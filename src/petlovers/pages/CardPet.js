@@ -18,9 +18,9 @@ export default function CardPet() {
             .catch((error) => console.error('Error:', error));
     }, []);
 
-    const handleCardPress = () => {
-        navigation.navigate('InfoPet'); //navega ate a pagina de info pet associada ao pet
-      };
+    const handleCardPress = (id, nome, idade, cidade, imageURL, estado, sobre, raca, sexo, cor, porte) => {
+        navigation.navigate('InfoPet', { id, nome, idade, cidade, imageURL, estado, sobre, raca, sexo, cor, porte}); //rota para a tela info 
+    };
 
     return (
         <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
@@ -29,7 +29,7 @@ export default function CardPet() {
                 horizontal={true}
                 data={data}
                 renderItem={({ item }) => (
-                 <TouchableOpacity onPress={() => handleCardPress()} style={{ paddingBottom: 70 }}> 
+                    <TouchableOpacity onPress={() => handleCardPress(item.id, item.nome, item.idade, item.cidade, item.imageURL, item.estado, item.sobre, item.raca, item.sexo, item.cor, item.porte)} style={{ paddingBottom: 70 }}> 
                     <View style={styles.cards1}>
                         <Image style={styles.imgcards} source={{ uri: item.imageURL }} />
                         <Text key={item.id} style={styles.text}>{item.nome}, {item.idade} anos</Text>
