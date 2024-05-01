@@ -3,15 +3,19 @@ import React, { useState, useEffect } from 'react';
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import SwipeCards from 'react-native-swipe-cards';
 import Icon from 'react-native-vector-icons/Ionicons';
+import { useNavigation } from '@react-navigation/native';
 
-import { petAPI_URL } from "../apiConfig";
+import { getAllPetsAPI_URL } from "../apiConfig";
 
 
-const CardComponent = ({ item, handleLike, handleDislike }) => (
+
+const CardComponent = ({ item, handleLike, handleDislike, handleCardPress}) => (
+    
     <Card style={styles.card}>
       <Card.Cover
         source={{ uri: item.imageURL }}
         style={{ height: 500, borderRadius: 0 }}
+        resizeMode="cover"
       />
       <View style={styles.petData}>
         <Text style={styles.text}>{item.nome}, {item.idade} anos</Text>
@@ -25,7 +29,7 @@ const CardComponent = ({ item, handleLike, handleDislike }) => (
         <TouchableOpacity onPress={handleDislike} style={[styles.button, styles.likeButton]}>
           <Text style={[styles.buttonText, { color: 'yellow' }]}>✖️</Text>
         </TouchableOpacity>
-        <TouchableOpacity onPress={handleLike} style={[styles.buttonInfo, styles.infoButton]}>
+        <TouchableOpacity onPress={() => handleCardPress(item.id, item.nome, item.idade, item.cidade, item.imageURL, item.estado, item.sobre, item.raca, item.sexo, item.cor, item.porte)} style={[styles.buttonInfo, styles.infoButton]}>
           <Icon name="information-circle" size={29} color="blue" />
         </TouchableOpacity>
         <TouchableOpacity onPress={handleLike} style={[styles.button, styles.dislikeButton]}>
@@ -43,14 +47,17 @@ const CardComponent = ({ item, handleLike, handleDislike }) => (
   
   const MatchCard = () => {
     const [data, setData] = useState([]);
+    const navigation = useNavigation();
   
     useEffect(() => {
-      fetch(petAPI_URL) 
+      fetch(getAllPetsAPI_URL) 
         .then((response) => response.json())
         .then((data) => setData(data.data))
         .catch((error) => console.error('Error:', error));
     }, []);
   
+
+   
     const handleLike = () => {
       // Lógica para quando o usuário curte um perfil
     };
@@ -58,19 +65,25 @@ const CardComponent = ({ item, handleLike, handleDislike }) => (
     const handleDislike = () => {
       // Lógica para quando o usuário rejeita um perfil
     };
+ 
+
+const handleCardPress = (id, nome, idade, cidade, imageURL, estado, sobre, raca, sexo, cor, porte) => {
+    navigation.navigate('InfoPet', { id, nome, idade, cidade, imageURL, estado, sobre, raca, sexo, cor, porte}); 
+};
+
   
     return (
       <View style={styles.container}>
         <SwipeCards
           cards={data}
-          renderCard={(item) => <CardComponent item={item} handleLike={handleLike} handleDislike={handleDislike} />}
+          renderCard={(item) => <CardComponent item={item} handleLike={handleLike} handleDislike={handleDislike} handleCardPress={handleCardPress} />}
           renderNoMoreCards={() => <NoMoreCards />}
           useNativeDriver={true}
         />
       </View>
     );
   };
-  
+
 
 const styles = StyleSheet.create({
   card: {
@@ -84,6 +97,7 @@ const styles = StyleSheet.create({
     fontSize: 18,
     marginTop: 13,
     marginBottom: 5,
+    fontWeight: 'bold',
   },
   button: {
     bottom: 20,
@@ -133,11 +147,11 @@ const styles = StyleSheet.create({
     marginBottom: 50,
   },
   container: {
-    marginTop: 110,
+    marginTop: 100,
   },
   text: {
     color: 'white',
-    fontSize: 27,
+    fontSize: 30,
     marginTop: 20,
     fontWeight: 'bold',
   },
@@ -147,6 +161,7 @@ const styles = StyleSheet.create({
     marginTop: 13,
     marginBottom: 16,
     marginLeft: 5,
+    fontWeight: 'bold',
   },
   local: {
     flexDirection: 'row',
