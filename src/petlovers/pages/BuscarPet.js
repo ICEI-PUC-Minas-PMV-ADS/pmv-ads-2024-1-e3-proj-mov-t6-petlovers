@@ -4,6 +4,8 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import ArrowLeft from "../components/ArrowLeft";
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 
+import MatchCard from "../components/MatchCard";
+
 
 export default function BuscarPet() {
     return (
@@ -11,7 +13,7 @@ export default function BuscarPet() {
             <ArrowLeft />
             <KeyboardAwareScrollView>
                 <View>
-                    <Text>Tela de busca de pets</Text>
+                    <MatchCard />
                 </View>
             </KeyboardAwareScrollView>
         </SafeAreaView>
