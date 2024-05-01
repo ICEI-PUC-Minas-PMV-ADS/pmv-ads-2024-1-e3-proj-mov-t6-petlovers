@@ -4,70 +4,73 @@ import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import SwipeCards from 'react-native-swipe-cards';
 import Icon from 'react-native-vector-icons/Ionicons';
 
+import { petAPI_URL } from "../apiConfig";
 
-const profiles = [
-  { id: 1, name: 'Doguinho', description: 'Um cão adorável', image: { uri: 'https://picsum.photos/700' } },
-  { id: 2, name: 'Gatinho', description: 'Um gato fofo', image: { uri: 'https://picsum.photos/700' } },
-  { id: 3, name: 'Coelhinho', description: 'Um coelho simpático', image: { uri: 'https://picsum.photos/700' } },
-];
 
-const CardComponent = ({ profile, handleLike, handleDislike }) => (
-  <Card style={styles.card}>
-    <Card.Cover
-      source={profile.image}
-      style={{ height: 500, borderRadius: 0 }}
-    />
-   
-    <View style={styles.petData}>
-      <Text style={styles.text}>Scooby, 6 anos</Text>
-      <Text style={styles.raca}>Labrador</Text>
-      <View style={styles.local}>
-      <Icon style={styles.icon} name="location-outline" size={19} />
-      <Text style={styles.text1}>Sorocaba, sp</Text>
+const CardComponent = ({ item, handleLike, handleDislike }) => (
+    <Card style={styles.card}>
+      <Card.Cover
+        source={{ uri: item.imageURL }}
+        style={{ height: 500, borderRadius: 0 }}
+      />
+      <View style={styles.petData}>
+        <Text style={styles.text}>{item.nome}, {item.idade} anos</Text>
+        <Text style={styles.raca}>{item.raca}</Text>
+        <View style={styles.local}>
+          <Icon style={styles.icon} name="location-outline" size={19} />
+          <Text style={styles.text1}>{item.cidade}, {item.estado}</Text>
+        </View>
       </View>
-    </View>
-    <View style={styles.buttonContainer}>
-      <TouchableOpacity onPress={handleDislike} style={[styles.button, styles.likeButton]}>
-        <Text style={[styles.buttonText, { color: 'yellow' }]}>✖️</Text>
-      </TouchableOpacity>
-      <TouchableOpacity onPress={handleLike} style={[styles.buttonInfo, styles.infoButton]}>
-      <Icon name="information-circle" size={29} color="blue" />
-      </TouchableOpacity>
-      <TouchableOpacity onPress={handleLike} style={[styles.button, styles.dislikeButton]}>
-        <Text style={styles.buttonText}>♥️</Text>
-      </TouchableOpacity>
-    </View>
-  </Card>
-);
-
-const NoMoreCards = () => (
+      <View style={styles.buttonContainer}>
+        <TouchableOpacity onPress={handleDislike} style={[styles.button, styles.likeButton]}>
+          <Text style={[styles.buttonText, { color: 'yellow' }]}>✖️</Text>
+        </TouchableOpacity>
+        <TouchableOpacity onPress={handleLike} style={[styles.buttonInfo, styles.infoButton]}>
+          <Icon name="information-circle" size={29} color="blue" />
+        </TouchableOpacity>
+        <TouchableOpacity onPress={handleLike} style={[styles.button, styles.dislikeButton]}>
+          <Text style={styles.buttonText}>♥️</Text>
+        </TouchableOpacity>
+      </View>
+    </Card>
+  );
+  
+  const NoMoreCards = () => (
     <View style={styles.card}>
       <Text style={styles.noMoreCardsText}>Não há mais perfis</Text>
     </View>
   );
   
-const MatchCard = () => {
-  const [currentProfiles, setCurrentProfiles] = useState(profiles);
-
-  const handleLike = () => {
-    // Lógica para quando o usuário curte um perfil
+  const MatchCard = () => {
+    const [data, setData] = useState([]);
+  
+    useEffect(() => {
+      fetch(petAPI_URL) 
+        .then((response) => response.json())
+        .then((data) => setData(data.data))
+        .catch((error) => console.error('Error:', error));
+    }, []);
+  
+    const handleLike = () => {
+      // Lógica para quando o usuário curte um perfil
+    };
+  
+    const handleDislike = () => {
+      // Lógica para quando o usuário rejeita um perfil
+    };
+  
+    return (
+      <View style={styles.container}>
+        <SwipeCards
+          cards={data}
+          renderCard={(item) => <CardComponent item={item} handleLike={handleLike} handleDislike={handleDislike} />}
+          renderNoMoreCards={() => <NoMoreCards />}
+          useNativeDriver={true}
+        />
+      </View>
+    );
   };
-
-  const handleDislike = () => {
-    // Lógica para quando o usuário rejeita um perfil
-  };
-
-  return (
-    <View style={styles.container}>
-      <SwipeCards
-        cards={currentProfiles}
-        renderCard={(profile) => <CardComponent profile={profile} handleLike={handleLike} handleDislike={handleDislike} />}
-        renderNoMoreCards={() => <NoMoreCards />}
-        useNativeDriver= {true }
-      />
-    </View>
-  );
-};
+  
 
 const styles = StyleSheet.create({
   card: {
