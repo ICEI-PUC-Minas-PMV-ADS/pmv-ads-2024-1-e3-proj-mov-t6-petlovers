@@ -276,7 +276,7 @@ export default function Cadastro() {
               setBirthDate(text);
               const isValid = validateBirthDate(text);
               if (!isValid) {
-                // Função validadeBirthDate
+                // Função validateBirthDate
               } else {
                 setBirthDateError("");
               }
