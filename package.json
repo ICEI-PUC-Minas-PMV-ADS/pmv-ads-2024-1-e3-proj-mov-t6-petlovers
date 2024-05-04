@@ -1,0 +1,6 @@
+{
+  "dependencies": {
+    "@react-navigation/material-top-tabs": "^6.6.13",
+    "@react-navigation/native": "^6.1.17"
+  }
+}
