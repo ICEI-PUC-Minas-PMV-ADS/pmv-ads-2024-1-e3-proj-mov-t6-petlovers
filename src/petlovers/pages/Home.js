@@ -5,10 +5,11 @@ import { useNavigation } from '@react-navigation/native';
 import BannerCadastro from "../components/BannerCadastro";
 import Avaliacao from "../components/Avaliacao";
 import { getAuth } from "firebase/auth";
+import { Button } from 'react-native-paper';
 
 
 export default function Home() {
-
+    
     const navigation = useNavigation();
     const auth = getAuth();
     const user = auth.currentUser;

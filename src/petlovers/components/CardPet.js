@@ -1,12 +1,14 @@
 import React, { useState, useEffect } from "react";
-import { View, Text, StyleSheet, Image, FlatList } from "react-native";
+import { View, Text, StyleSheet, Image, FlatList, TouchableOpacity } from "react-native";
 import { Ionicons } from '@expo/vector-icons';
-import { useNavigation } from "@react-navigation/native";
+import { useNavigation } from '@react-navigation/native';
+
 //API URL dos cards
 import { cardpetsAPI_URL } from "../apiConfig";
 
 
 export default function CardPet() {
+    const navigation = useNavigation();
     const [data, setData] = useState([]);
     const navigation = useNavigation();
     const goToBusca = () => {navigation.navigate('Busca')};
@@ -18,6 +20,11 @@ export default function CardPet() {
             .catch((error) => console.error('Error:', error));
     }, []);
 
+    //navegacao para a tela info com os parametros salvos
+    const handleCardPress = (id, nome, idade, cidade, imageURL, estado, sobre, raca, sexo, cor, porte) => {
+        navigation.navigate('InfoPet', { id, nome, idade, cidade, imageURL, estado, sobre, raca, sexo, cor, porte}); 
+    };
+
     return (
         <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
             <View style={styles.align}>
@@ -28,7 +35,7 @@ export default function CardPet() {
                 horizontal={true}
                 data={data}
                 renderItem={({ item }) => (
-
+                    <TouchableOpacity onPress={() => handleCardPress(item.id, item.nome, item.idade, item.cidade, item.imageURL, item.estado, item.sobre, item.raca, item.sexo, item.cor, item.porte)} style={{ paddingBottom: 70 }}> 
                     <View style={styles.cards1}>
                         <Image style={styles.imgcards} source={{ uri: item.imageURL }} />
                         <Text key={item.id} style={styles.text}>{item.nome}, {item.idade} anos</Text>
@@ -37,7 +44,7 @@ export default function CardPet() {
                             <Text key={item.id} style={styles.text1}>{item.cidade}</Text>
                         </View>
                     </View>
-
+                 </TouchableOpacity>
                 )}
             />
         </View>

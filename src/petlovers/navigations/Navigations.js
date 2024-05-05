@@ -11,8 +11,8 @@ import Cadastro from '../pages/Cadastro';
 import Header from '../components/Header';
 import CadastroPet from '../pages/CadastroPet';
 import Politica from '../pages/Politica';
-import Busca from  '../pages/BuscarPet';
 import BuscarPet from '../pages/BuscarPet';
+import InfoPet from '../pages/InfoPet';
 import Avaliacoes from '../pages/Avaliacoes';
 
 
@@ -86,6 +86,7 @@ export default function Navigations() {
           <Stack.Screen name="CadastroPet" component={CadastroPet} options={{ headerShown: false }}  />
           <Stack.Screen name="Politica" component={Politica} options={{ headerShown: false }}  />
           <Stack.Screen name="Busca" component={BuscarPet} options={{ headerShown: false }}  />
+          <Stack.Screen name="InfoPet" component={InfoPet} options={{ headerShown: false }}  />
           <Stack.Screen name="Avaliacoes" component={Avaliacoes} options={{ headerShown: false }}  />
         {/* Criar aqui outras navegacoes  */}
         
