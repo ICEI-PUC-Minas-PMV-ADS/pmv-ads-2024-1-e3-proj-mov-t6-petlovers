@@ -10,6 +10,7 @@ export interface Pet {
     breed: string;
     size: string;
     about: string;
+    imageURL: string;
   }
   
 //Especifica os campos que o pet terá

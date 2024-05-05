@@ -1,17 +1,27 @@
 import React, { useState, useEffect } from "react";
-import { View, Text, StyleSheet, Image, FlatList } from "react-native";
+import { View, Text, StyleSheet, Image, FlatList, TouchableOpacity } from "react-native";
 import { Ionicons } from '@expo/vector-icons';
+import { useNavigation } from '@react-navigation/native';
+
+//API URL dos cards
+import { cardpetsAPI_URL } from "../apiConfig";
 
 export default function CardPet() {
+    const navigation = useNavigation();
     const [data, setData] = useState([]);
 
     // Obtem os dados dos pets no backend
     useEffect(() => {
-        fetch("http://localhost:3000/api/allpets")
+        fetch(cardpetsAPI_URL) //API URL dos cards
             .then((response) => response.json())
             .then((data) => setData(data.data))
             .catch((error) => console.error('Error:', error));
     }, []);
+
+    //navegacao para a tela info com os parametros salvos
+    const handleCardPress = (id, nome, idade, cidade, imageURL, estado, sobre, raca, sexo, cor, porte) => {
+        navigation.navigate('InfoPet', { id, nome, idade, cidade, imageURL, estado, sobre, raca, sexo, cor, porte}); 
+    };
 
     return (
         <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
@@ -20,16 +30,16 @@ export default function CardPet() {
                 horizontal={true}
                 data={data}
                 renderItem={({ item }) => (
-
+                    <TouchableOpacity onPress={() => handleCardPress(item.id, item.nome, item.idade, item.cidade, item.imageURL, item.estado, item.sobre, item.raca, item.sexo, item.cor, item.porte)} style={{ paddingBottom: 70 }}> 
                     <View style={styles.cards1}>
-                        <Image style={styles.imgcards} source={require('../assets/image/caramelo.jpg')} />
+                        <Image style={styles.imgcards} source={{ uri: item.imageURL }} />
                         <Text key={item.id} style={styles.text}>{item.nome}, {item.idade} anos</Text>
                         <View style={styles.local}>
-                            <Ionicons style={styles.icon} name='location-outline' size={25} />
+                            <Ionicons style={styles.icon} name='location-outline' size={19} />
                             <Text key={item.id} style={styles.text1}>{item.cidade}</Text>
                         </View>
                     </View>
-
+                 </TouchableOpacity>
                 )}
             />
         </View>
@@ -57,6 +67,7 @@ const styles = StyleSheet.create({
         fontSize: 15,
         marginLeft: 5,
         marginTop: 8,
+        marginBottom: 15,
 
 
     },
@@ -67,12 +78,13 @@ const styles = StyleSheet.create({
 
     icon: {
         marginTop: 5,
-        marginLeft: 5,
+        marginLeft: 8,
+        color: "#827397",
     },
     
 
     cards1: {
-        width: 150,
+        width: 160,
         borderRadius: 5,
         backgroundColor: '#ffffff',
         marginRight: 10,
@@ -85,7 +97,7 @@ const styles = StyleSheet.create({
     },
 
     imgcards: {
-        width: 150,
+        width: 160,
         height: 150,
         borderRadius: 5,
         borderBottomRightRadius: 25,

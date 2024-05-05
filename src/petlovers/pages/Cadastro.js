@@ -17,6 +17,9 @@ import ArrowLeft from "../components/ArrowLeft";
 
 import { defaultTheme } from "../components/Themes";
 
+//API URL do cadastro user
+import { userAPI_URL } from "../apiConfig";
+
 export default function Cadastro() {
   const navigation = useNavigation();
   const [fullName, setFullName] = useState("");
@@ -190,7 +193,7 @@ export default function Cadastro() {
       const capitalizedFullName = capitalizeFullName(fullName);
 
       // Enviar os dados do usuário para o backend
-      const response = await fetch("http://localhost:3000/api/user", {
+      const response = await fetch(userAPI_URL, { //API URL do cadastro user
         method: "POST",
         headers: {
           "Content-Type": "application/json",

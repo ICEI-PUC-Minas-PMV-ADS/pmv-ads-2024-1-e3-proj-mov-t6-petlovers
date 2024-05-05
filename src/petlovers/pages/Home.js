@@ -5,11 +5,8 @@ import { useNavigation } from '@react-navigation/native';
 import { Button } from 'react-native-paper';
 
 
-
-
-
 export default function Home() {
-
+    
     const navigation = useNavigation();
 
     const goToCadastro = () => {

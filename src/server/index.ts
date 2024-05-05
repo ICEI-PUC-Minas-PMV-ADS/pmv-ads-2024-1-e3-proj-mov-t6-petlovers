@@ -12,6 +12,7 @@ import { handlePetRequest } from "./endpoints/pets";
 import { handleUserRequest } from "./endpoints/users";
 import { handleAllPetsRequest } from "./endpoints/home";
 import { handleImageUploadRequest } from './endpoints/images';
+import { handleFourPetsRequest } from "./endpoints/pets";
 
 
 // Inicializa o framework de configuração
@@ -49,7 +50,7 @@ const upload = multer({ storage: storage });
 
 
 //endpoint imagem
-serverApp.post('/api/pet/images', upload.single('file'), handleImageUploadRequest);
+serverApp.post('/api/pet/:id/images', upload.single('file'), handleImageUploadRequest);
 
 // endpoint pets
 serverApp.post("/api/pet", handlePetRequest);
@@ -60,8 +61,16 @@ serverApp.post("/api/user", handleUserRequest);
 // endpoint all pets
 serverApp.get("/api/allpets", handleAllPetsRequest);
 
-// Prepara o servidor para iniciar na porta
-serverApp.listen(port, () => {
+//endpoint para renderizar 4 pets na home
+serverApp.get("/api/fourpets", handleFourPetsRequest);
+
+
+//endpoint para renderizar 4 pets na home
+serverApp.get("/api/fourpets", handleFourPetsRequest);
+
+
+// Prepara o servidor para iniciar na porta, ouvindo em todas as interfaces de rede disponíveis
+serverApp.listen(port, '0.0.0.0', () => {
   console.log(`[Server]: I am running at http://localhost:${port}`);
 });
 

@@ -11,6 +11,9 @@ import FormButton from "../components/FormButton";
 import FormInput from "../components/FormInput";
 import validateCadastroPet from '../services/validateCadastroPet';
 
+//API URL do cadastro pet
+import { petAPI_URL } from "../apiConfig";
+
 const CadastroPet = ({ navigation }) => {
   const [nome, setNome] = React.useState("");
   const [idade, setIdade] = React.useState("");
@@ -22,6 +25,7 @@ const CadastroPet = ({ navigation }) => {
   const [porte, setPorte] = React.useState("");
   const [sobre, setSobre] = React.useState("");
   const [errors, setErrors] = useState({});
+  const [imageUrl, setImage] = useState(null);
 
   const route = useRoute();
   const userId = route.params.userId; // Recupera o ID do usuário dos parâmetros de navegação
@@ -36,7 +40,7 @@ const CadastroPet = ({ navigation }) => {
     }
 
     try {
-      const response = await fetch("http://localhost:3000/api/pet", {
+      const response = await fetch(petAPI_URL, { //API URL do cadastro pet
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -57,7 +61,14 @@ const CadastroPet = ({ navigation }) => {
       console.log("Resposta: " + response.status)
 
       if (response.ok) {
+        const responseData = await response.json();
+        const petId = responseData.id;
+
+        // Define a URL da API de imagens do pet com o petId
+        const petimageAPI_URL = `${petAPI_URL}/${petId}/images`;
+
         Alert.alert("Sucesso", "Pet cadastrado com sucesso!");
+
         // Limpar os campos após o cadastro
         setNome("");
         setIdade("");
@@ -68,13 +79,14 @@ const CadastroPet = ({ navigation }) => {
         setRaca("");
         setPorte("");
         setSobre("");
+        setImage("");
 
         // Limpar os erros
         setErrors({});
 
 
-        if (image) {
-          await enviarImagem();
+        if (imageUrl) {
+          await enviarImagem(petId, petimageAPI_URL);
         }
 
         navigation.navigate('Login');
@@ -91,16 +103,17 @@ const CadastroPet = ({ navigation }) => {
 
 
   //Envio da imagem 
-  const enviarImagem = async () => {
+  const enviarImagem = async (petId, petimageAPI_URL) => {
     try {
       const formData = new FormData();
       formData.append('file', {
-        uri: image,
-        name: `pet_${Date.now()}.jpg`,
+        uri: imageUrl, //ARMAZENA O LOCAL DO ARQUIVO
+        //name: `pet_${Date.now()}.jpg`,
+        name: 'pet_image.jpg',
         type: 'image/jpg',
       });
 
-      const imageUploadResponse = await fetch("http://localhost:3000/api/pet/images", {
+      const imageUploadResponse = await fetch(petimageAPI_URL, { //API URL do cadastro de imagem pet
         method: "POST",
         body: formData,
         headers: {
@@ -124,8 +137,6 @@ const CadastroPet = ({ navigation }) => {
 
 
   //IMAGE PICKER
-  const [image, setImage] = useState(null);
-
   const pickImage = async () => {
     let result = await ImagePicker.launchImageLibraryAsync({
       mediaTypes: ImagePicker.MediaTypeOptions.All,
@@ -152,7 +163,7 @@ const CadastroPet = ({ navigation }) => {
               <TouchableOpacity onPress={pickImage} style={styles.cameraButton}>
                 <Icon name="camera" size={40} color="#827397" />
               </TouchableOpacity>
-              {image && <Image source={{ uri: image }} style={styles.image} />}
+              {imageUrl && <Image source={{ uri: imageUrl }} style={styles.image} />} 
             </View>
           </View>
           <FormInput
