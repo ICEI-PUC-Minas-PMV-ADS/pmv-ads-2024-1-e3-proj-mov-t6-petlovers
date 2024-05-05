@@ -1,94 +1,89 @@
 import { Card } from 'react-native-paper';
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import SwipeCards from 'react-native-swipe-cards';
 import Icon from 'react-native-vector-icons/Ionicons';
 import { useNavigation } from '@react-navigation/native';
 
+
 import { getAllPetsAPI_URL } from "../apiConfig";
+import NoMoreCards from './NoMoreCards';
 
 
 
 const CardComponent = ({ item, handleLike, handleDislike, handleCardPress}) => (
     
-    <Card style={styles.card}>
-      <Card.Cover
-        source={{ uri: item.imageURL }}
-        style={{ height: 500, borderRadius: 0 }}
-        resizeMode="cover"
-      />
-      <View style={styles.petData}>
-        <Text style={styles.text}>{item.nome}, {item.idade} anos</Text>
-        <Text style={styles.raca}>{item.raca}</Text>
-        <View style={styles.local}>
-          <Icon style={styles.icon} name="location-outline" size={19} />
-          <Text style={styles.text1}>{item.cidade}, {item.estado}</Text>
-        </View>
+  <Card style={styles.card}>
+    <Card.Cover
+      source={{ uri: item.imageURL }}
+      style={{ height: 400 , borderRadius: 0 }}
+      resizeMode="cover"
+    />
+    <View style={styles.petData}>
+      <Text style={styles.text}>{item.nome}, {item.idade} anos</Text>
+      <Text style={styles.raca}>{item.raca}</Text>
+      <View style={styles.local}>
+        <Icon style={styles.icon} name="location-outline" size={19} />
+        <Text style={styles.text1}>{item.cidade}, {item.estado}</Text>
       </View>
-      <View style={styles.buttonContainer}>
-        <TouchableOpacity onPress={handleDislike} style={[styles.button, styles.likeButton]}>
-          <Text style={[styles.buttonText, { color: 'yellow' }]}>✖️</Text>
-        </TouchableOpacity>
-        <TouchableOpacity onPress={() => handleCardPress(item.id, item.nome, item.idade, item.cidade, item.imageURL, item.estado, item.sobre, item.raca, item.sexo, item.cor, item.porte)} style={[styles.buttonInfo, styles.infoButton]}>
-          <Icon name="information-circle" size={29} color="blue" />
-        </TouchableOpacity>
-        <TouchableOpacity onPress={handleLike} style={[styles.button, styles.dislikeButton]}>
-          <Text style={styles.buttonText}>♥️</Text>
-        </TouchableOpacity>
-      </View>
-    </Card>
-  );
+    </View>
+    <View style={styles.buttonContainer}>
+      <TouchableOpacity onPress={handleDislike} style={[styles.button, styles.likeButton]}>
+        <Text style={[styles.buttonText, { color: 'yellow' }]}>✖️</Text>
+      </TouchableOpacity>
+      <TouchableOpacity onPress={() => handleCardPress(item.id, item.nome, item.idade, item.cidade, item.imageURL, item.estado, item.sobre, item.raca, item.sexo, item.cor, item.porte)} style={[styles.buttonInfo, styles.infoButton]}>
+        <Icon name="information-circle" size={29} color="blue" />
+      </TouchableOpacity>
+      <TouchableOpacity onPress={handleLike} style={[styles.button, styles.dislikeButton]}>
+        <Text style={styles.buttonText}>♥️</Text>
+      </TouchableOpacity>
+    </View>
+  </Card>
+);
+
   
-  const NoMoreCards = () => (
-    <View style={styles.card}>
-      <Text style={styles.noMoreCardsText}>Não há mais perfis</Text>
+const MatchCard = () => {
+  const [data, setData] = useState([]);
+  const navigation = useNavigation();
+  const swipeCardsRef = useRef(null);
+
+  useEffect(() => {
+    fetch(getAllPetsAPI_URL) 
+      .then((response) => response.json())
+      .then((data) => setData(data.data))
+      .catch((error) => console.error('Error:', error));
+  }, []);
+
+  const handleLike = () => {
+    console.log(swipeCardsRef.current); 
+    // Lógica para quando o usuário curte um perfil + swipe
+  };
+
+  const handleDislike = () => {
+    console.log(swipeCardsRef.current); 
+    // Lógica para quando o usuário rejeita um perfil + swipe
+  };
+
+  const handleCardPress = (id, nome, idade, cidade, imageURL, estado, sobre, raca, sexo, cor, porte) => {
+    navigation.navigate('InfoPet', { id, nome, idade, cidade, imageURL, estado, sobre, raca, sexo, cor, porte}); 
+  };
+
+  return (
+    <View style={styles.container}>
+      <SwipeCards
+        ref={swipeCardsRef}
+        cards={data}
+        renderCard={(item) => <CardComponent item={item} handleLike={handleLike} handleDislike={handleDislike} handleCardPress={handleCardPress} />}
+        renderNoMoreCards={() => <NoMoreCards />}
+        useNativeDriver={true}
+      />
     </View>
   );
-  
-  const MatchCard = () => {
-    const [data, setData] = useState([]);
-    const navigation = useNavigation();
-  
-    useEffect(() => {
-      fetch(getAllPetsAPI_URL) 
-        .then((response) => response.json())
-        .then((data) => setData(data.data))
-        .catch((error) => console.error('Error:', error));
-    }, []);
-  
-
-   
-    const handleLike = () => {
-      // Lógica para quando o usuário curte um perfil
-    };
-  
-    const handleDislike = () => {
-      // Lógica para quando o usuário rejeita um perfil
-    };
- 
-
-const handleCardPress = (id, nome, idade, cidade, imageURL, estado, sobre, raca, sexo, cor, porte) => {
-    navigation.navigate('InfoPet', { id, nome, idade, cidade, imageURL, estado, sobre, raca, sexo, cor, porte}); 
 };
 
-  
-    return (
-      <View style={styles.container}>
-        <SwipeCards
-          cards={data}
-          renderCard={(item) => <CardComponent item={item} handleLike={handleLike} handleDislike={handleDislike} handleCardPress={handleCardPress} />}
-          renderNoMoreCards={() => <NoMoreCards />}
-          useNativeDriver={true}
-        />
-      </View>
-    );
-  };
 
 
 const styles = StyleSheet.create({
-  card: {
-    width: 500, 
-  },
   cardImage: {
     flex: 1,
   },
@@ -139,12 +134,11 @@ const styles = StyleSheet.create({
     color: 'white',
   },
   buttonContainer: {
-    bottom: 20,
+    top: 14,
     width: '100%',
     flexDirection: 'row',
     justifyContent: 'center',
     marginLeft: 50,
-    marginBottom: 50,
   },
   container: {
     marginTop: 100,
@@ -172,7 +166,7 @@ const styles = StyleSheet.create({
     width: 20,
   },
   petData: {
-    marginLeft: 70,
+    marginLeft: 10,
     marginTop: -200,
     marginBottom: 60,
   }

@@ -68,13 +68,13 @@ export default function InfoPet({route}) { //rota com os parametros para renderi
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        marginHorizontal: 20, // Margem lateral
+        marginHorizontal: 15, // Margem lateral
       },
       containerinfo: {
         borderWidth: 1,
         borderColor: '#CCCCCC', 
         borderRadius: 8,
-        padding: 10,
+        padding: 5,
         marginTop: 20,
         width: 88,
         alignItems: 'center',
