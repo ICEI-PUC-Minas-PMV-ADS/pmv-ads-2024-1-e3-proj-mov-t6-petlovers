@@ -10,7 +10,6 @@ import { cardpetsAPI_URL } from "../apiConfig";
 export default function CardPet() {
     const navigation = useNavigation();
     const [data, setData] = useState([]);
-    const navigation = useNavigation();
     const goToBusca = () => {navigation.navigate('Busca')};
     // Obtem os dados dos pets no backend
     useEffect(() => {
