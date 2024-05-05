@@ -52,8 +52,8 @@ export default function DadosUser() {
 
         setUserData(userDataBD);
         setFullName(userDataFromServer.full_name);
-        setWhatsapp(userData.whatsapp);
-        setEmail(userData.email);
+        setWhatsapp(userDataFromServer.whatsapp);
+        setEmail(userDataFromServer.email);
 
         // Formatar a data de nascimento para exibição
         const formattedBirthDate = userDataFromServer.birth_date
@@ -185,30 +185,30 @@ export default function DadosUser() {
   });
 
   // Função para validar o formulário
-const validateForm = () => {
-  console.log("fullName:", fullName);
-  console.log("birthDate:", birthDate);
-  console.log("whatsapp:", whatsapp);
-  console.log("email:", email);
-  console.log("fullNameError:", fullNameError);
-  console.log("birthDateError:", birthDateError);
-  console.log("whatsappError:", whatsappError);
-  console.log("emailError:", emailError);
+  const validateForm = () => {
+    console.log("fullName:", fullName);
+    console.log("birthDate:", birthDate);
+    console.log("whatsapp:", whatsapp);
+    console.log("email:", email);
+    console.log("fullNameError:", fullNameError);
+    console.log("birthDateError:", birthDateError);
+    console.log("whatsappError:", whatsappError);
+    console.log("emailError:", emailError);
 
-  const isValid =
-    fullName.trim() !== "" &&
-    birthDate.trim() !== "" &&
-    whatsapp.trim() !== "" &&
-    email.trim() !== "" &&
-    fullNameError === "" &&
-    birthDateError === "" &&
-    whatsappError === "" &&
-    emailError === "";
+    const isValid =
+      fullName.trim() !== "" &&
+      birthDate.trim() !== "" &&
+      whatsapp.trim() !== "" &&
+      email.trim() !== "" &&
+      fullNameError === "" &&
+      birthDateError === "" &&
+      whatsappError === "" &&
+      emailError === "";
 
-  console.log("isValid:", isValid);
+    console.log("isValid:", isValid);
 
-  return isValid;
-};
+    return isValid;
+  };
 
   // Atualizar estado de validação a cada campo
   useEffect(() => {
@@ -347,38 +347,24 @@ const validateForm = () => {
             }}
             error={emailError}
           />
+          {/*
+          <FormInput
+            label="Confirmar senha"
+            autoCapitalize="none"
+            secureTextEntry={true}
+            value={userData.password}
+            onChangeText={(text) => {
+              setPassword(text);
+            }}
+          />
+          
+          <Text
+              style={{ color: defaultTheme.colors.primary, ...defaultTheme.text, ...styles.text }}
+            >
+              Clique aqui para alterar sua senha
+            </Text>
 
-          <Text style={{ ...defaultTheme.subtitle, ...styles.subtitle }}>
-            Alterar senha
-          </Text>
-
-          <FormInput
-            label="Nova senha"
-            autoCapitalize="none"
-            secureTextEntry={true}
-            value={userData.password}
-            onChangeText={(text) => {
-              setPassword(text);
-            }}
-          />
-          <FormInput
-            label="Confirmar nova senha"
-            autoCapitalize="none"
-            secureTextEntry={true}
-            value={userData.password}
-            onChangeText={(text) => {
-              setPassword(text);
-            }}
-          />
-          <FormInput
-            label="Senha atual"
-            autoCapitalize="none"
-            secureTextEntry={true}
-            value={userData.password}
-            onChangeText={(text) => {
-              setPassword(text);
-            }}
-          />
+            */}
 
           <FormButton onPress={() => handleSave(userData.userId)}>
             Salvar
