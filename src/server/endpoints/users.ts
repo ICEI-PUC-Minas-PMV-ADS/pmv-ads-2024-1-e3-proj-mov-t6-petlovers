@@ -134,3 +134,42 @@ export async function updateUserById(req: Request, res: Response) {
     return res.status(500).json({ message: "Erro interno do servidor" });
   }
 }
+
+// Função para excluir os dados do usuário pelo ID
+export async function deleteUserById(req: Request, res: Response) {
+  try {
+    const userId = req.params.id; // Obter o ID do usuário dos parâmetros da URL
+
+    // Obter o e-mail do usuário do Firestore
+    const userDoc = await admin.firestore().collection("users").doc(userId).get();
+    
+    // Verificar se o documento existe
+    if (!userDoc.exists) {
+      return res.status(404).json({ error: "Usuário não encontrado" });
+    }
+
+    // Extrair os dados do usuário do documento
+    const userData = userDoc.data();
+    
+    // Verificar se os dados do usuário foram encontrados
+    if (!userData || !userData.email) {
+      return res.status(404).json({ error: "Dados do usuário não encontrados" });
+    }
+
+    // Extrair o e-mail do usuário
+    const userEmail = userData.email;
+
+    // Excluir o usuário do Firebase Authentication de mesmo e-mail
+    const userRecord = await admin.auth().getUserByEmail(userEmail);
+    await admin.auth().deleteUser(userRecord.uid);
+
+    // Excluir os dados do usuário do Firestore
+    await admin.firestore().collection("users").doc(userId).delete();
+
+    // Retornar uma resposta de sucesso
+    return res.status(200).json({ message: "Usuário excluído com sucesso" });
+  } catch (error) {
+    console.error("Erro ao excluir dados do usuário:", error);
+    return res.status(500).json({ message: "Erro interno do servidor" });
+  }
+}

@@ -270,6 +270,43 @@ export default function DadosUser() {
     }
   };
 
+  // Função para excluir a conta
+  const handleDeleteAccount = async (userId) => {
+    // Exibir um alerta de confirmação antes de excluir a conta
+    Alert.alert(
+      "Excluir conta",
+      "Tem certeza de que deseja excluir sua conta? Esta ação é irreversível.",
+      [
+        {
+          text: "Cancelar",
+          style: "cancel",
+        },
+        {
+          text: "Excluir",
+          onPress: async () => {
+            try {
+              const response = await fetch(getUserByIdAPI_URL(userId), {
+                method: "DELETE",
+              });
+
+              if (response.ok) {
+                // Conta excluída com sucesso
+                Alert.alert("Sucesso", "Sua conta foi excluída com sucesso.");
+                // Navegar para a tela de login ou outra tela após excluir a conta
+              } else {
+                // Erro ao excluir a conta
+                Alert.alert("Erro", "Erro ao excluir sua conta.");
+              }
+            } catch (error) {
+              console.error("Erro ao excluir conta:", error);
+              Alert.alert("Erro", "Erro ao excluir sua conta.");
+            }
+          },
+        },
+      ]
+    );
+  };
+
   return (
     <KeyboardAwareScrollView>
       <SafeAreaView style={defaultTheme.safeArea}>
@@ -369,6 +406,20 @@ export default function DadosUser() {
           <FormButton onPress={() => handleSave(userData.userId)}>
             Salvar
           </FormButton>
+
+          <TouchableOpacity
+            onPress={() => handleDeleteAccount(userData.userId)}
+          >
+            <Text
+              style={{
+                color: defaultTheme.colors.primary,
+                ...defaultTheme.text,
+                ...styles.text,
+              }}
+            >
+              Excluir conta
+            </Text>
+          </TouchableOpacity>
           <View style={styles.subtitleContainer}></View>
         </View>
       </SafeAreaView>

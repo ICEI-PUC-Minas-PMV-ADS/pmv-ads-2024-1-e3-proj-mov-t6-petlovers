@@ -197,7 +197,8 @@ export default function Cadastro() {
       const capitalizedFullName = capitalizeFullName(fullName);
 
       // Enviar os dados do usuário para o backend
-      const response = await fetch(userAPI_URL, { //API URL do cadastro user
+      const response = await fetch(userAPI_URL, {
+        //API URL do cadastro user
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -243,15 +244,21 @@ export default function Cadastro() {
 
         {/* Conteúdo do formulário */}
         <View style={defaultTheme.container}>
-        <Text
-              style={{ color: defaultTheme.colors.primary, ...defaultTheme.text, ...styles.text }}
-              onPress={goToDadosUser}
-            >
-              Dados User
-            </Text>
+          
+          {/* Retirar link depois de inserir na área user */}
+          <Text
+            style={{
+              color: defaultTheme.colors.primary,
+              ...defaultTheme.text,
+              ...styles.text,
+            }}
+            onPress={goToDadosUser}
+          >
+            Dados User
+          </Text>
 
           <Text style={defaultTheme.title}>Cadastro</Text>
-          <Text style={{...defaultTheme.subtitle, ...styles.subtitle}}>
+          <Text style={{ ...defaultTheme.subtitle, ...styles.subtitle }}>
             Informe seus dados para criar uma conta
           </Text>
           <FormInput
@@ -332,9 +339,15 @@ export default function Cadastro() {
           />
           <FormButton onPress={handleCadastro}>Cadastrar</FormButton>
           <View style={styles.subtitleContainer}>
-            <Text style={{...defaultTheme.text, ...styles.text}}>Já é cadastrado?</Text>
+            <Text style={{ ...defaultTheme.text, ...styles.text }}>
+              Já é cadastrado?
+            </Text>
             <Text
-              style={{ color: defaultTheme.colors.primary, ...defaultTheme.text, ...styles.text }}
+              style={{
+                color: defaultTheme.colors.primary,
+                ...defaultTheme.text,
+                ...styles.text,
+              }}
               onPress={goToLogin}
             >
               Clique aqui para fazer login
