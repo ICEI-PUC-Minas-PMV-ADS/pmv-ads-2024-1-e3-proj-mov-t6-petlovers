@@ -13,6 +13,7 @@ import CadastroPet from '../pages/CadastroPet';
 import Politica from '../pages/Politica';
 import Busca from  '../pages/BuscarPet';
 import BuscarPet from '../pages/BuscarPet';
+import Avaliacoes from '../pages/Avaliacoes';
 
 
 // Navegacao bottom navigation
@@ -85,7 +86,9 @@ export default function Navigations() {
           <Stack.Screen name="CadastroPet" component={CadastroPet} options={{ headerShown: false }}  />
           <Stack.Screen name="Politica" component={Politica} options={{ headerShown: false }}  />
           <Stack.Screen name="Busca" component={BuscarPet} options={{ headerShown: false }}  />
+          <Stack.Screen name="Avaliacoes" component={Avaliacoes} options={{ headerShown: false }}  />
         {/* Criar aqui outras navegacoes  */}
+        
         </Stack.Navigator>
       </NavigationContainer>
     );
