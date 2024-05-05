@@ -20,6 +20,10 @@ const Separator = () => {
     navigation.navigate('Politica');
     };
 
+    const goToTermos=() =>{
+      navigation.navigate('Termos');
+      };
+
     return (
     <KeyboardAwareScrollView style={{ flex: 1 }}>
       
@@ -46,7 +50,7 @@ const Separator = () => {
            5. Por fim, avalie sua experiência para que possamos sempre melhorar nosso app!
         </Text>
 
-        <Text style = {styles.text2} onPress={goToPolitica}>Termos e Condições</Text>
+        <Text style = {styles.text2} onPress={goToTermos}>Termos e Condições</Text>
         <Separator/>
         <Text style = {styles.text2} onPress={goToPolitica}>Política de Privacidade</Text>
         <Separator/>

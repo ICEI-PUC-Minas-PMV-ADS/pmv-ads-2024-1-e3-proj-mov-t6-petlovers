@@ -13,13 +13,19 @@ import CadastroPet from '../pages/CadastroPet';
 import Politica from '../pages/Politica';
 import BuscarPet from '../pages/BuscarPet';
 import InfoPet from '../pages/InfoPet';
-
+import MinhaContaScreen from '../pages/MinhaConta';
+import VerPerfil from '../pages/VerPerfil';
+import MeusDados from '../pages/MeusDados';
+import DadosPet from '../pages/DadosPet';
+import ExcluirConta from '../pages/ExcluirConta';
+import Termos from '../pages/Termos';
 
 // Navegacao bottom navigation
 const homeName = 'Home';
 const sobreName = 'Sobre nos';
 const notificacoesName = 'Notificacoes';
 const loginName = 'Login';
+const MinhaConta = 'Minha Conta';
 
 const Tab = createBottomTabNavigator();
 
@@ -86,6 +92,12 @@ export default function Navigations() {
           <Stack.Screen name="Politica" component={Politica} options={{ headerShown: false }}  />
           <Stack.Screen name="Busca" component={BuscarPet} options={{ headerShown: false }}  />
           <Stack.Screen name="InfoPet" component={InfoPet} options={{ headerShown: false }}  />
+          <Stack.Screen name="MinhaConta" component={MinhaContaScreen} options={{ headerShown: false }}  />
+          <Stack.Screen name="VerPerfil" component={VerPerfil} options={{ headerShown: false }}  />
+          <Stack.Screen name="DadosPet" component={DadosPet} options={{ headerShown: false }}  />
+          <Stack.Screen name="MeusDados" component={MeusDados} options={{ headerShown: false }}  />
+          <Stack.Screen name="ExcluirConta" component={ExcluirConta} options={{ headerShown: false }}  />
+          <Stack.Screen name="Termos" component={Termos} options={{ headerShown: false }}  />
         {/* Criar aqui outras navegacoes  */}
         </Stack.Navigator>
       </NavigationContainer>

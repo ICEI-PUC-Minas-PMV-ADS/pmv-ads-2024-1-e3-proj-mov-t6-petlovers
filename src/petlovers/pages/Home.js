@@ -4,24 +4,32 @@ import CardPet from "./CardPet";
 import { useNavigation } from '@react-navigation/native';
 import { Button } from 'react-native-paper';
 
-
 export default function Home() {
-    
     const navigation = useNavigation();
 
     const goToCadastro = () => {
         navigation.navigate('Cadastro');
     };
+
     const goToBusca = () => {
         navigation.navigate('Busca');
     };
+
+    const goToMinhaConta = () => {
+        navigation.navigate('MinhaConta');
+    };
+
+    const goToVerPerfil = () => {
+        navigation.navigate('VerPerfil');
+    };
+
     return (
         <SafeAreaView style={{ flex: 1 }}>
             <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
                 <ScrollView contentContainerStyle={{flexGrow: 1}}>
                     <View style={styles.header}>
-                        <Text style={styles.tittle}>Cadastre o seu pet na nossa comunidade</Text>
-                        <Button onPress={goToCadastro} style={styles.btn} ><Text style={styles.textBtn}>Cadastrar</Text></Button>
+                        <Text style={styles.title}>Cadastre o seu pet na nossa comunidade</Text>
+                        <Button onPress={goToCadastro} style={styles.btn}><Text style={styles.textBtn}>Cadastrar</Text></Button>
                     </View>
 
                     <Text style={styles.text}>Raças mais procuradas</Text>
@@ -41,7 +49,6 @@ export default function Home() {
                             <Image style={styles.imgminicards} source={require('../assets/image/golden.jpg')} />
                             <Text style={styles.text1}>Golden</Text>
                         </View>
-
                     </View>
 
                     <View style={styles.align}>
@@ -49,8 +56,12 @@ export default function Home() {
                         <Text onPress={goToBusca} style={styles.text2}>ver mais</Text>
                     </View>
 
-                    <CardPet />
+                    <View style={styles.align}>
+                        <Text style={styles.text}>Minha Conta</Text>
+                        <Text onPress={goToMinhaConta} style={styles.text2}>ver mais</Text>
+                    </View>
 
+                    <CardPet />
                 </ScrollView>
             </View>
         </SafeAreaView>
@@ -58,7 +69,6 @@ export default function Home() {
 }
 
 const styles = StyleSheet.create({
-
     header: {
         width: 320,
         height: 120,
@@ -66,7 +76,7 @@ const styles = StyleSheet.create({
         backgroundColor: '#827397',
         marginTop: 20,
     },
-    tittle: {
+    title: {
         marginLeft: 20,
         color: '#ffffff',
         fontSize: 20,
@@ -79,20 +89,16 @@ const styles = StyleSheet.create({
         marginLeft: 20,
         marginTop: 10,
         borderRadius: 7.53,
-
     },
     textBtn: {
         fontWeight: 'bold',
         color: '#827397',
-
-
     },
     text: {
         color: '#5F5B5B',
         fontSize: 20,
         marginTop: 40,
         fontWeight: 'bold',
-
     },
     text1: {
         color: '#5F5B5B',
@@ -103,17 +109,15 @@ const styles = StyleSheet.create({
     text2: {
         color: '#5F5B5B',
         fontSize: 12,
-        marginTop: 48,
-        marginLeft: 88,
-
-
+        marginTop: 40, // ajuste aqui para alinhar verticalmente
     },
-
     align: {
         flexDirection: 'row',
-
+        alignItems: 'flex-start', // alinha os elementos no topo
+        justifyContent: 'space-between', // distribui o espaço entre os elementos
+        paddingHorizontal: 20,
+        marginTop: 20,
     },
-
     minicards: {
         flexDirection: 'row',
         flexWrap: 'wrap',
@@ -140,16 +144,12 @@ const styles = StyleSheet.create({
         marginTop: 15,
         alignSelf: 'flex-start',
         marginBottom: 15,
-
     },
-
     cards1: {
         width: 180,
         borderRadius: 5,
         backgroundColor: '#ffffff',
         marginRight: 10,
-
-
     },
     imgcards: {
         width: 180,
@@ -157,4 +157,4 @@ const styles = StyleSheet.create({
         borderRadius: 5,
         borderBottomRightRadius: 25,
     }
-})
+});
