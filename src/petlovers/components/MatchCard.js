@@ -5,18 +5,17 @@ import SwipeCards from 'react-native-swipe-cards';
 import Icon from 'react-native-vector-icons/Ionicons';
 import { useNavigation } from '@react-navigation/native';
 
-
 import { getAllPetsAPI_URL } from "../apiConfig";
 import NoMoreCards from './NoMoreCards';
 
+import { LogBox } from 'react-native';
 
 
-const CardComponent = ({ item, handleLike, handleDislike, handleCardPress}) => (
-    
+const CardComponent = ({ item, handleLike, handleDislike, handleCardPress }) => (
   <Card style={styles.card}>
     <Card.Cover
       source={{ uri: item.imageURL }}
-      style={{ height: 400 , borderRadius: 0 }}
+      style={{ height: 400, borderRadius: 0 }}
       resizeMode="cover"
     />
     <View style={styles.petData}>
@@ -28,50 +27,53 @@ const CardComponent = ({ item, handleLike, handleDislike, handleCardPress}) => (
       </View>
     </View>
     <View style={styles.buttonContainer}>
-      <TouchableOpacity onPress={handleDislike} style={[styles.button, styles.likeButton]}>
+      <TouchableOpacity onPress={() => handleDislike()} style={[styles.button, styles.likeButton]}>
         <Text style={[styles.buttonText, { color: 'yellow' }]}>✖️</Text>
       </TouchableOpacity>
       <TouchableOpacity onPress={() => handleCardPress(item.id, item.nome, item.idade, item.cidade, item.imageURL, item.estado, item.sobre, item.raca, item.sexo, item.cor, item.porte)} style={[styles.buttonInfo, styles.infoButton]}>
         <Icon name="information-circle" size={29} color="blue" />
       </TouchableOpacity>
-      <TouchableOpacity onPress={handleLike} style={[styles.button, styles.dislikeButton]}>
+      <TouchableOpacity onPress={() => handleLike()} style={[styles.button, styles.dislikeButton]}>
         <Text style={styles.buttonText}>♥️</Text>
       </TouchableOpacity>
     </View>
   </Card>
 );
 
-  
 const MatchCard = () => {
   const [data, setData] = useState([]);
   const navigation = useNavigation();
-  const swipeCardsRef = useRef(null);
+  const swiperRef = useRef(null);
 
   useEffect(() => {
-    fetch(getAllPetsAPI_URL) 
+    fetch(getAllPetsAPI_URL)
       .then((response) => response.json())
       .then((data) => setData(data.data))
       .catch((error) => console.error('Error:', error));
   }, []);
 
+  useEffect(() => {
+    LogBox.ignoreLogs(['Animated: `useNativeDriver`']);
+}, [])
+
   const handleLike = () => {
-    console.log(swipeCardsRef.current); 
-    // Lógica para quando o usuário curte um perfil + swipe
+    //swiperRef.current.swipeRight();
+    // Lógica para quando o usuário curte um perfil 
   };
 
   const handleDislike = () => {
-    console.log(swipeCardsRef.current); 
-    // Lógica para quando o usuário rejeita um perfil + swipe
+    //swiperRef.current.swipeLeft();
+    // Lógica para quando o usuário rejeita um perfil 
   };
 
   const handleCardPress = (id, nome, idade, cidade, imageURL, estado, sobre, raca, sexo, cor, porte) => {
-    navigation.navigate('InfoPet', { id, nome, idade, cidade, imageURL, estado, sobre, raca, sexo, cor, porte}); 
+    navigation.navigate('InfoPet', { id, nome, idade, cidade, imageURL, estado, sobre, raca, sexo, cor, porte });
   };
 
   return (
     <View style={styles.container}>
       <SwipeCards
-        ref={swipeCardsRef}
+        ref={swiperRef}
         cards={data}
         renderCard={(item) => <CardComponent item={item} handleLike={handleLike} handleDislike={handleDislike} handleCardPress={handleCardPress} />}
         renderNoMoreCards={() => <NoMoreCards />}
@@ -80,7 +82,6 @@ const MatchCard = () => {
     </View>
   );
 };
-
 
 
 const styles = StyleSheet.create({

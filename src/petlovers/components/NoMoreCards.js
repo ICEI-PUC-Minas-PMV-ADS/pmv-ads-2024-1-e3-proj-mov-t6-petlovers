@@ -3,7 +3,7 @@ import { View, Text, StyleSheet } from 'react-native';
 
 const NoMoreCards = () => (
   <View style={styles.card}>
-    <Text style={styles.noMoreCardsText}>Ops, não há mais perfis!</Text>
+    <Text style={styles.noMoreCardsText}>Não há mais perfis!</Text>
   </View>
 );
 

@@ -116,7 +116,7 @@ const styles = StyleSheet.create({
       },
       containersobre: {
         marginTop: 20,
-        marginBottom: 20,
+        marginBottom: 15,
       },
       titulo: {
         fontSize: 20, // Mesmo estilo do nome
@@ -134,13 +134,14 @@ const styles = StyleSheet.create({
         fontSize: 15,
         fontWeight: 'bold',
         marginTop: 10,
-        marginBottom: 5,
+        marginBottom: 0,
         color: "#827397",
       },
       titletutor: {
         fontSize: 15,
         fontWeight: 'bold',
         marginBottom: 5,
+        marginTop: -15,
         color: "#827397",
       },
       tutor: {
