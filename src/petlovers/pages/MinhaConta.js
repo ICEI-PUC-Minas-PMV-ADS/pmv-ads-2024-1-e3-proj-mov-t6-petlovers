@@ -5,10 +5,6 @@ import ArrowLeft from "../components/ArrowLeft";
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 
 export default function MinhaConta({ navigation }) {
-  const goToMinhaConta = () => {
-    navigation.navigate('MinhaConta');
-  };
-  
   const goToVerPerfil = () => {
     navigation.navigate('VerPerfil');
   };
@@ -30,34 +26,26 @@ export default function MinhaConta({ navigation }) {
   };
 
   return (
-    <SafeAreaView style={styles.safeArea}>
-      <ArrowLeft />
-      <KeyboardAwareScrollView contentContainerStyle={styles.container}>
+    <SafeAreaView style={styles.container}>
+      <ArrowLeft style={styles.arrow} />
+      <KeyboardAwareScrollView contentContainerStyle={styles.scrollViewContent}>
         <Text style={styles.title}>Minha Conta</Text>
-        <View style={styles.item}>
+        <TouchableOpacity style={styles.item} onPress={goToVerPerfil}>
           <Text style={styles.subTitle}>Ver Perfil Pet</Text>
-          <TouchableOpacity onPress={goToVerPerfil}>
-            <Text style={styles.icon}>&gt;</Text> {/* Símbolo de maior */}
-          </TouchableOpacity>
-        </View>
-        <View style={styles.item}>
+          <Text style={styles.icon}>&gt;</Text>
+        </TouchableOpacity>
+        <TouchableOpacity style={styles.item} onPress={goToDadosPet}>
           <Text style={styles.subTitle}>Editar dados pet</Text>
-          <TouchableOpacity onPress={goToDadosPet}>
-            <Text style={styles.icon}>&gt;</Text> {/* Símbolo de maior */}
-          </TouchableOpacity>
-        </View>
-        <View style={styles.item}>
+          <Text style={styles.icon}>&gt;</Text>
+        </TouchableOpacity>
+        <TouchableOpacity style={styles.item} onPress={goToMeusDados}>
           <Text style={styles.subTitle}>Editar meus dados</Text>
-          <TouchableOpacity onPress={goToMeusDados}>
-            <Text style={styles.icon}>&gt;</Text> {/* Símbolo de maior */}
-          </TouchableOpacity>
-        </View>
-        <View style={styles.item}>
+          <Text style={styles.icon}>&gt;</Text>
+        </TouchableOpacity>
+        <TouchableOpacity style={styles.item} onPress={goToExcluirConta}>
           <Text style={styles.subTitle}>Excluir Conta</Text>
-          <TouchableOpacity onPress={goToExcluirConta}>
-            <Text style={styles.icon}>&gt;</Text> {/* Símbolo de maior */}
-          </TouchableOpacity>
-        </View>
+          <Text style={styles.icon}>&gt;</Text>
+        </TouchableOpacity>
         <TouchableOpacity onPress={handleLogout} style={styles.logoutButton}>
           <Text style={styles.logoutText}>Sair</Text>
         </TouchableOpacity>
@@ -67,15 +55,20 @@ export default function MinhaConta({ navigation }) {
 }
 
 const styles = StyleSheet.create({
-  safeArea: {
+  container: {
     flex: 1,
     backgroundColor: 'white',
   },
-  container: {
+  scrollViewContent: {
+    flexGrow: 1,
     paddingHorizontal: 20,
     paddingTop: 20,
-    paddingBottom: 40,
-    justifyContent: 'center',
+    justifyContent: 'flex-start',
+  },
+  arrow: {
+    position: 'absolute',
+    top: 20,
+    left: 20,
   },
   title: {
     fontSize: 24,
@@ -87,17 +80,17 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
+    borderBottomWidth: 1,
+    borderBottomColor: 'gray',
+    paddingBottom: 10,
     marginBottom: 20,
-    borderBottomWidth: 1, // Adicionando borda inferior
-    borderBottomColor: 'gray', // Definindo cor da borda inferior
-    paddingBottom: 10, // Adicionando espaço entre o texto e a borda inferior
   },
   subTitle: {
     fontSize: 18,
   },
   icon: {
     fontSize: 24,
-    color: 'gray', // Alterando a cor para cinza
+    color: 'gray',
   },
   logoutButton: {
     backgroundColor: '#827397', 
@@ -105,7 +98,8 @@ const styles = StyleSheet.create({
     paddingHorizontal: 20,
     borderRadius: 5,
     alignSelf: 'center',
-    marginTop: 20,
+    marginTop: 'auto', // Coloca o botão "Sair" no final da tela
+    marginBottom: 20, // Espaço extra no final da tela
   },
   logoutText: {
     color: 'white',
