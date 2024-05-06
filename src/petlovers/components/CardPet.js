@@ -6,10 +6,11 @@ import { useNavigation } from '@react-navigation/native';
 //API URL dos cards
 import { cardpetsAPI_URL } from "../apiConfig";
 
+
 export default function CardPet() {
     const navigation = useNavigation();
     const [data, setData] = useState([]);
-
+    const goToBusca = () => {navigation.navigate('Busca')};
     // Obtem os dados dos pets no backend
     useEffect(() => {
         fetch(cardpetsAPI_URL) //API URL dos cards
@@ -25,7 +26,10 @@ export default function CardPet() {
 
     return (
         <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-
+            <View style={styles.align}>
+                <Text style={styles.text}>Encontre o par ideal</Text>
+                <Text onPress={goToBusca} style={styles.text2}>ver mais</Text>
+            </View>
             <FlatList
                 horizontal={true}
                 data={data}
@@ -50,17 +54,12 @@ export default function CardPet() {
 
 
 const styles = StyleSheet.create({
-
-
     text: {
         color: '#5F5B5B',
         fontSize: 18,
         marginTop: 20,
         marginLeft: 10,
         fontWeight: 'bold',
-
-
-
     },
     text1: {
         color: '#5F5B5B',
@@ -68,21 +67,15 @@ const styles = StyleSheet.create({
         marginLeft: 5,
         marginTop: 8,
         marginBottom: 15,
-
-
     },
     local: {
         flexDirection: 'row',
-
     },
-
     icon: {
         marginTop: 5,
         marginLeft: 8,
         color: "#827397",
     },
-    
-
     cards1: {
         width: 160,
         borderRadius: 5,
@@ -92,15 +85,22 @@ const styles = StyleSheet.create({
         flexWrap: 'row',
         marginTop: 15,
         alignSelf: 'flex-start',
-
-
     },
-
     imgcards: {
         width: 160,
         height: 150,
         borderRadius: 5,
         borderBottomRightRadius: 25,
+    },
+    align: {
+        marginTop: 30,
+        flexDirection: 'row',
+    },
+    text2: {
+        color: '#5F5B5B',
+        fontSize: 12,
+        marginTop: 20,
+        marginLeft: 88,
     },
 
 })
