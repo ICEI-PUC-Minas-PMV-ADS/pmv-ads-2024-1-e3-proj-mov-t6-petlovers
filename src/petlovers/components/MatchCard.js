@@ -141,7 +141,7 @@ const styles = StyleSheet.create({
     marginLeft: 50,
   },
   container: {
-    marginTop: 100,
+    marginTop: 70,
   },
   text: {
     color: 'white',
