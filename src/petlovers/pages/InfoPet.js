@@ -4,12 +4,13 @@ import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view
 import { Ionicons } from '@expo/vector-icons';
 import { Card } from 'react-native-paper';
 
-import { cardpetsAPI_URL } from "../apiConfig";
+import { userAPI_URL  } from "../apiConfig";
 import ArrowLeft from "../components/ArrowLeft";
 
 
 export default function InfoPet({route}) { //rota com os parametros para renderizar o pet clicado 
-    const { imageURL, nome, idade, sexo, cidade, estado, sobre , cor, raca, porte} = route.params;
+    const { imageURL, nome, idade, sexo, cidade, estado, sobre , cor, raca, porte, userId} = route.params;
+
 
     return (
       <SafeAreaView>
@@ -56,7 +57,7 @@ export default function InfoPet({route}) { //rota com os parametros para renderi
               </Text>
 
               <Text style={styles.titletutor}>Tutor</Text>
-              <Text style={[styles.tutor, styles.marginBottom]}>Joana</Text>
+              <Text style={[styles.tutor, styles.marginBottom]}> {userId}</Text>
             </View>
           </View>
         </KeyboardAwareScrollView>
