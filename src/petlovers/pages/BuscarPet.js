@@ -5,6 +5,7 @@ import ArrowLeft from "../components/ArrowLeft";
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 
 import MatchCard from "../components/MatchCard";
+import SearchBar from "../components/SearchBar";
 
 
 export default function BuscarPet() {
@@ -13,6 +14,7 @@ export default function BuscarPet() {
             <ArrowLeft />
             <KeyboardAwareScrollView>
                 <View>
+                    <SearchBar />
                     <MatchCard />
                 </View>
             </KeyboardAwareScrollView>

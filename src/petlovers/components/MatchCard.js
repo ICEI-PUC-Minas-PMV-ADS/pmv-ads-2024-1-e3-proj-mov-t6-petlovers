@@ -142,7 +142,7 @@ const styles = StyleSheet.create({
     marginLeft: 50,
   },
   container: {
-    marginTop: 70,
+    marginTop: 30,
   },
   text: {
     color: 'white',
