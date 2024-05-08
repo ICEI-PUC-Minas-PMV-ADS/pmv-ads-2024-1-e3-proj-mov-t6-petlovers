@@ -39,8 +39,9 @@ export default function Home() {
                             <Image style={styles.imgminicards} source={require('../assets/image/golden.jpg')} />
                             <Text style={styles.text1}>Golden</Text>
                         </View>
-
+                        
                     </View>
+                    
                     <CardPet />
 
                     {/* <View>
