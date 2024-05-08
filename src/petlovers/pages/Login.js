@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Text, SafeAreaView, StyleSheet, View } from 'react-native';
+import { Text, SafeAreaView, StyleSheet, View, TouchableOpacity } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
@@ -59,6 +59,12 @@ export default function Login() {
         <View style={styles.signupContainer}>
           <Text style={styles.signupText}>Não possui conta?</Text>
           <Text style={styles.signupText2} onPress={goToCadastro}>Cadastre-se aqui</Text>
+        </View>
+        <View style={styles.signupContainer}>
+          <Text style={styles.signupText}>Minha Conta</Text>
+          <TouchableOpacity onPress={() => navigation.navigate('MinhaConta')}>
+            <Text style={styles.signupText2}>Ver Mais</Text>
+          </TouchableOpacity>
         </View>
       </View>
     </SafeAreaView>

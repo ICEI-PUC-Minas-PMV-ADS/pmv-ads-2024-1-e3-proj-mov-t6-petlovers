@@ -3,6 +3,7 @@ import { StyleSheet, View, Text, ScrollView} from "react-native";
 import { Button } from 'react-native-paper';
 import { useNavigation } from '@react-navigation/native'; 
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
+import BannerSobre from "../components/BannerSobre";
 
 const Separator = () => {
   return <View style={styles.separator} />;
@@ -20,14 +21,15 @@ const Separator = () => {
     navigation.navigate('Politica');
     };
 
+    const goToTermos=() =>{
+      navigation.navigate('Termos');
+      };
+
     return (
     <KeyboardAwareScrollView style={{ flex: 1 }}>
       
     <View style={{ flex:1, alignItems: 'center', justifyContent: 'center'}}> 
-           <View style={styles.header}>
-                <Text style={styles.tittle}>Descubra o match perfeito para seu Pet!</Text>
-                <Button onPress={goToCadastro} style={styles.btn} ><Text style={styles.textBtn}>Cadastrar</Text></Button>
-            </View>
+              <BannerSobre />
 
 
       <View style = {styles.container}> 
@@ -46,7 +48,7 @@ const Separator = () => {
            5. Por fim, avalie sua experiência para que possamos sempre melhorar nosso app!
         </Text>
 
-        <Text style = {styles.text2} onPress={goToPolitica}>Termos e Condições</Text>
+        <Text style = {styles.text2} onPress={goToTermos}>Termos e Condições</Text>
         <Separator/>
         <Text style = {styles.text2} onPress={goToPolitica}>Política de Privacidade</Text>
         <Separator/>
@@ -117,5 +119,7 @@ const styles = StyleSheet.create ({
         flexDirection: 'row',
 
     },
+  
+  
 
     })
