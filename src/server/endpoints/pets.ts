@@ -45,13 +45,11 @@ export async function handleAllPetsRequest(req: Request, res: Response) {
   try {
       const responseData: Pet[] = []
 
-      // Firestore Database: Obter todos os pets cadastrados
       const queryPets = await admin
           .firestore()
           .collection("pets")
           .get();
 
-      // Retornar lista de pets
       queryPets.forEach((doc: any) => responseData.push(doc.data()));
       return res.status(200).json({ data: responseData });
   } catch (error) {
@@ -61,12 +59,11 @@ export async function handleAllPetsRequest(req: Request, res: Response) {
 }
 
 
-//funcao obter dados de 4 pets 
+//funcao obter dados somente de alguns pets
 export async function handleFourPetsRequest(req: Request, res: Response) {
   try {
       const responseData: Pet[] = []
 
-      // obter apenas 4 pets cadastrados
       const queryPets = await admin
           .firestore()
           .collection("pets")
@@ -79,5 +76,26 @@ export async function handleFourPetsRequest(req: Request, res: Response) {
   } catch (error) {
     console.error("Erro ao obter a lista de pets:", error);
     return res.status(500).json({ message: "Erro interno do servidor" });
+  }
+}
+
+
+//Update dados pet
+export async function handleUpdatePetData(req: Request, res: Response) {
+  try {
+    const petId = req.params.id; // obtendo o ID do pet da URL
+    const newData = req.body; // os novos dados do pet enviados no corpo da requisição
+
+    // Atualizando os dados do pet no Firestore
+    await admin.firestore().collection("pets").doc(petId).update(newData);
+
+    // Recuperando os dados atualizados do pet
+    const updatedPet = await admin.firestore().collection("pets").doc(petId).get();
+    
+    // Retornando os dados atualizados do pet como resposta
+    return res.status(200).json({ data: updatedPet.data() });
+  } catch (error) {
+    console.error("Erro ao editar dados do pet:", error);
+    return res.status(500).json({ message: error });
   }
 }

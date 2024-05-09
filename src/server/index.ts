@@ -14,6 +14,7 @@ import { handleAllPetsRequest } from "./endpoints/home";
 import { handleImageUploadRequest } from './endpoints/images';
 import { handleFourPetsRequest } from "./endpoints/pets";
 import { handleRatingRequest } from "./endpoints/avaliacao";
+import { handleUpdatePetData } from "./endpoints/pets";
 import { handleTopRatingRequest } from "./endpoints/avaliacao";
 
 
@@ -63,7 +64,7 @@ serverApp.post("/api/user", handleUserRequest);
 // endpoint all pets
 serverApp.get("/api/allpets", handleAllPetsRequest);
 
-//endpoint para renderizar 4 pets na home
+//endpoint para renderizar 2 pets na home
 serverApp.get("/api/fourpets", handleFourPetsRequest);
 
 //endpoint para renderizar as 5 primeiras avaliações
@@ -71,6 +72,9 @@ serverApp.get("/api/avaliacao", handleTopRatingRequest);
 
 // endpoint para cadastrar avaliação
 serverApp.post("/api/avaliacao", handleRatingRequest);
+
+//atualizar dados pet
+serverApp.put('/api/update-pets/:id', handleUpdatePetData);
 
 
 // Prepara o servidor para iniciar na porta, ouvindo em todas as interfaces de rede disponíveis
