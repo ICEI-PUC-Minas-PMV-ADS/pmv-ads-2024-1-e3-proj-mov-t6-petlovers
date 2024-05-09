@@ -1,10 +1,20 @@
-import React, { useState } from 'react';
-import { Text, SafeAreaView, StyleSheet, View, TouchableOpacity } from 'react-native';
-import { useNavigation } from '@react-navigation/native';
+import React, { useState } from "react";
+import {
+  Text,
+  SafeAreaView,
+  StyleSheet,
+  View,
+  TouchableOpacity,
+} from "react-native";
+import { useNavigation } from "@react-navigation/native";
 
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
-import FormInput from '../components/FormInput';
-import FormButton from '../components/FormButton';
+import FormInput from "../components/FormInput";
+import FormButton from "../components/FormButton";
+import SessionRepository from "../databaseSqlite/SessionRepository";
+//import SQLite from '../databaseSqlite/sqlite';
+
+const repository = new SessionRepository();
 
 export default function Login() {
   const navigation = useNavigation();
@@ -13,26 +23,44 @@ export default function Login() {
   const [error, setError] = useState(null);
 
   const goToCadastro = () => {
-    navigation.navigate('Cadastro');
+    navigation.navigate("Cadastro");
   };
 
   const goToHome = () => {
-    navigation.navigate('Home');
+    navigation.navigate("Home");
+  };
+
+  const create = async (tokenId) => {
+    try {
+      const id = await repository.createSession({
+        accessToken: tokenId,
+      });
+      console.log("Created: ", id);
+      console.log("sessionToken", sessionToken);
+    } catch (error) {
+      console.error("Erro ao criar sessão:", error);
+    }
   };
 
   const loginFunction = async () => {
     const auth = getAuth();
-    signInWithEmailAndPassword(auth, email, password)
-      .then((userCredential) => {
-        // Signed in 
-        goToHome();
-        // ...
-      })
-      .catch((error) => {
-        const errorCode = error.code;
-        const errorMessage = error.message;
-        setError(error.message);
-      });
+    try {
+      
+      const userCredential = await signInWithEmailAndPassword(
+        auth,
+        email,
+        password
+      );
+      console.log(
+        "userCredential._tokenResponse.idToken",
+        userCredential._tokenResponse.idToken
+      );
+      await create(userCredential._tokenResponse.idToken);
+
+      goToHome();
+    } catch (error) {
+      setError(error.message);
+    }
   };
 
   return (
@@ -58,11 +86,13 @@ export default function Login() {
         <FormButton onPress={loginFunction}>Entrar</FormButton>
         <View style={styles.signupContainer}>
           <Text style={styles.signupText}>Não possui conta?</Text>
-          <Text style={styles.signupText2} onPress={goToCadastro}>Cadastre-se aqui</Text>
+          <Text style={styles.signupText2} onPress={goToCadastro}>
+            Cadastre-se aqui
+          </Text>
         </View>
         <View style={styles.signupContainer}>
           <Text style={styles.signupText}>Minha Conta</Text>
-          <TouchableOpacity onPress={() => navigation.navigate('MinhaConta')}>
+          <TouchableOpacity onPress={() => navigation.navigate("MinhaConta")}>
             <Text style={styles.signupText2}>Ver Mais</Text>
           </TouchableOpacity>
         </View>
@@ -77,33 +107,32 @@ const styles = StyleSheet.create({
   },
   container: {
     flex: 1,
-    justifyContent: 'center',
+    justifyContent: "center",
     marginHorizontal: 20,
   },
   title: {
     fontSize: 24,
-    fontWeight: 'bold',
+    fontWeight: "bold",
     marginBottom: 10,
-    textAlign: 'center',
+    textAlign: "center",
   },
   subtitle: {
     fontSize: 15,
     marginBottom: 25,
-    textAlign: 'center',
+    textAlign: "center",
   },
   signupText: {
     fontSize: 15,
-    textAlign: 'center',
+    textAlign: "center",
     marginRight: 5,
   },
   signupContainer: {
-    flexDirection: 'row',
-    justifyContent: 'center',
+    flexDirection: "row",
+    justifyContent: "center",
     marginTop: 20,
   },
   signupText2: {
     fontSize: 15,
-    color: "#827397"
+    color: "#827397",
   },
 });
-

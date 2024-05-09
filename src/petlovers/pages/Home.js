@@ -1,12 +1,9 @@
 import * as React from "react";
-import { View, Text, StyleSheet, Image, ScrollView, SafeAreaView, Button} from "react-native";
+import { View, Text, StyleSheet, Image, ScrollView, SafeAreaView} from "react-native";
 import CardPet from "../components/CardPet";
 import { useNavigation } from '@react-navigation/native';
 import BannerCadastro from "../components/BannerCadastro";
-import Avaliacao from "../components/Avaliacao";
 import { getAuth } from "firebase/auth";
-
-
 
 export default function Home() {
     
