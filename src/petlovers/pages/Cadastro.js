@@ -38,10 +38,6 @@ export default function Cadastro() {
     navigation.navigate("Login");
   };
 
-  const goToDadosUser = () => {
-    navigation.navigate("DadosUser");
-  };
-
   const goToCadastroPet = (userId) => {
     navigation.navigate("CadastroPet", { userId: userId });
   };
@@ -244,18 +240,6 @@ export default function Cadastro() {
 
         {/* Conteúdo do formulário */}
         <View style={defaultTheme.container}>
-          
-          {/* Retirar link depois de inserir na área user */}
-          <Text
-            style={{
-              color: defaultTheme.colors.primary,
-              ...defaultTheme.text,
-              ...styles.text,
-            }}
-            onPress={goToDadosUser}
-          >
-            Dados User
-          </Text>
 
           <Text style={defaultTheme.title}>Cadastro</Text>
           <Text style={{ ...defaultTheme.subtitle, ...styles.subtitle }}>

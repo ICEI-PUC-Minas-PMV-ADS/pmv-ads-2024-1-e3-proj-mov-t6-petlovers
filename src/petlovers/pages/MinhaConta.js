@@ -13,12 +13,8 @@ export default function MinhaConta({ navigation }) {
     navigation.navigate('DadosPet');
   };
   
-  const goToMeusDados = () => {
-    navigation.navigate('MeusDados');
-  };
-  
-  const goToExcluirConta = () => {
-    navigation.navigate('ExcluirConta');
+  const goToDadosUser = () => {
+    navigation.navigate('DadosUser');
   };
   
   const handleLogout = () => {
@@ -38,11 +34,11 @@ export default function MinhaConta({ navigation }) {
           <Text style={styles.subTitle}>Editar dados pet</Text>
           <Text style={styles.icon}>&gt;</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.item} onPress={goToMeusDados}>
+        <TouchableOpacity style={styles.item} onPress={goToDadosUser}>
           <Text style={styles.subTitle}>Editar meus dados</Text>
           <Text style={styles.icon}>&gt;</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.item} onPress={goToExcluirConta}>
+        <TouchableOpacity style={styles.item}>
           <Text style={styles.subTitle}>Excluir Conta</Text>
           <Text style={styles.icon}>&gt;</Text>
         </TouchableOpacity>
