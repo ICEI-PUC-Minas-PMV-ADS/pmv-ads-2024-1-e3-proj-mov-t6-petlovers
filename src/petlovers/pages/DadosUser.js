@@ -19,9 +19,15 @@ import { defaultTheme } from "../components/Themes";
 
 //API URL do cadastro user
 import { userAPI_URL } from "../apiConfig";
+import { getUserByIdAPI_URL } from "../apiConfig";
+import { getAuth, sendPasswordResetEmail } from "firebase/auth";
 
-export default function Cadastro() {
+export default function DadosUser() {
   const navigation = useNavigation();
+
+  const auth = getAuth();
+  const user = auth.currentUser;
+
   const [fullName, setFullName] = useState("");
   const [fullNameError, setFullNameError] = useState("");
   const [birthDate, setBirthDate] = useState("");
@@ -30,17 +36,49 @@ export default function Cadastro() {
   const [whatsappError, setWhatsappError] = useState("");
   const [email, setEmail] = useState("");
   const [emailError, setEmailError] = useState("");
-  const [password, setPassword] = useState("");
-  const [passwordError, setPasswordError] = useState("");
   const [formValid, setFormValid] = useState(false);
 
-  const goToLogin = () => {
-    navigation.navigate("Login");
-  };
+  // Função para obter os dados do usuário
+  useEffect(() => {
+    const fetchUserData = async () => {
+      try {
+        if (!user) return; // Verificar se o usuário está autenticado
+        const userId = user.uid; // ID do usuário autenticado
 
-  const goToCadastroPet = (userId) => {
-    navigation.navigate("CadastroPet", { userId: userId });
-  };
+        const response = await fetch(getUserByIdAPI_URL(userId));
+        const userDataFromServer = await response.json();
+
+        const userDataBD = {
+          fullName: userDataFromServer.full_name,
+          birthDate: userDataFromServer.birth_date,
+          whatsapp: userDataFromServer.whatsapp,
+          email: userDataFromServer.email,
+          userId: userId,
+        };
+
+        setUserData(userDataBD);
+        setFullName(userDataFromServer.full_name);
+        setWhatsapp(userDataFromServer.whatsapp);
+        setEmail(userDataFromServer.email);
+
+        // Formatar a data de nascimento para exibição
+        const formattedBirthDate = userDataFromServer.birth_date
+          .split("T")[0]
+          .split("-")
+          .reverse()
+          .join("/");
+        setBirthDate(formattedBirthDate);
+      } catch (error) {
+        console.error("Erro ao obter dados do usuário:", error);
+      }
+    };
+
+    fetchUserData();
+  }, []);
+
+  {
+    /* VALIDAÇÕES DE FORMULÁRIO */
+  }
 
   // Função para capitalizar o nome completo
   const capitalizeFullName = (name) => {
@@ -67,15 +105,15 @@ export default function Cadastro() {
 
   // Função para validar a data de nascimento
   const validateBirthDate = (text) => {
-    //Formato de data DD/MM/AAAA
+    // Formato de data DD/MM/AAAA
     const regex = /^([0-2][0-9]|3[0-1])\/(0[1-9]|1[0-2])\/\d{4}$/;
 
     if (!text.trim()) {
       setBirthDateError("Campo obrigatório");
-      return false;
+      return { isValid: false, error: "Campo obrigatório" };
     } else if (!regex.test(text)) {
       setBirthDateError("Insira uma data válida");
-      return false;
+      return { isValid: false, error: "Insira uma data válida" };
     }
 
     // Extrai dia, mês e ano
@@ -92,7 +130,7 @@ export default function Cadastro() {
       date.getDate() !== day
     ) {
       setBirthDateError("Insira uma data válida");
-      return false;
+      return { isValid: false, error: "Insira uma data válida" };
     }
 
     // Verifica se o usuário é maior de idade
@@ -101,12 +139,16 @@ export default function Cadastro() {
 
     if (date > eighteenYearsAgo) {
       setBirthDateError("Você deve ter pelo menos 18 anos para se cadastrar");
-      return false;
+      return {
+        isValid: false,
+        error: "Você deve ter pelo menos 18 anos para se cadastrar",
+      };
     }
 
     // Formata a data para o formato ISO 8601
     const formattedDate = `${year}-${month}-${day}`;
 
+    // Retorna um objeto com a propriedade isValid definida como true
     return { isValid: true, formattedDate: formattedDate };
   };
 
@@ -139,44 +181,38 @@ export default function Cadastro() {
     }
   };
 
-  const validatePassword = (text) => {
-    if (!text.trim()) {
-      setPasswordError("Campo obrigatório");
-      return false;
-    } else if (text.length < 6) {
-      setPasswordError("A senha deve ter no mínimo 6 caracteres");
-      return false;
-    } else {
-      setPasswordError(""); // Limpa o erro quando o texto for válido
-      return true;
-    }
-  };
+  const [userData, setUserData] = useState({
+    full_name: "",
+    birth_date: "",
+    whatsapp: "",
+    email: "",
+  });
 
   // Função para validar o formulário
   const validateForm = () => {
-    return (
-      fullName !== "" &&
-      !fullNameError &&
-      birthDate !== "" &&
-      !birthDateError &&
-      whatsapp !== "" &&
-      !whatsappError &&
-      email !== "" &&
-      !emailError &&
-      password !== "" &&
-      !passwordError
-    );
+    const isValid =
+      fullName.trim() !== "" &&
+      birthDate.trim() !== "" &&
+      whatsapp.trim() !== "" &&
+      email.trim() !== "" &&
+      fullNameError === "" &&
+      birthDateError === "" &&
+      whatsappError === "" &&
+      emailError === "";
+
+    return isValid;
   };
 
   // Atualizar estado de validação a cada campo
   useEffect(() => {
     setFormValid(validateForm());
-  }, [fullName, birthDate, whatsapp, email, password]);
+  }, [fullName, birthDate, whatsapp, email]);
 
-  const handleCadastro = async () => {
+  // Função para enviar a atualização dos dados
+  const handleSave = async (userId) => {
     // Verifica se o formulário é válido antes de enviar
     if (!validateForm()) {
-      Alert.alert("Erro", "Por favor, preencha todos os campos");
+      Alert.alert("Erro", "Por favor, preencha os campos corretamente");
       return;
     }
 
@@ -192,41 +228,58 @@ export default function Cadastro() {
       // Capitalizar o nome completo
       const capitalizedFullName = capitalizeFullName(fullName);
 
-      // Enviar os dados do usuário para o backend
-      const response = await fetch(userAPI_URL, {
-        //API URL do cadastro user
-        method: "POST",
+      const response = await fetch(getUserByIdAPI_URL(user.uid), {
+        method: "PATCH",
         headers: {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          full_name: fullName,
-          birth_date: birthDateValidation.formattedDate, //Usa a data formatada
-          whatsapp: whatsapp,
-          email: email,
-          password: password,
+          full_name: capitalizedFullName || userData.fullName,
+          birth_date: birthDateValidation.formattedDate, //Usa a data formatada,
+          whatsapp: whatsapp || userData.whatsapp,
+          email: email || userData.email,
         }),
       });
 
-      // Verificar se a solicitação foi bem-sucedida
       if (response.ok) {
-        // Extrair o ID do usuário da resposta
-        const responseData = await response.json();
-        const userId = responseData.id;
+        // Dados atualizados com sucesso
+        Alert.alert("Sucesso", "Dados atualizados com sucesso.");
 
-        // Cadastro bem-sucedido
-        goToCadastroPet(userId); // Passa o ID do usuário para a página de cadastro de pet
+        // Atualize o estado local com os novos dados do usuário
+        setUserData({
+          ...userData,
+          fullName: capitalizedFullName,
+          birthDate: birthDateValidation.formattedDate,
+          whatsapp,
+          email,
+        });
       } else {
-        // Exibir mensagem de erro
-        const data = await response.json();
-        Alert.alert("Erro", data.message);
+        // Erro ao atualizar dados
+        Alert.alert("Erro", "Erro ao atualizar dados.");
       }
     } catch (error) {
-      // Exibir mensagem de erro genérica
-      console.error("Erro ao cadastrar usuário:", error);
+      console.error("Erro ao salvar dados:", error);
+      Alert.alert("Erro", "Erro ao salvar dados.");
+    }
+  };
+
+  // Função para redefinir a senha
+  const handleResetPassword = async () => {
+    try {
+      // Enviar e-mail de recuperação de senha para o usuário atualmente logado
+      await sendPasswordResetEmail(auth, user.email);
+
+      // Exibir uma mensagem de sucesso para o usuário
+      Alert.alert(
+        "Sucesso",
+        "Um e-mail de recuperação de senha foi enviado para o seu endereço de e-mail."
+      );
+    } catch (error) {
+      // Lidar com erros, se houver algum
+      console.error("Erro ao enviar e-mail de recuperação de senha:", error);
       Alert.alert(
         "Erro",
-        "Falha ao cadastrar usuário. Por favor, tente novamente."
+        "Erro ao enviar e-mail de recuperação de senha. Por favor, tente novamente mais tarde."
       );
     }
   };
@@ -240,21 +293,21 @@ export default function Cadastro() {
 
         {/* Conteúdo do formulário */}
         <View style={defaultTheme.container}>
-
-          <Text style={defaultTheme.title}>Cadastro</Text>
+          <Text style={defaultTheme.title}>Meus dados</Text>
           <Text style={{ ...defaultTheme.subtitle, ...styles.subtitle }}>
-            Informe seus dados para criar uma conta
+            Atualize seu cadastro
           </Text>
           <FormInput
             label="Nome completo"
             value={fullName}
+            editable={true}
             onChangeText={(text) => {
               setFullName(text);
               const isValid = validateFullName(text);
               if (!isValid) {
-                // Função validateFullName
+                /// Função validateFullName
               } else {
-                setFullNameError("");
+                setFullNameError(""); // Limpa o erro quando o texto for válido
               }
             }}
             error={fullNameError}
@@ -263,13 +316,14 @@ export default function Cadastro() {
             label="Data de nascimento"
             keyboardType="number-pad"
             value={birthDate}
+            editable={true}
             onChangeText={(text) => {
               setBirthDate(text);
-              const isValid = validateBirthDate(text);
-              if (!isValid) {
+              const validation = validateBirthDate(text);
+              if (!validation.isValid) {
                 // Função validateBirthDate
               } else {
-                setBirthDateError("");
+                setBirthDateError(""); // Limpa o erro quando a data for válida
               }
             }}
             error={birthDateError}
@@ -278,13 +332,14 @@ export default function Cadastro() {
             label="Contato (WhatsApp)"
             keyboardType="number-pad"
             value={whatsapp}
+            editable={true}
             onChangeText={(text) => {
               setWhatsapp(text);
               const isValid = validateWhatsapp(text);
               if (!isValid) {
                 // Função validateWhatsapp
               } else {
-                setWhatsappError("");
+                setWhatsappError(""); // Limpa o erro quando o texto for válido
               }
             }}
             error={whatsappError}
@@ -294,54 +349,49 @@ export default function Cadastro() {
             keyboardType="email-address"
             autoCapitalize="none"
             value={email}
+            editable={true}
             onChangeText={(text) => {
               setEmail(text);
               const isValid = validateEmail(text);
               if (!isValid) {
                 // Função validateEmail
               } else {
-                setEmailError("");
+                setEmailError(""); // Limpa o erro quando o texto for válido
               }
             }}
             error={emailError}
           />
+          {/*
           <FormInput
-            label="Senha"
+            label="Confirmar senha"
             autoCapitalize="none"
             secureTextEntry={true}
-            value={password}
+            value={userData.password}
             onChangeText={(text) => {
               setPassword(text);
-              const isValid = validatePassword(text);
-              if (!isValid) {
-                // Função validatePassword
-              } else {
-                setPasswordError("");
-              }
             }}
-            error={passwordError}
           />
-          <FormButton onPress={handleCadastro}>Cadastrar</FormButton>
-          <View style={styles.subtitleContainer}>
-            <Text style={{ ...defaultTheme.text, ...styles.text }}>
-              Já é cadastrado?
-            </Text>
-            <Text
-              style={{
-                color: defaultTheme.colors.primary,
-                ...defaultTheme.text,
-                ...styles.text,
-              }}
-              onPress={goToLogin}
+          
+          <Text
+              style={{ color: defaultTheme.colors.primary, ...defaultTheme.text, ...styles.text }}
             >
-              Clique aqui para fazer login
+              Clique aqui para alterar sua senha
             </Text>
-          </View>
 
-          {/* Página Cadastro Pet 
-        <Text style={{ color: defaultTheme.colors.primary, ...styles.text}} onPress={goToCadastroPet}>
-            Cadastro pet
-          </Text>*/}
+            */}
+
+          <FormButton onPress={() => handleSave(userData.userId)}>
+            Salvar
+          </FormButton>
+
+          <TouchableOpacity style={styles.subtitleContainer}>
+            <Text style={styles.subtitle}>
+              Esqueceu sua senha?
+            </Text>
+            <Text style={styles.subtitleLink} onPress={handleResetPassword}>
+              Clique aqui para redefinir.
+            </Text>
+          </TouchableOpacity>
         </View>
       </SafeAreaView>
     </KeyboardAwareScrollView>
@@ -370,6 +420,10 @@ const styles = StyleSheet.create({
   },
   subtitle: {
     marginBottom: 30,
+  },
+  subtitleLink: {
+    color: '#827397',
+    marginLeft: 5,
   },
   text: {
     marginRight: 5,

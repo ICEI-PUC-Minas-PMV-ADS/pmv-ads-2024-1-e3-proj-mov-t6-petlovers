@@ -17,9 +17,9 @@ import Avaliacoes from '../pages/Avaliacoes';
 import Termos from '../pages/Termos';
 import MinhaContaScreen from '../pages/MinhaConta';
 import VerPerfil from '../pages/VerPerfil';
-import MeusDados from '../pages/MeusDados';
 import DadosPet from '../pages/DadosPet';
-import ExcluirConta from '../pages/ExcluirConta';
+import DadosUser from '../pages/DadosUser';
+
 
 // Navegacao bottom navigation
 const homeName = 'Home';
@@ -92,14 +92,13 @@ export default function Navigations() {
           <Stack.Screen name="CadastroPet" component={CadastroPet} options={{ headerShown: false }}  />
           <Stack.Screen name="Politica" component={Politica} options={{ headerShown: false }}  />
           <Stack.Screen name="Busca" component={BuscarPet} options={{ headerShown: false }}  />
+          <Stack.Screen name="DadosUser" component={DadosUser} options={{ headerShown: false }}  />
           <Stack.Screen name="InfoPet" component={InfoPet} options={{ headerShown: false }}  />
           <Stack.Screen name="Avaliacoes" component={Avaliacoes} options={{ headerShown: false }}  />
           <Stack.Screen name="Termos" component={Termos} options={{ headerShown: false }}  />
           <Stack.Screen name="MinhaConta" component={MinhaContaScreen} options={{ headerShown: false }}  />
           <Stack.Screen name="VerPerfil" component={VerPerfil} options={{ headerShown: false }}  />
           <Stack.Screen name="DadosPet" component={DadosPet} options={{ headerShown: false }}  />
-          <Stack.Screen name="MeusDados" component={MeusDados} options={{ headerShown: false }}  />
-          <Stack.Screen name="ExcluirConta" component={ExcluirConta} options={{ headerShown: false }}  />
     
         {/* Criar aqui outras navegacoes  */}
         

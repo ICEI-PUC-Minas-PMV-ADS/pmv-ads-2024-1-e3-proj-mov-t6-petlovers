@@ -10,6 +10,9 @@ import multer from 'multer';
 // Importa o endpoint
 import { handlePetRequest } from "./endpoints/pets";
 import { handleUserRequest } from "./endpoints/users";
+import { getUserById } from "./endpoints/users";
+import { updateUserById } from "./endpoints/users";
+import { deleteUserById } from "./endpoints/users";
 import { handleAllPetsRequest } from "./endpoints/home";
 import { handleImageUploadRequest } from './endpoints/images';
 import { handleFourPetsRequest } from "./endpoints/pets";
@@ -60,6 +63,9 @@ serverApp.post("/api/pet", handlePetRequest);
 
 // endpoint users
 serverApp.post("/api/user", handleUserRequest);
+serverApp.get("/api/user/:id", getUserById)
+serverApp.patch("/api/user/:id", updateUserById)
+serverApp.delete("/api/user/:id", deleteUserById);
 
 // endpoint all pets
 serverApp.get("/api/allpets", handleAllPetsRequest);
