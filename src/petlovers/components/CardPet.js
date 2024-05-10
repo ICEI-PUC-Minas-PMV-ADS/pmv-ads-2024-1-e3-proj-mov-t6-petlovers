@@ -20,8 +20,8 @@ export default function CardPet() {
     }, []);
 
     //navegacao para a tela info com os parametros salvos
-    const handleCardPress = (id, nome, idade, cidade, imageURL, estado, sobre, raca, sexo, cor, porte) => {
-        navigation.navigate('InfoPet', { id, nome, idade, cidade, imageURL, estado, sobre, raca, sexo, cor, porte}); 
+    const handleCardPress = (userId, nome, idade, cidade, imageURL, estado, sobre, raca, sexo, cor, porte) => {
+        navigation.navigate('InfoPet', { userId, nome, idade, cidade, imageURL, estado, sobre, raca, sexo, cor, porte}); 
     };
 
     return (
@@ -34,7 +34,7 @@ export default function CardPet() {
                 horizontal={true}
                 data={data}
                 renderItem={({ item }) => (
-                    <TouchableOpacity onPress={() => handleCardPress(item.id, item.nome, item.idade, item.cidade, item.imageURL, item.estado, item.sobre, item.raca, item.sexo, item.cor, item.porte)} style={{ paddingBottom: 70 }}> 
+                    <TouchableOpacity onPress={() => handleCardPress(item.userId, item.nome, item.idade, item.cidade, item.imageURL, item.estado, item.sobre, item.raca, item.sexo, item.cor, item.porte)} style={{ paddingBottom: 70 }}> 
                     <View style={styles.cards1}>
                         <Image style={styles.imgcards} source={{ uri: item.imageURL }} />
                         <Text key={item.id} style={styles.text}>{item.nome}, {item.idade} anos</Text>

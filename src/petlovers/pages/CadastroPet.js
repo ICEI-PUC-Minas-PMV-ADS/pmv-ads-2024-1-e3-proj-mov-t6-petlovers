@@ -68,6 +68,7 @@ const CadastroPet = ({ navigation }) => {
         const petimageAPI_URL = `${petAPI_URL}/${petId}/images`;
 
         Alert.alert("Sucesso", "Pet cadastrado com sucesso!");
+       
 
         // Limpar os campos após o cadastro
         setNome("");
@@ -91,12 +92,14 @@ const CadastroPet = ({ navigation }) => {
 
         navigation.navigate('Login');
       } else {
-        throw new Error("Falha ao cadastrar pet");
+        const errorMessage = await response.text();
+        throw new Error(`Falha ao cadastrar pet: ${response.status} - ${errorMessage}`);
       }
     } catch (error) {
+      console.error("Erro na resposta da requisição:", error);
       Alert.alert(
         "Erro",
-        "Falha ao cadastrar pet. Por favor, tente novamente mais tarde."
+        "Falha ao cadastrar pet. Por favor, tente novamente mais tarde.", 
       );
     }
   };
