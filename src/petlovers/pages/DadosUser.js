@@ -21,8 +21,13 @@ import { defaultTheme } from "../components/Themes";
 import { userAPI_URL } from "../apiConfig";
 import { getUserByIdAPI_URL } from "../apiConfig";
 
+import { getAuth } from "firebase/auth";
+
 export default function DadosUser() {
   const navigation = useNavigation();
+
+  const auth = getAuth();
+  const user = auth.currentUser;
 
   const [fullName, setFullName] = useState("");
   const [fullNameError, setFullNameError] = useState("");
@@ -38,7 +43,9 @@ export default function DadosUser() {
   useEffect(() => {
     const fetchUserData = async () => {
       try {
-        const userId = "7cA33UHzjYYFDSVEbhOYszj50303"; // ID do usuário
+        if (!user) return; // Verificar se o usuário está autenticado
+        const userId = user.uid; // ID do usuário autenticado
+
         const response = await fetch(getUserByIdAPI_URL(userId));
         const userDataFromServer = await response.json();
 
@@ -235,7 +242,7 @@ export default function DadosUser() {
       // Capitalizar o nome completo
       const capitalizedFullName = capitalizeFullName(fullName);
 
-      const response = await fetch(getUserByIdAPI_URL(userId), {
+      const response = await fetch(getUserByIdAPI_URL(user.uid), {
         method: "PATCH",
         headers: {
           "Content-Type": "application/json",
