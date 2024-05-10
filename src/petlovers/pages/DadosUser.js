@@ -20,7 +20,7 @@ import { defaultTheme } from "../components/Themes";
 //API URL do cadastro user
 import { userAPI_URL } from "../apiConfig";
 import { getUserByIdAPI_URL } from "../apiConfig";
-import { getAuth } from "firebase/auth";
+import { getAuth, sendPasswordResetEmail } from "firebase/auth";
 
 export default function DadosUser() {
   const navigation = useNavigation();
@@ -68,7 +68,6 @@ export default function DadosUser() {
           .reverse()
           .join("/");
         setBirthDate(formattedBirthDate);
-
       } catch (error) {
         console.error("Erro ao obter dados do usuário:", error);
       }
@@ -191,7 +190,6 @@ export default function DadosUser() {
 
   // Função para validar o formulário
   const validateForm = () => {
-
     const isValid =
       fullName.trim() !== "" &&
       birthDate.trim() !== "" &&
@@ -265,41 +263,25 @@ export default function DadosUser() {
     }
   };
 
-  // Função para excluir a conta
-  const handleDeleteAccount = async (userId) => {
-    // Exibir um alerta de confirmação antes de excluir a conta
-    Alert.alert(
-      "Excluir conta",
-      "Tem certeza de que deseja excluir sua conta? Esta ação é irreversível.",
-      [
-        {
-          text: "Cancelar",
-          style: "cancel",
-        },
-        {
-          text: "Excluir",
-          onPress: async () => {
-            try {
-              const response = await fetch(getUserByIdAPI_URL(userId), {
-                method: "DELETE",
-              });
+  // Função para redefinir a senha
+  const handleResetPassword = async () => {
+    try {
+      // Enviar e-mail de recuperação de senha para o usuário atualmente logado
+      await sendPasswordResetEmail(auth, user.email);
 
-              if (response.ok) {
-                // Conta excluída com sucesso
-                Alert.alert("Sucesso", "Sua conta foi excluída com sucesso.");
-                // Navegar para a tela de login ou outra tela após excluir a conta
-              } else {
-                // Erro ao excluir a conta
-                Alert.alert("Erro", "Erro ao excluir sua conta.");
-              }
-            } catch (error) {
-              console.error("Erro ao excluir conta:", error);
-              Alert.alert("Erro", "Erro ao excluir sua conta.");
-            }
-          },
-        },
-      ]
-    );
+      // Exibir uma mensagem de sucesso para o usuário
+      Alert.alert(
+        "Sucesso",
+        "Um e-mail de recuperação de senha foi enviado para o seu endereço de e-mail."
+      );
+    } catch (error) {
+      // Lidar com erros, se houver algum
+      console.error("Erro ao enviar e-mail de recuperação de senha:", error);
+      Alert.alert(
+        "Erro",
+        "Erro ao enviar e-mail de recuperação de senha. Por favor, tente novamente mais tarde."
+      );
+    }
   };
 
   return (
@@ -402,7 +384,14 @@ export default function DadosUser() {
             Salvar
           </FormButton>
 
-          <View style={styles.subtitleContainer}></View>
+          <TouchableOpacity style={styles.subtitleContainer}>
+            <Text style={styles.subtitle}>
+              Esqueceu sua senha?
+            </Text>
+            <Text style={styles.subtitleLink} onPress={handleResetPassword}>
+              Clique aqui para redefinir.
+            </Text>
+          </TouchableOpacity>
         </View>
       </SafeAreaView>
     </KeyboardAwareScrollView>
@@ -431,6 +420,10 @@ const styles = StyleSheet.create({
   },
   subtitle: {
     marginBottom: 30,
+  },
+  subtitleLink: {
+    color: '#827397',
+    marginLeft: 5,
   },
   text: {
     marginRight: 5,
