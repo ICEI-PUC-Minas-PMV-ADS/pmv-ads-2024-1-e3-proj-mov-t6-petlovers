@@ -1,10 +1,17 @@
 import React from 'react';
 import { Appbar, Text } from 'react-native-paper';
+import { getAuth } from "firebase/auth";
+
 
 const Header = ({ showHeader }) => {
   if (!showHeader) {
     return null;
   }
+
+
+
+  const auth = getAuth();
+  const user = auth.currentUser;
 
   return (
     <Appbar.Header style={styles.header}>
@@ -13,7 +20,11 @@ const Header = ({ showHeader }) => {
         titleStyle={styles.title}
         style={styles.content}
       />
-      <Text style={styles.nameLogon} >Olá, teste!</Text>
+
+
+      {user ? (<Text style={styles.nameLogon} >Olá, {user.displayName}! </Text>) : ('')}
+     
+
     </Appbar.Header>
   );
 };
@@ -25,14 +36,14 @@ const styles = {
   title: {
     fontWeight: 'bold',
     color: '#5F5B5B',
-    marginLeft: -20, 
+    marginLeft: -20,
   },
   content: {
-    alignItems: 'flex-start', 
-    justifyContent: 'center', 
-    flex: 1, 
+    alignItems: 'flex-start',
+    justifyContent: 'center',
+    flex: 1,
   },
-  nameLogon:{
+  nameLogon: {
     color: '#5F5B5B',
     fontSize: 12,
     marginRight: 15,

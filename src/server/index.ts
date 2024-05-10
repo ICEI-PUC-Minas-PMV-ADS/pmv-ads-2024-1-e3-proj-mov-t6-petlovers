@@ -16,6 +16,8 @@ import { deleteUserById } from "./endpoints/users";
 import { handleAllPetsRequest } from "./endpoints/home";
 import { handleImageUploadRequest } from './endpoints/images';
 import { handleFourPetsRequest } from "./endpoints/pets";
+import { handleRatingRequest } from "./endpoints/avaliacao";
+import { handleTopRatingRequest } from "./endpoints/avaliacao";
 
 
 // Inicializa o framework de configuração
@@ -70,9 +72,11 @@ serverApp.get("/api/allpets", handleAllPetsRequest);
 //endpoint para renderizar 4 pets na home
 serverApp.get("/api/fourpets", handleFourPetsRequest);
 
+//endpoint para renderizar as 5 primeiras avaliações
+serverApp.get("/api/avaliacao", handleTopRatingRequest);
 
-//endpoint para renderizar 4 pets na home
-serverApp.get("/api/fourpets", handleFourPetsRequest);
+// endpoint para cadastrar avaliação
+serverApp.post("/api/avaliacao", handleRatingRequest);
 
 
 // Prepara o servidor para iniciar na porta, ouvindo em todas as interfaces de rede disponíveis

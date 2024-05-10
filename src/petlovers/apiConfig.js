@@ -5,3 +5,4 @@ export const getUserByIdAPI_URL = (userId) => `${baseAPI_URL}/api/user/${userId}
 
 export const petAPI_URL = `${baseAPI_URL}/api/pet`;
 export const cardpetsAPI_URL = `${baseAPI_URL}/api/fourpets`;
+export const AvaliacaoAPI_URL = `${baseAPI_URL}/api/avaliacao`;

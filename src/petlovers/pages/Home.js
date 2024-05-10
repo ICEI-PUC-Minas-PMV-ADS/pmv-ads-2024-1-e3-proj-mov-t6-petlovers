@@ -1,31 +1,26 @@
 import * as React from "react";
-import { View, Text, StyleSheet, Image, ScrollView, SafeAreaView } from "react-native";
-import CardPet from "./CardPet";
+import { View, Text, StyleSheet, Image, ScrollView, SafeAreaView, Button} from "react-native";
+import CardPet from "../components/CardPet";
 import { useNavigation } from '@react-navigation/native';
-import { Button } from 'react-native-paper';
-
-
+import BannerCadastro from "../components/BannerCadastro";
+import Avaliacao from "../components/Avaliacao";
+import { getAuth } from "firebase/auth";
 
 
 
 export default function Home() {
-
+    
     const navigation = useNavigation();
+    const auth = getAuth();
+    const user = auth.currentUser;
 
-    const goToCadastro = () => {
-        navigation.navigate('Cadastro');
-    };
-    const goToBusca = () => {
-        navigation.navigate('Busca');
-    };
     return (
         <SafeAreaView style={{ flex: 1 }}>
             <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-                <ScrollView contentContainerStyle={{flexGrow: 1}}>
-                    <View style={styles.header}>
-                        <Text style={styles.tittle}>Cadastre o seu pet na nossa comunidade</Text>
-                        <Button onPress={goToCadastro} style={styles.btn} ><Text style={styles.textBtn}>Cadastrar</Text></Button>
-                    </View>
+
+                {/* {user ? (<Avaliacao />) : (null)} */}
+                <ScrollView contentContainerStyle={{ flexGrow: 1 }}>
+                    <BannerCadastro />
 
                     <Text style={styles.text}>Raças mais procuradas</Text>
 
@@ -44,16 +39,17 @@ export default function Home() {
                             <Image style={styles.imgminicards} source={require('../assets/image/golden.jpg')} />
                             <Text style={styles.text1}>Golden</Text>
                         </View>
-
+                        
                     </View>
-
-                    <View style={styles.align}>
-                        <Text style={styles.text}>Encontre o par ideal</Text>
-                        <Text onPress={goToBusca} style={styles.text2}>ver mais</Text>
-                    </View>
-
+                    
                     <CardPet />
 
+                    {/* <View>
+                    <Button
+                    title= "Avalie-nos"
+                    onPress={() => navigation.navigate('Avaliacoes')}
+                    />
+                    </View> */}
                 </ScrollView>
             </View>
         </SafeAreaView>
