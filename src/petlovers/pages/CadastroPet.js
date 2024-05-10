@@ -29,7 +29,6 @@ const CadastroPet = ({ navigation }) => {
 
   const route = useRoute();
   const userId = route.params.userId; // Recupera o ID do usuário dos parâmetros de navegação
-  console.log("UserID recebido:", userId); // Verificar userId
 
   const handleCadastro = async () => {
     const validationErrors = validateCadastroPet({ nome, idade, cidade, estado, sexo, cor, raca, porte, sobre });
