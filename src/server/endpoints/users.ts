@@ -163,6 +163,17 @@ export async function deleteUserById(req: Request, res: Response) {
     const userRecord = await admin.auth().getUserByEmail(userEmail);
     await admin.auth().deleteUser(userRecord.uid);
 
+    // Excluir os pets associados ao usuário
+    await admin.firestore().collection("pets").where("userId", "==", userId).get()
+      .then((querySnapshot) => {
+        const batch = admin.firestore().batch();
+        querySnapshot.forEach((doc) => {
+          batch.delete(doc.ref);
+        });
+        return batch.commit();
+      });
+
+
     // Excluir os dados do usuário do Firestore
     await admin.firestore().collection("users").doc(userId).delete();
 

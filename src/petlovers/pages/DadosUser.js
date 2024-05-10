@@ -20,7 +20,6 @@ import { defaultTheme } from "../components/Themes";
 //API URL do cadastro user
 import { userAPI_URL } from "../apiConfig";
 import { getUserByIdAPI_URL } from "../apiConfig";
-
 import { getAuth } from "firebase/auth";
 
 export default function DadosUser() {
@@ -70,7 +69,6 @@ export default function DadosUser() {
           .join("/");
         setBirthDate(formattedBirthDate);
 
-        //console.log("Dados do usuário:", userDataFromServer);
       } catch (error) {
         console.error("Erro ao obter dados do usuário:", error);
       }
@@ -193,14 +191,6 @@ export default function DadosUser() {
 
   // Função para validar o formulário
   const validateForm = () => {
-    console.log("fullName:", fullName);
-    console.log("birthDate:", birthDate);
-    console.log("whatsapp:", whatsapp);
-    console.log("email:", email);
-    console.log("fullNameError:", fullNameError);
-    console.log("birthDateError:", birthDateError);
-    console.log("whatsappError:", whatsappError);
-    console.log("emailError:", emailError);
 
     const isValid =
       fullName.trim() !== "" &&
@@ -211,8 +201,6 @@ export default function DadosUser() {
       birthDateError === "" &&
       whatsappError === "" &&
       emailError === "";
-
-    console.log("isValid:", isValid);
 
     return isValid;
   };
@@ -414,19 +402,6 @@ export default function DadosUser() {
             Salvar
           </FormButton>
 
-          <TouchableOpacity
-            onPress={() => handleDeleteAccount(userData.userId)}
-          >
-            <Text
-              style={{
-                color: defaultTheme.colors.primary,
-                ...defaultTheme.text,
-                ...styles.text,
-              }}
-            >
-              Excluir conta
-            </Text>
-          </TouchableOpacity>
           <View style={styles.subtitleContainer}></View>
         </View>
       </SafeAreaView>

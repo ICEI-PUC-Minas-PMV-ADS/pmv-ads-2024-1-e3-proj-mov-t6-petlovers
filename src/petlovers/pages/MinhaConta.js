@@ -1,8 +1,11 @@
 import React from "react";
-import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
+import { View, Text, StyleSheet, TouchableOpacity, Alert } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import ArrowLeft from "../components/ArrowLeft";
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
+
+import { getUserByIdAPI_URL } from "../apiConfig";
+import { getAuth } from "firebase/auth";
 
 export default function MinhaConta({ navigation }) {
   const goToVerPerfil = () => {
@@ -19,6 +22,52 @@ export default function MinhaConta({ navigation }) {
   
   const handleLogout = () => {
     // Lógica para fazer logout do usuário
+  };
+
+  const auth = getAuth();
+  const user = auth.currentUser;
+
+    // Função para excluir a conta
+  const handleDeleteAccount = async () => {
+    try {
+      if (!user) {
+        return; // Pare a execução da função para evitar que o código a seguir seja executado
+      }
+  
+      // Exibir um alerta de confirmação antes de excluir a conta
+      Alert.alert(
+        "Excluir conta",
+        "Tem certeza de que deseja excluir sua conta? Esta ação é irreversível.",
+        [
+          {
+            text: "Cancelar",
+            style: "cancel",
+          },
+          {
+            text: "Excluir",
+            onPress: async () => {
+              const userId = user.uid; // ID do usuário autenticado
+  
+              const response = await fetch(getUserByIdAPI_URL(userId), {
+                method: "DELETE",
+              });
+  
+              if (response.ok) {
+                // Conta excluída com sucesso
+                Alert.alert("Sucesso", "Sua conta foi excluída com sucesso.");
+                // Navegar para a tela de login ou outra tela após excluir a conta
+              } else {
+                // Erro ao excluir a conta
+                Alert.alert("Erro", "Erro ao excluir sua conta.");
+              }
+            },
+          },
+        ]
+      );
+    } catch (error) {
+      console.error("Erro ao excluir conta:", error);
+      Alert.alert("Erro", "Erro ao excluir sua conta.");
+    }
   };
 
   return (
@@ -38,7 +87,7 @@ export default function MinhaConta({ navigation }) {
           <Text style={styles.subTitle}>Editar meus dados</Text>
           <Text style={styles.icon}>&gt;</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.item}>
+        <TouchableOpacity onPress={handleDeleteAccount} style={styles.item}>
           <Text style={styles.subTitle}>Excluir Conta</Text>
           <Text style={styles.icon}>&gt;</Text>
         </TouchableOpacity>
