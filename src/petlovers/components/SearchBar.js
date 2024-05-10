@@ -28,7 +28,7 @@ const styles = StyleSheet.create({
   searchContainer: {
     flexDirection: 'row',
     alignItems: 'center',
-    marginBottom: 20,
+    padding: 20,
   },
   searchInput: {
     flex: 1,

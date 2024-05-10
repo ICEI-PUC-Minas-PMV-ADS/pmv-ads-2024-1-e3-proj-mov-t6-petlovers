@@ -4,12 +4,13 @@ import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view
 import { Ionicons } from '@expo/vector-icons';
 import { Card } from 'react-native-paper';
 
-import { cardpetsAPI_URL } from "../apiConfig";
+import { userAPI_URL  } from "../apiConfig";
 import ArrowLeft from "../components/ArrowLeft";
 
 
 export default function InfoPet({route}) { //rota com os parametros para renderizar o pet clicado 
-    const { imageURL, nome, idade, sexo, cidade, estado, sobre , cor, raca, porte} = route.params;
+    const { imageURL, nome, idade, sexo, cidade, estado, sobre , cor, raca, porte, userId} = route.params;
+
 
     return (
       <SafeAreaView>
@@ -56,7 +57,7 @@ export default function InfoPet({route}) { //rota com os parametros para renderi
               </Text>
 
               <Text style={styles.titletutor}>Tutor</Text>
-              <Text style={[styles.tutor, styles.marginBottom]}>Joana</Text>
+              <Text style={[styles.tutor, styles.marginBottom]}> {userId}</Text>
             </View>
           </View>
         </KeyboardAwareScrollView>
@@ -68,13 +69,13 @@ export default function InfoPet({route}) { //rota com os parametros para renderi
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        marginHorizontal: 20, // Margem lateral
+        marginHorizontal: 15, // Margem lateral
       },
       containerinfo: {
         borderWidth: 1,
         borderColor: '#CCCCCC', 
         borderRadius: 8,
-        padding: 10,
+        padding: 5,
         marginTop: 20,
         width: 88,
         alignItems: 'center',
@@ -116,7 +117,7 @@ const styles = StyleSheet.create({
       },
       containersobre: {
         marginTop: 20,
-        marginBottom: 20,
+        marginBottom: 15,
       },
       titulo: {
         fontSize: 20, // Mesmo estilo do nome
@@ -134,13 +135,14 @@ const styles = StyleSheet.create({
         fontSize: 15,
         fontWeight: 'bold',
         marginTop: 10,
-        marginBottom: 5,
+        marginBottom: 0,
         color: "#827397",
       },
       titletutor: {
         fontSize: 15,
         fontWeight: 'bold',
         marginBottom: 5,
+        marginTop: -15,
         color: "#827397",
       },
       tutor: {
