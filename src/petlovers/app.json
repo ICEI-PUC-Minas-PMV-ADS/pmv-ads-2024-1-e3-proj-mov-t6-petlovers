@@ -9,19 +9,19 @@
     "splash": {
       "image": "./assets/splash.png",
       "resizeMode": "contain",
-      "backgroundColor": "white"
+      "backgroundColor": "#FFFFFF"
     },
     "assetBundlePatterns": [
       "**/*"
     ],
     "ios": {
       "supportsTablet": true,
-      "backgroundColor": "white"
+      "backgroundColor": "#FFFFFF"
     },
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
-        "backgroundColor": "white"
+        "backgroundColor": "#FFFFFF"
       }
     },
     "web": {
@@ -32,6 +32,9 @@
         "projectId": "84e9ff95-87db-4bf5-bec0-d5763f1d4d23"
       }
     },
-    "owner": "alissa.ni"
+    "owner": "alissa.ni",
+    "plugins": [
+      "expo-font"
+    ]
   }
 }
