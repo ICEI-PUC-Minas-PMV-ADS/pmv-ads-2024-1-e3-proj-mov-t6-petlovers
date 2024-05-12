@@ -116,7 +116,7 @@ export async function getPetDataByUserId(req: Request, res: Response) {
     }
 
     const petData = petSnapshot.docs[0].data();
-    return res.status(200).json({ data: petData });
+    return res.status(200).json({ data: petData,  userId: userId  });
   } catch (error) {
     console.error("Erro ao obter dados do pet:", error);
     return res.status(500).json({ message: "Erro interno do servidor" });
