@@ -3,6 +3,7 @@ import admin from "firebase-admin";
 import crypto from "crypto";
 import { Pet } from "../models/pet";
 
+
 // Funcao para enviar dados pet
 export async function handlePetRequest(req: any, res: Response) {
   try {
@@ -83,19 +84,41 @@ export async function handleFourPetsRequest(req: Request, res: Response) {
 //Update dados pet
 export async function handleUpdatePetData(req: Request, res: Response) {
   try {
-    const petId = req.params.id; // obtendo o ID do pet da URL
-    const newData = req.body; // os novos dados do pet enviados no corpo da requisição
+    const petId = req.params.id; 
+    const newData = req.body; 
 
-    // Atualizando os dados do pet no Firestore
     await admin.firestore().collection("pets").doc(petId).update(newData);
 
-    // Recuperando os dados atualizados do pet
     const updatedPet = await admin.firestore().collection("pets").doc(petId).get();
     
-    // Retornando os dados atualizados do pet como resposta
     return res.status(200).json({ data: updatedPet.data() });
   } catch (error) {
     console.error("Erro ao editar dados do pet:", error);
     return res.status(500).json({ message: error });
+  }
+}
+
+
+
+// Função para obter os dados do pet associados ao usuário pelo ID
+export async function getPetDataByUserId(req: Request, res: Response) {
+  try {
+    const userId = req.params.userId; 
+
+    if (!userId) {
+      return res.status(400).json({ message: "ID do usuário não fornecido" });
+    }
+
+    const petSnapshot = await admin.firestore().collection("pets").where("userId", "==", userId).get();
+
+    if (petSnapshot.empty) {
+      return res.status(404).json({ message: "Pet não encontrado para o usuário fornecido" });
+    }
+
+    const petData = petSnapshot.docs[0].data();
+    return res.status(200).json({ data: petData });
+  } catch (error) {
+    console.error("Erro ao obter dados do pet:", error);
+    return res.status(500).json({ message: "Erro interno do servidor" });
   }
 }
