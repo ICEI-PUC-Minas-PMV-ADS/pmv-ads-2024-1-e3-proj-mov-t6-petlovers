@@ -12,6 +12,7 @@ import {baseAPI_URL} from '../apiConfig';
 
 const DadosPet = ({ }) => {
     const [petData, setPetData] = useState(null);
+    const [editedPetData, setEditedPetData] = useState(null);
     const auth = getAuth();
     const user = auth.currentUser;
 
@@ -34,6 +35,10 @@ const DadosPet = ({ }) => {
         fetchPetData();
     }, [user]);
 
+    const handleInputChange = (value, field) => {
+        setEditedPetData({ ...editedPetData, [field]: value });
+    };
+
     return (
         <SafeAreaView style={{ flex: 1 }}>
             <ArrowLeft />
@@ -47,54 +52,71 @@ const DadosPet = ({ }) => {
                                 label="Nome pet"
                                 style={styles.input}
                                 value={petData?.nome || ''}
+                                editable={true}
+                                onChangeText={(text) => handleInputChange(text, 'nome')} 
                             />
                             <FormInput
                                 label="Idade"
                                 keyboardType="number-pad"
                                 style={styles.input}
                                 value={petData?.idade.toString() || ''}
+                                editable={true}
+                                onChangeText={(text) => handleInputChange(text, 'idade')} 
                             />
                             <FormInput
                                 label="Cidade"
                                 style={styles.input}
                                 placeholderTextColor="grey"
                                 value={petData?.cidade || ''}
+                                editable={true}
+                                onChangeText={(text) => handleInputChange(text, 'cidade')} 
                             />
                             <FormInput
                                 label="Estado"
                                 style={styles.input}
                                 placeholderTextColor="grey"
                                 value={petData?.estado || ''}
+                                editable={true}
+                                onChangeText={(text) => handleInputChange(text, 'estado')} 
                             />
                             <FormInput
                                 label="Sexo"
                                 style={styles.input}
                                 placeholderTextColor="grey"
                                 value={petData?.sexo || ''}
+                                editable={true}
+                                onChangeText={(text) => handleInputChange(text, 'sexo')} 
                             />
                             <FormInput
                                 label="Cor"
                                 style={styles.input}
                                 value={petData?.cor || ''}
+                                editable={true}
+                                onChangeText={(text) => handleInputChange(text, 'cor')} 
                             />
                             <FormInput
                                 label="Raça"
                                 style={styles.input}
                                 value={petData?.raca || ''}
+                                editable={true}
+                                onChangeText={(text) => handleInputChange(text, 'raca')} 
                             />
                             <FormInput
                                 label="Porte"
                                 style={styles.input}
                                 value={petData?.porte || ''}
+                                editable={true}
+                                onChangeText={(text) => handleInputChange(text, 'porte')} 
                             />
                             <TextInput
                                 style={styles.textArea}
                                 placeholder="Sobre o seu pet..."
                                 placeholderTextColor="grey"
-                                //numberOfLines={10}
                                 multiline={false}
                                 mode="outlined"
+                                editable={true}
                                 value={petData?.sobre || ''}
+                                onChangeText={(text) => handleInputChange(text, 'sobre')} 
                             />
                             <FormButton style={styles.cadastrarButton}>
                                 Salvar
