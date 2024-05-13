@@ -80,23 +80,36 @@ export async function handleFourPetsRequest(req: Request, res: Response) {
   }
 }
 
-
-//Update dados pet
+// Função para atualizar dados do pet pelo ID do usuário
 export async function handleUpdatePetData(req: Request, res: Response) {
   try {
-    const petId = req.params.id; 
-    const newData = req.body; 
+    const userId = req.params.userId; // Obtém o ID do usuário
+    const newData = req.body; // Obtém os novos dados do pet a serem atualizados
 
+    // Busca o pet associado ao usuário pelo ID do usuário
+    const petSnapshot = await admin.firestore().collection("pets").where("userId", "==", userId).get();
+
+    // Verifica se o pet foi encontrado
+    if (petSnapshot.empty) {
+      return res.status(404).json({ message: "Pet não encontrado para o usuário fornecido" });
+    }
+
+    // Obtém o ID do pet encontrado
+    const petId = petSnapshot.docs[0].id;
+
+    // Atualiza os dados do pet utilizando o ID do pet encontrado
     await admin.firestore().collection("pets").doc(petId).update(newData);
 
+    // Busca novamente o pet atualizado na coleção e retorna os dados atualizados
     const updatedPet = await admin.firestore().collection("pets").doc(petId).get();
     
     return res.status(200).json({ data: updatedPet.data() });
   } catch (error) {
     console.error("Erro ao editar dados do pet:", error);
-    return res.status(500).json({ message: error });
+    return res.status(500).json({ message: "Erro interno do servidor" });
   }
 }
+
 
 
 
@@ -123,31 +136,7 @@ export async function getPetDataByUserId(req: Request, res: Response) {
   }
 }
 
-// Função para obter os dados do usuário associados ao ID do usuário na coleção de pets
-export async function getUserDataByUserIdInPets(req: Request, res: Response) {
-  try {
-    const userId = req.params.userId;
 
-    if (!userId) {
-      return res.status(400).json({ message: "ID do usuário não fornecido" });
-    }
 
-    const petSnapshot = await admin.firestore().collection("pets").where("userId", "==", userId).get();
 
-    if (petSnapshot.empty) {
-      return res.status(404).json({ message: "Nenhum pet encontrado para o ID do usuário fornecido" });
-    }
-
-    const userData = await admin.firestore().collection("users").doc(userId).get();
-
-    if (!userData.exists) {
-      return res.status(404).json({ message: "Usuário não encontrado para o ID fornecido" });
-    }
-
-    return res.status(200).json({ data: userData.data() });
-  } catch (error) {
-    console.error("Erro ao obter dados do usuário associados ao ID do usuário na coleção de pets:", error);
-    return res.status(500).json({ message: "Erro interno do servidor" });
-  }
-}
 

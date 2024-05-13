@@ -20,7 +20,6 @@ import { handleRatingRequest } from "./endpoints/avaliacao";
 import { handleUpdatePetData } from "./endpoints/pets";
 import { handleTopRatingRequest } from "./endpoints/avaliacao";
 import { getPetDataByUserId } from './endpoints/pets';
-import { getUserDataByUserIdInPets} from './endpoints/pets';
 
 
 
@@ -65,9 +64,8 @@ serverApp.post('/api/pet/:id/images', upload.single('file'), handleImageUploadRe
 serverApp.post("/api/pet", handlePetRequest);
 serverApp.get("/api/allpets", handleAllPetsRequest);
 serverApp.get("/api/fourpets", handleFourPetsRequest);
-serverApp.put('/api/update-pets/:id', handleUpdatePetData);
+serverApp.put('/api/update-pets/:userId', handleUpdatePetData);
 serverApp.get('/api/get-pet-data/:userId', getPetDataByUserId);
-serverApp.get('/api/get-user-data/:userId', getUserDataByUserIdInPets);
 
 
 // endpoint users
