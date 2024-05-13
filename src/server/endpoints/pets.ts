@@ -122,3 +122,32 @@ export async function getPetDataByUserId(req: Request, res: Response) {
     return res.status(500).json({ message: "Erro interno do servidor" });
   }
 }
+
+// Função para obter os dados do usuário associados ao ID do usuário na coleção de pets
+export async function getUserDataByUserIdInPets(req: Request, res: Response) {
+  try {
+    const userId = req.params.userId;
+
+    if (!userId) {
+      return res.status(400).json({ message: "ID do usuário não fornecido" });
+    }
+
+    const petSnapshot = await admin.firestore().collection("pets").where("userId", "==", userId).get();
+
+    if (petSnapshot.empty) {
+      return res.status(404).json({ message: "Nenhum pet encontrado para o ID do usuário fornecido" });
+    }
+
+    const userData = await admin.firestore().collection("users").doc(userId).get();
+
+    if (!userData.exists) {
+      return res.status(404).json({ message: "Usuário não encontrado para o ID fornecido" });
+    }
+
+    return res.status(200).json({ data: userData.data() });
+  } catch (error) {
+    console.error("Erro ao obter dados do usuário associados ao ID do usuário na coleção de pets:", error);
+    return res.status(500).json({ message: "Erro interno do servidor" });
+  }
+}
+
