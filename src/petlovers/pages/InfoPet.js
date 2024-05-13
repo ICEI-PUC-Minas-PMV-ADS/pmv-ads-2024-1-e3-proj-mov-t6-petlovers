@@ -10,8 +10,7 @@ import ArrowLeft from "../components/ArrowLeft";
 
 export default function InfoPet({route}) { //rota com os parametros para renderizar o pet clicado 
     const { imageURL, nome, idade, sexo, cidade, estado, sobre , cor, raca, porte, userId} = route.params;
-
-
+   
     return (
       <SafeAreaView>
         <ArrowLeft />
@@ -57,7 +56,7 @@ export default function InfoPet({route}) { //rota com os parametros para renderi
               </Text>
 
               <Text style={styles.titletutor}>Tutor</Text>
-              <Text style={[styles.tutor, styles.marginBottom]}> {userId}</Text>
+              <Text style={[styles.tutor, styles.marginBottom]}></Text>
             </View>
           </View>
         </KeyboardAwareScrollView>

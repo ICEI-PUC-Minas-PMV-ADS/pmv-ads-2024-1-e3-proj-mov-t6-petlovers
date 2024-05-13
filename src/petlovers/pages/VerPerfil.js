@@ -85,7 +85,7 @@ export default function VerPerfil() {
               </Text>
 
               <Text style={styles.titletutor}>Tutor</Text>
-              <Text style={[styles.tutor, styles.marginBottom]}></Text>
+              <Text style={[styles.tutor, styles.marginBottom]}>{user.displayName}</Text>
             </View>
           </View>
         </KeyboardAwareScrollView>
