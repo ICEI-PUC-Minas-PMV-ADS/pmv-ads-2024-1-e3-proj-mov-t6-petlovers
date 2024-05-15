@@ -12,7 +12,8 @@ import {baseAPI_URL} from '../apiConfig';
 
 const DadosPet = ({ }) => {
     const [petData, setPetData] = useState(null);
-    const [editedPetData, setEditedPetData] = useState(null);
+    const [editedPetData, setEditedPetData] = useState({});
+
     const auth = getAuth();
     const user = auth.currentUser;
 
@@ -35,9 +36,67 @@ const DadosPet = ({ }) => {
         fetchPetData();
     }, [user]);
 
+
+   
+    const handleUpdatePetData = async () => {
+        
+        try {
+            if (!user || !petData) return;
+            const userId = user.uid;
+    
+            console.log('ID do usuário:', userId);
+            console.log('Dados do pet editados:', editedPetData);
+    
+            const response = await fetch(`${baseAPI_URL}/api/update-pet-data/${userId}`, {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    nome: editedPetData.nome || petData.nome,
+                    idade: editedPetData.idade || petData.idade,
+                    cidade: editedPetData.cidade || petData.cidade,
+                    estado: editedPetData.estado || petData.estado,
+                    sexo: editedPetData.sexo || petData.sexo,
+                    porte: editedPetData.porte || petData.porte,
+                    cor: editedPetData.cor || petData.cor,
+                    sobre: editedPetData.sobre || petData.sobre,
+                })
+            });
+    
+            if (response.ok) {
+                const updatedPetData = await response.json();
+    
+                // Atualizar os campos individualmente no estado local do pet
+                setPetData(prevPetData => ({
+                    ...prevPetData,
+                    nome: updatedPetData.nome,
+                    idade: updatedPetData.idade,
+                    cidade: updatedPetData.cidade,
+                    estado: updatedPetData.estado,
+                    sexo: updatedPetData.sexo,
+                    porte: updatedPetData.porte,
+                    cor: updatedPetData.cor,
+                    sobre: updatedPetData.sobre,
+                    
+                }));
+                Alert.alert("Sucesso", "Dados atualizados com sucesso.");
+    
+                console.log('Dados do pet atualizados com sucesso:', updatedPetData);
+            } else {
+                console.error('Erro ao atualizar dados do pet:', response.statusText);
+            }
+        } catch (error) {
+            console.error('Erro:', error);
+        }
+    };
+
     const handleInputChange = (value, field) => {
         setEditedPetData({ ...editedPetData, [field]: value });
     };
+
+ 
+    
 
     return (
         <SafeAreaView style={{ flex: 1 }}>
@@ -51,7 +110,7 @@ const DadosPet = ({ }) => {
                             <FormInput
                                 label="Nome pet"
                                 style={styles.input}
-                                value={petData?.nome || ''}
+                                value={editedPetData?.nome ?? petData?.nome ?? ''}
                                 editable={true}
                                 onChangeText={(text) => handleInputChange(text, 'nome')} 
                             />
@@ -59,7 +118,7 @@ const DadosPet = ({ }) => {
                                 label="Idade"
                                 keyboardType="number-pad"
                                 style={styles.input}
-                                value={petData?.idade.toString() || ''}
+                                value={editedPetData?.idade ?? petData?.idade.toString() ?? ''}
                                 editable={true}
                                 onChangeText={(text) => handleInputChange(text, 'idade')} 
                             />
@@ -67,7 +126,7 @@ const DadosPet = ({ }) => {
                                 label="Cidade"
                                 style={styles.input}
                                 placeholderTextColor="grey"
-                                value={petData?.cidade || ''}
+                                value={editedPetData?.cidade ?? petData?.cidade ?? ''}
                                 editable={true}
                                 onChangeText={(text) => handleInputChange(text, 'cidade')} 
                             />
@@ -75,7 +134,7 @@ const DadosPet = ({ }) => {
                                 label="Estado"
                                 style={styles.input}
                                 placeholderTextColor="grey"
-                                value={petData?.estado || ''}
+                                value={editedPetData?.estado ?? petData?.estado ?? ''}
                                 editable={true}
                                 onChangeText={(text) => handleInputChange(text, 'estado')} 
                             />
@@ -83,28 +142,28 @@ const DadosPet = ({ }) => {
                                 label="Sexo"
                                 style={styles.input}
                                 placeholderTextColor="grey"
-                                value={petData?.sexo || ''}
+                                value={editedPetData?.sexo ?? petData?.sexo ?? ''}
                                 editable={true}
                                 onChangeText={(text) => handleInputChange(text, 'sexo')} 
                             />
                             <FormInput
                                 label="Cor"
                                 style={styles.input}
-                                value={petData?.cor || ''}
+                                value={editedPetData?.cor ?? petData?.cor ?? ''}
                                 editable={true}
                                 onChangeText={(text) => handleInputChange(text, 'cor')} 
                             />
                             <FormInput
                                 label="Raça"
                                 style={styles.input}
-                                value={petData?.raca || ''}
+                                value={editedPetData?.raca ?? petData?.raca ?? ''}
                                 editable={true}
                                 onChangeText={(text) => handleInputChange(text, 'raca')} 
                             />
                             <FormInput
                                 label="Porte"
                                 style={styles.input}
-                                value={petData?.porte || ''}
+                                value={editedPetData?.porte ?? petData?.porte ?? ''}
                                 editable={true}
                                 onChangeText={(text) => handleInputChange(text, 'porte')} 
                             />
@@ -115,10 +174,10 @@ const DadosPet = ({ }) => {
                                 multiline={false}
                                 mode="outlined"
                                 editable={true}
-                                value={petData?.sobre || ''}
+                                value={editedPetData?.sobre ?? petData?.sobre ?? ''}
                                 onChangeText={(text) => handleInputChange(text, 'sobre')} 
                             />
-                            <FormButton style={styles.cadastrarButton}>
+                            <FormButton style={styles.cadastrarButton}  onPress={handleUpdatePetData }>
                                 Salvar
                             </FormButton>
                         </>

@@ -11,17 +11,22 @@ export default function CardPet() {
     const navigation = useNavigation();
     const [data, setData] = useState([]);
     const goToBusca = () => {navigation.navigate('Busca')};
-    // Obtem os dados dos pets no backend
+ 
     useEffect(() => {
         fetch(cardpetsAPI_URL) //API URL dos cards
             .then((response) => response.json())
-            .then((data) => setData(data.data))
+            .then((responseData) => {
+               
+                setData(responseData.data);
+               
+                responseData.data.forEach(item => console.log(item.id));
+            })
             .catch((error) => console.error('Error:', error));
     }, []);
 
     //navegacao para a tela info com os parametros salvos
-    const handleCardPress = (userId, nome, idade, cidade, imageURL, estado, sobre, raca, sexo, cor, porte) => {
-        navigation.navigate('InfoPet', { userId, nome, idade, cidade, imageURL, estado, sobre, raca, sexo, cor, porte}); 
+    const handleCardPress = (userId, nome, idade, cidade, imageURL, estado, sobre, raca, sexo, cor, porte, id) => {
+        navigation.navigate('InfoPet', { userId, nome, idade, cidade, imageURL, estado, sobre, raca, sexo, cor, porte, id}); 
     };
 
     return (
@@ -34,13 +39,13 @@ export default function CardPet() {
                 horizontal={true}
                 data={data}
                 renderItem={({ item }) => (
-                    <TouchableOpacity onPress={() => handleCardPress(item.userId, item.nome, item.idade, item.cidade, item.imageURL, item.estado, item.sobre, item.raca, item.sexo, item.cor, item.porte)} style={{ paddingBottom: 70 }}> 
+                    <TouchableOpacity onPress={() => handleCardPress(item.userId, item.nome, item.idade, item.cidade, item.imageURL, item.estado, item.sobre, item.raca, item.sexo, item.cor, item.porte, item.id)} style={{ paddingBottom: 70 }}> 
                     <View style={styles.cards1}>
                         <Image style={styles.imgcards} source={{ uri: item.imageURL }} />
                         <Text key={item.id} style={styles.text}>{item.nome}, {item.idade} anos</Text>
                         <View style={styles.local}>
                             <Ionicons style={styles.icon} name='location-outline' size={19} />
-                            <Text key={item.id} style={styles.text1}>{item.cidade}</Text>
+                            <Text key={item.id} style={styles.text1}>{item.cidade}</Text>            
                         </View>
                     </View>
                  </TouchableOpacity>

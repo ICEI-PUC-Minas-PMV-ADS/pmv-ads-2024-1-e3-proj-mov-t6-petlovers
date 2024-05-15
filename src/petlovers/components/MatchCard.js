@@ -19,7 +19,7 @@ const CardComponent = ({ item, handleLike, handleDislike, handleCardPress }) => 
       resizeMode="cover"
     />
     <View style={styles.petData}>
-      <Text style={styles.text}>{item.nome}, {item.idade} anos</Text>
+      <Text style={styles.text}>{item.nome}, {item.idade}, anos</Text>
       <Text style={styles.raca}>{item.raca}</Text>
       <View style={styles.local}>
         <Icon style={styles.icon} name="location-outline" size={19} />
@@ -47,10 +47,15 @@ const MatchCard = () => {
 
   useEffect(() => {
     fetch(getAllPetsAPI_URL)
-      .then((response) => response.json())
-      .then((data) => setData(data.data))
-      .catch((error) => console.error('Error:', error));
-  }, []);
+    .then((response) => response.json())
+    .then((responseData) => {
+       
+        setData(responseData.data);
+       
+        responseData.data.forEach(item => console.log(item.id));
+    })
+    .catch((error) => console.error('Error:', error));
+}, []);
 
   useEffect(() => {
     LogBox.ignoreLogs(['Animated: `useNativeDriver`']);
@@ -82,6 +87,7 @@ const MatchCard = () => {
     </View>
   );
 };
+
 
 
 const styles = StyleSheet.create({
