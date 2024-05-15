@@ -1,7 +1,6 @@
 import React from "react";
 import { Text, StyleSheet, TouchableOpacity, Alert } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
-import ArrowLeft from "../components/ArrowLeft";
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 
 import { getUserByIdAPI_URL } from "../apiConfig";
@@ -10,6 +9,7 @@ import * as firebaseAuth from "firebase/auth";
 export default function MinhaConta({ navigation }) {
 
   const auth = firebaseAuth.getAuth();
+
 
   const goToVerPerfil = () => {
     navigation.navigate('VerPerfil');
@@ -82,7 +82,6 @@ export default function MinhaConta({ navigation }) {
 
   return (
     <SafeAreaView style={styles.container}>
-      <ArrowLeft style={styles.arrow} />
       <KeyboardAwareScrollView contentContainerStyle={styles.scrollViewContent}>
         <Text style={styles.title}>Minha Conta</Text>
         <TouchableOpacity style={styles.item} onPress={goToVerPerfil}>
@@ -129,7 +128,7 @@ const styles = StyleSheet.create({
     fontSize: 24,
     fontWeight: 'bold',
     textAlign: 'center',
-    marginBottom: 20,
+    marginBottom: 80,
   },
   item: {
     flexDirection: 'row',
@@ -155,6 +154,7 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
     marginTop: 'auto', // Coloca o botão "Sair" no final da tela
     marginBottom: 20, // Espaço extra no final da tela
+    width: 150,
   },
   logoutText: {
     color: 'white',

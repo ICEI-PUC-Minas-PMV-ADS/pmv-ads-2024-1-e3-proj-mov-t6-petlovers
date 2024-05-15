@@ -86,7 +86,7 @@ function TabNavigator() {
         <Tab.Screen name={homeName} component={Home} />
         <Tab.Screen name={sobreName} component={Sobre} />
         <Tab.Screen name={notificacoesName} component={Notificacoes} />
-        <Tab.Screen name={MinhaConta} component={MinhaContaScreen} />
+        <Tab.Screen name={MinhaConta} component={MinhaContaScreen} options={{ headerShown: false }} />
       </Tab.Navigator>
     );
   } else

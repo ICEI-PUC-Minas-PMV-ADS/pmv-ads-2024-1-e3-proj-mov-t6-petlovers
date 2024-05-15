@@ -66,9 +66,6 @@ export default function Login() {
         </View>
         <View style={styles.signupContainer}>
           <Text style={styles.signupText}>Minha Conta</Text>
-          <TouchableOpacity onPress={() => navigation.navigate("MinhaConta")}>
-            <Text style={styles.signupText2}>Ver Mais</Text>
-          </TouchableOpacity>
         </View>
       </View>
     </SafeAreaView>
