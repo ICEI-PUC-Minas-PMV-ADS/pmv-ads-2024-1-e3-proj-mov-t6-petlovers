@@ -1,13 +1,16 @@
 import React from "react";
-import { View, Text, StyleSheet, TouchableOpacity, Alert } from "react-native";
+import { Text, StyleSheet, TouchableOpacity, Alert } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import ArrowLeft from "../components/ArrowLeft";
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 
 import { getUserByIdAPI_URL } from "../apiConfig";
-import { getAuth } from "firebase/auth";
+import * as firebaseAuth from "firebase/auth";
 
 export default function MinhaConta({ navigation }) {
+
+  const auth = firebaseAuth.getAuth();
+
   const goToVerPerfil = () => {
     navigation.navigate('VerPerfil');
   };
@@ -19,12 +22,19 @@ export default function MinhaConta({ navigation }) {
   const goToDadosUser = () => {
     navigation.navigate('DadosUser');
   };
+
+  const goToLogin = () => {
+    navigation.navigate('Login');
+  };
   
-  const handleLogout = () => {
-    // Lógica para fazer logout do usuário
+  const handleLogout = () => {  
+      return firebaseAuth.signOut(auth).then(() => {
+        goToLogin();
+      }).catch(() => {
+        alert("Erro ao fazer logout");
+      });  
   };
 
-  const auth = getAuth();
   const user = auth.currentUser;
 
     // Função para excluir a conta
