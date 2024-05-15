@@ -2,6 +2,8 @@ import { Request, Response } from "express";
 import admin from "firebase-admin";
 import crypto from "crypto";
 import { Match } from "../models/match";
+import { Pet } from "../models/pet";
+import { User } from "../models/user";
 
 // Função para enviar like ou criar um novo match
 export async function handleMatchRequest(req: Request, res: Response) {
@@ -69,3 +71,69 @@ export async function handleMatchRequest(req: Request, res: Response) {
       return res.status(500).json({ message: "Erro interno do servidor" });
     }
   }
+
+// Função para obter dados dos pets e dos tutores após match
+export async function handleMatchDetailsRequest(req: Request, res: Response) {
+  try {
+      const matchId = req.params.id;
+
+      // Obter os dados do match pelo ID
+      const matchDoc = await admin.firestore().collection("matches").doc(matchId).get();
+      if (!matchDoc.exists) {
+          return res.status(404).json({ message: "Match não encontrado" });
+      }
+      const matchData = matchDoc.data() as Match;
+
+      // Obter os dados dos pets
+      const pet1Doc = await admin.firestore().collection("pets").doc(matchData.pet1_id).get();
+      const pet2Doc = await admin.firestore().collection("pets").doc(matchData.pet2_id).get();
+      if (!pet1Doc.exists || !pet2Doc.exists) {
+          return res.status(404).json({ message: "Um ou ambos os pets não foram encontrados" });
+      }
+      const pet1Data = pet1Doc.data() as Pet;
+      const pet2Data = pet2Doc.data() as Pet;
+
+      // Obter os dados dos tutores
+      const user1Doc = await admin.firestore().collection("users").doc(pet1Data.userId).get();
+      const user2Doc = await admin.firestore().collection("users").doc(pet2Data.userId).get();
+      if (!user1Doc.exists || !user2Doc.exists) {
+          return res.status(404).json({ message: "Um ou ambos os tutores não foram encontrados" });
+      }
+      const user1Data = user1Doc.data() as User;
+      const user2Data = user2Doc.data() as User;
+
+      // Extrair os primeiros nomes dos tutores
+      const firstName1 = user1Data.full_name.split(" ")[0];
+      const firstName2 = user2Data.full_name.split(" ")[0];
+
+      // Combinar os dados
+      const responseData = {
+          match: matchData,
+          pets: [
+              {
+                  pet: {
+                      ...pet1Data
+                  },
+                  owner: {
+                      first_name: firstName1,
+                      whatsapp: user1Data.whatsapp,
+                  }
+              },
+              {
+                  pet: {
+                      ...pet2Data
+                  },
+                  owner: {
+                      first_name: firstName2,
+                      whatsapp: user2Data.whatsapp,
+                  }
+              }
+          ]
+      };
+
+      return res.status(200).json(responseData);
+  } catch (error) {
+      console.error("Erro ao obter detalhes do match, dos pets e dos tutores:", error);
+      return res.status(500).json({ message: "Erro interno do servidor" });
+  }
+}

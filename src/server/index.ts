@@ -20,6 +20,7 @@ import { handleRatingRequest } from "./endpoints/avaliacao";
 import { handleUpdatePetData } from "./endpoints/pets";
 import { handleTopRatingRequest } from "./endpoints/avaliacao";
 import { handleMatchRequest } from "./endpoints/matches";
+import { handleMatchDetailsRequest } from "./endpoints/matches";
 
 
 // Inicializa o framework de configuração
@@ -85,6 +86,7 @@ serverApp.put('/api/update-pets/:id', handleUpdatePetData);
 
 // requisições de match
 serverApp.post("/api/match", handleMatchRequest);
+serverApp.get('/api/match/:id/details', handleMatchDetailsRequest);
 
 
 // Prepara o servidor para iniciar na porta, ouvindo em todas as interfaces de rede disponíveis
