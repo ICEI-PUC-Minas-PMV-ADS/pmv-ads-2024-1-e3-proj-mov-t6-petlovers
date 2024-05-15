@@ -13,13 +13,14 @@ import { handleUserRequest } from "./endpoints/users";
 import { getUserById } from "./endpoints/users";
 import { updateUserById } from "./endpoints/users";
 import { deleteUserById } from "./endpoints/users";
-import { handleAllPetsRequest } from "./endpoints/home";
+import { handleAllPetsRequest } from "./endpoints/pets";
 import { handleImageUploadRequest } from './endpoints/images';
 import { handleFourPetsRequest } from "./endpoints/pets";
 import { handleRatingRequest } from "./endpoints/avaliacao";
 import { handleUpdatePetData } from "./endpoints/pets";
 import { handleTopRatingRequest } from "./endpoints/avaliacao";
 import { getPetDataByUserId } from './endpoints/pets';
+import {getUserNameByPetId}   from "./endpoints/pets";
 
 
 
@@ -66,6 +67,7 @@ serverApp.get("/api/allpets", handleAllPetsRequest);
 serverApp.get("/api/fourpets", handleFourPetsRequest);
 serverApp.put('/api/update-pets/:userId', handleUpdatePetData);
 serverApp.get('/api/get-pet-data/:userId', getPetDataByUserId);
+serverApp.get('/api/get-user-name/:petId', getUserNameByPetId);
 
 
 // endpoint users
