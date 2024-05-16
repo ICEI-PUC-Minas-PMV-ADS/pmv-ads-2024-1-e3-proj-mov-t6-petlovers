@@ -13,15 +13,14 @@ import { handleUserRequest } from "./endpoints/users";
 import { getUserById } from "./endpoints/users";
 import { updateUserById } from "./endpoints/users";
 import { deleteUserById } from "./endpoints/users";
-import { handleAllPetsRequest } from "./endpoints/pets";
+import { handleAllPetsRequest } from "./endpoints/home";
 import { handleImageUploadRequest } from './endpoints/images';
 import { handleFourPetsRequest } from "./endpoints/pets";
 import { handleRatingRequest } from "./endpoints/avaliacao";
 import { handleUpdatePetData } from "./endpoints/pets";
 import { handleTopRatingRequest } from "./endpoints/avaliacao";
-import { getPetDataByUserId } from './endpoints/pets';
-import {getUserNameByPetId}   from "./endpoints/pets";
-
+import { handleMatchRequest } from "./endpoints/matches";
+import { handleMatchDetailsRequest } from "./endpoints/matches";
 
 
 // Inicializa o framework de configuração
@@ -61,14 +60,9 @@ const upload = multer({ storage: storage });
 //endpoint imagem
 serverApp.post('/api/pet/:id/images', upload.single('file'), handleImageUploadRequest);
 
+
 // endpoint pets
 serverApp.post("/api/pet", handlePetRequest);
-serverApp.get("/api/allpets", handleAllPetsRequest);
-serverApp.get("/api/fourpets", handleFourPetsRequest);
-serverApp.put('/api/update-pets/:userId', handleUpdatePetData);
-serverApp.get('/api/get-pet-data/:userId', getPetDataByUserId);
-serverApp.get('/api/get-user-name/:petId', getUserNameByPetId);
-
 
 // endpoint users
 serverApp.post("/api/user", handleUserRequest);
@@ -82,6 +76,10 @@ serverApp.get("/api/avaliacao", handleTopRatingRequest);
 
 // endpoint para cadastrar avaliação
 serverApp.post("/api/avaliacao", handleRatingRequest);
+
+// requisições de match
+serverApp.post("/api/match", handleMatchRequest);
+serverApp.get('/api/match/:id/details', handleMatchDetailsRequest);
 
 
 // Prepara o servidor para iniciar na porta, ouvindo em todas as interfaces de rede disponíveis
@@ -99,4 +97,3 @@ function authToken(req: any, res: any, next: any) {
     return res.redirect('/login');
   });
 }
-
