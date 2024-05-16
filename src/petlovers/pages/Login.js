@@ -64,9 +64,6 @@ export default function Login() {
             Cadastre-se aqui
           </Text>
         </View>
-        <View style={styles.signupContainer}>
-          <Text style={styles.signupText}>Minha Conta</Text>
-        </View>
       </View>
     </SafeAreaView>
   );

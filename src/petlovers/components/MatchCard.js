@@ -10,7 +10,7 @@ import NoMoreCards from './NoMoreCards';
 
 import { LogBox } from 'react-native';
 
-
+//RENDERIZO OS DADOS DO PET OBTIDO NA REQUISICAO
 const CardComponent = ({ item, handleCardPress }) => (
   <Card style={styles.card}>
     <Card.Cover
@@ -40,6 +40,7 @@ const CardComponent = ({ item, handleCardPress }) => (
   </Card>
 );
 
+//REQUISICAO PARA OBTER DADOS DO PET
 const MatchCard = () => {
   const [data, setData] = useState([]);
   const navigation = useNavigation();
@@ -51,8 +52,6 @@ const MatchCard = () => {
     .then((responseData) => {
        
         setData(responseData.data);
-       
-        responseData.data.forEach(item => console.log(item.id));
     })
     .catch((error) => console.error('Error:', error));
 }, []);
@@ -66,6 +65,7 @@ const MatchCard = () => {
     navigation.navigate('InfoPet', { id, nome, idade, cidade, imageURL, estado, sobre, raca, sexo, cor, porte });
   };
 
+  //RENDERIZO O CARDCOMPONENT DENTRO DO <SwipeCards>
   return (
     <View style={styles.container}>
       <SwipeCards
