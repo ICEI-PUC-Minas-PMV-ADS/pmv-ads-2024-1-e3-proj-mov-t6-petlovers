@@ -11,7 +11,7 @@ import NoMoreCards from './NoMoreCards';
 import { LogBox } from 'react-native';
 
 
-const CardComponent = ({ item, handleLike, handleDislike, handleCardPress }) => (
+const CardComponent = ({ item, handleCardPress }) => (
   <Card style={styles.card}>
     <Card.Cover
       source={{ uri: item.imageURL }}
@@ -27,13 +27,13 @@ const CardComponent = ({ item, handleLike, handleDislike, handleCardPress }) => 
       </View>
     </View>
     <View style={styles.buttonContainer}>
-      <TouchableOpacity onPress={() => handleDislike()} style={[styles.button, styles.likeButton]}>
+      <TouchableOpacity style={[styles.button, styles.likeButton]}>
         <Text style={[styles.buttonText, { color: 'yellow' }]}>✖️</Text>
       </TouchableOpacity>
       <TouchableOpacity onPress={() => handleCardPress(item.id, item.nome, item.idade, item.cidade, item.imageURL, item.estado, item.sobre, item.raca, item.sexo, item.cor, item.porte)} style={[styles.buttonInfo, styles.infoButton]}>
         <Icon name="information-circle" size={29} color="blue" />
       </TouchableOpacity>
-      <TouchableOpacity onPress={() => handleLike()} style={[styles.button, styles.dislikeButton]}>
+      <TouchableOpacity  style={[styles.button, styles.dislikeButton]}>
         <Text style={styles.buttonText}>♥️</Text>
       </TouchableOpacity>
     </View>
@@ -61,15 +61,6 @@ const MatchCard = () => {
     LogBox.ignoreLogs(['Animated: `useNativeDriver`']);
 }, [])
 
-  const handleLike = () => {
-    //swiperRef.current.swipeRight();
-    // Lógica para quando o usuário curte um perfil 
-  };
-
-  const handleDislike = () => {
-    //swiperRef.current.swipeLeft();
-    // Lógica para quando o usuário rejeita um perfil 
-  };
 
   const handleCardPress = (id, nome, idade, cidade, imageURL, estado, sobre, raca, sexo, cor, porte) => {
     navigation.navigate('InfoPet', { id, nome, idade, cidade, imageURL, estado, sobre, raca, sexo, cor, porte });
@@ -80,7 +71,7 @@ const MatchCard = () => {
       <SwipeCards
         ref={swiperRef}
         cards={data}
-        renderCard={(item) => <CardComponent item={item} handleLike={handleLike} handleDislike={handleDislike} handleCardPress={handleCardPress} />}
+        renderCard={(item) => <CardComponent item={item}  handleCardPress={handleCardPress} />}
         renderNoMoreCards={() => <NoMoreCards />}
         useNativeDriver={true}
       />

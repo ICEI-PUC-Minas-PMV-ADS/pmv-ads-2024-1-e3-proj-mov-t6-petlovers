@@ -7,5 +7,7 @@ export const getAllPetsAPI_URL = `${baseAPI_URL}/api/allpets`;
 export const cardpetsAPI_URL = `${baseAPI_URL}/api/fourpets`;
 export const AvaliacaoAPI_URL = `${baseAPI_URL}/api/avaliacao`;
 export const petAPI_URL = `${baseAPI_URL}/api/pet`;
+export const matchAPI_URL = `${baseAPI_URL}/api/match`;
+export const matchDetailsAPI_URL = `${baseAPI_URL}/api/match/:id/details'`;
 
 

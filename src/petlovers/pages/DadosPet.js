@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { TextInput } from "react-native-paper";
-import { SafeAreaView, StyleSheet, View, Text, Alert, TouchableOpacity, Image, } from "react-native";
+import { SafeAreaView, StyleSheet, View, Text, Alert } from "react-native";
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import { getAuth } from "firebase/auth";
 import ArrowLeft from "../components/ArrowLeft";
