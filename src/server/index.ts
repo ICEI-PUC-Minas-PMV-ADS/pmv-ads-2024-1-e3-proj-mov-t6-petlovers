@@ -14,7 +14,7 @@ import { handleUserRequest } from "./endpoints/users";
 import { getUserById } from "./endpoints/users";
 import { updateUserById } from "./endpoints/users";
 import { deleteUserById } from "./endpoints/users";
-import { handleAllPetsRequest } from "./endpoints/home";
+import { handleAllPetsRequest } from "./endpoints/pets";
 import { handleImageUploadRequest } from './endpoints/images';
 import { handleFourPetsRequest } from "./endpoints/pets";
 import { handleRatingRequest } from "./endpoints/avaliacao";
