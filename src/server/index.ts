@@ -1,3 +1,4 @@
+
 // Importa as bibliotecas do express
 import express, { Express } from "express";
 import cors from "cors";
@@ -21,6 +22,8 @@ import { handleUpdatePetData } from "./endpoints/pets";
 import { handleTopRatingRequest } from "./endpoints/avaliacao";
 import { handleMatchRequest } from "./endpoints/matches";
 import { handleMatchDetailsRequest } from "./endpoints/matches";
+import { getPetDataByUserId } from './endpoints/pets';
+import {getUserNameByPetId}   from "./endpoints/pets";
 
 
 // Inicializa o framework de configuração
@@ -63,6 +66,12 @@ serverApp.post('/api/pet/:id/images', upload.single('file'), handleImageUploadRe
 
 // endpoint pets
 serverApp.post("/api/pet", handlePetRequest);
+serverApp.get("/api/allpets", handleAllPetsRequest);
+serverApp.get("/api/fourpets", handleFourPetsRequest);
+serverApp.put('/api/update-pets/:userId', handleUpdatePetData);
+serverApp.get('/api/get-pet-data/:userId', getPetDataByUserId);
+serverApp.get('/api/get-user-name/:petId', getUserNameByPetId);
+
 
 // endpoint users
 serverApp.post("/api/user", handleUserRequest);
@@ -97,3 +106,18 @@ function authToken(req: any, res: any, next: any) {
     return res.redirect('/login');
   });
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
