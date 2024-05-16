@@ -4,13 +4,43 @@ import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view
 import { Ionicons } from '@expo/vector-icons';
 import { Card } from 'react-native-paper';
 
-import { userAPI_URL  } from "../apiConfig";
 import ArrowLeft from "../components/ArrowLeft";
+import {baseAPI_URL} from '../apiConfig';
+
+
+// Função para obter o nome do tutor pelo ID do pet
+async function getTutorNameByPetId(petId) {
+  try {
+    const response = await fetch(`${baseAPI_URL}/api/get-user-name/${petId}`);
+    const data = await response.json();
+    return data.userName;
+  } catch (error) {
+    console.error("Erro ao obter o nome do tutor associado ao pet:", error);
+    return null;
+  }
+}
 
 
 export default function InfoPet({route}) { //rota com os parametros para renderizar o pet clicado 
-    const { imageURL, nome, idade, sexo, cidade, estado, sobre , cor, raca, porte, userId} = route.params;
+    const { imageURL, nome, idade, sexo, cidade, estado, sobre , cor, raca, porte, id} = route.params;
+    
+    const [tutorName, setTutorName] = useState(null);
 
+  useEffect(() => {
+    if (id) {
+      getTutorName();
+    }
+  }, []);
+
+  const getTutorName = async () => {
+    try {
+      const name = await getTutorNameByPetId(id);
+      setTutorName(name);
+    } catch (error) {
+      console.error('Erro ao obter o nome do tutor associado ao pet:', error);
+    }
+  };
+  
 
     return (
       <SafeAreaView>
@@ -57,13 +87,14 @@ export default function InfoPet({route}) { //rota com os parametros para renderi
               </Text>
 
               <Text style={styles.titletutor}>Tutor</Text>
-              <Text style={[styles.tutor, styles.marginBottom]}> {userId}</Text>
+            <Text style={[styles.tutor, styles.marginBottom]}>{tutorName}</Text>
             </View>
           </View>
         </KeyboardAwareScrollView>
       </SafeAreaView>
     );
   }
+
   
 
 const styles = StyleSheet.create({
