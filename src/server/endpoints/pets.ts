@@ -120,7 +120,6 @@ export async function handleUpdatePetData(req: Request, res: Response) {
 
 
 
-
 // Função para obter os dados do pet associados ao usuário pelo ID
 export async function getPetDataByUserId(req: Request, res: Response) {
   try {
@@ -136,13 +135,18 @@ export async function getPetDataByUserId(req: Request, res: Response) {
       return res.status(404).json({ message: "Pet não encontrado para o usuário fornecido" });
     }
 
-    const petData = petSnapshot.docs[0].data();
-    return res.status(200).json({ data: petData,  userId: userId  });
+    // Obtenha os dados do primeiro pet encontrado
+    const petDoc = petSnapshot.docs[0];
+    const petId = petDoc.id;
+    const petData = petDoc.data();
+
+    return res.status(200).json({ petId, data: petData, userId });
   } catch (error) {
     console.error("Erro ao obter dados do pet:", error);
     return res.status(500).json({ message: "Erro interno do servidor" });
   }
 }
+
 
 
 
