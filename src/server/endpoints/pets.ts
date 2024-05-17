@@ -3,6 +3,7 @@ import admin from "firebase-admin";
 import crypto from "crypto";
 import { Pet } from "../models/pet";
 
+
 // Funcao para enviar dados pet
 export async function handlePetRequest(req: any, res: Response) {
   try {
@@ -43,19 +44,25 @@ export async function handlePetRequest(req: any, res: Response) {
 // Funcao obter dados todos pet
 export async function handleAllPetsRequest(req: Request, res: Response) {
   try {
-      const responseData: Pet[] = []
+    const responseData: Pet[] = []
 
-      const queryPets = await admin
-          .firestore()
-          .collection("pets")
-          .get();
+    const queryPets = await admin
+        .firestore()
+        .collection("pets")
+        .get();
 
-      queryPets.forEach((doc: any) => responseData.push(doc.data()));
-      return res.status(200).json({ data: responseData });
-  } catch (error) {
-    console.error("Erro ao obter a lista de pets:", error);
-    return res.status(500).json({ message: "Erro interno do servidor" });
-  }
+
+    queryPets.forEach((doc: any) => {
+      const petData = doc.data();
+     
+      responseData.push({ ...petData, id: doc.id });
+      console.log(doc.id);
+    });
+    return res.status(200).json({ data: responseData });
+} catch (error) {
+  console.error("Erro ao obter a lista de pets:", error);
+  return res.status(500).json({ message: "Erro interno do servidor" });
+}
 }
 
 
@@ -69,9 +76,14 @@ export async function handleFourPetsRequest(req: Request, res: Response) {
           .collection("pets")
           .limit(2) 
           .get();
+ 
 
-
-      queryPets.forEach((doc: any) => responseData.push(doc.data()));
+      queryPets.forEach((doc: any) => {
+        const petData = doc.data();
+       
+        responseData.push({ ...petData, id: doc.id });
+        console.log(doc.id);
+      });
       return res.status(200).json({ data: responseData });
   } catch (error) {
     console.error("Erro ao obter a lista de pets:", error);
@@ -80,22 +92,105 @@ export async function handleFourPetsRequest(req: Request, res: Response) {
 }
 
 
-//Update dados pet
+
+// Função para atualizar dados do pet pelo ID do usuário
 export async function handleUpdatePetData(req: Request, res: Response) {
   try {
-    const petId = req.params.id; // obtendo o ID do pet da URL
-    const newData = req.body; // os novos dados do pet enviados no corpo da requisição
+    const userId = req.params.userId; 
+    const newData = req.body; 
 
-    // Atualizando os dados do pet no Firestore
+    const petSnapshot = await admin.firestore().collection("pets").where("userId", "==", userId).get();
+
+    if (petSnapshot.empty) {
+      return res.status(404).json({ message: "Pet não encontrado para o usuário fornecido" });
+    }
+
+    const petId = petSnapshot.docs[0].id;
+
     await admin.firestore().collection("pets").doc(petId).update(newData);
 
-    // Recuperando os dados atualizados do pet
     const updatedPet = await admin.firestore().collection("pets").doc(petId).get();
     
-    // Retornando os dados atualizados do pet como resposta
     return res.status(200).json({ data: updatedPet.data() });
   } catch (error) {
     console.error("Erro ao editar dados do pet:", error);
-    return res.status(500).json({ message: error });
+    return res.status(500).json({ message: "Erro interno do servidor" });
   }
 }
+
+
+
+
+// Função para obter os dados do pet associados ao usuário pelo ID
+export async function getPetDataByUserId(req: Request, res: Response) {
+  try {
+    const userId = req.params.userId; 
+
+    if (!userId) {
+      return res.status(400).json({ message: "ID do usuário não fornecido" });
+    }
+
+    const petSnapshot = await admin.firestore().collection("pets").where("userId", "==", userId).get();
+
+    if (petSnapshot.empty) {
+      return res.status(404).json({ message: "Pet não encontrado para o usuário fornecido" });
+    }
+
+    const petData = petSnapshot.docs[0].data();
+    return res.status(200).json({ data: petData,  userId: userId  });
+  } catch (error) {
+    console.error("Erro ao obter dados do pet:", error);
+    return res.status(500).json({ message: "Erro interno do servidor" });
+  }
+}
+
+
+
+// Função para obter o nome do usuário associado a um pet pelo ID do pet
+export async function getUserNameByPetId(req: Request, res: Response) {
+  try {
+    const petId = req.params.petId; 
+    console.log(petId);
+
+    if (!petId) {
+      return res.status(400).json({ message: "ID do pet não fornecido" });
+    }
+
+    const petSnapshot = await admin.firestore().collection("pets").doc(petId).get();
+
+    if (!petSnapshot.exists) {
+      return res.status(404).json({ message: "Pet não encontrado" });
+    }
+
+    const petData = petSnapshot.data();
+    const userId = petData && petData.userId;
+    console.log(userId);
+
+
+    const userSnapshot = await admin.firestore().collection("users").doc(userId).get();
+
+   
+    if (!userSnapshot.exists) {
+      return res.status(404).json({ message: "Usuário não encontrado" });
+    }
+
+  
+    const userData = userSnapshot.data();
+    const userName = userData && userData.full_name;
+    console.log(userName)
+
+    
+    return res.status(200).json({ userName });
+  } catch (error) {
+    console.error("Erro ao obter o nome do usuário associado ao pet:", error);
+    return res.status(500).json({ message: "Erro interno do servidor" });
+  }
+}
+
+
+
+
+
+
+
+

@@ -1,3 +1,4 @@
+
 // Importa as bibliotecas do express
 import express, { Express } from "express";
 import cors from "cors";
@@ -13,12 +14,16 @@ import { handleUserRequest } from "./endpoints/users";
 import { getUserById } from "./endpoints/users";
 import { updateUserById } from "./endpoints/users";
 import { deleteUserById } from "./endpoints/users";
-import { handleAllPetsRequest } from "./endpoints/home";
+import { handleAllPetsRequest } from "./endpoints/pets";
 import { handleImageUploadRequest } from './endpoints/images';
 import { handleFourPetsRequest } from "./endpoints/pets";
 import { handleRatingRequest } from "./endpoints/avaliacao";
 import { handleUpdatePetData } from "./endpoints/pets";
 import { handleTopRatingRequest } from "./endpoints/avaliacao";
+import { handleMatchRequest } from "./endpoints/matches";
+import { handleMatchDetailsRequest } from "./endpoints/matches";
+import { getPetDataByUserId } from './endpoints/pets';
+import {getUserNameByPetId}   from "./endpoints/pets";
 
 
 // Inicializa o framework de configuração
@@ -58,8 +63,15 @@ const upload = multer({ storage: storage });
 //endpoint imagem
 serverApp.post('/api/pet/:id/images', upload.single('file'), handleImageUploadRequest);
 
+
 // endpoint pets
 serverApp.post("/api/pet", handlePetRequest);
+serverApp.get("/api/allpets", handleAllPetsRequest);
+serverApp.get("/api/fourpets", handleFourPetsRequest);
+serverApp.put('/api/update-pets/:userId', handleUpdatePetData);
+serverApp.get('/api/get-pet-data/:userId', getPetDataByUserId);
+serverApp.get('/api/get-user-name/:petId', getUserNameByPetId);
+
 
 // endpoint users
 serverApp.post("/api/user", handleUserRequest);
@@ -67,11 +79,6 @@ serverApp.get("/api/user/:id", getUserById)
 serverApp.patch("/api/user/:id", updateUserById)
 serverApp.delete("/api/user/:id", deleteUserById);
 
-// endpoint all pets
-serverApp.get("/api/allpets", handleAllPetsRequest);
-
-//endpoint para renderizar 2 pets na home
-serverApp.get("/api/fourpets", handleFourPetsRequest);
 
 //endpoint para renderizar as 5 primeiras avaliações
 serverApp.get("/api/avaliacao", handleTopRatingRequest);
@@ -79,8 +86,9 @@ serverApp.get("/api/avaliacao", handleTopRatingRequest);
 // endpoint para cadastrar avaliação
 serverApp.post("/api/avaliacao", handleRatingRequest);
 
-//atualizar dados pet
-serverApp.put('/api/update-pets/:id', handleUpdatePetData);
+// requisições de match
+serverApp.post("/api/match", handleMatchRequest);
+serverApp.get('/api/match/:id/details', handleMatchDetailsRequest);
 
 
 // Prepara o servidor para iniciar na porta, ouvindo em todas as interfaces de rede disponíveis
@@ -98,3 +106,18 @@ function authToken(req: any, res: any, next: any) {
     return res.redirect('/login');
   });
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
