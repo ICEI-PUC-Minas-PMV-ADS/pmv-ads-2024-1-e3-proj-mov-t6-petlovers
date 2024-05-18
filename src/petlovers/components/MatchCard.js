@@ -1,17 +1,19 @@
 import { Card } from 'react-native-paper';
 import React, { useState, useEffect, useRef } from 'react';
-import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity, Alert } from 'react-native';
 import SwipeCards from 'react-native-swipe-cards';
 import Icon from 'react-native-vector-icons/Ionicons';
 import { useNavigation } from '@react-navigation/native';
+import { getAuth } from "firebase/auth";
 
 import { getAllPetsAPI_URL } from "../apiConfig";
 import NoMoreCards from './NoMoreCards';
+import {baseAPI_URL} from '../apiConfig';
 
 import { LogBox } from 'react-native';
 
-//RENDERIZO OS DADOS DO PET OBTIDO NA REQUISICAO
-const CardComponent = ({ item, handleCardPress }) => (
+//RENDERIZA OS DADOS DO PET OBTIDO NA REQUISICAO
+const CardComponent = ({ item, handleCardPress}) => (
   <Card style={styles.card}>
     <Card.Cover
       source={{ uri: item.imageURL }}
@@ -27,7 +29,7 @@ const CardComponent = ({ item, handleCardPress }) => (
       </View>
     </View>
     <View style={styles.buttonContainer}>
-      <TouchableOpacity style={[styles.button, styles.likeButton]}>
+    <TouchableOpacity style={[styles.button, styles.likeButton]}>
         <Text style={[styles.buttonText, { color: 'yellow' }]}>✖️</Text>
       </TouchableOpacity>
       <TouchableOpacity onPress={() => handleCardPress(item.id, item.nome, item.idade, item.cidade, item.imageURL, item.estado, item.sobre, item.raca, item.sexo, item.cor, item.porte)} style={[styles.buttonInfo, styles.infoButton]}>
@@ -40,40 +42,104 @@ const CardComponent = ({ item, handleCardPress }) => (
   </Card>
 );
 
-//REQUISICAO PARA OBTER DADOS DO PET
+
 const MatchCard = () => {
   const [data, setData] = useState([]);
+  const [petId, setPetId] = useState(null);
+  const initialXRef = useRef(null); // Utilize useRef para initialX
   const navigation = useNavigation();
   const swiperRef = useRef(null);
+  
+  const auth = getAuth();
+  const user = auth.currentUser;
+
+  // Função para obter dados do pet
+  const fetchPetData = async () => {
+    try {
+      if (!user) return;
+      const userId = user.uid;
+    
+      const response = await fetch(`${baseAPI_URL}/api/get-pet-data/${userId}`);
+      const responseData = await response.json();
+    
+      const petId = responseData.petId;
+      setPetId(petId);
+    
+    } catch (error) {
+      console.error("Erro ao obter dados do pet:", error);
+    }
+  };
 
   useEffect(() => {
+    fetchPetData();
+  }, [user]);
+
+  // Função para renderizar todos os pets cadastrados
+  useEffect(() => {
     fetch(getAllPetsAPI_URL)
-    .then((response) => response.json())
-    .then((responseData) => {
-       
+      .then((response) => response.json())
+      .then((responseData) => {
         setData(responseData.data);
-    })
-    .catch((error) => console.error('Error:', error));
-}, []);
+      })
+      .catch((error) => console.error('Error:', error));
+  }, []);
 
   useEffect(() => {
     LogBox.ignoreLogs(['Animated: `useNativeDriver`']);
-}, [])
-
+  }, []);
 
   const handleCardPress = (id, nome, idade, cidade, imageURL, estado, sobre, raca, sexo, cor, porte) => {
     navigation.navigate('InfoPet', { id, nome, idade, cidade, imageURL, estado, sobre, raca, sexo, cor, porte });
   };
 
-  //RENDERIZO O CARDCOMPONENT DENTRO DO <SwipeCards>
+
+  //ALERTA DE LIKE AO DESLIZAR PARA DIREITA E ESQUERDA
+  
+  const handleYup = (item) => {
+    if (!petId) return;
+
+    // Execute a fetch request in the background
+    fetch(`${baseAPI_URL}/api/match`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        pet1_id: petId, // Id do pet autenticado
+        pet2_id: item.id, // Id do pet do card atual
+      }),
+    })
+      .then(response => response.json())
+      .then(data => {
+        Alert.alert('Gostei!', `Você curtiu ${item.nome}`);
+      })
+      .catch(error => {
+        console.error('Erro ao enviar like:', error);
+      });
+  };
+
+  const handleNope = (item) => {
+    Alert.alert('Não Gostei!', `Você não gostou do pet ${item.nome}`);
+  };
+
+
+  
   return (
     <View style={styles.container}>
       <SwipeCards
         ref={swiperRef}
         cards={data}
-        renderCard={(item) => <CardComponent item={item}  handleCardPress={handleCardPress} />}
+        renderCard={(item) => (
+          <CardComponent
+            item={item}
+            handleCardPress={handleCardPress}
+            petId={petId}
+          />
+        )}
         renderNoMoreCards={() => <NoMoreCards />}
         useNativeDriver={true}
+        handleYup={handleYup}
+        handleNope={handleNope}
       />
     </View>
   );
@@ -82,6 +148,9 @@ const MatchCard = () => {
 
 
 const styles = StyleSheet.create({
+  card: {
+    width: 350,
+  },
   cardImage: {
     flex: 1,
   },
