@@ -12,7 +12,7 @@ import {baseAPI_URL} from '../apiConfig';
 
 import { LogBox } from 'react-native';
 
-//RENDERIZA OS DADOS DO PET OBTIDO NA REQUISICAO
+
 const CardComponent = ({ item, handleCardPress}) => (
   <Card style={styles.card}>
     <Card.Cover
@@ -32,7 +32,7 @@ const CardComponent = ({ item, handleCardPress}) => (
     <View style={[styles.button, styles.likeButton]}>
         <Text style={[styles.buttonText, { color: 'yellow' }]}>✖️</Text>
       </View>
-      <TouchableOpacity onPress={() => handleCardPress(item.id, item.nome, item.idade, item.cidade, item.imageURL, item.estado, item.sobre, item.raca, item.sexo, item.cor, item.porte)} style={[styles.buttonInfo, styles.infoButton]}>
+      <TouchableOpacity onPress={() => handleCardPress(item)} style={[styles.buttonInfo, styles.infoButton]}>
         <Icon name="information-circle" size={29} color="blue" />
       </TouchableOpacity>
       <View style={[styles.button, styles.dislikeButton]}>
@@ -46,7 +46,6 @@ const CardComponent = ({ item, handleCardPress}) => (
 const MatchCard = () => {
   const [data, setData] = useState([]);
   const [petId, setPetId] = useState(null);
-  const initialXRef = useRef(null); // Utilize useRef para initialX
   const navigation = useNavigation();
   const swiperRef = useRef(null);
   
@@ -73,7 +72,7 @@ const MatchCard = () => {
   useEffect(() => {
     fetchPetData();
   }, [user]);
-
+  
   // Função para renderizar todos os pets cadastrados
   useEffect(() => {
     fetch(getAllPetsAPI_URL)
@@ -88,17 +87,13 @@ const MatchCard = () => {
     LogBox.ignoreLogs(['Animated: `useNativeDriver`']);
   }, []);
 
-  const handleCardPress = (id, nome, idade, cidade, imageURL, estado, sobre, raca, sexo, cor, porte) => {
-    navigation.navigate('InfoPet', { id, nome, idade, cidade, imageURL, estado, sobre, raca, sexo, cor, porte });
+  const handleCardPress = (item) => {
+    navigation.navigate('InfoPet', { ...item });
   };
 
-
-  //ALERTA DE LIKE AO DESLIZAR PARA DIREITA E ESQUERDA
-  
+  //Funcao match
   const handleYup = (item) => {
     if (!petId) return;
-
-    // Execute a fetch request in the background
     fetch(`${baseAPI_URL}/api/match`, {
       method: 'POST',
       headers: {
@@ -119,10 +114,8 @@ const MatchCard = () => {
   };
 
   const handleNope = (item) => {
-    Alert.alert('Não Gostei!', `Você não gostou do pet ${item.nome}`);
+    Alert.alert('Não Gostei!', `Você não gostou de ${item.nome}`);
   };
-
-
   
   return (
     <View style={styles.container}>
@@ -144,7 +137,6 @@ const MatchCard = () => {
     </View>
   );
 };
-
 
 
 const styles = StyleSheet.create({
