@@ -4,13 +4,10 @@ import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import SwipeCards from 'react-native-swipe-cards';
 import Icon from 'react-native-vector-icons/Ionicons';
 import { useNavigation } from '@react-navigation/native';
-
 import { getAllPetsAPI_URL } from "../apiConfig";
 import NoMoreCards from './NoMoreCards';
-
 import { LogBox } from 'react-native';
 
-//RENDERIZO OS DADOS DO PET OBTIDO NA REQUISICAO
 const CardComponent = ({ item, handleCardPress }) => (
   <Card style={styles.card}>
     <Card.Cover
@@ -30,54 +27,71 @@ const CardComponent = ({ item, handleCardPress }) => (
       <TouchableOpacity style={[styles.button, styles.likeButton]}>
         <Text style={[styles.buttonText, { color: 'yellow' }]}>✖️</Text>
       </TouchableOpacity>
-      <TouchableOpacity onPress={() => handleCardPress(item.id, item.nome, item.idade, item.cidade, item.imageURL, item.estado, item.sobre, item.raca, item.sexo, item.cor, item.porte)} style={[styles.buttonInfo, styles.infoButton]}>
+      <TouchableOpacity onPress={() => handleCardPress(item)} style={[styles.buttonInfo, styles.infoButton]}>
         <Icon name="information-circle" size={29} color="blue" />
       </TouchableOpacity>
-      <TouchableOpacity  style={[styles.button, styles.dislikeButton]}>
+      <TouchableOpacity style={[styles.button, styles.dislikeButton]}>
         <Text style={styles.buttonText}>♥️</Text>
       </TouchableOpacity>
     </View>
   </Card>
 );
 
-//REQUISICAO PARA OBTER DADOS DO PET
-const MatchCard = () => {
+const MatchCard = ({ searchTerm }) => {
   const [data, setData] = useState([]);
+  const [filteredData, setFilteredData] = useState([]);
   const navigation = useNavigation();
   const swiperRef = useRef(null);
 
   useEffect(() => {
     fetch(getAllPetsAPI_URL)
-    .then((response) => response.json())
-    .then((responseData) => {
-       
+      .then((response) => response.json())
+      .then((responseData) => {
         setData(responseData.data);
-    })
-    .catch((error) => console.error('Error:', error));
-}, []);
+        setFilteredData(responseData.data);
+      })
+      .catch((error) => console.error('Error:', error));
+  }, []);
+
+  useEffect(() => {
+    if (searchTerm) {
+      const filtered = data.filter(item =>
+        item.nome.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        item.raca.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        item.cidade.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        item.estado.toLowerCase().includes(searchTerm.toLowerCase())
+      );
+      setFilteredData(filtered);
+    } else {
+      setFilteredData(data);
+    }
+  }, [searchTerm, data]);
 
   useEffect(() => {
     LogBox.ignoreLogs(['Animated: `useNativeDriver`']);
-}, [])
+  }, []);
 
-
-  const handleCardPress = (id, nome, idade, cidade, imageURL, estado, sobre, raca, sexo, cor, porte) => {
-    navigation.navigate('InfoPet', { id, nome, idade, cidade, imageURL, estado, sobre, raca, sexo, cor, porte });
+  const handleCardPress = (item) => {
+    navigation.navigate('InfoPet', { ...item });
   };
-
-  //RENDERIZO O CARDCOMPONENT DENTRO DO <SwipeCards>
+  const noResults = filteredData.length === 0;
   return (
     <View style={styles.container}>
+         {noResults ? (
+        <Text style={styles.noResultsText}>Nenhum perfil encontrado.</Text>
+      ) : (
       <SwipeCards
         ref={swiperRef}
-        cards={data}
-        renderCard={(item) => <CardComponent item={item}  handleCardPress={handleCardPress} />}
+        cards={filteredData}
+        renderCard={(item) => <CardComponent item={item} handleCardPress={handleCardPress} />}
         renderNoMoreCards={() => <NoMoreCards />}
         useNativeDriver={true}
       />
+      )}
     </View>
   );
 };
+
 
 
 
