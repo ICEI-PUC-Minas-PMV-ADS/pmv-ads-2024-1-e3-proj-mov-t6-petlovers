@@ -29,15 +29,15 @@ const CardComponent = ({ item, handleCardPress}) => (
       </View>
     </View>
     <View style={styles.buttonContainer}>
-    <TouchableOpacity style={[styles.button, styles.likeButton]}>
+    <View style={[styles.button, styles.likeButton]}>
         <Text style={[styles.buttonText, { color: 'yellow' }]}>✖️</Text>
-      </TouchableOpacity>
+      </View>
       <TouchableOpacity onPress={() => handleCardPress(item.id, item.nome, item.idade, item.cidade, item.imageURL, item.estado, item.sobre, item.raca, item.sexo, item.cor, item.porte)} style={[styles.buttonInfo, styles.infoButton]}>
         <Icon name="information-circle" size={29} color="blue" />
       </TouchableOpacity>
-      <TouchableOpacity  style={[styles.button, styles.dislikeButton]}>
+      <View style={[styles.button, styles.dislikeButton]}>
         <Text style={styles.buttonText}>♥️</Text>
-      </TouchableOpacity>
+      </View>
     </View>
   </Card>
 );
@@ -182,12 +182,10 @@ const styles = StyleSheet.create({
     fontSize: 26,
   },
   likeButton: {
-    backgroundColor: 'white',
     right: 80,
     fontSize: 26,
   },
   dislikeButton: {
-    backgroundColor: 'white',
     right: 20,
     color: 'yellow',
     fontSize: 26,
