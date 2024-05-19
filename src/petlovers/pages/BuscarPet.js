@@ -13,25 +13,30 @@ export default function BuscarPet() {
   const [searchTerm, setSearchTerm] = useState('');
   const [filteredData, setFilteredData] = useState([]);
   
+ 
   useEffect(() => {
     const auth = getAuth();
     const user = auth.currentUser;
-    setUserLogado(user?.displayName?.length > 0);
-  }, []);
+    user?.displayName.length > 0 ? setUserLogado(true) : false;
+  });
 
   const handleSearch = (term) => {
     setSearchTerm(term);
   };
 
-  return (
-    <SafeAreaView style={{ flex: 1 }}>
-      <ArrowLeft />
-      <KeyboardAwareScrollView>
-        <View>
-          <SearchBar onSearch={handleSearch} />
-          <MatchCard searchTerm={searchTerm} />
-        </View>
-      </KeyboardAwareScrollView>
-    </SafeAreaView>
-  );
+  if(userLogado) {
+    return (
+      <SafeAreaView style={{ flex: 1 }}>
+        <ArrowLeft />
+        <KeyboardAwareScrollView>
+          <View>
+            <SearchBar onSearch={handleSearch} />
+            <MatchCard searchTerm={searchTerm} />
+          </View>
+        </KeyboardAwareScrollView>
+      </SafeAreaView>
+    );
+  } else {
+    return <Login />
+  }
 }

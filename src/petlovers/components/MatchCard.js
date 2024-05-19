@@ -1,12 +1,14 @@
 import { Card } from 'react-native-paper';
 import React, { useState, useEffect, useRef } from 'react';
-import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity, Alert } from 'react-native';
 import SwipeCards from 'react-native-swipe-cards';
 import Icon from 'react-native-vector-icons/Ionicons';
 import { useNavigation } from '@react-navigation/native';
 import { getAllPetsAPI_URL } from "../apiConfig";
 import NoMoreCards from './NoMoreCards';
 import { LogBox } from 'react-native';
+import { getAuth } from "firebase/auth";
+import {baseAPI_URL} from '../apiConfig';
 
 const CardComponent = ({ item, handleCardPress }) => (
   <Card style={styles.card}>
@@ -24,15 +26,15 @@ const CardComponent = ({ item, handleCardPress }) => (
       </View>
     </View>
     <View style={styles.buttonContainer}>
-      <TouchableOpacity style={[styles.button, styles.likeButton]}>
+      <View style={[styles.button, styles.likeButton]}>
         <Text style={[styles.buttonText, { color: 'yellow' }]}>✖️</Text>
-      </TouchableOpacity>
+      </View>
       <TouchableOpacity onPress={() => handleCardPress(item)} style={[styles.buttonInfo, styles.infoButton]}>
         <Icon name="information-circle" size={29} color="blue" />
       </TouchableOpacity>
-      <TouchableOpacity style={[styles.button, styles.dislikeButton]}>
+      <View style={[styles.button, styles.dislikeButton]}>
         <Text style={styles.buttonText}>♥️</Text>
-      </TouchableOpacity>
+      </View>
     </View>
   </Card>
 );
@@ -40,9 +42,35 @@ const CardComponent = ({ item, handleCardPress }) => (
 const MatchCard = ({ searchTerm }) => {
   const [data, setData] = useState([]);
   const [filteredData, setFilteredData] = useState([]);
+  const [petId, setPetId] = useState(null);
   const navigation = useNavigation();
   const swiperRef = useRef(null);
 
+  const auth = getAuth();
+  const user = auth.currentUser;
+
+  // Função para obter dados do pet
+  const fetchPetData = async () => {
+    try {
+      if (!user) return;
+      const userId = user.uid;
+    
+      const response = await fetch(`${baseAPI_URL}/api/get-pet-data/${userId}`);
+      const responseData = await response.json();
+    
+      const petId = responseData.petId;
+      setPetId(petId);
+    
+    } catch (error) {
+      console.error("Erro ao obter dados do pet:", error);
+    }
+  };
+
+  useEffect(() => {
+    fetchPetData();
+  }, [user]);
+
+  //renderiza todos os pets cadastrados
   useEffect(() => {
     fetch(getAllPetsAPI_URL)
       .then((response) => response.json())
@@ -53,6 +81,35 @@ const MatchCard = ({ searchTerm }) => {
       .catch((error) => console.error('Error:', error));
   }, []);
 
+  
+    //Funcao match
+    const handleYup = (item) => {
+      if (!petId) return;
+  
+      fetch(`${baseAPI_URL}/api/match`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          pet1_id: petId, // Id do pet autenticado
+          pet2_id: item.id, // Id do pet do card atual
+        }),
+      })
+        .then(response => response.json())
+        .then(data => {
+          Alert.alert('Gostei!', `Você curtiu ${item.nome}`);
+        })
+        .catch(error => {
+          console.error('Erro ao enviar like:', error);
+        });
+    };
+  
+    const handleNope = (item) => {
+      Alert.alert('Não Gostei!', `Você não gostou do pet ${item.nome}`);
+    };
+
+  //funcao de pesquisa
   useEffect(() => {
     if (searchTerm) {
       const filtered = data.filter(item =>
@@ -74,7 +131,9 @@ const MatchCard = ({ searchTerm }) => {
   const handleCardPress = (item) => {
     navigation.navigate('InfoPet', { ...item });
   };
+
   const noResults = filteredData.length === 0;
+
   return (
     <View style={styles.container}>
          {noResults ? (
@@ -82,10 +141,12 @@ const MatchCard = ({ searchTerm }) => {
       ) : (
       <SwipeCards
         ref={swiperRef}
-        cards={filteredData}
+        cards={searchTerm ? filteredData : data}
         renderCard={(item) => <CardComponent item={item} handleCardPress={handleCardPress} />}
         renderNoMoreCards={() => <NoMoreCards />}
         useNativeDriver={true}
+        handleYup={handleYup}
+        handleNope={handleNope}
       />
       )}
     </View>
@@ -127,12 +188,10 @@ const styles = StyleSheet.create({
     fontSize: 26,
   },
   likeButton: {
-    backgroundColor: 'white',
     right: 80,
     fontSize: 26,
   },
   dislikeButton: {
-    backgroundColor: 'white',
     right: 20,
     color: 'yellow',
     fontSize: 26,
@@ -185,5 +244,7 @@ const styles = StyleSheet.create({
 });
 
 export default MatchCard;
+
+
 
 
