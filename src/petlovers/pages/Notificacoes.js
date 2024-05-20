@@ -7,6 +7,7 @@ import SearchBar from "../components/SearchBar";
 
 
 export default function Notificacoes() {
+
    return (
 
 <KeyboardAwareScrollView style={{ flex: 1 }}> 

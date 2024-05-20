@@ -12,7 +12,6 @@
   "license": "ISC",
   "dependencies": {
     "@firebase/auth": "^1.7.1",
-    "@react-native-async-storage/async-storage": "^1.23.1",
     "bcrypt": "^5.1.1",
     "cors": "^2.8.5",
     "dotenv": "^16.4.5",
