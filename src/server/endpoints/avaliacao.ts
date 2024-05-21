@@ -47,7 +47,7 @@ export async function handleTopRatingRequest(req: Request, res: Response) {
             .limit(5)
             .get();
 
-        // Retornar lista de pets
+        // Retornar lista de avaliações
         queryAvaliacao.forEach((doc: any) => responseData.push(doc.data()));
         return res.status(200).json({ data: responseData });
     } catch (error) {

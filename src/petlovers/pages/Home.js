@@ -5,7 +5,7 @@ import { useNavigation } from '@react-navigation/native';
 import BannerCadastro from "../components/BannerCadastro";
 import Avaliacao from "../components/Avaliacao";
 import { getAuth } from "firebase/auth";
-import { Button } from 'react-native-paper';
+
 
 
 export default function Home() {
@@ -43,12 +43,12 @@ export default function Home() {
                     </View>
                     <CardPet />
 
-                    {/* <View>
+                    <View>
                     <Button
                     title= "Avalie-nos"
                     onPress={() => navigation.navigate('Avaliacoes')}
                     />
-                    </View> */}
+                    </View> 
                 </ScrollView>
             </View>
         </SafeAreaView>

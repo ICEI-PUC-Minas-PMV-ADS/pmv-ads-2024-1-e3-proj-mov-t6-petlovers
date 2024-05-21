@@ -5,7 +5,7 @@ import { getAuth } from "firebase/auth";
 import Avaliacao from "../components/Avaliacao";
 import ArrowLeft from "../components/ArrowLeft";
 import { AvaliacaoAPI_URL } from "../apiConfig";
-import { Ionicons } from '@expo/vector-icons';
+import CardAvaliacao from "../components/CardAvaliacao";
 
 export default function Avaliacoes() {
     const [data, setData] = useState([]);
@@ -13,6 +13,8 @@ export default function Avaliacoes() {
     const auth = getAuth();
     const user = auth.currentUser;
 
+
+    const goToAvaliacoes = () => { navigation.navigate('Avaliacao') };
     // Obtem os dados das avaliações no backend
     useEffect(() => {
         fetch(AvaliacaoAPI_URL) //API URL dos cards
@@ -26,24 +28,11 @@ export default function Avaliacoes() {
                 <View style={styles.arrow}>
                     <ArrowLeft />
                 </View>
-                <FlatList
-            
-                    data={data}
-                    renderItem={({ item }) => (
-                        <View style={styles.cards1}>
-                            <Text key={item.id} style={styles.text1}>{item.message} </Text>
-                            <Text key={item.id} style={styles.text}>{item.rate}</Text>
-                            <View style={styles.align}>
-                                <Ionicons style={styles.icon} name='paw' size={19} />
-                                <Ionicons style={styles.icon} name='paw' size={19} />
-                                <Ionicons style={styles.icon} name='paw' size={19} />
-                                <Ionicons style={styles.icon} name='paw' size={19} />
-                                <Ionicons style={styles.icon} name='paw' size={19} />
-                            </View>
-                            <Text key={item.id} style={styles.text}>Liana </Text>
-                        </View>
-                    )}
-                />
+                <View>
+                    <Text style={styles.text}>Avaliações Recentes</Text>
+                </View>
+                <FlatList data={data} renderItem={({ item }) => (<CardAvaliacao item={item} />)} />
+                <Text onPress={goToAvaliacoes} style={styles.text2}>ver mais</Text>
             </View>
 
             <Avaliacao />
@@ -56,7 +45,7 @@ const styles = StyleSheet.create({
 
     cards1: {
         width: 250,
- 
+
         borderRadius: 5,
         backgroundColor: '#ffffff',
         marginRight: 10,
@@ -85,6 +74,13 @@ const styles = StyleSheet.create({
         color: '#5F5B5B',
         fontSize: 15,
         marginLeft: 5,
+        marginTop: 8,
+        marginBottom: 15,
+    },
+    text2: {
+        color: '#5F5B5B',
+        fontSize: 15,
+        marginLeft: 205,
         marginTop: 8,
         marginBottom: 15,
     },

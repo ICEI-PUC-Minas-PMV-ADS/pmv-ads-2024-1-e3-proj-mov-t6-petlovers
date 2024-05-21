@@ -1,10 +1,8 @@
 import React, { useState } from 'react';
 import { Modal, StyleSheet, Text, View, Pressable, TextInput } from 'react-native';
-
 import { Ionicons } from '@expo/vector-icons';
 //API URL avaliação
 import { AvaliacaoAPI_URL } from "../apiConfig";
-
 import { getAuth } from "firebase/auth";
 
 //Modal Avaliação
