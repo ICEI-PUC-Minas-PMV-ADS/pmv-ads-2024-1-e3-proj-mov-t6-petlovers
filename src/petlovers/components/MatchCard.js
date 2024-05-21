@@ -10,7 +10,9 @@ import { LogBox } from 'react-native';
 import { getAuth } from "firebase/auth";
 import {baseAPI_URL} from '../apiConfig';
 
-const CardComponent = ({ item, handleCardPress }) => (
+
+
+const CardComponent = ({ item, handleCardPress, btnDislike, btnLike}) => (
   <Card style={styles.card}>
     <Card.Cover
       source={{ uri: item.imageURL }}
@@ -26,18 +28,20 @@ const CardComponent = ({ item, handleCardPress }) => (
       </View>
     </View>
     <View style={styles.buttonContainer}>
-      <View style={[styles.button, styles.likeButton]}>
+      <TouchableOpacity  onPress={() => btnDislike(item)} style={[styles.button, styles.likeButton]}>
         <Text style={[styles.buttonText, { color: 'yellow' }]}>✖️</Text>
-      </View>
+      </TouchableOpacity >
       <TouchableOpacity onPress={() => handleCardPress(item)} style={[styles.buttonInfo, styles.infoButton]}>
         <Icon name="information-circle" size={29} color="blue" />
       </TouchableOpacity>
-      <View style={[styles.button, styles.dislikeButton]}>
+      <TouchableOpacity  onPress={() => btnLike(item)} style={[styles.button, styles.dislikeButton]}>
         <Text style={styles.buttonText}>♥️</Text>
-      </View>
+      </TouchableOpacity>
     </View>
   </Card>
 );
+
+
 
 const MatchCard = ({ searchTerm }) => {
   const [data, setData] = useState([]);
@@ -105,10 +109,41 @@ const MatchCard = ({ searchTerm }) => {
         });
     };
   
+   
     const handleNope = (item) => {
       Alert.alert('Não Gostei!', `Você não gostou do pet ${item.nome}`);
     };
 
+
+     //funcao like para o botao
+    const btnLike = (item) => {
+      if (!petId) return;
+  
+      fetch(`${baseAPI_URL}/api/match`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          pet1_id: petId, // Id do pet autenticado
+          pet2_id: item.id, // Id do pet do card atual
+        }),
+      })
+        .then(response => response.json())
+        .then(data => {
+          Alert.alert('Gostei!', `Você curtiu ${item.nome}`);
+        })
+        .catch(error => {
+          console.error('Erro ao enviar like:', error);
+        });
+    }
+
+    //funcoa botao dislike
+    const btnDislike = (item) => {
+      return Alert.alert('Não Gostei!', `Você não gostou do pet ${item.nome}`);
+    }
+
+  
   //funcao de pesquisa
   useEffect(() => {
     if (searchTerm) {
@@ -142,7 +177,7 @@ const MatchCard = ({ searchTerm }) => {
       <SwipeCards
         ref={swiperRef}
         cards={searchTerm ? filteredData : data}
-        renderCard={(item) => <CardComponent item={item} handleCardPress={handleCardPress} />}
+        renderCard={(item) => <CardComponent item={item} handleCardPress={handleCardPress} btnDislike={btnDislike} btnLike={btnLike}  />}
         renderNoMoreCards={() => <NoMoreCards />}
         useNativeDriver={true}
         handleYup={handleYup}
