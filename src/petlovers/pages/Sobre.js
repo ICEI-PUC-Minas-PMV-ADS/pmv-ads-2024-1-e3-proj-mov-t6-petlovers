@@ -4,12 +4,42 @@ import { Button } from 'react-native-paper';
 import { useNavigation } from '@react-navigation/native'; 
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import BannerSobre from "../components/BannerSobre";
+import { useEffect } from "react";
+import * as SQLite from 'expo-sqlite';
 
 const Separator = () => {
   return <View style={styles.separator} />;
 }
+    export default function Sobre () {    
+      
+      useEffect(() => {
+        const initDB = async () => {
+          try {
+            // Abre o banco de dados
+            const db = await SQLite.openDatabaseAsync('mydatabase.db');
+            
+            // Cria tabela se não existir
+            await db.execAsync(`             
+              CREATE TABLE IF NOT EXISTS test (id INTEGER PRIMARY KEY NOT NULL, value TEXT NOT NULL, intValue INTEGER);
+              INSERT INTO test (value, intValue) VALUES ('test1', 123);
+              INSERT INTO test (value, intValue) VALUES ('test2', 456);
+              INSERT INTO test (value, intValue) VALUES ('test3', 789);
+            `);
+            console.log('Table created successfully');  
+            
+            const firstRow = await db.getFirstAsync('SELECT * FROM test');
+            console.log(firstRow.id, firstRow.value, firstRow.intValue);
+           
+          } catch (error) {
+            console.error('Error during DB operation:', error);
+          }
+        };
+    
+        // Executa a função de inicialização do banco de dados
+        initDB();
+      }, []);
 
-    export default function Sobre () {
+
 
     const navigation=useNavigation();
 
