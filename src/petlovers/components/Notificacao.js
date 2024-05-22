@@ -10,7 +10,8 @@ export default function Notificacao() {
 
     <View style={styles.header}>
         <Text style={styles.texto}>Seu perfil ainda não foi curtido de volta</Text>
-    </View>     
+       </View>  
+     
 
    
 </SafeAreaView>

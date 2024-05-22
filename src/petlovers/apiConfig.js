@@ -1,5 +1,5 @@
 
-export const baseAPI_URL = 'http://192.168.1.239:3000'; // Para testar no celular, substituir 'localhost' pelo endereço IP:3000 (porta do servidor)
+export const baseAPI_URL = 'http://192.168.0.98:3000'; // Para testar no celular, substituir 'localhost' pelo endereço IP:3000 (porta do servidor)
 
 
 export const userAPI_URL = `${baseAPI_URL}/api/user`;
