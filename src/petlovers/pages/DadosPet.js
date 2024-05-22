@@ -29,7 +29,7 @@ const DadosPet = ({ }) => {
 
                 setPetData(petDataFromServer.data);
             } catch (error) {
-                console.error("Erro ao obter dados do pet:", error);
+                console.error("Erro ao obter dados do pet:");
             }
         };
 
@@ -39,7 +39,6 @@ const DadosPet = ({ }) => {
 
    
     const handleUpdatePetData = async () => {
-        
         try {
             if (!user || !petData) return;
             const userId = user.uid;
@@ -47,27 +46,27 @@ const DadosPet = ({ }) => {
             console.log('ID do usuário:', userId);
             console.log('Dados do pet editados:', editedPetData);
     
-            const response = await fetch(`${baseAPI_URL}/api/update-pet-data/${userId}`, {
+            const response = await fetch(`${baseAPI_URL}/api/update-pets/${userId}`, {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json'
                 },
                 body: JSON.stringify({
                     nome: editedPetData.nome || petData.nome,
-                    idade: editedPetData.idade || petData.idade,
+                    idade: editedPetData.idade || petData.idade || '', 
                     cidade: editedPetData.cidade || petData.cidade,
                     estado: editedPetData.estado || petData.estado,
                     sexo: editedPetData.sexo || petData.sexo,
                     porte: editedPetData.porte || petData.porte,
                     cor: editedPetData.cor || petData.cor,
                     sobre: editedPetData.sobre || petData.sobre,
+                    raca: editedPetData.raca|| petData.raca,
                 })
             });
     
             if (response.ok) {
                 const updatedPetData = await response.json();
     
-                // Atualizar os campos individualmente no estado local do pet
                 setPetData(prevPetData => ({
                     ...prevPetData,
                     nome: updatedPetData.nome,
@@ -78,33 +77,32 @@ const DadosPet = ({ }) => {
                     porte: updatedPetData.porte,
                     cor: updatedPetData.cor,
                     sobre: updatedPetData.sobre,
-                    
+                    raca: updatedPetData.raca,
                 }));
                 Alert.alert("Sucesso", "Dados atualizados com sucesso.");
-    
-                console.log('Dados do pet atualizados com sucesso:', updatedPetData);
+
             } else {
-                console.error('Erro ao atualizar dados do pet:', response.statusText);
+                const text = await response.text();
+                console.error('Resposta não é JSON:', text);
+                throw new Error('Resposta não é JSON');
             }
         } catch (error) {
             console.error('Erro:', error);
+            Alert.alert("Erro", error.message);
         }
     };
-
+    
     const handleInputChange = (value, field) => {
         setEditedPetData({ ...editedPetData, [field]: value });
     };
-
- 
     
-
     return (
         <SafeAreaView style={{ flex: 1 }}>
             <ArrowLeft />
             <KeyboardAwareScrollView >
                 <View style={styles.textAreaContainer}>
                     <Text style={styles.title}>Editar dados pet</Text>
-
+    
                     {user ? (
                         <>
                             <FormInput
@@ -118,7 +116,7 @@ const DadosPet = ({ }) => {
                                 label="Idade"
                                 keyboardType="number-pad"
                                 style={styles.input}
-                                value={editedPetData?.idade ?? petData?.idade.toString() ?? ''}
+                                value={editedPetData?.idade ?? petData?.idade?.toString() ?? ''} 
                                 editable={true}
                                 onChangeText={(text) => handleInputChange(text, 'idade')} 
                             />
@@ -188,7 +186,7 @@ const DadosPet = ({ }) => {
             </KeyboardAwareScrollView>
         </SafeAreaView>
     );
-};
+    };
 
 const styles = StyleSheet.create({
   scrollViewContent: {
