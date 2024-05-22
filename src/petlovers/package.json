@@ -41,7 +41,8 @@
     "react-native-swipe-cards": "^0.1.1",
     "react-native-vector-icons": "^10.0.3",
     "react-native-web": "~0.19.6",
-    "react-tinder-card": "^1.6.4"
+    "react-tinder-card": "^1.6.4",
+    "expo-sqlite": "~14.0.3"
   },
   "devDependencies": {
     "@babel/core": "^7.20.0",
