@@ -64,7 +64,7 @@ export async function getMensagens(req: Request, res: Response) {
     }
 
     // Mapear os documentos para o formato Mensagem
-    const mensagens: Mensagem[] = snapshot.docs.map(doc => {
+    const mensagens: Mensagem[] = snapshot.docs.map((doc) => {
       const data = doc.data();
       return {
         id_mensagem: data.id_mensagem,
@@ -95,7 +95,10 @@ export async function updateMensagem(req: Request, res: Response) {
     }
 
     // Obter a referência ao documento da mensagem
-    const mensagemRef = admin.firestore().collection("mensagens").doc(id_mensagem);
+    const mensagemRef = admin
+      .firestore()
+      .collection("mensagens")
+      .doc(id_mensagem);
 
     // Obter o documento da mensagem
     const doc = await mensagemRef.get();
@@ -131,7 +134,10 @@ export async function deleteMensagem(req: Request, res: Response) {
       return res.status(400).json({ message: "Parâmetros inválidos" });
     }
 
-    const mensagemRef = admin.firestore().collection("mensagens").doc(id_mensagem);
+    const mensagemRef = admin
+      .firestore()
+      .collection("mensagens")
+      .doc(id_mensagem);
     const doc = await mensagemRef.get();
 
     if (!doc.exists) {
