@@ -78,6 +78,10 @@ O template criado está disponível no [Figma](https://www.figma.com/file/2Hs6QH
 <img width="313" alt="image" src="https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2024-1-e3-proj-mov-t6-petlovers/assets/93337008/c97d0032-3bb3-4891-b5d5-fb28645526b8"><br><br>
 
 
+### Favoritos
+<img width="352" alt="image" src="https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2024-1-e3-proj-mov-t6-petlovers/assets/93337008/0d343ca0-0b37-46ae-b83d-6b9b61d792f3">
+
+
 ### Área usuário
 
 
