@@ -103,6 +103,13 @@ Ao clicar no ícone, uma janela popup aparecerá para permitir que o usuário av
 <img width="313" alt="image" src="https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2024-1-e3-proj-mov-t6-petlovers/assets/93337008/c97d0032-3bb3-4891-b5d5-fb28645526b8"><br><br>
 
 
+### Favoritos
+
+Essa tela contém  todos os perfis que o usuário curtiu.
+
+<img width="352" alt="image" src="https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2024-1-e3-proj-mov-t6-petlovers/assets/93337008/0d343ca0-0b37-46ae-b83d-6b9b61d792f3">
+
+
 ### Área do usuário
 
 Essa tela contém um link para o usuário visualizar o perfil do seu pet, editar os dados do pet, editar os seus próprios dados, excluir a conta e um botão de logout para sair da aplicação.
