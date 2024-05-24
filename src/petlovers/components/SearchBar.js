@@ -3,18 +3,25 @@ import { View, TextInput, TouchableOpacity, Text, StyleSheet } from "react-nativ
 
 const SearchBar = ({ onSearch }) => {
   const [searchTerm, setSearchTerm] = useState('');
+  const [color, setColor] = useState('');
 
   const handleSearch = () => {
-    onSearch(searchTerm);
+    onSearch(searchTerm, color);
   };
 
   return (
     <View style={styles.searchContainer}>
       <TextInput
         style={styles.searchInput}
-        placeholder="Buscar..."
+        placeholder="Buscar por nome..."
         value={searchTerm}
         onChangeText={(text) => setSearchTerm(text)}
+      />
+      <TextInput
+        style={styles.searchInput}
+        placeholder="Buscar por cor..."
+        value={color}
+        onChangeText={(text) => setColor(text)}
       />
       <TouchableOpacity style={styles.searchButton} onPress={handleSearch}>
         <Text style={styles.searchButtonText}>Buscar</Text>
@@ -36,9 +43,9 @@ const styles = StyleSheet.create({
     borderColor: 'gray',
     borderRadius: 5,
     paddingHorizontal: 10,
+    marginRight: 10,
   },
   searchButton: {
-    marginLeft: 10,
     backgroundColor: '#827397',
     paddingVertical: 10,
     paddingHorizontal: 20,

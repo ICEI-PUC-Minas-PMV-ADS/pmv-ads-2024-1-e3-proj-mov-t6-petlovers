@@ -8,9 +8,10 @@ import { getAllPetsAPI_URL } from "../apiConfig";
 import NoMoreCards from './NoMoreCards';
 import { LogBox } from 'react-native';
 import { getAuth } from "firebase/auth";
-import {baseAPI_URL} from '../apiConfig';
+import { baseAPI_URL } from '../apiConfig';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
-const CardComponent = ({ item, handleCardPress }) => (
+const CardComponent = ({ item, handleCardPress, handleFavorito }) => (
   <Card style={styles.card}>
     <Card.Cover
       source={{ uri: item.imageURL }}
@@ -32,14 +33,14 @@ const CardComponent = ({ item, handleCardPress }) => (
       <TouchableOpacity onPress={() => handleCardPress(item)} style={[styles.buttonInfo, styles.infoButton]}>
         <Icon name="information-circle" size={29} color="blue" />
       </TouchableOpacity>
-      <View style={[styles.button, styles.dislikeButton]}>
+      <TouchableOpacity onPress={() => handleFavorito(item)} style={[styles.button, styles.dislikeButton]}>
         <Text style={styles.buttonText}>♥️</Text>
-      </View>
+      </TouchableOpacity>
     </View>
   </Card>
 );
 
-const MatchCard = ({ searchTerm }) => {
+const MatchCard = ({ searchTerm, color, handleFavorito }) => {
   const [data, setData] = useState([]);
   const [filteredData, setFilteredData] = useState([]);
   const [petId, setPetId] = useState(null);
@@ -49,10 +50,16 @@ const MatchCard = ({ searchTerm }) => {
   const auth = getAuth();
   const user = auth.currentUser;
 
-  // Função para obter dados do pet
+  useEffect(() => {
+    fetchPetData();
+  }, [user]);
+
   const fetchPetData = async () => {
     try {
-      if (!user) return;
+      if (!user) {
+        console.log('Usuário não autenticado');
+        return;
+      }
       const userId = user.uid;
     
       const response = await fetch(`${baseAPI_URL}/api/get-pet-data/${userId}`);
@@ -67,11 +74,6 @@ const MatchCard = ({ searchTerm }) => {
   };
 
   useEffect(() => {
-    fetchPetData();
-  }, [user]);
-
-  //renderiza todos os pets cadastrados
-  useEffect(() => {
     fetch(getAllPetsAPI_URL)
       .then((response) => response.json())
       .then((responseData) => {
@@ -81,170 +83,157 @@ const MatchCard = ({ searchTerm }) => {
       .catch((error) => console.error('Error:', error));
   }, []);
 
-  
-    //Funcao match
-    const handleYup = (item) => {
-      if (!petId) return;
-  
-      fetch(`${baseAPI_URL}/api/match`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          pet1_id: petId, // Id do pet autenticado
-          pet2_id: item.id, // Id do pet do card atual
-        }),
-      })
-        .then(response => response.json())
-        .then(data => {
-          Alert.alert('Gostei!', `Você curtiu ${item.nome}`);
-        })
-        .catch(error => {
-          console.error('Erro ao enviar like:', error);
-        });
-    };
+  const handleYup = (item) => {
+    if (!petId) return;
+
+    console.log('Pet curtido:', item);
+
+    // Salvar os dados do card curtido em AsyncStorage
+    AsyncStorage.getItem('favoritos').then((favoritosData) => {
+      const favoritos = favoritosData ? JSON.parse(favoritosData) : [];
+      favoritos.push(item);
+      AsyncStorage.setItem('favoritos', JSON.stringify(favoritos)).then(() => {
+        console.log('Dados do pet curtido salvos em favoritos.');
+      }).catch((error) => {
+        console.error('Erro ao salvar pet curtido em favoritos:', error);
+      });
+    }).catch((error) => {
+      console.error('Erro ao obter favoritos do AsyncStorage:', error);
+    });
+  };
   
     const handleNope = (item) => {
       Alert.alert('Não Gostei!', `Você não gostou do pet ${item.nome}`);
     };
-
-  //funcao de pesquisa
-  useEffect(() => {
-    if (searchTerm) {
-      const filtered = data.filter(item =>
-        item.nome.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        item.raca.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        item.cidade.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        item.estado.toLowerCase().includes(searchTerm.toLowerCase())
-      );
+  
+    useEffect(() => {
+      const filtered = data.filter(item => {
+        const nameMatch = !searchTerm || item.nome.toLowerCase().includes(searchTerm.toLowerCase());
+        const colorMatch = !color || item.cor.toLowerCase().includes(color.toLowerCase());
+        return nameMatch && colorMatch;
+      });
       setFilteredData(filtered);
-    } else {
-      setFilteredData(data);
-    }
-  }, [searchTerm, data]);
-
-  useEffect(() => {
-    LogBox.ignoreLogs(['Animated: `useNativeDriver`']);
-  }, []);
-
-  const handleCardPress = (item) => {
-    navigation.navigate('InfoPet', { ...item });
+    }, [searchTerm, color, data]);
+  
+    useEffect(() => {
+      LogBox.ignoreLogs(['Animated: `useNativeDriver`']);
+    }, []);
+  
+    const handleCardPress = (item) => {
+      navigation.navigate('InfoPet', { ...item });
+    };
+  
+    const noResults = filteredData.length === 0;
+  
+    return (
+      <View style={styles.container}>
+        {noResults ? (
+          <Text style={styles.noResultsText}>Nenhum perfil encontrado.</Text>
+        ) : (
+          <SwipeCards
+            ref={swiperRef}
+            cards={filteredData}
+            renderCard={(item) => <CardComponent item={item} handleCardPress={handleCardPress} handleFavorito={handleFavorito} />}
+            renderNoMoreCards={() => <NoMoreCards />}
+            useNativeDriver={true}
+            handleYup={handleYup}
+            handleNope={handleNope}
+          />
+        )}
+      </View>
+    );
   };
-
-  const noResults = filteredData.length === 0;
-
-  return (
-    <View style={styles.container}>
-         {noResults ? (
-        <Text style={styles.noResultsText}>Nenhum perfil encontrado.</Text>
-      ) : (
-      <SwipeCards
-        ref={swiperRef}
-        cards={searchTerm ? filteredData : data}
-        renderCard={(item) => <CardComponent item={item} handleCardPress={handleCardPress} />}
-        renderNoMoreCards={() => <NoMoreCards />}
-        useNativeDriver={true}
-        handleYup={handleYup}
-        handleNope={handleNope}
-      />
-      )}
-    </View>
-  );
-};
-
-
-
-
-const styles = StyleSheet.create({
-  cardImage: {
-    flex: 1,
-  },
-  raca: {
-    color: 'white',
-    fontSize: 18,
-    marginTop: 13,
-    marginBottom: 5,
-    fontWeight: 'bold',
-  },
-  button: {
-    bottom: 20,
-    width: 60,
-    height: 60,
-    borderRadius: 50,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  buttonInfo: {
-    bottom: 20,
-    width: 50,
-    height: 50,
-    borderRadius: 50,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  buttonTextDislike: {
-    color: 'yellow',
-    fontSize: 26,
-  },
-  likeButton: {
-    right: 80,
-    fontSize: 26,
-  },
-  dislikeButton: {
-    right: 20,
-    color: 'yellow',
-    fontSize: 26,
-  },
-  infoButton:{
-    backgroundColor: 'white',
-    right: 50,
-  },
-  buttonText: {
-    fontSize: 27,
-    color: 'white',
-  },
-  buttonContainer: {
-    top: 14,
-    width: '100%',
-    flexDirection: 'row',
-    justifyContent: 'center',
-    marginLeft: 50,
-  },
-  container: {
-    marginTop: 30,
-  },
-  text: {
-    color: 'white',
-    fontSize: 30,
-    marginTop: 20,
-    fontWeight: 'bold',
-  },
-  text1: {
-    color: 'white',
-    fontSize: 18,
-    marginTop: 13,
-    marginBottom: 16,
-    marginLeft: 5,
-    fontWeight: 'bold',
-  },
-  local: {
-    flexDirection: 'row',
-  },
-  icon: {
-    marginTop: 15,
-    color: "white",
-    width: 20,
-  },
-  petData: {
-    marginLeft: 10,
-    marginTop: -200,
-    marginBottom: 60,
-  }
-});
-
-export default MatchCard;
-
-
-
-
+  
+  const styles = StyleSheet.create({
+    cardImage: {
+      flex: 1,
+    },
+    raca: {
+      color: 'white',
+      fontSize: 18,
+      marginTop: 13,
+      marginBottom: 5,
+      fontWeight: 'bold',
+    },
+    button: {
+      bottom: 20,
+      width: 60,
+      height: 60,
+      borderRadius: 50,
+      alignItems: 'center',
+      justifyContent: 'center',
+    },
+    buttonInfo: {
+      bottom: 20,
+      width: 50,
+      height: 50,
+      borderRadius: 50,
+      alignItems: 'center',
+      justifyContent: 'center',
+    },
+    buttonTextDislike: {
+      color: 'yellow',
+      fontSize: 26,
+    },
+    likeButton: {
+      right: 80,
+      fontSize: 26,
+    },
+    dislikeButton: {
+      right: 20,
+      color: 'yellow',
+      fontSize: 26,
+    },
+    infoButton: {
+      backgroundColor: 'white',
+      right: 50,
+    },
+    buttonText: {
+      fontSize: 27,
+      color: 'white',
+    },
+    buttonContainer: {
+      top: 14,
+      width: '100%',
+      flexDirection: 'row',
+      justifyContent: 'center',
+      marginLeft: 50,
+    },
+    container: {
+      marginTop: 30,
+    },
+    text: {
+      color: 'white',
+      fontSize: 30,
+      marginTop: 20,
+      fontWeight: 'bold',
+    },
+    text1: {
+      color: 'white',
+      fontSize: 18,
+      marginTop: 13,
+      marginBottom: 16,
+      marginLeft: 5,
+      fontWeight: 'bold',
+    },
+    local: {
+      flexDirection: 'row',
+    },
+    icon: {
+      marginTop: 15,
+      color: "white",
+      width: 20,
+    },
+    petData: {
+      marginLeft: 10,
+      marginTop: -200,
+      marginBottom: 60,
+    },
+    noResultsText: {
+      textAlign: 'center',
+      fontSize: 18,
+      color: 'gray',
+    },
+  });
+  
+  export default MatchCard;
