@@ -21,6 +21,7 @@ const CardComponent = ({ item, handleCardPress, handleFavorito }) => (
     <View style={styles.petData}>
       <Text style={styles.text}>{item.nome}, {item.idade}, anos</Text>
       <Text style={styles.raca}>{item.raca}</Text>
+      <Text style={styles.cor}>Cor: {item.cor}</Text>
       <View style={styles.local}>
         <Icon style={styles.icon} name="location-outline" size={19} />
         <Text style={styles.text1}>{item.cidade}, {item.estado}</Text>
@@ -44,6 +45,7 @@ const MatchCard = ({ searchTerm, color, handleFavorito }) => {
   const [data, setData] = useState([]);
   const [filteredData, setFilteredData] = useState([]);
   const [petId, setPetId] = useState(null);
+  const [searchColor, setSearchColor] = useState('');
   const navigation = useNavigation();
   const swiperRef = useRef(null);
 
@@ -86,7 +88,6 @@ const MatchCard = ({ searchTerm, color, handleFavorito }) => {
   const handleYup = (item) => {
     if (!petId) return;
 
-    // Fazer o match e salvar no banco de dados
     fetch(`${baseAPI_URL}/api/match`, {
       method: 'POST',
       headers: {
@@ -95,13 +96,13 @@ const MatchCard = ({ searchTerm, color, handleFavorito }) => {
       body: JSON.stringify({
         pet1_id: petId,
         pet2_id: item.id,
+        cor: searchColor,
       }),
     })
     .then(response => response.json())
     .then(data => {
       Alert.alert('Gostei!', `Você curtiu ${item.nome}`);
 
-      // Salvar os dados do card curtido em AsyncStorage
       AsyncStorage.getItem('favoritos').then((favoritosData) => {
         const favoritos = favoritosData ? JSON.parse(favoritosData) : [];
         favoritos.push(item);
@@ -124,23 +125,20 @@ const MatchCard = ({ searchTerm, color, handleFavorito }) => {
   };
 
   useEffect(() => {
-    if (searchTerm) {
+    if (searchTerm || searchColor) {
       const filtered = data.filter(item => 
-        item.nome.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        (item.nome.toLowerCase().includes(searchTerm.toLowerCase()) ||
         item.raca.toLowerCase().includes(searchTerm.toLowerCase()) ||
         item.cidade.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        item.estado.toLowerCase().includes(searchTerm.toLowerCase())
+        item.estado.toLowerCase().includes(searchTerm.toLowerCase())) &&
+        (!searchColor || item.cor.toLowerCase().includes(searchColor.toLowerCase()))
       );
 
       setFilteredData(filtered);
     } else {
-      setFilteredData(data, searchTerm, searchColor);
+      setFilteredData(data);
     }
-  
-    
-
-  }, [searchTerm, data]);
-  
+  }, [searchTerm, searchColor, data]);
 
   useEffect(() => {
     LogBox.ignoreLogs(['Animated: `useNativeDriver`']);
@@ -161,7 +159,7 @@ const MatchCard = ({ searchTerm, color, handleFavorito }) => {
           ref={swiperRef}
           cards={filteredData}
           renderCard={(item) => <CardComponent item={item} handleCardPress={handleCardPress} handleFavorito={handleYup} />}
-          renderNoMoreCards={() => <NoMoreCards />}
+          renderNoMoreCards={() => <Text style={styles.noMoreCardsText}>Não há mais cartões para mostrar.</Text>}
           useNativeDriver={true}
           handleYup={handleYup}
           handleNope={handleNope}
