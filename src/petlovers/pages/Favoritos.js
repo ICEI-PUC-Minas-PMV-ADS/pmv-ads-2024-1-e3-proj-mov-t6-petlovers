@@ -1,24 +1,32 @@
 import React, { useEffect, useState } from 'react';
 import { View, Text, StyleSheet, FlatList, TouchableOpacity, Alert, Image } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { useFocusEffect } from '@react-navigation/native';
+import { Ionicons } from '@expo/vector-icons'; // Importando o ícone do Expo
 
 const Favoritos = () => {
   const [favoritos, setFavoritos] = useState([]);
 
-  useEffect(() => {
-    loadFavoritos();
-  }, []);
+  useFocusEffect(
+    React.useCallback(() => {
+      const loadFavoritos = async () => {
+        try {
+          const favoritosData = await AsyncStorage.getItem('favoritos');
+          if (favoritosData !== null) {
+            setFavoritos(JSON.parse(favoritosData));
+          }
+        } catch (error) {
+          console.error('Erro ao carregar favoritos:', error);
+        }
+      };
 
-  const loadFavoritos = async () => {
-    try {
-      const favoritosData = await AsyncStorage.getItem('favoritos');
-      if (favoritosData !== null) {
-        setFavoritos(JSON.parse(favoritosData));
-      }
-    } catch (error) {
-      console.error('Erro ao carregar favoritos:', error);
-    }
-  };
+      loadFavoritos();
+
+      return () => {
+        // Optional: Any cleanup code if needed
+      };
+    }, [])
+  );
 
   const removeFavorito = async (index) => {
     try {
@@ -63,8 +71,9 @@ const Favoritos = () => {
               <Text style={styles.cardText}>{item.idade} anos</Text>
               <Text style={styles.cardText}>{item.raca}</Text>
             </View>
-            <TouchableOpacity style={styles.removeButton} onPress={() => confirmRemoverFavorito(index)}>
-              <Text style={styles.removeButtonText}>Remover</Text>
+            {/* Substituído o botão de remover pelo botão de coração */}
+            <TouchableOpacity style={styles.heartButton} onPress={() => confirmRemoverFavorito(index)}>
+              <Ionicons name="heart" size={24} color="red" />
             </TouchableOpacity>
           </TouchableOpacity>
         )}
@@ -104,14 +113,9 @@ const styles = StyleSheet.create({
   cardText: {
     fontSize: 18,
   },
-  removeButton: {
-    backgroundColor: 'red',
-    borderRadius: 5,
-    paddingVertical: 5,
-    paddingHorizontal: 10,
-  },
-  removeButtonText: {
-    color: '#fff',
+  heartButton: {
+    // Botão de coração
+    padding: 10,
   },
 });
 

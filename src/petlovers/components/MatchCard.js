@@ -86,154 +86,187 @@ const MatchCard = ({ searchTerm, color, handleFavorito }) => {
   const handleYup = (item) => {
     if (!petId) return;
 
-    console.log('Pet curtido:', item);
+    // Fazer o match e salvar no banco de dados
+    fetch(`${baseAPI_URL}/api/match`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        pet1_id: petId,
+        pet2_id: item.id,
+      }),
+    })
+    .then(response => response.json())
+    .then(data => {
+      Alert.alert('Gostei!', `Você curtiu ${item.nome}`);
 
-    // Salvar os dados do card curtido em AsyncStorage
-    AsyncStorage.getItem('favoritos').then((favoritosData) => {
-      const favoritos = favoritosData ? JSON.parse(favoritosData) : [];
-      favoritos.push(item);
-      AsyncStorage.setItem('favoritos', JSON.stringify(favoritos)).then(() => {
-        console.log('Dados do pet curtido salvos em favoritos.');
+      // Salvar os dados do card curtido em AsyncStorage
+      AsyncStorage.getItem('favoritos').then((favoritosData) => {
+        const favoritos = favoritosData ? JSON.parse(favoritosData) : [];
+        favoritos.push(item);
+        AsyncStorage.setItem('favoritos', JSON.stringify(favoritos)).then(() => {
+          console.log('Dados do pet curtido salvos em favoritos.');
+        }).catch((error) => {
+          console.error('Erro ao salvar pet curtido em favoritos:', error);
+        });
       }).catch((error) => {
-        console.error('Erro ao salvar pet curtido em favoritos:', error);
+        console.error('Erro ao obter favoritos do AsyncStorage:', error);
       });
-    }).catch((error) => {
-      console.error('Erro ao obter favoritos do AsyncStorage:', error);
+    })
+    .catch(error => {
+      console.error('Erro ao enviar like:', error);
     });
   };
-  
-    const handleNope = (item) => {
-      Alert.alert('Não Gostei!', `Você não gostou do pet ${item.nome}`);
-    };
-  
-    useEffect(() => {
-      const filtered = data.filter(item => {
-        const nameMatch = !searchTerm || item.nome.toLowerCase().includes(searchTerm.toLowerCase());
-        const colorMatch = !color || item.cor.toLowerCase().includes(color.toLowerCase());
-        return nameMatch && colorMatch;
-      });
-      setFilteredData(filtered);
-    }, [searchTerm, color, data]);
-  
-    useEffect(() => {
-      LogBox.ignoreLogs(['Animated: `useNativeDriver`']);
-    }, []);
-  
-    const handleCardPress = (item) => {
-      navigation.navigate('InfoPet', { ...item });
-    };
-  
-    const noResults = filteredData.length === 0;
-  
-    return (
-      <View style={styles.container}>
-        {noResults ? (
-          <Text style={styles.noResultsText}>Nenhum perfil encontrado.</Text>
-        ) : (
-          <SwipeCards
-            ref={swiperRef}
-            cards={filteredData}
-            renderCard={(item) => <CardComponent item={item} handleCardPress={handleCardPress} handleFavorito={handleFavorito} />}
-            renderNoMoreCards={() => <NoMoreCards />}
-            useNativeDriver={true}
-            handleYup={handleYup}
-            handleNope={handleNope}
-          />
-        )}
-      </View>
-    );
+
+  const handleNope = (item) => {
+    Alert.alert('Não Gostei!', `Você não gostou do pet ${item.nome}`);
   };
+
+  useEffect(() => {
+    if (searchTerm) {
+      const filtered = data.filter(item => 
+        item.nome.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        item.raca.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        item.cidade.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        item.estado.toLowerCase().includes(searchTerm.toLowerCase())
+      );
+
+      setFilteredData(filtered);
+    } else {
+      setFilteredData(data, searchTerm, searchColor);
+    }
   
-  const styles = StyleSheet.create({
-    cardImage: {
-      flex: 1,
-    },
-    raca: {
-      color: 'white',
-      fontSize: 18,
-      marginTop: 13,
-      marginBottom: 5,
-      fontWeight: 'bold',
-    },
-    button: {
-      bottom: 20,
-      width: 60,
-      height: 60,
-      borderRadius: 50,
-      alignItems: 'center',
-      justifyContent: 'center',
-    },
-    buttonInfo: {
-      bottom: 20,
-      width: 50,
-      height: 50,
-      borderRadius: 50,
-      alignItems: 'center',
-      justifyContent: 'center',
-    },
-    buttonTextDislike: {
-      color: 'yellow',
-      fontSize: 26,
-    },
-    likeButton: {
-      right: 80,
-      fontSize: 26,
-    },
-    dislikeButton: {
-      right: 20,
-      color: 'yellow',
-      fontSize: 26,
-    },
-    infoButton: {
-      backgroundColor: 'white',
-      right: 50,
-    },
-    buttonText: {
-      fontSize: 27,
-      color: 'white',
-    },
-    buttonContainer: {
-      top: 14,
-      width: '100%',
-      flexDirection: 'row',
-      justifyContent: 'center',
-      marginLeft: 50,
-    },
-    container: {
-      marginTop: 30,
-    },
-    text: {
-      color: 'white',
-      fontSize: 30,
-      marginTop: 20,
-      fontWeight: 'bold',
-    },
-    text1: {
-      color: 'white',
-      fontSize: 18,
-      marginTop: 13,
-      marginBottom: 16,
-      marginLeft: 5,
-      fontWeight: 'bold',
-    },
-    local: {
-      flexDirection: 'row',
-    },
-    icon: {
-      marginTop: 15,
-      color: "white",
-      width: 20,
-    },
-    petData: {
-      marginLeft: 10,
-      marginTop: -200,
-      marginBottom: 60,
-    },
-    noResultsText: {
-      textAlign: 'center',
-      fontSize: 18,
-      color: 'gray',
-    },
-  });
+    
+
+  }, [searchTerm, data]);
   
-  export default MatchCard;
+
+  useEffect(() => {
+    LogBox.ignoreLogs(['Animated: `useNativeDriver`']);
+  }, []);
+
+  const handleCardPress = (item) => {
+    navigation.navigate('InfoPet', { ...item });
+  };
+
+  const noResults = filteredData.length === 0;
+
+  return (
+    <View style={styles.container}>
+      {noResults ? (
+        <Text style={styles.noResultsText}>Nenhum perfil encontrado.</Text>
+      ) : (
+        <SwipeCards
+          ref={swiperRef}
+          cards={filteredData}
+          renderCard={(item) => <CardComponent item={item} handleCardPress={handleCardPress} handleFavorito={handleYup} />}
+          renderNoMoreCards={() => <NoMoreCards />}
+          useNativeDriver={true}
+          handleYup={handleYup}
+          handleNope={handleNope}
+        />
+      )}
+    </View>
+  );
+};
+
+const styles = StyleSheet.create({
+  cardImage: {
+    flex: 1,
+  },
+  raca: {
+    color: 'white',
+    fontSize: 18,
+    marginTop: 13,
+    marginBottom: 5,
+    fontWeight: 'bold',
+  },
+  cor: {
+    color: 'white',
+    fontSize: 18,
+    marginTop: 5,
+    marginBottom: 5,
+  },
+  button: {
+    bottom: 20,
+    width: 60,
+    height: 60,
+    borderRadius: 50,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  buttonInfo: {
+    bottom: 20,
+    width: 50,
+    height: 50,
+    borderRadius: 50,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  buttonTextDislike: {
+    color: 'yellow',
+    fontSize: 26,
+  },
+  likeButton: {
+    right: 80,
+    fontSize: 26,
+  },
+  dislikeButton: {
+    right: 20,
+    color: 'yellow',
+    fontSize: 26,
+  },
+  infoButton: {
+    backgroundColor: 'white',
+    right: 50,
+  },
+  buttonText: {
+    fontSize: 27,
+    color: 'white',
+  },
+  buttonContainer: {
+    top: 14,
+    width: '100%',
+    flexDirection: 'row',
+    justifyContent: 'center',
+    marginLeft: 50,
+  },
+  container: {
+    marginTop: 30,
+  },
+  text: {
+    color: 'white',
+    fontSize: 30,
+    marginTop: 20,
+    fontWeight: 'bold',
+  },
+  text1: {
+    color: 'white',
+    fontSize: 18,
+    marginTop: 13,
+    marginBottom: 16,
+    marginLeft: 5,
+    fontWeight: 'bold',
+  },
+  local: {
+    flexDirection: 'row',
+  },
+  icon: {
+    marginTop: 15,
+    color: "white",
+    width: 20,
+  },
+  petData: {
+    marginLeft: 10,
+    marginTop: -200,
+    marginBottom: 60,
+  },
+  noResultsText: {
+    textAlign: 'center',
+    fontSize: 18,
+    color: 'gray',
+  },
+});
+
+export default MatchCard;
