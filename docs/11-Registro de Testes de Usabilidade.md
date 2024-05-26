@@ -102,7 +102,7 @@ Notificação de match - (Teste feito somente pelos desenvolvedores)  |         
 Exibição de íconecone do whatsapp- (Teste feito somente pelos desenvolvedores) |         |       |
 Avaliação da experiência - (Teste feito somente pelos desenvolvedores) |         |       |
 Fazer o login na aplicação |         |       |
-Favoritar um pet |  Sim     |       |
+Favoritar um pet |    |       |
 
 <br>
 
