@@ -12,8 +12,6 @@ import { handlePetRequest } from "./endpoints/pets";
 import { handleAllPetsRequest } from "./endpoints/pets";
 import { handleFourPetsRequest } from "./endpoints/pets";
 import { handleUpdatePetData } from "./endpoints/pets";
-import { getPetDataByUserId } from './endpoints/pets';
-import {getUserNameByPetId}   from "./endpoints/pets";
 import { handleUserRequest } from "./endpoints/users";
 import { getUserById } from "./endpoints/users";
 import { updateUserById } from "./endpoints/users";
@@ -22,8 +20,12 @@ import { handleRatingRequest } from "./endpoints/avaliacao";
 import { handleTopRatingRequest } from "./endpoints/avaliacao";
 import { handleMatchRequest } from "./endpoints/matches";
 import { handleMatchDetailsRequest } from "./endpoints/matches";
-
-
+import { getPetDataByUserId } from './endpoints/pets';
+import {getUserNameByPetId}   from "./endpoints/pets";
+import { handleMensagemRequest} from "./endpoints/mensagens";
+import { getMensagens } from "./endpoints/mensagens";
+import { updateMensagem } from "./endpoints/mensagens";
+import { deleteMensagem } from "./endpoints/mensagens";
 
 // Inicializa o framework de configuração
 dotenv.config();
@@ -89,6 +91,11 @@ serverApp.post("/api/avaliacao", handleRatingRequest);
 serverApp.post("/api/match", handleMatchRequest);
 serverApp.get('/api/match/:id/details', handleMatchDetailsRequest);
 
+// requisições de mensagem 
+serverApp.post("/api/mensagem", handleMensagemRequest);
+serverApp.get("/api/mensagem", getMensagens);
+serverApp.put("/api/mensagem", updateMensagem);
+serverApp.delete("/api/mensagem", deleteMensagem);
 
 // Prepara o servidor para iniciar na porta, ouvindo em todas as interfaces de rede disponíveis
 serverApp.listen(port, '0.0.0.0', () => {
