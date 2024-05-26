@@ -219,8 +219,7 @@ https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2024-1-e3-proj-mov-t6-petlover
 | Objetivo do Teste | Verificar se o usuário consegue dar like ou dislike em perfis de outros pets corretamente. |
 | Passos | <br> Na página inicial, clique em ver mais, e na barra de busca  insira o nome ou a característica do pet que deseja encontrar. <br> Clique no botão Buscar. <br> Deslize para a direita (Like). <br> Deslize para a esquerda (Dislike).  |
 | Critério de Êxito | <br> O sistema deve registrar corretamente a ação de like ou dislike no perfil do pet mostrando um alerta na tela. <br> Em caso de like, os dados serão salvos na coleção "matches" no Firebase, e o valor de isMatch será definido como false, tornando-se true caso o outro pet também dê like. |
-| Evidência | <img width="1266" alt="image" src="https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2024-1-e3-proj-mov-t6-petlovers/assets/93337008/8d84d0f9-b0e8-46ea-818e-a6dcec10fa65">
-|
+| Evidência | <img width="1266" alt="image" src="https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2024-1-e3-proj-mov-t6-petlovers/assets/93337008/8d84d0f9-b0e8-46ea-818e-a6dcec10fa65">|
 
 
 https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2024-1-e3-proj-mov-t6-petlovers/assets/93337008/292475cd-77ac-4adb-b094-70eea974fcb9
