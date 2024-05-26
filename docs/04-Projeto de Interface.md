@@ -1,8 +1,6 @@
 
 # Projeto de Interface
 
-<span style="color:red">Pré-requisitos: <a href="2-Especificação do Projeto.md"> Documentação de Especificação</a></span>
-
 Nesta seção, é apresentada a visão geral da interação do usuário pelas telas do sistema e protótipo interativo das telas com as funcionalidades que fazem parte do sistema (wireframes).
 
 ## Diagrama de Fluxo
@@ -101,6 +99,13 @@ Ao clicar no ícone, uma janela popup aparecerá para permitir que o usuário av
 
 
 <img width="313" alt="image" src="https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2024-1-e3-proj-mov-t6-petlovers/assets/93337008/c97d0032-3bb3-4891-b5d5-fb28645526b8"><br><br>
+
+
+### Favoritos
+
+Essa tela contém  todos os perfis que o usuário curtiu.
+
+<img width="352" alt="image" src="https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2024-1-e3-proj-mov-t6-petlovers/assets/93337008/0d343ca0-0b37-46ae-b83d-6b9b61d792f3">
 
 
 ### Área do usuário

@@ -65,7 +65,8 @@ export default function MinhaConta({ navigation }) {
               if (response.ok) {
                 // Conta excluída com sucesso
                 Alert.alert("Sucesso", "Sua conta foi excluída com sucesso.");
-                // Navegar para a tela de login ou outra tela após excluir a conta
+                handleLogout (); //remove a autenticacao do user e redireciona para login
+                
               } else {
                 // Erro ao excluir a conta
                 Alert.alert("Erro", "Erro ao excluir sua conta.");

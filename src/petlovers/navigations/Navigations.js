@@ -19,6 +19,7 @@ import MinhaContaScreen from "../pages/MinhaConta";
 import VerPerfil from "../pages/VerPerfil";
 import DadosPet from "../pages/DadosPet";
 import DadosUser from "../pages/DadosUser";
+import Favoritos from "../pages/DadosPet";
 import { useEffect, useState } from "react";
 import { getAuth } from "firebase/auth";
 
@@ -29,6 +30,7 @@ const sobreName = "Sobre nos";
 const notificacoesName = "Notificacoes";
 const loginName = "Login";
 const MinhaConta = "Minha Conta";
+const heartName = "Favoritos";
 
 const Tab = createBottomTabNavigator();
 
@@ -55,6 +57,8 @@ function getScreenOptions(route, loginName) {
         iconName = focused ? "person" : "person-outline";
       } else if (route.name === MinhaConta) {
         iconName = focused ? "person" : "person-outline";
+      } else if (route.name === heartName) {
+        iconName = focused ? "heart" : "heart-outline";
       }
 
       return <Ionicons name={iconName} size={size} color={color} />;
@@ -86,6 +90,7 @@ function TabNavigator() {
         <Tab.Screen name={homeName} component={Home} />
         <Tab.Screen name={sobreName} component={Sobre} />
         <Tab.Screen name={notificacoesName} component={Notificacoes} />
+        <Tab.Screen name={heartName} component={Favoritos} />
         <Tab.Screen name={MinhaConta} component={MinhaContaScreen} options={{ headerShown: false }} />
       </Tab.Navigator>
     );
@@ -97,8 +102,8 @@ function TabNavigator() {
       >
         <Tab.Screen name={homeName} component={Home} />
         <Tab.Screen name={sobreName} component={Sobre} />
-
         <Tab.Screen name={notificacoesName} component={Notificacoes} />
+        <Tab.Screen name={heartName} component={Favoritos} />
         <Tab.Screen name={loginName} component={Login} />
       </Tab.Navigator>
     );
