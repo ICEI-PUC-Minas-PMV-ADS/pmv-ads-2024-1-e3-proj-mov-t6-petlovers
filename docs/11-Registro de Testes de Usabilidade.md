@@ -5,20 +5,21 @@ Abaixo segue o relatório que contém as evidências dos testes e relatos dos us
 #### Entrevistado 01: <br>
 
 Entrevistado: Alissa <br>
-Data: 21/04/2024 <br>
+Data: 26/05/2024 <br>
 
 Atividade realizada    | Sucesso S/N | Observações
 -----------------------|-------------|------------
 Criar uma conta|  Sim  | 
 Cadastrar perfil do animal de estimação | Sim | 
-Modificação de informações do usuário   |  Nao   |  
-Modificação de informações do pet  | Nao   |     |
-Busca e visualização de perfis de outros pets|       Nao              |       |
-Curtir (Like) ou recusar perfis de outros pets (dislike) |     Nao    |       |
-Notificação de match - (Teste feito somente pelos desenvolvedores)  |   Nao      |       |
-Exibição de íconecone do whatsapp- (Teste feito somente pelos desenvolvedores) |    Nao     |       |
-Avaliação da experiência - (Teste feito somente pelos desenvolvedores) |   Nao      |       |
-Fazer o login na aplicação |   Nao      |       |
+Modificação de informações do usuário   |  Sim   |  
+Modificação de informações do pet  | Sim  |     |
+Busca e visualização de perfis de outros pets|      Sim             |       |
+Curtir (Like) ou recusar perfis de outros pets (dislike) |     Sim    |       |
+Notificação de match - (Teste feito somente pelos desenvolvedores)  |   Não     |       |
+Exibição de íconecone do whatsapp- (Teste feito somente pelos desenvolvedores) |Não|     |
+Avaliação da experiência - (Teste feito somente pelos desenvolvedores) |   Não      |       |
+Fazer o login na aplicação |  Sim     |       |
+Favoritar um pet |  Sim     |       |
 
 <br>
 
@@ -26,7 +27,7 @@ Fazer o login na aplicação |   Nao      |       |
   Sim.
 
 3. Os campos obrigatórios foram sinalizados? <br>
-   Sim.
+   Somente o do login que precisa implementar.
 
 5. Você conseguiu facilmente fazer o upload de uma imagem do seu pet durante o cadastro? <br>
    Sim.
@@ -35,12 +36,10 @@ Fazer o login na aplicação |   Nao      |       |
    Sim.
 
 9. Como você avaliaria a facilidade de navegação pelo sistema PetLovers? <br>
-    Boa.
+    Facil e intuitiva.
 
 11. Que sugestões você tem para melhorar a usabilidade geral do PetLovers? <br>
-    Continuar implementando as funcionalidades do sistema, e ajustar o que for necessario.
-    
-
+    Continuar implementando as funcionalidades que faltam no sistema, e ajustar o que for necessário (documentação, estilos e etc.)
 <br>
 
                                                             
