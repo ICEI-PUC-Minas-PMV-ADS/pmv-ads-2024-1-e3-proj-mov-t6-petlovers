@@ -19,7 +19,7 @@ import MinhaContaScreen from "../pages/MinhaConta";
 import VerPerfil from "../pages/VerPerfil";
 import DadosPet from "../pages/DadosPet";
 import DadosUser from "../pages/DadosUser";
-import Favoritos from "../pages/DadosPet";
+import Favoritos from "../pages/DadosPet"; //Mudar para pagina de favoritos
 import { useEffect, useState } from "react";
 import { getAuth } from "firebase/auth";
 
