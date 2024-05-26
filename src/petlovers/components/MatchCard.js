@@ -10,7 +10,9 @@ import { LogBox } from 'react-native';
 import { getAuth } from "firebase/auth";
 import {baseAPI_URL} from '../apiConfig';
 
-const CardComponent = ({ item, handleCardPress }) => (
+
+
+const CardComponent = ({ item, handleCardPress, btnDislike, btnLike, removeCard}) => (
   <Card style={styles.card}>
     <Card.Cover
       source={{ uri: item.imageURL }}
@@ -26,62 +28,81 @@ const CardComponent = ({ item, handleCardPress }) => (
       </View>
     </View>
     <View style={styles.buttonContainer}>
-      <View style={[styles.button, styles.likeButton]}>
+      <TouchableOpacity  onPress={() => btnDislike(item, removeCard)} style={[styles.button, styles.likeButton]}>
         <Text style={[styles.buttonText, { color: 'yellow' }]}>✖️</Text>
-      </View>
+      </TouchableOpacity >
       <TouchableOpacity onPress={() => handleCardPress(item)} style={[styles.buttonInfo, styles.infoButton]}>
         <Icon name="information-circle" size={29} color="blue" />
       </TouchableOpacity>
-      <View style={[styles.button, styles.dislikeButton]}>
+      <TouchableOpacity  onPress={() => btnLike(item, removeCard)} style={[styles.button, styles.dislikeButton]}>
         <Text style={styles.buttonText}>♥️</Text>
-      </View>
+      </TouchableOpacity>
     </View>
   </Card>
 );
 
+
+
 const MatchCard = ({ searchTerm }) => {
   const [data, setData] = useState([]);
   const [filteredData, setFilteredData] = useState([]);
+  const [userId, setUserId] = useState(null);
   const [petId, setPetId] = useState(null);
   const navigation = useNavigation();
   const swiperRef = useRef(null);
-
+  
   const auth = getAuth();
   const user = auth.currentUser;
 
-  // Função para obter dados do pet
+  // Funca para obter dados do usuário logado
+  const fetchUserId = () => {
+    if (user) {
+      setUserId(user.uid);
+    }
+  };
+
+  // Funcao para obter dados do pet associado ao usuário logado
   const fetchPetData = async () => {
     try {
       if (!user) return;
       const userId = user.uid;
-    
+
       const response = await fetch(`${baseAPI_URL}/api/get-pet-data/${userId}`);
       const responseData = await response.json();
-    
       const petId = responseData.petId;
       setPetId(petId);
-    
     } catch (error) {
       console.error("Erro ao obter dados do pet:", error);
     }
   };
 
+  // Funcao para obter todos os pets cadastrados e filtrar o pet do usuário logado
+  const fetchAllPets = async () => {
+    try {
+      const response = await fetch(getAllPetsAPI_URL);
+      const responseData = await response.json();
+      const filteredPets = responseData.data.filter(pet => pet.userId !== userId);
+      setData(filteredPets);
+      setFilteredData(filteredPets);
+    } catch (error) {
+      console.error('Erro ao obter todos os pets:', error);
+    }
+  };
+
   useEffect(() => {
-    fetchPetData();
+    fetchUserId();
   }, [user]);
 
-  //renderiza todos os pets cadastrados
   useEffect(() => {
-    fetch(getAllPetsAPI_URL)
-      .then((response) => response.json())
-      .then((responseData) => {
-        setData(responseData.data);
-        setFilteredData(responseData.data);
-      })
-      .catch((error) => console.error('Error:', error));
-  }, []);
+    fetchPetData();
+  }, [userId]);
 
-  
+  useEffect(() => {
+    if (userId) {
+      fetchAllPets();
+    }
+  }, [userId]);
+
     //Funcao match
     const handleYup = (item) => {
       if (!petId) return;
@@ -105,10 +126,57 @@ const MatchCard = ({ searchTerm }) => {
         });
     };
   
+   
     const handleNope = (item) => {
       Alert.alert('Não Gostei!', `Você não gostou do pet ${item.nome}`);
     };
 
+
+  // Função para remover o card atual e avançar para o próximo
+  const removeCard = (itemId) => {
+    setFilteredData((prevData) => {
+      const index = prevData.findIndex(item => item.id === itemId);
+      if (index !== -1) {
+        const nextIndex = index + 1 >= prevData.length ? 0 : index + 1;
+        return prevData.filter((_, i) => i !== index);
+      } else {
+        return prevData;
+      }
+    });
+  };
+
+
+  // Funcao like botão
+  const btnLike = (item) => {
+    if (!petId) return;
+
+    fetch(`${baseAPI_URL}/api/match`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        pet1_id: petId, 
+        pet2_id: item.id, 
+      }),
+    })
+      .then(response => response.json())
+      .then(data => {
+        Alert.alert('Gostei!', `Você curtiu ${item.nome}`);
+        removeCard(item.id);
+      })
+      .catch(error => {
+        console.error('Erro ao enviar like:', error);
+      });
+  };
+
+  // Funcao botao dislike
+  const btnDislike = (item) => {
+    Alert.alert('Não Gostei!', `Você não gostou do pet ${item.nome}`);
+    removeCard(item.id);
+  };
+
+  
   //funcao de pesquisa
   useEffect(() => {
     if (searchTerm) {
@@ -142,7 +210,7 @@ const MatchCard = ({ searchTerm }) => {
       <SwipeCards
         ref={swiperRef}
         cards={searchTerm ? filteredData : data}
-        renderCard={(item) => <CardComponent item={item} handleCardPress={handleCardPress} />}
+        renderCard={(item) => <CardComponent item={item} handleCardPress={handleCardPress} btnDislike={btnDislike} btnLike={btnLike} removeCard={removeCard}  />}
         renderNoMoreCards={() => <NoMoreCards />}
         useNativeDriver={true}
         handleYup={handleYup}

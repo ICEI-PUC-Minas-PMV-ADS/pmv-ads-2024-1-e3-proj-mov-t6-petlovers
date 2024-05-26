@@ -7,18 +7,16 @@ import * as admin from "firebase-admin";
 import dotenv from "dotenv";
 import multer from 'multer';
 
-
-// Importa o endpoint
+import { handleImageUploadRequest } from './endpoints/images';
 import { handlePetRequest } from "./endpoints/pets";
+import { handleAllPetsRequest } from "./endpoints/pets";
+import { handleFourPetsRequest } from "./endpoints/pets";
+import { handleUpdatePetData } from "./endpoints/pets";
 import { handleUserRequest } from "./endpoints/users";
 import { getUserById } from "./endpoints/users";
 import { updateUserById } from "./endpoints/users";
 import { deleteUserById } from "./endpoints/users";
-import { handleAllPetsRequest } from "./endpoints/pets";
-import { handleImageUploadRequest } from './endpoints/images';
-import { handleFourPetsRequest } from "./endpoints/pets";
 import { handleRatingRequest } from "./endpoints/avaliacao";
-import { handleUpdatePetData } from "./endpoints/pets";
 import { handleTopRatingRequest } from "./endpoints/avaliacao";
 import { handleMatchRequest } from "./endpoints/matches";
 import { handleMatchDetailsRequest } from "./endpoints/matches";

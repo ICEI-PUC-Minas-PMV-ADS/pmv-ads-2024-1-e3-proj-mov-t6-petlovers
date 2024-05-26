@@ -29,7 +29,7 @@ const DadosPet = ({ }) => {
 
                 setPetData(petDataFromServer.data);
             } catch (error) {
-                console.error("Erro ao obter dados do pet:", error);
+                console.error("Erro ao obter dados do pet:");
             }
         };
 
@@ -37,74 +37,66 @@ const DadosPet = ({ }) => {
     }, [user]);
 
 
-   
     const handleUpdatePetData = async () => {
-        
         try {
             if (!user || !petData) return;
             const userId = user.uid;
     
-            console.log('ID do usuário:', userId);
-            console.log('Dados do pet editados:', editedPetData);
+            const updatedFields = {};
     
-            const response = await fetch(`${baseAPI_URL}/api/update-pet-data/${userId}`, {
+            Object.keys(editedPetData).forEach(field => {
+                if (editedPetData[field] !== petData[field]) {
+                    updatedFields[field] = editedPetData[field];
+                }
+            });
+    
+            const response = await fetch(`${baseAPI_URL}/api/update-pets/${userId}`, {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json'
                 },
-                body: JSON.stringify({
-                    nome: editedPetData.nome || petData.nome,
-                    idade: editedPetData.idade || petData.idade,
-                    cidade: editedPetData.cidade || petData.cidade,
-                    estado: editedPetData.estado || petData.estado,
-                    sexo: editedPetData.sexo || petData.sexo,
-                    porte: editedPetData.porte || petData.porte,
-                    cor: editedPetData.cor || petData.cor,
-                    sobre: editedPetData.sobre || petData.sobre,
-                })
+                body: JSON.stringify(updatedFields)
             });
     
             if (response.ok) {
-                const updatedPetData = await response.json();
+                const contentType = response.headers.get('content-type');
+                if (contentType && contentType.includes('application/json')) {
+                    const updatedPetData = await response.json();
     
-                // Atualizar os campos individualmente no estado local do pet
-                setPetData(prevPetData => ({
-                    ...prevPetData,
-                    nome: updatedPetData.nome,
-                    idade: updatedPetData.idade,
-                    cidade: updatedPetData.cidade,
-                    estado: updatedPetData.estado,
-                    sexo: updatedPetData.sexo,
-                    porte: updatedPetData.porte,
-                    cor: updatedPetData.cor,
-                    sobre: updatedPetData.sobre,
-                    
-                }));
-                Alert.alert("Sucesso", "Dados atualizados com sucesso.");
-    
-                console.log('Dados do pet atualizados com sucesso:', updatedPetData);
+                    setPetData(prevPetData => ({
+                        ...prevPetData,
+                        ...updatedPetData
+                    }));
+                    Alert.alert("Sucesso", "Dados atualizados com sucesso.");
+                } else {
+                    console.error('Resposta não é JSON:', await response.text());
+                    throw new Error('Resposta não é JSON');
+                }
             } else {
-                console.error('Erro ao atualizar dados do pet:', response.statusText);
+                const text = await response.text();
+                console.error('Erro:', text);
+                throw new Error(text);
             }
         } catch (error) {
             console.error('Erro:', error);
+            Alert.alert("Erro", error.message);
         }
     };
-
-    const handleInputChange = (value, field) => {
-        setEditedPetData({ ...editedPetData, [field]: value });
-    };
-
- 
     
-
+    
+    const handleInputChange = (value, field) => {
+        setEditedPetData(prevEditedPetData => ({
+            ...prevEditedPetData,
+            [field]: value
+        }));
+    };
     return (
         <SafeAreaView style={{ flex: 1 }}>
             <ArrowLeft />
             <KeyboardAwareScrollView >
                 <View style={styles.textAreaContainer}>
                     <Text style={styles.title}>Editar dados pet</Text>
-
+    
                     {user ? (
                         <>
                             <FormInput
@@ -118,7 +110,7 @@ const DadosPet = ({ }) => {
                                 label="Idade"
                                 keyboardType="number-pad"
                                 style={styles.input}
-                                value={editedPetData?.idade ?? petData?.idade.toString() ?? ''}
+                                value={editedPetData?.idade ?? petData?.idade?.toString() ?? ''} 
                                 editable={true}
                                 onChangeText={(text) => handleInputChange(text, 'idade')} 
                             />
@@ -188,7 +180,7 @@ const DadosPet = ({ }) => {
             </KeyboardAwareScrollView>
         </SafeAreaView>
     );
-};
+    };
 
 const styles = StyleSheet.create({
   scrollViewContent: {
