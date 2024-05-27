@@ -29,6 +29,7 @@ Com base na análise das personas forma identificadas as seguintes histórias de
 |Samantha    | Atualização de perfil para novos registros | Para ter informações mais atualizadas sobre a saúde do <b>PET</b>  |
 |Fernanda     | Realizar cadastro de mais de um <b>PET</b>   | Para encontrar outros pares para seus outros <b>PETS</b>  |
 |Samantha     | Adicionar fotos ao perfil              | Permite melhor visualização/conhecimento do parceiro para seu <b>PET</b> . |
+|Samantha     |Favoritar perfil de pets            | Acessar rapidamente os perfis que consideram interessantes sem a necessidade de procurá-los novamente. |
 
 
 
@@ -78,6 +79,7 @@ As tabelas que se seguem apresentam os requisitos funcionais e não funcionais q
 |RF-007|  O sistema deve exibir um ícone de mensagens instantâneas para os usuários que deram <b>match</b>. | ALTA |
 |RF-008| O sistema deve permitir que os usuários avaliem a experiência. | MÉDIA |
 |RF-009| O site deve incluir uma página de login. | ALTA |
+|RF-010| O site deve incluir uma página de favoritos. | BAIXA |
 
 
 
@@ -111,7 +113,7 @@ O projeto está restrito pelos itens apresentados na tabela a seguir.
 
 ## Diagrama de Casos de Uso
 
-<img width="798" alt="image" src="https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2024-1-e3-proj-mov-t6-petlovers/assets/93337008/6eef63c5-4773-4209-a9da-16aaf3326ba5">
+<img width="748" alt="image" src="https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2024-1-e3-proj-mov-t6-petlovers/assets/93337008/6e10b3d9-a6ae-45d9-82df-906be0026cd3">
 
 
 # Matriz de Rastreabilidade
@@ -123,8 +125,7 @@ Ela deve contemplar todos os elementos relevantes que fazem parte do sistema, co
 - RF - Requisito funcional
 - RNF - Requisito não funcional
 
-<img width="1412" alt="image" src="https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2024-1-e3-proj-mov-t6-petlovers/assets/93337008/da7a3362-ea0f-4c70-aa37-93a2d09ce29d">
-
+<img width="1322" alt="image" src="https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2024-1-e3-proj-mov-t6-petlovers/assets/93337008/066ddfce-72f2-4662-b70a-db7a616b6b71">
 
 
 

@@ -113,7 +113,7 @@ export async function handleUpdatePetData(req: Request, res: Response) {
     
     return res.status(200).json({ data: updatedPet.data() });
   } catch (error) {
-    console.error("Erro ao editar dados do pet:", error);
+    console.error("Erro ao editar dados:", error);
     return res.status(500).json({ message: "Erro interno do servidor" });
   }
 }

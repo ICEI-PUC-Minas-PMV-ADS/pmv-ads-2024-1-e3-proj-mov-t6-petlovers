@@ -98,6 +98,15 @@ Acesse a página de login do sistema. <br>
 Verifique se é possível fazer login com as credenciais cadastradas anteriormente. <br>
 Confirme se o acesso à área restrita é concedido após o login. <br> <br>
 
+#### 11. RF-010: Favoritar um pet
+
+Instruções: <br>
+Na home page clique em Ver mais ou no botao buscar no abbner roxo. <br>
+Realize uma busca por algum critério específico. <br>
+Deslize o card para a direita. Um alerta aparecerá na tela confirmando que você curtiu aquele pet. <br>
+Volte à página inicial e clique no ícone de coração na barra inferior. 
+Você será redirecionado para a página de favoritos, onde o pet que você gostou aparecerá na tela.
+
 
 
 ### Análise Heurística
