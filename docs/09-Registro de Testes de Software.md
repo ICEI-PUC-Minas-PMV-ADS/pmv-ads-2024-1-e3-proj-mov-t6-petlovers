@@ -191,9 +191,9 @@ https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2024-1-e3-proj-mov-t6-petlover
 |Objetivo do Teste| Verificar se o usuário consegue modificar suas informações. |
 |Passos | <br> Na página inicial, clique no ícone de usuário para ser redirecionado para a página de login. <br> Insira sua credenciais  válidas. <br> Clique no ícone de usuário na barra de navegação inferior. Você será redirecionado para a tela "Meu Perfil". <br>Clique em "Excluir conta". <br> Um alerta aparecerá na tela confirmando a exclusao . |
 |Critério de Êxito| <br>A conta será excluída do Firebase junto com o pet vinculado, e o usuário não conseguirá mais acessar a aplicação com suas credenciais.|
-| Evidência | Vídeo de teste abaixo |
+| Evidência | Vídeo de teste abaixo  |
 
-Obs: Por questões de segurança, ao gravar a tela do celular, a senha é ocultada, por isso ela não aparece no vídeo quando digitada.
+Neste teste, excluímos a conta do usuário e, em seguida, direcionamos para a página de login. Ao tentar entrar novamente com as mesmas credenciais, aparece um erro indicando que são inválidas, confirmando a exclusão da conta. Além disso, a conta não aparece mais no Firebase.
 
 https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2024-1-e3-proj-mov-t6-petlovers/assets/93337008/9576f04a-0d96-4f1e-9d82-c1558de8cd36
 
