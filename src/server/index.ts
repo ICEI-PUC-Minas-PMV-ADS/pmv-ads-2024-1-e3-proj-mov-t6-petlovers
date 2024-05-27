@@ -20,6 +20,9 @@ import { handleFourPetsRequest } from "./endpoints/pets";
 import { handleRatingRequest } from "./endpoints/avaliacao";
 import { handleUpdatePetData } from "./endpoints/pets";
 import { handleTopRatingRequest } from "./endpoints/avaliacao";
+import { handleUserRatingRequest } from "./endpoints/avaliacao";
+import { handleDeleteRatingRequest } from "./endpoints/avaliacao";
+import { handleUpdateRatingRequest } from "./endpoints/avaliacao";
 import { handleMatchRequest } from "./endpoints/matches";
 import { handleMatchDetailsRequest } from "./endpoints/matches";
 import { getPetDataByUserId } from './endpoints/pets';
@@ -81,10 +84,19 @@ serverApp.delete("/api/user/:id", deleteUserById);
 
 
 //endpoint para renderizar as 5 primeiras avaliações
-serverApp.get("/api/avaliacao", handleTopRatingRequest);
+serverApp.get("/api/avaliacoes/:userId", handleTopRatingRequest);
+
+//endpoint para obter a avaliação do aplicativo de um usuário
+serverApp.get("/api/avaliacao/:userId", handleUserRatingRequest);
 
 // endpoint para cadastrar avaliação
 serverApp.post("/api/avaliacao", handleRatingRequest);
+
+// endpoint para atualizar avaliação
+serverApp.put("/api/avaliacao-update", handleUpdateRatingRequest);
+
+// endpoint para deletar avaliação
+serverApp.delete("/api/avaliacao-delete/:id", handleDeleteRatingRequest);
 
 // requisições de match
 serverApp.post("/api/match", handleMatchRequest);
