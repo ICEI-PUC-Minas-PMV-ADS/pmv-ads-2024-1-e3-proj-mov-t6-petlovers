@@ -9,10 +9,11 @@ import NoMoreCards from './NoMoreCards';
 import { LogBox } from 'react-native';
 import { getAuth } from "firebase/auth";
 import {baseAPI_URL} from '../apiConfig';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 
 
-const CardComponent = ({ item, handleCardPress, btnDislike, btnLike, removeCard}) => (
+const CardComponent = ({ item, handleCardPress, handleFavorito }) => (
   <Card style={styles.card}>
     <Card.Cover
       source={{ uri: item.imageURL }}
@@ -34,7 +35,7 @@ const CardComponent = ({ item, handleCardPress, btnDislike, btnLike, removeCard}
       <TouchableOpacity onPress={() => handleCardPress(item)} style={[styles.buttonInfo, styles.infoButton]}>
         <Icon name="information-circle" size={29} color="blue" />
       </TouchableOpacity>
-      <TouchableOpacity  onPress={() => btnLike(item, removeCard)} style={[styles.button, styles.dislikeButton]}>
+      <TouchableOpacity  onPress={() => handleFavorito(item)} style={[styles.button, styles.dislikeButton]}>
         <Text style={styles.buttonText}>♥️</Text>
       </TouchableOpacity>
     </View>
@@ -43,11 +44,12 @@ const CardComponent = ({ item, handleCardPress, btnDislike, btnLike, removeCard}
 
 
 
-const MatchCard = ({ searchTerm }) => {
+const MatchCard = ({ searchTerm, color, handleFavorito }) => {
   const [data, setData] = useState([]);
   const [filteredData, setFilteredData] = useState([]);
   const [userId, setUserId] = useState(null);
   const [petId, setPetId] = useState(null);
+  const [searchColor, setSearchColor] = useState('');
   const navigation = useNavigation();
   const swiperRef = useRef(null);
   
@@ -113,17 +115,30 @@ const MatchCard = ({ searchTerm }) => {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          pet1_id: petId, // Id do pet autenticado
-          pet2_id: item.id, // Id do pet do card atual
+          pet1_id: petId,
+          pet2_id: item.id,
+          cor: searchColor,
         }),
       })
-        .then(response => response.json())
-        .then(data => {
-          Alert.alert('Gostei!', `Você curtiu ${item.nome}`);
-        })
-        .catch(error => {
-          console.error('Erro ao enviar like:', error);
+      .then(response => response.json())
+      .then(data => {
+        Alert.alert('Gostei!', `Você curtiu ${item.nome}`);
+  
+        AsyncStorage.getItem('favoritos').then((favoritosData) => {
+          const favoritos = favoritosData ? JSON.parse(favoritosData) : [];
+          favoritos.push(item);
+          AsyncStorage.setItem('favoritos', JSON.stringify(favoritos)).then(() => {
+            console.log('Dados do pet curtido salvos em favoritos.');
+          }).catch((error) => {
+            console.error('Erro ao salvar pet curtido em favoritos:', error);
+          });
+        }).catch((error) => {
+          console.error('Erro ao obter favoritos do AsyncStorage:', error);
         });
+      })
+      .catch(error => {
+        console.error('Erro ao enviar like:', error);
+      });
     };
   
    
@@ -145,30 +160,6 @@ const MatchCard = ({ searchTerm }) => {
     });
   };
 
-
-  // Funcao like botão
-  const btnLike = (item) => {
-    if (!petId) return;
-
-    fetch(`${baseAPI_URL}/api/match`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        pet1_id: petId, 
-        pet2_id: item.id, 
-      }),
-    })
-      .then(response => response.json())
-      .then(data => {
-        Alert.alert('Gostei!', `Você curtiu ${item.nome}`);
-        removeCard(item.id);
-      })
-      .catch(error => {
-        console.error('Erro ao enviar like:', error);
-      });
-  };
 
   // Funcao botao dislike
   const btnDislike = (item) => {
@@ -193,7 +184,7 @@ const MatchCard = ({ searchTerm }) => {
   }, [searchTerm, data]);
 
   useEffect(() => {
-    LogBox.ignoreLogs(['Animated: `useNativeDriver`']);
+    LogBox.ignoreLogs(['Animated: useNativeDriver']);
   }, []);
 
   const handleCardPress = (item) => {
@@ -210,7 +201,7 @@ const MatchCard = ({ searchTerm }) => {
       <SwipeCards
         ref={swiperRef}
         cards={searchTerm ? filteredData : data}
-        renderCard={(item) => <CardComponent item={item} handleCardPress={handleCardPress} btnDislike={btnDislike} btnLike={btnLike} removeCard={removeCard}  />}
+        renderCard={(item) => <CardComponent item={item} handleCardPress={handleCardPress} btnDislike={btnDislike} handleFavorito={handleYup}  />}
         renderNoMoreCards={() => <NoMoreCards />}
         useNativeDriver={true}
         handleYup={handleYup}
