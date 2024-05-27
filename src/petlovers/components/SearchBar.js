@@ -12,7 +12,7 @@ const SearchBar = ({ onSearch }) => {
     <View style={styles.searchContainer}>
       <TextInput
         style={styles.searchInput}
-        placeholder="Buscar..."
+        placeholder="Buscar por nome..."
         value={searchTerm}
         onChangeText={(text) => setSearchTerm(text)}
       />
@@ -36,9 +36,9 @@ const styles = StyleSheet.create({
     borderColor: 'gray',
     borderRadius: 5,
     paddingHorizontal: 10,
+    marginRight: 10,
   },
   searchButton: {
-    marginLeft: 10,
     backgroundColor: '#827397',
     paddingVertical: 10,
     paddingHorizontal: 20,
