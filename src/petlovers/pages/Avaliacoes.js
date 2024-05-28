@@ -1,69 +1,56 @@
 import React, { useState, useEffect } from "react";
-import { View, SafeAreaView, StyleSheet, FlatList, Text } from "react-native";
-import { useNavigation } from '@react-navigation/native';
+import { View, SafeAreaView, StyleSheet, FlatList, Text, ScrollView } from "react-native";
 import { getAuth } from "firebase/auth";
-import Avaliacao from "../components/Avaliacao";
 import ArrowLeft from "../components/ArrowLeft";
-import { AvaliacaoAPI_URL } from "../apiConfig";
-import { Ionicons } from '@expo/vector-icons';
+import { baseAPI_URL } from "../apiConfig";
+import CardAvaliacao from "../components/CardAvaliacao";
+import Avaliacao from "../components/Avaliacao";
 
 export default function Avaliacoes() {
     const [data, setData] = useState([]);
-    const navigation = useNavigation();
     const auth = getAuth();
     const user = auth.currentUser;
-
+    const isLoggedIn = user != null;
+    const userId = isLoggedIn ? user.uid : '0';
     // Obtem os dados das avaliações no backend
     useEffect(() => {
-        fetch(AvaliacaoAPI_URL) //API URL dos cards
+        fetch(`${baseAPI_URL}/api/avaliacoes/${userId}`) //API URL dos cards
             .then((response) => response.json())
-            .then((data) => setData(data.data))
+            .then((responseData) => setData(responseData.data))
             .catch((error) => console.error('Error:', error));
-    },)
+    }, [])
     return (
         <SafeAreaView style={{ flex: 1 }}>
-            <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-                <View style={styles.arrow}>
-                    <ArrowLeft />
-                </View>
-                <FlatList
-            
-                    data={data}
-                    renderItem={({ item }) => (
-                        <View style={styles.cards1}>
-                            <Text key={item.id} style={styles.text1}>{item.message} </Text>
-                            <Text key={item.id} style={styles.text}>{item.rate}</Text>
-                            <View style={styles.align}>
-                                <Ionicons style={styles.icon} name='paw' size={19} />
-                                <Ionicons style={styles.icon} name='paw' size={19} />
-                                <Ionicons style={styles.icon} name='paw' size={19} />
-                                <Ionicons style={styles.icon} name='paw' size={19} />
-                                <Ionicons style={styles.icon} name='paw' size={19} />
-                            </View>
-                            <Text key={item.id} style={styles.text}>Liana </Text>
-                        </View>
-                    )}
-                />
+            <View style={styles.arrow}>
+                <ArrowLeft />
             </View>
-
-            <Avaliacao />
-
+            <ScrollView style={{ flex: 1, }}>
+                <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+                    {!!isLoggedIn && <Avaliacao />}
+                    <View>
+                        <Text style={styles.text}>Avaliações Recentes</Text>
+                    </View>
+                    <View style={styles.listCard}>
+                        <FlatList scrollEnabled={false} data={data} renderItem={({ item }) => (<CardAvaliacao item={item} />)} />
+                    </View>
+                </View>
+            </ScrollView>
         </SafeAreaView>
     );
 }
 
 const styles = StyleSheet.create({
-
-    cards1: {
-        width: 250,
- 
-        borderRadius: 5,
-        backgroundColor: '#ffffff',
-        marginRight: 10,
-        flex: 1,
+    listCard: {
+        gap: 4,
+        flexDirection: 'row',
+        flex: 0,
         flexWrap: 'row',
-        marginTop: 15,
-        alignSelf: 'flex-start',
+        alignContent: 'flex-start',
+        marginLeft: 20,
+        marginRight: 20,
+    },
+    arrow: {
+        marginLeft: 10,
     },
     text: {
         color: '#5F5B5B',
@@ -85,6 +72,13 @@ const styles = StyleSheet.create({
         color: '#5F5B5B',
         fontSize: 15,
         marginLeft: 5,
+        marginTop: 8,
+        marginBottom: 15,
+    },
+    text2: {
+        color: '#5F5B5B',
+        fontSize: 15,
+        marginLeft: 205,
         marginTop: 8,
         marginBottom: 15,
     },

@@ -1,15 +1,11 @@
 import * as React from "react";
-import { View, Text, StyleSheet, Image, ScrollView, SafeAreaView, Button} from "react-native";
+import { View, Text, StyleSheet, Image, ScrollView, SafeAreaView, Button } from "react-native";
 import CardPet from "../components/CardPet";
-import { useNavigation } from '@react-navigation/native';
+import {useNavigation } from '@react-navigation/native';
 import BannerCadastro from "../components/BannerCadastro";
-import Avaliacao from "../components/Avaliacao";
 import { getAuth } from "firebase/auth";
 
-
-
 export default function Home() {
-    
     const navigation = useNavigation();
     const auth = getAuth();
     const user = auth.currentUser;
@@ -17,39 +13,29 @@ export default function Home() {
     return (
         <SafeAreaView style={{ flex: 1 }}>
             <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-
-                {/* {user ? (<Avaliacao />) : (null)} */}
                 <ScrollView contentContainerStyle={{ flexGrow: 1 }}>
                     <BannerCadastro />
-
                     <Text style={styles.text}>Raças mais procuradas</Text>
-
+                   
                     <View style={styles.minicards}>
                         <View style={styles.minicards1}>
                             <Image style={styles.imgminicards} source={require('../assets/image/chiwawa.jpg')} />
                             <Text style={styles.text1}>Chiwawa</Text>
                         </View>
-
                         <View style={styles.minicards1}>
                             <Image style={styles.imgminicards} source={require('../assets/image/labrador.jpg')} />
                             <Text style={styles.text1}>Labrador</Text>
                         </View>
-
                         <View style={styles.minicards1}>
                             <Image style={styles.imgminicards} source={require('../assets/image/golden.jpg')} />
                             <Text style={styles.text1}>Golden</Text>
                         </View>
-                        
                     </View>
-                    
                     <CardPet />
-
-                    {/* <View>
-                    <Button
-                    title= "Avalie-nos"
-                    onPress={() => navigation.navigate('Avaliacoes')}
-                    />
-                    </View> */}
+                    <View style={styles.text3}>                
+                        <Text 
+                            onPress={() => navigation.navigate('Avaliacoes')}>Veja as avaliações do App</Text>
+                    </View>
                 </ScrollView>
             </View>
         </SafeAreaView>
@@ -57,7 +43,6 @@ export default function Home() {
 }
 
 const styles = StyleSheet.create({
-
     header: {
         width: 320,
         height: 120,
@@ -78,20 +63,16 @@ const styles = StyleSheet.create({
         marginLeft: 20,
         marginTop: 10,
         borderRadius: 7.53,
-
     },
     textBtn: {
         fontWeight: 'bold',
         color: '#827397',
-
-
     },
     text: {
         color: '#5F5B5B',
         fontSize: 20,
         marginTop: 40,
         fontWeight: 'bold',
-
     },
     text1: {
         color: '#5F5B5B',
@@ -104,15 +85,17 @@ const styles = StyleSheet.create({
         fontSize: 12,
         marginTop: 48,
         marginLeft: 88,
-
-
     },
-
+    text3: {
+        color: '#5F5B5B',
+        fontSize: 12,
+        marginLeft: 90,
+        marginTop: -20,
+        marginBottom: 35,
+    },
     align: {
         flexDirection: 'row',
-
     },
-
     minicards: {
         flexDirection: 'row',
         flexWrap: 'wrap',
@@ -139,16 +122,12 @@ const styles = StyleSheet.create({
         marginTop: 15,
         alignSelf: 'flex-start',
         marginBottom: 15,
-
     },
-
     cards1: {
         width: 180,
         borderRadius: 5,
         backgroundColor: '#ffffff',
         marginRight: 10,
-
-
     },
     imgcards: {
         width: 180,
