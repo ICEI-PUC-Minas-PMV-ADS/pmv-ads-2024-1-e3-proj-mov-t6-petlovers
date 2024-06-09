@@ -26,6 +26,8 @@ import { handleMensagemRequest} from "./endpoints/mensagens";
 import { getMensagens } from "./endpoints/mensagens";
 import { updateMensagem } from "./endpoints/mensagens";
 import { deleteMensagem } from "./endpoints/mensagens";
+import { getUserMatchIds} from "./endpoints/matches";
+
 
 // Inicializa o framework de configuração
 dotenv.config();
@@ -90,6 +92,7 @@ serverApp.post("/api/avaliacao", handleRatingRequest);
 // requisições de match
 serverApp.post("/api/match", handleMatchRequest);
 serverApp.get('/api/match/:id/details', handleMatchDetailsRequest);
+serverApp.get('/api/user/:userId/matches', getUserMatchIds);
 
 // requisições de mensagem 
 serverApp.post("/api/mensagem", handleMensagemRequest);

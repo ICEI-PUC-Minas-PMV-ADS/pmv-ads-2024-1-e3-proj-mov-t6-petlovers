@@ -1,25 +1,29 @@
-import * as React from "react";
-import { View, Text, StyleSheet, Image } from "react-native";
-import CardPet from "../components/CardPet";
+import React, { useState, useEffect } from "react";
+import { View, Text, StyleSheet, Image, ActivityIndicator } from "react-native";
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
-import Notificacao from "../components/Notificacao";
+import { baseAPI_URL } from '../apiConfig';
+import { getAuth } from "firebase/auth";
+import * as SQLite from 'expo-sqlite';
+import CardPet from "../components/CardPet";
 
 export default function Notificacoes() {
+
+
   return (
     <KeyboardAwareScrollView style={{ flex: 1 }}>
       <Text style={styles.title}>Notificações</Text>
       <View style={styles.container}>
-        <View style={styles.matchContainer}>
-          <Image 
-            source={{ uri: 'https://picsum.photos/300' }} 
-            style={styles.petImage} 
-          />
-          <View style={styles.petInfo}>
-            <Text style={styles.text}>Você deu match com Mel</Text>
-            <Text style={styles.data}>14/03/2024</Text>
+          <View  style={styles.matchContainer}>
+            <Image 
+              source={{ uri: "https://picsum.photos/200/300"}} 
+              style={styles.petImage} 
+            />
+            <View style={styles.petInfo}>
+              <Text style={styles.text}>Você deu match com Capitu</Text>
+              <Text style={styles.data}>25/05/2025</Text>
+            </View>
           </View>
-        </View>
-        <CardPet />
+        <CardPet/>
       </View>
     </KeyboardAwareScrollView>
   );
@@ -37,23 +41,26 @@ const styles = StyleSheet.create({
   },
   text: {
     color: "#5F5B5B",
-    marginLeft: 10,
   },
   data: {
     color: "#B4AEAE",
     fontSize: 12,
-    marginLeft: 10,
   },
   petImage: {
     width: 60,
     height: 60,
     borderRadius: 30,
-    marginLeft: 15,
+    marginRight: 10,
   },
   title: {
     fontWeight: 'bold',
     fontSize: 24,
-    marginLeft: 33,
+    marginLeft: 20,
     marginTop: 15,
+  },
+  loadingContainer: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
   },
 });
