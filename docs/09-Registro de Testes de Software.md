@@ -227,6 +227,47 @@ https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2024-1-e3-proj-mov-t6-petlover
 
 <br><br>
 
+| Caso de Teste         | CT-28  Notificar o usuário quando acontecer um match |
+|----------------------|--------------------------|
+| Requisito Associado   | **RF-006** </br> O sistema deve emitir notificação ao usuário quando acontece um match.	 |
+| Objetivo do Teste | Verificar se o usuário recebe uma notificação se houver um match. |
+| Passos | <br> Na página inicial, clique em ver mais, e na barra de busca  insira o nome ou a característica do pet que deseja encontrar. <br> Clique no botão em Buscar. <br> Desliza para a direita (Like).  |
+| Critério de Êxito |Caso receba um like de volta, o usuário verá na tela de notificações o perfil do pet que deu match. |
+| Evidência | |
+
+<br><br>
+
+| Caso de Teste         | CT-29 Exibir um ícone de mensagens  |
+|----------------------|--------------------------|
+| Requisito Associado   | **RF-007** </br> O sistema deve exibir um ícone de mensagens instantâneas para os usuários que deram match.	.	 |
+| Objetivo do Teste | Verificar se o usuário consegue avaliar a experiência corretamente. |
+| Passos |  |
+| Critério de Êxito ||
+| Evidência | |
+
+<br><br>
+
+
+| Caso de Teste         | CT-30  Avaliar a experiência|
+|----------------------|--------------------------|
+| Requisito Associado   | **RF-008** </br> O sistema deve permitir o usuário avaliar a experiência.	 |
+| Objetivo do Teste | Verificar se o usuário consegue avaliar. |
+| Passos | <br> Na página inicial, clique em ver mais, e na barra de busca  insira o nome ou a característica do pet que deseja encontrar. <br> Clique no botão em Buscar. <br> Desliza para a direita (Like).  |
+| Critério de Êxito | |
+| Evidência | |
+
+<br><br>
+
+| Caso de Teste         | CT-31  Favoritar e desfavoritar um perfil|
+|----------------------|--------------------------|
+| Requisito Associado   | **RF-010** </br> O site deve incluir uma página de favoritos.	 |
+| Objetivo do Teste | Verificar se o usuário consegue favoritar um perfil ou remover dos favoritos. |
+| Passos | <br>  |
+| Critério de Êxito | |
+| Evidência | |
+
+<br><br>
+
 
 
 
