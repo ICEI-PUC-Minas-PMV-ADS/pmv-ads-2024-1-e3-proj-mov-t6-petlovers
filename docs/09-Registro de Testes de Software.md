@@ -258,7 +258,6 @@ https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2024-1-e3-proj-mov-t6-petlover
 
 <br><br>
 
-Aqui está o texto revisado para maior clareza e consistência:
 
 | Caso de Teste         | CT-31 Favoritar e desfavoritar um perfil |
 |----------------------|------------------------------------------|
