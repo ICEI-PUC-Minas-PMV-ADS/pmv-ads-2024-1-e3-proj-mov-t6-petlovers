@@ -252,7 +252,7 @@
 |----------------------|--------------------------|
 | Requisito Associado   | **RF-008** </br> O sistema deve permitir o usuário avaliar a experiência.	 |
 | Objetivo do Teste | Verificar se o usuário consegue avaliar. |
-| Passos | <br> Na página inicial, clique em ver mais, e na barra de busca  insira o nome ou a característica do pet que deseja encontrar. <br> Clique no botão em Buscar. <br> Desliza para a direita (Like).  |
+| Passos |  |
 | Critério de Êxito | |
 
 
@@ -260,8 +260,8 @@
 |----------------------|--------------------------|
 | Requisito Associado   | **RF-010** </br> O site deve incluir uma página de favoritos.	 |
 | Objetivo do Teste | Verificar se o usuário consegue favoritar um perfil ou remover dos favoritos. |
-| Passos | <br>  |
-| Critério de Êxito | |
+| Passos | <br> Na página inicial, clique em ver mais, e na barra de busca  insira o nome ou a característica do pet que deseja encontrar. <br> Clique no botão em Buscar. <br> Desliza para a direita (Like).  |
+| Critério de Êxito | Todos os pets que o usuário deu like aparecerão na página de favoritos, e ao clicar no ícone de coração, esse pet será removido da lista.|
 
 
 
