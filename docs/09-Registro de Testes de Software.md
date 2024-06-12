@@ -257,8 +257,7 @@ https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2024-1-e3-proj-mov-t6-petlover
 | Evidência | Vídeo de teste abaixo.  |
 
 
-https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2024-1-e3-proj-mov-t6-petlovers/assets/93337008/13651f71-f916-4bd3-b54d-cb2044d43783
-
+https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2024-1-e3-proj-mov-t6-petlovers/assets/93337008/c3254956-3db2-4f13-8c37-ea20f0b8eaa6
 
 <br><br>
 
