@@ -256,6 +256,10 @@ https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2024-1-e3-proj-mov-t6-petlover
 | Critério de Êxito | O comentário será visível para outros usuários. |
 | Evidência | Vídeo de teste abaixo.  |
 
+
+https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2024-1-e3-proj-mov-t6-petlovers/assets/93337008/13651f71-f916-4bd3-b54d-cb2044d43783
+
+
 <br><br>
 
 
