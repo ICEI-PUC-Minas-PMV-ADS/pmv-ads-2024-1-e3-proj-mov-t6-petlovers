@@ -139,25 +139,6 @@ export async function handleMatchDetailsRequest(req: Request, res: Response) {
 }
 
 
-export async function getPetIdByUser(userId: string): Promise<string | null> {
-  console.log(`Procurando pet para o userId: ${userId}`);
-
-  const petSnapshot = await admin.firestore().collection("pets").where("userId", "==", userId).get();
-
-  if (petSnapshot.empty) {
-    console.log("Nenhum pet encontrado para o userId fornecido");
-    return null;
-  }
-
-  const petDoc = petSnapshot.docs[0];
-  const petId = petDoc.id;
-  console.log(`Pet encontrado: ${petId}`);
-
-  return petId;
-}
-
-
-
 // Função para obter os IDs dos matches do usuário
 export async function getUserMatchIds(req: Request, res: Response) {
   try {
@@ -167,13 +148,18 @@ export async function getUserMatchIds(req: Request, res: Response) {
       return res.status(400).json({ message: "ID do usuário não fornecido" });
     }
 
-    const petId = await getPetIdByUser(userId);
+    console.log(`Procurando pet para o userId: ${userId}`);
+    const petSnapshot = await admin.firestore().collection("pets").where("userId", "==", userId).get();
 
-    if (!petId) {
+    if (petSnapshot.empty) {
+      console.log("Nenhum pet encontrado para o userId fornecido");
       return res.status(404).json({ message: "Pet não encontrado para o usuário fornecido" });
     }
 
-    // Buscar matches onde o pet1_id ou pet2_id corresponde ao pet do usuário e is_match é true
+    const petDoc = petSnapshot.docs[0];
+    const petId = petDoc.id;
+    console.log(`Pet encontrado: ${petId}`);
+
     const matchesQuerySnapshot1 = await admin.firestore().collection("matches")
       .where("is_match", "==", true)
       .where("pet1_id", "==", petId)
@@ -184,7 +170,6 @@ export async function getUserMatchIds(req: Request, res: Response) {
       .where("pet2_id", "==", petId)
       .get();
 
-    // Combinar resultados das duas consultas
     const matches = matchesQuerySnapshot1.docs.concat(matchesQuerySnapshot2.docs);
 
     if (matches.length === 0) {
@@ -196,6 +181,7 @@ export async function getUserMatchIds(req: Request, res: Response) {
     return res.status(200).json({ matchIds });
   } catch (error) {
     console.error("Erro ao obter IDs dos matches do usuário:", error);
+    console.log(error);
     return res.status(500).json({ message: "Erro interno do servidor" });
   }
 }
