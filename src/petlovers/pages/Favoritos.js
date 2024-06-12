@@ -89,8 +89,11 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
   },
   title: {
+    fontWeight: 'bold',
     fontSize: 24,
-    marginBottom: 10,
+    marginLeft: 20,
+    marginTop: 15,
+    marginBottom: 20,
   },
   card: {
     flexDirection: 'row',
