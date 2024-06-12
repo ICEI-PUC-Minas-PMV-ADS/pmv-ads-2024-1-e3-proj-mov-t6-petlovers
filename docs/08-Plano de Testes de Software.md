@@ -248,12 +248,13 @@
 
 
 
-| Caso de Teste         | CT-30  Avaliar a experiência|
+| Caso de Teste         | CT-30  Avaliar a Experiência |
 |----------------------|--------------------------|
-| Requisito Associado   | **RF-008** </br> O sistema deve permitir o usuário avaliar a experiência.	 |
-| Objetivo do Teste | Verificar se o usuário consegue avaliar. |
-| Passos |  |
-| Critério de Êxito | |
+| Requisito Associado   | **RF-008** - O sistema deve permitir que o usuário avalie a experiência. |
+| Objetivo do Teste | Verificar se o usuário consegue realizar a avaliação com sucesso. |
+| Passos | 1. Na tela inicial, clique em "Ver Avaliações do App". </br> 2. Preencha as patinhas de avaliação conforme sua preferência, onde 1 representa a pior nota e 5 a melhor nota. </br> 3. Escreva seu comentário na seção destinada a ele. </br> 4. Clique em "Enviar" para submeter a avaliação. |
+| Critério de Êxito | O comentário será visível para outros usuários. |
+
 
 
 | Caso de Teste         | CT-31  Favoritar e desfavoritar um perfil|
