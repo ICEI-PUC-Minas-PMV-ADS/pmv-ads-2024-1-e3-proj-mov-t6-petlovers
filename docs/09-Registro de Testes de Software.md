@@ -227,15 +227,51 @@ https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2024-1-e3-proj-mov-t6-petlover
 
 <br><br>
 
+| Caso de Teste         | CT-28  Notificar o usuário quando acontecer um match |
+|----------------------|--------------------------|
+| Requisito Associado   | **RF-006** </br> O sistema deve emitir notificação ao usuário quando acontece um match.	 |
+| Objetivo do Teste | Verificar se o usuário recebe uma notificação se houver um match. |
+| Passos | <br> Na página inicial, clique em ver mais, e na barra de busca  insira o nome ou a característica do pet que deseja encontrar. <br> Clique no botão em Buscar. <br> Desliza para a direita (Like).  |
+| Critério de Êxito |Caso receba um like de volta, o usuário verá na tela de notificações o perfil do pet que deu match. |
+| Evidência | |
+
+<br><br>
+
+| Caso de Teste         | CT-29 Exibir um ícone de mensagens  |
+|----------------------|--------------------------|
+| Requisito Associado   | **RF-007** </br> O sistema deve exibir um ícone de mensagens instantâneas para os usuários que deram match.	.	 |
+| Objetivo do Teste | Verificar se o usuário consegue avaliar a experiência corretamente. |
+| Passos |  |
+| Critério de Êxito ||
+| Evidência | |
+
+<br><br>
 
 
+| Caso de Teste         | CT-30  Avaliar a experiência|
+|----------------------|--------------------------|
+| Requisito Associado   | **RF-008** </br> O sistema deve permitir o usuário avaliar a experiência.	 |
+| Objetivo do Teste | Verificar se o usuário consegue avaliar. |
+| Passos | <br>  |
+| Critério de Êxito | |
+| Evidência | |
+
+<br><br>
 
 
+| Caso de Teste         | CT-31 Favoritar e desfavoritar um perfil |
+|----------------------|------------------------------------------|
+| Requisito Associado  | **RF-010** <br> O site deve incluir uma página de favoritos. |
+| Objetivo do Teste    | Verificar se o usuário consegue favoritar um perfil ou removê-lo dos favoritos. |
+| Passos               | <ol><li>Na página inicial, clique em "Ver mais".</li><li>Na barra de busca, insira o nome ou a característica do pet que deseja encontrar.</li><li>Clique no botão "Buscar".</li><li>Deslize para a direita (Like).</li><li>Navegue até a página de favoritos e clique no ícone de coração.</li></ol> |
+| Critério de Êxito    | Todos os pets que o usuário deu like aparecerão na página de favoritos, e ao clicar no ícone de coração, esse pet será removido da lista. |
+| Evidência            | Video de teste abaixo.|
 
 
+https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2024-1-e3-proj-mov-t6-petlovers/assets/93337008/5e5dcba4-c8a8-4ad4-80aa-86980e1b24cb
 
 
-
+<br><br>
 
 
 
