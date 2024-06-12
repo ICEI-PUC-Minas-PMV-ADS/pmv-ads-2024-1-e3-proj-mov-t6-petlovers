@@ -11,7 +11,7 @@ export default function Notificacoes() {
     const [loading, setLoading] = useState(true);
     const [matchIds, setMatchIds] = useState([]);
     const [matchDetails, setMatchDetails] = useState([]);
-    const [userPetId, setUserPetId] = useState(null); // Estado para armazenar o ID do pet do usuário logado
+    const [userPetId, setUserPetId] = useState(null);
     const auth = getAuth();
     const user = auth.currentUser;
   
@@ -38,7 +38,6 @@ export default function Notificacoes() {
   
         if (response.ok) {
           setUserPetId(data.petId);
-          console.log("pet id", data.petId)
         } else {
           console.error("Erro ao buscar ID do pet do usuário:", data.message);
         }
@@ -54,20 +53,19 @@ export default function Notificacoes() {
           if (!user) return;
   
           const userId = user.uid;
-          await fetchUserPetId(userId); // Chamar a função para obter o ID do pet do usuário
+          await fetchUserPetId(userId);
   
           const response = await fetch(`${baseAPI_URL}/api/user/${userId}/matches`);
           const data = await response.json();
   
           if (response.ok) {
             setMatchIds(data.matchIds);
-            setLoading(false);
           } else {
             console.error("Erro ao buscar IDs dos matches do usuário:", data.message);
-            setLoading(false);
           }
         } catch (error) {
           console.error("Erro ao buscar IDs dos matches do usuário:", error);
+        } finally {
           setLoading(false);
         }
       };
@@ -92,66 +90,68 @@ export default function Notificacoes() {
     }, [matchIds]);
   
     return (
-        <KeyboardAwareScrollView style={{ flex: 1 }}>
-      <Text style={styles.title}>Notificações</Text>
-      <View style={styles.container}>
-        {matchDetails.length > 0 ? (
-          matchDetails.map(match => {
-            // Determina qual pet pertence ao usuário logado
-            const isUserPet1 = match.match.pet1_id === userPetId;
-            const isUserPet2 = match.match.pet2_id === userPetId;
-
-            if (isUserPet1) {
-              // Retorna os dados do pet 2
-              const pet2 = match.pets[1].pet;
-              return (
-                <View key={match.match.id}>
-                  <View style={styles.matchContainer}>
-                    <Image 
-                      source={{ uri: pet2.imageURL }}  
-                      style={styles.petImage} 
-                    />
-                    <View style={styles.petInfo}>
-                      <Text style={styles.text}>
-                        {`Você deu match com ${pet2.nome}`}
-                      </Text>
-                      <Text style={styles.data}>{new Date(match.match.match_date._seconds * 1000).toLocaleDateString()}</Text>
+      <KeyboardAwareScrollView style={{ flex: 1 }}>
+        <Text style={styles.title}>Notificações</Text>
+        <View style={styles.container}>
+          {loading ? (
+            <Text>Carregando...</Text>
+          ) : matchDetails.length > 0 ? (
+            matchDetails.map(match => {
+              // Verifica se o pet do usuário logado está envolvido no match
+              const isUserPet1 = match.match.pet1_id === userPetId;
+              const isUserPet2 = match.match.pet2_id === userPetId;
+  
+              if (isUserPet1) {
+                // Retorna os dados do pet 2
+                const pet2 = match.pets[1].pet;
+                return (
+                  <View key={match.match.id}>
+                    <View style={styles.matchContainer}>
+                      <Image 
+                        source={{ uri: pet2.imageURL }}  
+                        style={styles.petImage} 
+                      />
+                      <View style={styles.petInfo}>
+                        <Text style={styles.text}>
+                          {`Você deu match com ${pet2.nome}`}
+                        </Text>
+                        <Text style={styles.data}>{new Date(match.match.match_date._seconds * 1000).toLocaleDateString()}</Text>
+                      </View>
                     </View>
                   </View>
-                </View>
-              );
-            } else if (isUserPet2) {
-              // Retorna os dados do pet 1
-              const pet1 = match.pets[0].pet;
-              return (
-                <View key={match.match.id}>
-                  <View style={styles.matchContainer}>
-                    <Image 
-                      source={{ uri: pet1.imageURL }}  
-                      style={styles.petImage} 
-                    />
-                    <View style={styles.petInfo}>
-                      <Text style={styles.text}>
-                        {`Você deu match com ${pet1.nome}`}
-                      </Text>
-                      <Text style={styles.data}>{new Date(match.match.match_date._seconds * 1000).toLocaleDateString()}</Text>
+                );
+              } else if (isUserPet2) {
+                // Retorna os dados do pet 1
+                const pet1 = match.pets[0].pet;
+                return (
+                  <View key={match.match.id}>
+                    <View style={styles.matchContainer}>
+                      <Image 
+                        source={{ uri: pet1.imageURL }}  
+                        style={styles.petImage} 
+                      />
+                      <View style={styles.petInfo}>
+                        <Text style={styles.text}>
+                          {`Você deu match com ${pet1.nome}`}
+                        </Text>
+                        <Text style={styles.data}>{new Date(match.match.match_date._seconds * 1000).toLocaleDateString()}</Text>
+                      </View>
                     </View>
                   </View>
-                </View>
-              );
-            } else {
-              // Caso não encontre correspondência, retorna null para pular esta iteração
-              return null;
-            }
-          })
-        ) : (
-          <Notificacao />
-        )}
-        <CardPet />
-      </View>
-    </KeyboardAwareScrollView>
-  );
-};
+                );
+              } else {
+                // Caso não encontre correspondência, retorna null para pular esta iteração
+                return null;
+              }
+            })
+          ) : (
+            <Notificacao />
+          )}
+          <CardPet />
+        </View>
+      </KeyboardAwareScrollView>
+    );
+  };
   
 const styles = StyleSheet.create({
   container: {
