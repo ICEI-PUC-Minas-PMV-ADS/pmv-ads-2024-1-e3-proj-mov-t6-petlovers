@@ -7,8 +7,7 @@ Nesta seção, é apresentada a visão geral da interação do usuário pelas te
 
 O diagrama apresenta o estudo do fluxo de interação do usuário com o sistema. Antes de realizar cadastro e login, o usuário possui acesso à homepage e às páginas com informações sobre o aplicativo. Após cadastro e login, o fluxo na aplicação segue como descrito no diagrama abaixo:
 
-<div align="center">
-<img width="750" alt="Capture" src="img/fluxograma.png">
+<div align="center"><img width="1181" alt="Screenshot 2024-06-12 at 19 16 00" src="https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2024-1-e3-proj-mov-t6-petlovers/assets/93337008/709520df-1b62-4123-a74c-a1a27fb5333f">
 </div>
 
 ## Wireframes
