@@ -70,16 +70,16 @@ As tabelas que se seguem apresentam os requisitos funcionais e não funcionais q
 
 |ID    | Descrição do Requisito  | Prioridade |
 |------|-----------------------------------------|----|
-|RF-001| O sistema deve possuir uma área para fazer cadastro de novos usuários a partir de 18 anos. | ALTA | 
-|RF-002| O sistema deve permitir cadastrar o perfil de um animal de estimação, com a opção de fazer o upload de imagens.  | ALTA |
-|RF-003|O sistema deve permitir que o usuário modifique suas informações e as de seu pet, além de oferecer a opção de excluir sua conta.| MÉDIA |
-|RF-004| O sistema deve ter uma área para buscar/filtrar e visualizar o perfil de outros <b>pets</b>.  | MÉDIA |
-|RF-005| O sistema deve permitir que o usuário consiga selecionar (dar <b>like</b>) ou recusar perfis de outros <b>pets</b>.| ALTA|
-|RF-006| O sistema deve emitir notificação ao usuário quando acontece um <b>match</b>. | ALTA |
-|RF-007|  O sistema deve exibir um ícone de mensagens instantâneas para os usuários que deram <b>match</b>. | ALTA |
-|RF-008| O sistema deve permitir que os usuários avaliem a experiência. | MÉDIA |
-|RF-009| O site deve incluir uma página de login. | ALTA |
-|RF-010| O site deve incluir uma página de favoritos. | BAIXA |
+|RF-001| O sistema deve possuir uma área para fazer cadastro de novos usuários a partir de 18 anos | ALTA | 
+|RF-002| O sistema deve permitir cadastrar o perfil de um animal de estimação, com a opção de fazer o upload de imagens  | ALTA |
+|RF-003|O sistema deve permitir que o usuário modifique suas informações e as de seu pet, além de oferecer a opção de excluir sua conta | MÉDIA |
+|RF-004| O sistema deve ter uma área para buscar/filtrar e visualizar o perfil de outros <b>pets</b> | MÉDIA |
+|RF-005| O sistema deve permitir que o usuário consiga selecionar (<b>like</b>) ou recusar (<b>dislike</b>) perfis de outros <b>pets</b> | ALTA|
+|RF-006| O sistema deve emitir notificação ao usuário quando acontece um <b>match</b> | ALTA |
+|RF-007| O sistema deve exibir um ícone de mensagens instantâneas para os usuários que deram <b>match</b> | ALTA |
+|RF-008| O sistema deve permitir que os usuários avaliem a experiência no aplicativo | MÉDIA |
+|RF-009| O site deve incluir uma página de login | ALTA |
+|RF-010| O site deve incluir uma página de favoritos | BAIXA |
 
 
 
