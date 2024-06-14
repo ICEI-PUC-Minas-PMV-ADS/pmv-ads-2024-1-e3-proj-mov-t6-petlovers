@@ -7,36 +7,39 @@ import { getAuth } from "firebase/auth";
 export default function BannerCadastro() {
     const navigation = useNavigation();
     const [userLogado, setUserLogado] = useState(false);
-  
+    
     useEffect(() => {
-    const auth = getAuth();
-    const user = auth.currentUser;
-    user?.displayName.length > 0 ? setUserLogado(true) : false;
-  });
+        const auth = getAuth();
+        const unsubscribe = auth.onAuthStateChanged((user) => {
+            if (user && user.displayName) {
+                setUserLogado(true);
+            } else {
+                setUserLogado(false);
+            }
+        });
 
-    const goToCadastro = () => {navigation.navigate('Cadastro')};
-    const goToBusca = () => {navigation.navigate('Busca')};
+        return unsubscribe;
+    }, []); 
+
+    const goToCadastro = () => { navigation.navigate('Cadastro') };
+    const goToBusca = () => { navigation.navigate('Busca') };
     
     if (userLogado) {
         return (
             <View style={styles.header}>
                 <Text style={styles.tittle}>Cadastre o seu pet na nossa comunidade</Text>
-                <Button onPress={goToBusca} style={styles.btn} ><Text style={styles.textBtn}>Buscar</Text></Button>
+                <Button onPress={goToBusca} style={styles.btn}><Text style={styles.textBtn}>Buscar</Text></Button>
             </View>
         )
-
     } else {
         return (
             <View style={styles.header}>
-            <Text style={styles.tittle}>Cadastre o seu pet na nossa comunidade</Text>
-            <Button onPress={goToCadastro} style={styles.btn} ><Text style={styles.textBtn}>Cadastrar</Text></Button>
-        </View>
+                <Text style={styles.tittle}>Cadastre o seu pet na nossa comunidade</Text>
+                <Button onPress={goToCadastro} style={styles.btn}><Text style={styles.textBtn}>Cadastrar</Text></Button>
+            </View>
         )
     }
-    
 };
-
-
 
 const styles = StyleSheet.create({
 header: {

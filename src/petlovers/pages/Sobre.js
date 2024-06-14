@@ -3,7 +3,7 @@ import { StyleSheet, View, Text, ScrollView} from "react-native";
 import { Button } from 'react-native-paper';
 import { useNavigation } from '@react-navigation/native'; 
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
-import BannerSobre from "../components/BannerSobre";
+import BannerCadastro from "../components/BannerCadastro";
 import { useEffect } from "react";
 import * as SQLite from 'expo-sqlite';
 
@@ -59,7 +59,7 @@ const Separator = () => {
     <KeyboardAwareScrollView style={{ flex: 1 }}>
       
     <View style={{ flex:1, alignItems: 'center', justifyContent: 'center'}}> 
-              <BannerSobre />
+              <BannerCadastro />
 
 
       <View style = {styles.container}> 
