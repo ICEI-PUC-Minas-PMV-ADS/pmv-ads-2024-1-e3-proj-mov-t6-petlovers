@@ -137,3 +137,58 @@ export async function handleMatchDetailsRequest(req: Request, res: Response) {
       return res.status(500).json({ message: "Erro interno do servidor" });
   }
 }
+
+export async function handleMatchUserRequest(req: Request, res: Response) {
+  try {
+      const petId = req.params.id;
+      const userId = req.params.userId;
+      var cellPhone;
+
+      // Obter os dados do match pelo ID
+      const matchSnapshot = await admin.firestore()
+                            .collection("matches")
+                            .where("pet1_id", "==", petId)
+                            .where("is_match", "==", true)
+                            .get();
+      if (matchSnapshot.empty) {
+        const matchSnapshot1 = await admin.firestore()
+        .collection("matches")
+        .where("pet2_id", "==", petId)
+        .where("is_match", "==", true)
+        .get();
+
+        if(!matchSnapshot1.empty){
+          const matchDoc = matchSnapshot1.docs[0].data();
+          const petDoc = (await admin.firestore().collection("pets").doc(matchDoc.pet1_id).get()).data() as Pet;
+          const petDoc2 = (await admin.firestore().collection("pets").doc(matchDoc.pet2_id).get()).data() as Pet;
+        
+          if(petDoc.userId == userId){
+            const userDoc = (await admin.firestore().collection("users").doc(petDoc2.userId).get()).data() as User;
+
+            cellPhone = userDoc.whatsapp;
+          }
+        }
+      }
+      else{
+          const matchDoc = matchSnapshot.docs[0].data();
+          const petDoc = (await admin.firestore().collection("pets").doc(matchDoc.pet2_id).get()).data() as Pet;
+          const petDoc2 = (await admin.firestore().collection("pets").doc(matchDoc.pet1_id).get()).data() as Pet;
+        
+          if(petDoc.userId == userId){
+            const userDoc = (await admin.firestore().collection("users").doc(petDoc2.userId).get()).data() as User;
+
+            cellPhone = userDoc.whatsapp;
+          }
+      }
+
+      // Combinar os dados
+      const responseData = {
+          whatsapp: cellPhone
+      };
+
+      return res.status(200).json(responseData);
+  } catch (error) {
+      console.error("Erro ao obter detalhes do match para o usuário:", error);
+      return res.status(500).json({ message: "Erro interno do servidor" });
+  }
+}
