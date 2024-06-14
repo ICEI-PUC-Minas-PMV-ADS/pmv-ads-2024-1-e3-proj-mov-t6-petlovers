@@ -22,7 +22,7 @@ async function getTutorNameByPetId(petId) {
 
 
 export default function InfoPet({route}) { //rota com os parametros para renderizar o pet clicado 
-    const { imageURL, nome, idade, sexo, cidade, estado, sobre , cor, raca, porte, id} = route.params;
+    const { imageURL, nome, idade, sexo, cidade, estado, sobre , cor, raca, porte, id, ownerNome } = route.params;
     
     const [tutorName, setTutorName] = useState(null);
 
@@ -87,7 +87,7 @@ export default function InfoPet({route}) { //rota com os parametros para renderi
               </Text>
 
               <Text style={styles.titletutor}>Tutor</Text>
-            <Text style={[styles.tutor, styles.marginBottom]}>{tutorName}</Text>
+            <Text style={[styles.tutor, styles.marginBottom]}>{tutorName} {ownerNome}</Text>
             </View>
           </View>
         </KeyboardAwareScrollView>
