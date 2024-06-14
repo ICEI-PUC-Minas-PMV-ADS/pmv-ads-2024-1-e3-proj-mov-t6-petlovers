@@ -4,12 +4,9 @@ import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view
 import { baseAPI_URL } from '../apiConfig';
 import { getAuth } from "firebase/auth";
 import 'firebase/database';
-import firebase from 'firebase/app';
 import CardPet from "../components/CardPet";
 import Notificacao from "../components/Notificacao";
-import { cardpetsAPI_URL } from "../apiConfig";
 import { useNavigation } from '@react-navigation/native';
-
 
 
 export default function Notificacoes() {
@@ -18,18 +15,7 @@ export default function Notificacoes() {
   const [matchIds, setMatchIds] = useState([]);
   const [matchDetails, setMatchDetails] = useState([]);
   const [userPetId, setUserPetId] = useState(null);
-  const [data, setData] = useState([]);
   const navigation = useNavigation();
-  const auth = getAuth();
-  const user = auth.currentUser;
-  const [userLogado, setUserLogado] = useState(false);
-  
-  useEffect(() => {
-    const auth = getAuth();
-    const user = auth.currentUser;
-    user?.displayName.length > 0 ? setUserLogado(true) : false;
-  });
-
 
   // Função para buscar os detalhes de um match
   const fetchMatchDetails = async (matchId) => {
@@ -40,23 +26,22 @@ export default function Notificacoes() {
       }
       const data = await response.json();
 
-      const pet1UserName = await fetchUserNameByPetId(data.pets[0].pet.id);
-      const pet2UserName = await fetchUserNameByPetId(data.pets[1].pet.id);
+      // Mapeia os pets para incluir o nome do proprietário (owner)
+      const petsWithOwner = data.pets.map(petInfo => ({
+        ...petInfo.pet,
+        ownerName: petInfo.owner.first_name // Aqui você pode adicionar mais detalhes do owner se necessário
+      }));
 
+      // Retorna os detalhes do match com os pets modificados
       return {
-        ...data,
-        pets: [
-          { ...data.pets[0].pet, userName: pet1UserName, ownerNome: data.pets[0].owner.first_name },
-          { ...data.pets[1].pet, userName: pet2UserName, ownerNome: data.pets[1].owner.first_name }
-        ]
+        match: data.match,
+        pets: petsWithOwner
       };
     } catch (error) {
       console.error("Erro ao buscar detalhes do match:", error);
       throw error;
     }
   };
-
-  
 
   // Função para obter o ID do pet do usuário logado
   const fetchUserPetId = async (userId) => {
@@ -74,15 +59,15 @@ export default function Notificacoes() {
     }
   };
 
-  // Retorna os match Id's do user logado
+  // Retorna os matches Id's do user logado
   useEffect(() => {
     const fetchMatchIds = async () => {
       try {
-        if (!user) return;
+        // Simulação de usuário autenticado
+        const userId = 'm7F0Z6lnbGgKZwVNWj5HlecxWk22'; // Substitua pelo seu método de obtenção do ID do usuário
+        await fetchUserPetId(userId); // Obtém o ID do pet do usuário logado
 
-        const userId = user.uid;
-        await fetchUserPetId(userId);
-
+        // Aqui substitua pelo seu método de obtenção dos IDs dos matches
         const response = await fetch(`${baseAPI_URL}/api/user/${userId}/matches`);
         const data = await response.json();
 
@@ -99,7 +84,7 @@ export default function Notificacoes() {
     };
 
     fetchMatchIds();
-  }, [user]);
+  }, []);
 
   // Buscar os detalhes de cada match quando os IDs dos matches mudarem
   useEffect(() => {
@@ -112,37 +97,23 @@ export default function Notificacoes() {
       }
     };
 
+    if (matchIds.length > 0) {
+      fetchMatchDetailsForIds();
+    }
   }, [matchIds]);
 
-  useEffect(() => {
-    fetch(cardpetsAPI_URL) // API URL dos cards
-      .then((response) => response.json())
-      .then((responseData) => {
-        setData(responseData.data);
-        responseData.data.forEach(item => console.log(item.id));
-      })
-      .catch((error) => console.error('Error:', error))
-      .finally(() => setLoading(false)); // Marcar o carregamento como completo após carregar os cards
-  }, []);
-
   // Navegação para a tela Info com os parâmetros salvos
-  const handleCardPress = (userId, nome, idade, cidade, imageURL, estado, sobre, raca, sexo, cor, porte, id, ownerNome) => {
-    navigation.navigate('InfoPet', { userId, nome, idade, cidade, imageURL, estado, sobre, raca, sexo, cor, porte, id, ownerNome });
+  const handleCardPress = (userId, nome, idade, cidade, imageURL, estado, sobre, raca, sexo, cor, porte, id, ownerName) => {
+    navigation.navigate('InfoPet', { userId, nome, idade, cidade, imageURL, estado, sobre, raca, sexo, cor, porte, id, ownerName });
   };
-
-  if (loading) {
-    return (
-      <View style={styles.container}>
-        <ActivityIndicator size="large" color="#827397" />
-      </View>
-    );
-  }
 
   return (
     <KeyboardAwareScrollView style={{ flex: 1 }}>
       <Text style={styles.title}>Notificações</Text>
       <View style={styles.container}>
-        {matchDetails.length > 0 ? (
+        {loading ? (
+          <ActivityIndicator size="large" color="#827397" />
+        ) : matchDetails.length > 0 ? (
           matchDetails.map(match => {
             const isUserPet1 = match.match.pet1_id === userPetId;
             const isUserPet2 = match.match.pet2_id === userPetId;
@@ -150,7 +121,7 @@ export default function Notificacoes() {
             if (isUserPet1) {
               const pet2 = match.pets[1];
               return (
-                <TouchableOpacity key={match.match.id} onPress={() => handleCardPress(pet2.userId, pet2.nome, pet2.idade, pet2.cidade, pet2.imageURL, pet2.estado, pet2.sobre, pet2.raca, pet2.sexo, pet2.cor, pet2.porte, pet2.id, pet2.ownerNome)}>
+                <TouchableOpacity key={match.match.id} onPress={() => handleCardPress(pet2.userId, pet2.nome, pet2.idade, pet2.cidade, pet2.imageURL, pet2.estado, pet2.sobre, pet2.raca, pet2.sexo, pet2.cor, pet2.porte, pet2.id, pet2.ownerName)}>
                   <View style={styles.matchContainer}>
                     <Image
                       source={{ uri: pet2.imageURL }}
@@ -158,7 +129,7 @@ export default function Notificacoes() {
                     />
                     <View style={styles.petInfo}>
                       <Text style={styles.text}>
-                        {`Você deu match com ${pet2.nome}`}
+                        {`Você deu match com ${pet2.nome}, proprietário: ${pet2.ownerName}`}
                       </Text>
                       <Text style={styles.data}>{new Date(match.match.match_date._seconds * 1000).toLocaleDateString()}</Text>
                     </View>
@@ -168,7 +139,7 @@ export default function Notificacoes() {
             } else if (isUserPet2) {
               const pet1 = match.pets[0];
               return (
-                <TouchableOpacity key={match.match.id} onPress={() => handleCardPress(pet1.userId, pet1.nome, pet1.idade, pet1.cidade, pet1.imageURL, pet1.estado, pet1.sobre, pet1.raca, pet1.sexo, pet1.cor, pet1.porte, pet1.id, pet1.ownerNome)}>
+                <TouchableOpacity key={match.match.id} onPress={() => handleCardPress(pet1.userId, pet1.nome, pet1.idade, pet1.cidade, pet1.imageURL, pet1.estado, pet1.sobre, pet1.raca, pet1.sexo, pet1.cor, pet1.porte, pet1.id, pet1.ownerName)}>
                   <View style={styles.matchContainer}>
                     <Image
                       source={{ uri: pet1.imageURL }}
@@ -176,7 +147,7 @@ export default function Notificacoes() {
                     />
                     <View style={styles.petInfo}>
                       <Text style={styles.text}>
-                        {`Você deu match com ${pet1.nome}`}
+                        {`Você deu match com ${pet1.nome}, proprietário: ${pet1.ownerName}`}
                       </Text>
                       <Text style={styles.data}>{new Date(match.match.match_date._seconds * 1000).toLocaleDateString()}</Text>
                     </View>
@@ -190,13 +161,11 @@ export default function Notificacoes() {
         ) : (
           <Notificacao />
         )}
-        <View style={styles.card}>
-          <CardPet />
-        </View>
+        <CardPet /> 
       </View>
     </KeyboardAwareScrollView>
   );
-}
+};
 
 const styles = StyleSheet.create({
   container: {

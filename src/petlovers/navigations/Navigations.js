@@ -75,13 +75,13 @@ function getScreenOptions(route, loginName) {
 }
 function TabNavigator() {
   const [userLogado, setUserLogado] = useState(false);
-
   useEffect(() => {
     const auth = getAuth();
     const user = auth.currentUser;
     user?.displayName.length > 0 ? setUserLogado(true) : false;
   });
 
+  if (userLogado) {
     return (
       <Tab.Navigator
         initialRouteName={homeName}
@@ -89,26 +89,25 @@ function TabNavigator() {
       >
         <Tab.Screen name={homeName} component={Home} />
         <Tab.Screen name={sobreName} component={Sobre} />
-       
-        <Tab.Screen name={notificacoesName}>
-        {() => (
-          userLogado? <Notificacoes /> : <Login />
-        )}
-      </Tab.Screen>
-      <Tab.Screen name={heartName}>
-        {() => (
-          userLogado? <Favoritos /> : <Login />
-        )}
-      </Tab.Screen >
-      <Tab.Screen name={loginName}>
-      {() => (
-          userLogado? <MinhaContaScreen /> : <Login />
-        )}
-      </Tab.Screen >
+        <Tab.Screen name={notificacoesName} component={Notificacoes} />
+        <Tab.Screen name={heartName} component={Favoritos} />
+        <Tab.Screen name={MinhaConta} component={MinhaContaScreen} options={{ headerShown: false }} />
       </Tab.Navigator>
     );
-  } 
-
+  } else
+    return (
+      <Tab.Navigator
+        initialRouteName={homeName}
+        screenOptions={({ route }) => getScreenOptions(route, loginName)}
+      >
+        <Tab.Screen name={homeName} component={Home} />
+        <Tab.Screen name={sobreName} component={Sobre} />
+        <Tab.Screen name={notificacoesName} component={Notificacoes} />
+        <Tab.Screen name={heartName} component={Favoritos} />
+        <Tab.Screen name={loginName} component={Login} />
+      </Tab.Navigator>
+    );
+}
 
 //Navegacao telas
 const Stack = createStackNavigator();
