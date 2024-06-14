@@ -8,7 +8,8 @@ export default function Whatsapp(props) {
     }
     return (
         <Pressable onPress={() => { handleWhatsapp() }}>
-            <Ionicons name={'logo-whatsapp'} size={35} />
+            <Ionicons  name={'logo-whatsapp'} size={55} color="green"  />
         </Pressable>
     )
 }
+

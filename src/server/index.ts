@@ -23,6 +23,7 @@ import { handleDeleteRatingRequest } from "./endpoints/avaliacao";
 import { handleUpdateRatingRequest } from "./endpoints/avaliacao";
 import { handleMatchRequest } from "./endpoints/matches";
 import { handleMatchDetailsRequest } from "./endpoints/matches";
+import { handleMatchUserRequest } from "./endpoints/matches";
 import { getPetDataByUserId } from './endpoints/pets';
 import {getUserNameByPetId}   from "./endpoints/pets";
 import { handleMensagemRequest} from "./endpoints/mensagens";
@@ -102,6 +103,7 @@ serverApp.delete("/api/avaliacao-delete/:id", handleDeleteRatingRequest);
 // requisições de match
 serverApp.post("/api/match", handleMatchRequest);
 serverApp.get('/api/match/:id/details', handleMatchDetailsRequest);
+serverApp.get('/api/match/:id/:userId', handleMatchUserRequest);
 
 // requisições de mensagem 
 serverApp.post("/api/mensagem", handleMensagemRequest);
