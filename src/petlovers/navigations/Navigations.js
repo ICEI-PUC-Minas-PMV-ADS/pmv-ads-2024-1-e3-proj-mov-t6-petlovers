@@ -102,8 +102,6 @@ function TabNavigator() {
       >
         <Tab.Screen name={homeName} component={Home} />
         <Tab.Screen name={sobreName} component={Sobre} />
-        <Tab.Screen name={notificacoesName} component={Notificacoes} />
-        <Tab.Screen name={heartName} component={Favoritos} />
         <Tab.Screen name={loginName} component={Login} />
       </Tab.Navigator>
     );
