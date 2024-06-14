@@ -11,6 +11,7 @@ import { cardpetsAPI_URL } from "../apiConfig";
 import { useNavigation } from '@react-navigation/native';
 
 
+
 export default function Notificacoes() {
     
   const [loading, setLoading] = useState(true);
@@ -21,6 +22,14 @@ export default function Notificacoes() {
   const navigation = useNavigation();
   const auth = getAuth();
   const user = auth.currentUser;
+  const [userLogado, setUserLogado] = useState(false);
+  
+  useEffect(() => {
+    const auth = getAuth();
+    const user = auth.currentUser;
+    user?.displayName.length > 0 ? setUserLogado(true) : false;
+  });
+
 
   // Função para buscar os detalhes de um match
   const fetchMatchDetails = async (matchId) => {
