@@ -1,21 +1,39 @@
-import * as React from "react";
+import React, { useState, useEffect } from "react";
 import { View, Text, StyleSheet } from "react-native";
 import { Button } from 'react-native-paper';
 import { useNavigation } from "@react-navigation/native";
+import { getAuth } from "firebase/auth";
 
 export default function BannerCadastro() {
     const navigation = useNavigation();
+    const [userLogado, setUserLogado] = useState(false);
+  
+    useEffect(() => {
+    const auth = getAuth();
+    const user = auth.currentUser;
+    user?.displayName.length > 0 ? setUserLogado(true) : false;
+  });
+
     const goToCadastro = () => {navigation.navigate('Cadastro')};
-    return (
+    const goToBusca = () => {navigation.navigate('Busca')};
+    
+    if (userLogado) {
+        return (
+            <View style={styles.header}>
+                <Text style={styles.tittle}>Cadastre o seu pet na nossa comunidade</Text>
+                <Button onPress={goToBusca} style={styles.btn} ><Text style={styles.textBtn}>Buscar</Text></Button>
+            </View>
+        )
 
-
-        <View style={styles.header}>
+    } else {
+        return (
+            <View style={styles.header}>
             <Text style={styles.tittle}>Cadastre o seu pet na nossa comunidade</Text>
             <Button onPress={goToCadastro} style={styles.btn} ><Text style={styles.textBtn}>Cadastrar</Text></Button>
         </View>
-
-
-    )
+        )
+    }
+    
 };
 
 
