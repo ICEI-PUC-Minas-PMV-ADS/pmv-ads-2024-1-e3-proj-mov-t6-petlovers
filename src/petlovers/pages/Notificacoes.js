@@ -91,67 +91,65 @@ export default function Notificacoes() {
   
     return (
       <KeyboardAwareScrollView style={{ flex: 1 }}>
-        <Text style={styles.title}>Notificações</Text>
-        <View style={styles.container}>
-          {loading ? (
-            <Text>Carregando...</Text>
-          ) : matchDetails.length > 0 ? (
-            matchDetails.map(match => {
-              // Verifica se o pet do usuário logado está envolvido no match
-              const isUserPet1 = match.match.pet1_id === userPetId;
-              const isUserPet2 = match.match.pet2_id === userPetId;
-  
-              if (isUserPet1) {
-                // Retorna os dados do pet 2
-                const pet2 = match.pets[1].pet;
-                return (
-                  <View key={match.match.id}>
-                    <View style={styles.matchContainer}>
-                      <Image 
-                        source={{ uri: pet2.imageURL }}  
-                        style={styles.petImage} 
-                      />
-                      <View style={styles.petInfo}>
-                        <Text style={styles.text}>
-                          {`Você deu match com ${pet2.nome}`}
-                        </Text>
-                        <Text style={styles.data}>{new Date(match.match.match_date._seconds * 1000).toLocaleDateString()}</Text>
-                      </View>
+      <Text style={styles.title}>Notificações</Text>
+      <View style={styles.container}>
+        {loading ? (
+          <ActivityIndicator size="large" color="#827397" />
+        ) : matchDetails.length > 0 ? (
+          matchDetails.map(match => {
+            const isUserPet1 = match.match.pet1_id === userPetId;
+            const isUserPet2 = match.match.pet2_id === userPetId;
+
+            if (isUserPet1) {
+              const pet2 = match.pets[1].pet;
+              return (
+                <View key={match.match.id}>
+                  <View style={styles.matchContainer}>
+                    <Image 
+                      source={{ uri: pet2.imageURL }}  
+                      style={styles.petImage} 
+                    />
+                    <View style={styles.petInfo}>
+                      <Text style={styles.text}>
+                        {`Você deu match com ${pet2.nome}`}
+                      </Text>
+                      <Text style={styles.data}>{new Date(match.match.match_date._seconds * 1000).toLocaleDateString()}</Text>
                     </View>
                   </View>
-                );
-              } else if (isUserPet2) {
-                // Retorna os dados do pet 1
-                const pet1 = match.pets[0].pet;
-                return (
-                  <View key={match.match.id}>
-                    <View style={styles.matchContainer}>
-                      <Image 
-                        source={{ uri: pet1.imageURL }}  
-                        style={styles.petImage} 
-                      />
-                      <View style={styles.petInfo}>
-                        <Text style={styles.text}>
-                          {`Você deu match com ${pet1.nome}`}
-                        </Text>
-                        <Text style={styles.data}>{new Date(match.match.match_date._seconds * 1000).toLocaleDateString()}</Text>
-                      </View>
+                </View>
+              );
+            } else if (isUserPet2) {
+              const pet1 = match.pets[0].pet;
+              return (
+                <View key={match.match.id}>
+                  <View style={styles.matchContainer}>
+                    <Image 
+                      source={{ uri: pet1.imageURL }}  
+                      style={styles.petImage} 
+                    />
+                    <View style={styles.petInfo}>
+                      <Text style={styles.text}>
+                        {`Você deu match com ${pet1.nome}`}
+                      </Text>
+                      <Text style={styles.data}>{new Date(match.match.match_date._seconds * 1000).toLocaleDateString()}</Text>
                     </View>
                   </View>
-                );
-              } else {
-                // Caso não encontre correspondência, retorna null para pular esta iteração
-                return null;
-              }
-            })
-          ) : (
-            <Notificacao />
-          )}
+                </View>
+              );
+            } else {
+              return null;
+            }
+          })
+        ) : (
+          <Notificacao />
+        )}
+        <View style={styles.card}>
           <CardPet />
-        </View>
-      </KeyboardAwareScrollView>
-    );
-  };
+       </View>
+      </View>
+    </KeyboardAwareScrollView>
+  );
+};
   
 const styles = StyleSheet.create({
   container: {
@@ -187,4 +185,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   },
+  card: {
+    marginTop: 113,
+  }
 });
