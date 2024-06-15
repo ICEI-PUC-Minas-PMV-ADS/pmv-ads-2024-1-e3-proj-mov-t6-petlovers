@@ -27,7 +27,7 @@ export default function BannerCadastro() {
     if (userLogado) {
         return (
             <View style={styles.header}>
-                <Text style={styles.tittle}>Cadastre o seu pet na nossa comunidade</Text>
+                <Text style={styles.tittle}>Busque perfis na nossa comunidade</Text>
                 <Button onPress={goToBusca} style={styles.btn}><Text style={styles.textBtn}>Buscar</Text></Button>
             </View>
         )
