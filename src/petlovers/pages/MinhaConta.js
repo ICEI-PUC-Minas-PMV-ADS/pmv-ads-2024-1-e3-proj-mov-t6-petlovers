@@ -120,7 +120,7 @@ export default function MinhaConta({ navigation }) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: 'white',
+    backgroundColor: '#F5F5F5',
   },
   scrollViewContent: {
     flexGrow: 1,

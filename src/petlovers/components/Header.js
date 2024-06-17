@@ -27,7 +27,7 @@ const styles = {
   title: {
     fontWeight: 'bold',
     color: '#5F5B5B',
-    marginLeft: -20,
+    marginLeft: -35,
   },
   content: {
     alignItems: 'flex-start',
