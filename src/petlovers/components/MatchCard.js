@@ -206,6 +206,8 @@ const MatchCard = ({ searchTerm, color, handleFavorito }) => {
         useNativeDriver={true}
         handleYup={handleYup}
         handleNope={handleNope}
+        showYup={false}   
+        showNope={false}
       />
       )}
     </View>

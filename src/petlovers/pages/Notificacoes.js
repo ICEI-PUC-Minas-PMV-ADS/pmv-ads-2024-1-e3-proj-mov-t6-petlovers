@@ -37,6 +37,7 @@ export default function Notificacoes() {
       const petsWithOwner = data.pets.map(petInfo => ({
         ...petInfo,
         ownerName: petInfo.owner.first_name,
+        whats: petInfo.owner.whatsapp,
       }));
       console.log(data)
       return {
@@ -109,7 +110,7 @@ export default function Notificacoes() {
       fetchMatchDetailsForIds();
     }
   }, [matchIds]);
-
+  
   useEffect(() => {
     fetch(cardpetsAPI_URL) // API URL dos cards
       .then((response) => response.json())
@@ -121,8 +122,8 @@ export default function Notificacoes() {
   }, []);
 
   // Navegação para a tela Info com os parâmetros salvos
-  const handleCardPress = (userId, nome, idade, cidade, imageURL, estado, sobre, raca, sexo, cor, porte, id, ownerName) => {
-    navigation.navigate('InfoPet', { userId, nome, idade, cidade, imageURL, estado, sobre, raca, sexo, cor, porte, id,  ownerName, });
+  const handleCardPress = (userId, nome, idade, cidade, imageURL, estado, sobre, raca, sexo, cor, porte, id, ownerName, whatsapp) => {
+    navigation.navigate('InfoPet', { userId, nome, idade, cidade, imageURL, estado, sobre, raca, sexo, cor, porte, id,  tutor: ownerName, whats: whatsapp });
   };
 
   return (
@@ -138,9 +139,11 @@ export default function Notificacoes() {
 
             if (isUserPet1) {
               const pet2 = match.pets[1].pet;
-              const ownerNamePet2 = match.pets.find(pet => pet.pet.userId === match.match.pet2_id)?.owner.first_name;
+              const ownerNamePet2 = match.pets[1].owner.first_name;
+              const whats2 = match.pets[1].owner.whatsapp;
+
               return (
-                <TouchableOpacity key={match.match.id} onPress={() => handleCardPress(pet2.userId, pet2.nome, pet2.idade, pet2.cidade, pet2.imageURL, pet2.estado, pet2.sobre, pet2.raca, pet2.sexo, pet2.cor, pet2.porte, pet2.id, ownerNamePet2)}>
+                <TouchableOpacity key={match.match.id} onPress={() => handleCardPress(pet2.userId, pet2.nome, pet2.idade, pet2.cidade, pet2.imageURL, pet2.estado, pet2.sobre, pet2.raca, pet2.sexo, pet2.cor, pet2.porte, pet2.id, ownerNamePet2, whats2)}>
                 <View style={styles.matchContainer}>
                   <Image
                     source={{ uri: pet2.imageURL }}
@@ -148,7 +151,7 @@ export default function Notificacoes() {
                   />
                   <View style={styles.petInfo}>
                     <Text style={styles.text}>
-                      {`Você deu match com ${pet2.nome}, proprietário: ${ownerNamePet2}`}
+                      {`Você deu match com ${pet2.nome}`}
                     </Text>
                     <Text style={styles.data}>{new Date(match.match.match_date._seconds * 1000).toLocaleDateString()}</Text>
                   </View>
@@ -157,9 +160,11 @@ export default function Notificacoes() {
               );
             } else if (isUserPet2) {
               const pet1 = match.pets[0].pet;
-              const ownerNamePet1 = match.pets.find(pet => pet.pet.userId === match.match.pet1_id)?.owner.first_name;
+              const ownerNamePet1 = match.pets[0].owner.first_name;
+              const whats1 = match.pets[0].owner.whatsapp;
+
               return (
-                <TouchableOpacity key={match.match.id} onPress={() => handleCardPress(pet1.userId, pet1.nome, pet1.idade, pet1.cidade, pet1.imageURL, pet1.estado, pet1.sobre, pet1.raca, pet1.sexo, pet1.cor, pet1.porte, pet1.id, ownerNamePet1)}>
+                <TouchableOpacity key={match.match.id} onPress={() => handleCardPress(pet1.userId, pet1.nome, pet1.idade, pet1.cidade, pet1.imageURL, pet1.estado, pet1.sobre, pet1.raca, pet1.sexo, pet1.cor, pet1.porte, pet1.id, ownerNamePet1, whats1)}>
                   <View style={styles.matchContainer}>
                     <Image
                       source={{ uri: pet1.imageURL }}
@@ -167,7 +172,7 @@ export default function Notificacoes() {
                     />
                     <View style={styles.petInfo}>
                       <Text style={styles.text}>
-                        {`Você deu match com ${pet1.nome}, proprietário: ${pet1.ownerName}`}
+                        {`Você deu match com ${pet1.nome}`}
                       </Text>
                       <Text style={styles.data}>{new Date(match.match.match_date._seconds * 1000).toLocaleDateString()}</Text>
                     </View>

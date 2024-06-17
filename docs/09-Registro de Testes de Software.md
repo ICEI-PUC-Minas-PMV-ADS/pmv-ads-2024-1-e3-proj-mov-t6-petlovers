@@ -233,7 +233,7 @@ https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2024-1-e3-proj-mov-t6-petlover
 | Objetivo do Teste | Verificar se o usuário recebe uma notificação se houver um match. |
 | Passos | <br> Na página inicial, clique em ver mais, e na barra de busca  insira o nome ou a característica do pet que deseja encontrar. <br> Clique no botão em Buscar. <br> Desliza para a direita (Like).  |
 | Critério de Êxito |Caso receba um like de volta, o usuário verá na tela de notificações o perfil do pet que deu match. |
-| Evidência | |
+| Evidência |Vídeo de teste abaixo.  |
 
 <br><br>
 
@@ -243,18 +243,21 @@ https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2024-1-e3-proj-mov-t6-petlover
 | Objetivo do Teste | Verificar se o usuário consegue avaliar a experiência corretamente. |
 | Passos |  |
 | Critério de Êxito ||
-| Evidência | |
+| Evidência |Vídeo de teste abaixo.  |
 
 <br><br>
 
 
-| Caso de Teste         | CT-30  Avaliar a experiência|
+| Caso de Teste         | CT-30  Avaliar a Experiência |
 |----------------------|--------------------------|
-| Requisito Associado   | **RF-008** </br> O sistema deve permitir o usuário avaliar a experiência.	 |
-| Objetivo do Teste | Verificar se o usuário consegue avaliar. |
-| Passos | <br>  |
-| Critério de Êxito | |
-| Evidência | |
+| Requisito Associado   | **RF-008** - O sistema deve permitir que o usuário avalie a experiência. |
+| Objetivo do Teste | Verificar se o usuário consegue realizar a avaliação com sucesso. |
+| Passos | 1. Na tela inicial, clique em "Ver Avaliações do App". </br> 2. Preencha as patinhas de avaliação conforme sua preferência, onde 1 representa a pior nota e 5 a melhor nota. </br> 3. Escreva seu comentário na seção destinada a ele. </br> 4. Clique em "Enviar" para submeter a avaliação. |
+| Critério de Êxito | O comentário será visível para outros usuários. |
+| Evidência | Vídeo de teste abaixo.  |
+
+
+https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2024-1-e3-proj-mov-t6-petlovers/assets/93337008/c3254956-3db2-4f13-8c37-ea20f0b8eaa6
 
 <br><br>
 
@@ -265,7 +268,7 @@ https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2024-1-e3-proj-mov-t6-petlover
 | Objetivo do Teste    | Verificar se o usuário consegue favoritar um perfil ou removê-lo dos favoritos. |
 | Passos               | <ol><li>Na página inicial, clique em "Ver mais".</li><li>Na barra de busca, insira o nome ou a característica do pet que deseja encontrar.</li><li>Clique no botão "Buscar".</li><li>Deslize para a direita (Like).</li><li>Navegue até a página de favoritos e clique no ícone de coração.</li></ol> |
 | Critério de Êxito    | Todos os pets que o usuário deu like aparecerão na página de favoritos, e ao clicar no ícone de coração, esse pet será removido da lista. |
-| Evidência            | Video de teste abaixo.|
+| Evidência            |Vídeo de teste abaixo. |
 
 
 https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2024-1-e3-proj-mov-t6-petlovers/assets/93337008/5e5dcba4-c8a8-4ad4-80aa-86980e1b24cb

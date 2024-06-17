@@ -138,50 +138,57 @@ export async function handleMatchDetailsRequest(req: Request, res: Response) {
   }
 }
 
-
-// Função para obter os IDs dos matches do usuário
-export async function getUserMatchIds(req: Request, res: Response) {
+export async function handleMatchUserRequest(req: Request, res: Response) {
   try {
-    const userId = req.params.userId;
+      const petId = req.params.id;
+      const userId = req.params.userId;
+      var cellPhone;
 
-    if (!userId) {
-      return res.status(400).json({ message: "ID do usuário não fornecido" });
-    }
+      // Obter os dados do match pelo ID
+      const matchSnapshot = await admin.firestore()
+                            .collection("matches")
+                            .where("pet1_id", "==", petId)
+                            .where("is_match", "==", true)
+                            .get();
+      if (matchSnapshot.empty) {
+        const matchSnapshot1 = await admin.firestore()
+        .collection("matches")
+        .where("pet2_id", "==", petId)
+        .where("is_match", "==", true)
+        .get();
 
-    console.log(`Procurando pet para o userId: ${userId}`);
-    const petSnapshot = await admin.firestore().collection("pets").where("userId", "==", userId).get();
+        if(!matchSnapshot1.empty){
+          const matchDoc = matchSnapshot1.docs[0].data();
+          const petDoc = (await admin.firestore().collection("pets").doc(matchDoc.pet1_id).get()).data() as Pet;
+          const petDoc2 = (await admin.firestore().collection("pets").doc(matchDoc.pet2_id).get()).data() as Pet;
+        
+          if(petDoc.userId == userId){
+            const userDoc = (await admin.firestore().collection("users").doc(petDoc2.userId).get()).data() as User;
 
-    if (petSnapshot.empty) {
-      console.log("Nenhum pet encontrado para o userId fornecido");
-      return res.status(404).json({ message: "Pet não encontrado para o usuário fornecido" });
-    }
+            cellPhone = userDoc.whatsapp;
+          }
+        }
+      }
+      else{
+          const matchDoc = matchSnapshot.docs[0].data();
+          const petDoc = (await admin.firestore().collection("pets").doc(matchDoc.pet2_id).get()).data() as Pet;
+          const petDoc2 = (await admin.firestore().collection("pets").doc(matchDoc.pet1_id).get()).data() as Pet;
+        
+          if(petDoc.userId == userId){
+            const userDoc = (await admin.firestore().collection("users").doc(petDoc2.userId).get()).data() as User;
 
-    const petDoc = petSnapshot.docs[0];
-    const petId = petDoc.id;
-    console.log(`Pet encontrado: ${petId}`);
+            cellPhone = userDoc.whatsapp;
+          }
+      }
 
-    const matchesQuerySnapshot1 = await admin.firestore().collection("matches")
-      .where("is_match", "==", true)
-      .where("pet1_id", "==", petId)
-      .get();
+      // Combinar os dados
+      const responseData = {
+          whatsapp: cellPhone
+      };
 
-    const matchesQuerySnapshot2 = await admin.firestore().collection("matches")
-      .where("is_match", "==", true)
-      .where("pet2_id", "==", petId)
-      .get();
-
-    const matches = matchesQuerySnapshot1.docs.concat(matchesQuerySnapshot2.docs);
-
-    if (matches.length === 0) {
-      return res.status(404).json({ message: "Nenhum match encontrado para o pet do usuário" });
-    }
-
-    const matchIds = matches.map(matchDoc => matchDoc.id);
-
-    return res.status(200).json({ matchIds });
+      return res.status(200).json(responseData);
   } catch (error) {
-    console.error("Erro ao obter IDs dos matches do usuário:", error);
-    console.log(error);
-    return res.status(500).json({ message: "Erro interno do servidor" });
+      console.error("Erro ao obter detalhes do match para o usuário:", error);
+      return res.status(500).json({ message: "Erro interno do servidor" });
   }
 }
