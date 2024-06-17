@@ -37,7 +37,7 @@ export default function Notificacoes() {
       const petsWithOwner = data.pets.map(petInfo => ({
         ...petInfo,
         ownerName: petInfo.owner.first_name,
-        whats: petInfo.owner.whatsapp,
+       
       }));
       console.log(data)
       return {
@@ -95,6 +95,7 @@ export default function Notificacoes() {
     fetchMatchIds();
   }, [user]);
 
+
   // Buscar os detalhes de cada match quando os IDs dos matches mudarem
   useEffect(() => {
     const fetchMatchDetailsForIds = async () => {
@@ -102,7 +103,7 @@ export default function Notificacoes() {
         const details = await Promise.all(matchIds.map(fetchMatchDetails));
         setMatchDetails(details);
       } catch (error) {
-        console.error("Erro ao buscar detalhes dos matches:", error);
+        console.error("Erro ao buscar detalhes dos matches funcao ids dos macthes:", error);
       }
     };
 
@@ -111,15 +112,6 @@ export default function Notificacoes() {
     }
   }, [matchIds]);
   
-  useEffect(() => {
-    fetch(cardpetsAPI_URL) // API URL dos cards
-      .then((response) => response.json())
-      .then((responseData) => {
-        setData(responseData.data);
-        responseData.data.forEach(item => console.log(item.id));
-      })
-      .catch((error) => console.error('Error:', error));
-  }, []);
 
   // Navegação para a tela Info com os parâmetros salvos
   const handleCardPress = (userId, nome, idade, cidade, imageURL, estado, sobre, raca, sexo, cor, porte, id, ownerName, whatsapp) => {
@@ -140,10 +132,9 @@ export default function Notificacoes() {
             if (isUserPet1) {
               const pet2 = match.pets[1].pet;
               const ownerNamePet2 = match.pets[1].owner.first_name;
-              const whats2 = match.pets[1].owner.whatsapp;
 
               return (
-                <TouchableOpacity key={match.match.id} onPress={() => handleCardPress(pet2.userId, pet2.nome, pet2.idade, pet2.cidade, pet2.imageURL, pet2.estado, pet2.sobre, pet2.raca, pet2.sexo, pet2.cor, pet2.porte, pet2.id, ownerNamePet2, whats2)}>
+                <TouchableOpacity key={match.match.id} onPress={() => handleCardPress(pet2.userId, pet2.nome, pet2.idade, pet2.cidade, pet2.imageURL, pet2.estado, pet2.sobre, pet2.raca, pet2.sexo, pet2.cor, pet2.porte, pet2.id, ownerNamePet2)}>
                 <View style={styles.matchContainer}>
                   <Image
                     source={{ uri: pet2.imageURL }}
@@ -161,10 +152,9 @@ export default function Notificacoes() {
             } else if (isUserPet2) {
               const pet1 = match.pets[0].pet;
               const ownerNamePet1 = match.pets[0].owner.first_name;
-              const whats1 = match.pets[0].owner.whatsapp;
 
               return (
-                <TouchableOpacity key={match.match.id} onPress={() => handleCardPress(pet1.userId, pet1.nome, pet1.idade, pet1.cidade, pet1.imageURL, pet1.estado, pet1.sobre, pet1.raca, pet1.sexo, pet1.cor, pet1.porte, pet1.id, ownerNamePet1, whats1)}>
+                <TouchableOpacity key={match.match.id} onPress={() => handleCardPress(pet1.userId, pet1.nome, pet1.idade, pet1.cidade, pet1.imageURL, pet1.estado, pet1.sobre, pet1.raca, pet1.sexo, pet1.cor, pet1.porte, pet1.id, ownerNamePet1)}>
                   <View style={styles.matchContainer}>
                     <Image
                       source={{ uri: pet1.imageURL }}
@@ -231,3 +221,8 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
 });
+
+
+
+
+
