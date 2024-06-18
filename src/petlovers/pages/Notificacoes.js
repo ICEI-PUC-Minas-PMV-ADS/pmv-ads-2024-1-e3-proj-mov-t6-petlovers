@@ -9,6 +9,7 @@ import CardPet from "../components/CardPet";
 import Notificacao from "../components/Notificacao";
 import { cardpetsAPI_URL } from "../apiConfig";
 import { useNavigation } from '@react-navigation/native';
+import Whatsapp from "../components/Whatsapp";
 
 
 export default function Notificacoes() {
@@ -37,6 +38,7 @@ export default function Notificacoes() {
       const petsWithOwner = data.pets.map(petInfo => ({
         ...petInfo,
         ownerName: petInfo.owner.first_name,
+        whatsapp: petInfo.owner.whatsapp,
        
       }));
       console.log(data)
@@ -132,9 +134,11 @@ export default function Notificacoes() {
             if (isUserPet1) {
               const pet2 = match.pets[1].pet;
               const ownerNamePet2 = match.pets[1].owner.first_name;
+              const whats2 = match.pets[1].owner.whatsapp;
+              
 
               return (
-                <TouchableOpacity key={match.match.id} onPress={() => handleCardPress(pet2.userId, pet2.nome, pet2.idade, pet2.cidade, pet2.imageURL, pet2.estado, pet2.sobre, pet2.raca, pet2.sexo, pet2.cor, pet2.porte, pet2.id, ownerNamePet2)}>
+                <TouchableOpacity key={match.match.id} onPress={() => handleCardPress(pet2.userId, pet2.nome, pet2.idade, pet2.cidade, pet2.imageURL, pet2.estado, pet2.sobre, pet2.raca, pet2.sexo, pet2.cor, pet2.porte, pet2.id, ownerNamePet2, whats2 )}>
                 <View style={styles.matchContainer}>
                   <Image
                     source={{ uri: pet2.imageURL }}
@@ -145,6 +149,9 @@ export default function Notificacoes() {
                       {`Você deu match com ${pet2.nome}`}
                     </Text>
                     <Text style={styles.data}>{new Date(match.match.match_date._seconds * 1000).toLocaleDateString()}</Text>
+                    <View style={styles.whatsapp}>
+                    <Whatsapp cellPhone={whats2}></Whatsapp>
+                    </View>
                   </View>
                 </View>
               </TouchableOpacity>
@@ -152,9 +159,10 @@ export default function Notificacoes() {
             } else if (isUserPet2) {
               const pet1 = match.pets[0].pet;
               const ownerNamePet1 = match.pets[0].owner.first_name;
+              const whats1 = match.pets[0].owner.whatsapp;
 
               return (
-                <TouchableOpacity key={match.match.id} onPress={() => handleCardPress(pet1.userId, pet1.nome, pet1.idade, pet1.cidade, pet1.imageURL, pet1.estado, pet1.sobre, pet1.raca, pet1.sexo, pet1.cor, pet1.porte, pet1.id, ownerNamePet1)}>
+                <TouchableOpacity key={match.match.id} onPress={() => handleCardPress(pet1.userId, pet1.nome, pet1.idade, pet1.cidade, pet1.imageURL, pet1.estado, pet1.sobre, pet1.raca, pet1.sexo, pet1.cor, pet1.porte, pet1.id, ownerNamePet1, whats1)}>
                   <View style={styles.matchContainer}>
                     <Image
                       source={{ uri: pet1.imageURL }}
@@ -165,6 +173,9 @@ export default function Notificacoes() {
                         {`Você deu match com ${pet1.nome}`}
                       </Text>
                       <Text style={styles.data}>{new Date(match.match.match_date._seconds * 1000).toLocaleDateString()}</Text>
+                      <View style={styles.whatsapp}>
+                      <Whatsapp cellPhone={whats1}></Whatsapp>
+                      </View>
                     </View>
                   </View>
                 </TouchableOpacity>
@@ -190,6 +201,7 @@ const styles = StyleSheet.create({
   container: {
     padding: 15,
     marginTop: 15,
+    position: 'relative',
   },
   matchContainer: {
     flexDirection: 'row',
@@ -218,6 +230,15 @@ const styles = StyleSheet.create({
   loadingContainer: {
     flex: 1,
     justifyContent: 'center',
+    alignItems: 'center',
+  },
+  whatsapp: {
+    position: 'absolute',
+    right: 0,
+    top: 0,
+    justifyContent: 'end', // 'flex-end' é a propriedade correta no React Native
+    marginRight: -70,
+    marginTop: -10,
     alignItems: 'center',
   },
 });
