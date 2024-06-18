@@ -24,16 +24,21 @@ O Modelo ER representa através de um diagrama como as entidades (coisas, objeto
 
 ## Esquema Relacional
 
-O Esquema Relacional corresponde à representação dos dados em tabelas juntamente com as restrições de integridade e chave primária.
+Estamos utilizando nesse projeto o Firestore, banco de dados NoSQL da Google que não utiliza o conceito tradicional de esquema relacional encontrado em bancos de dados SQL. Em vez disso, ele adota uma estrutura de dados baseada em coleções de documentos JSON-like. <br>
 
-![Esquema Relacional](img/esquema_relacional_at.jpeg).
-<br/>*Esquema Relacional PetLovers*
+Os relacionamentos são modelados através de referências entre documentos usando campos que contêm identificadores (IDs) de outros documentos. Não há suporte nativo para joins como em bancos de dados SQL; em vez disso, estruturamos os dados de modo que as consultas possam recuperar documentos relacionados de maneira eficiente, como mostra a imagem abaixo que referencia o ID do usuário na coleção de pets.
+
+<img width="1258" alt="image" src="https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2024-1-e3-proj-mov-t6-petlovers/assets/93337008/f7b6689d-e20a-4625-8aad-8e64a51feca5"> <br>
+
 
 ## Modelo Físico
 
-Entregar um arquivo banco.sql contendo os scripts de criação das tabelas do banco de dados. Este arquivo deverá ser incluído dentro da pasta src\bd.
+No Firestore não há um modelo físico estruturado como nos bancos de dados relacionais tradicionais, como MySQL ou PostgreSQL. Os dados são organizados em coleções que contêm documentos, e cada documento é uma unidade de armazenamento que contém dados em formato JSON. Para criar uma coleção e adicionar documentos a ela, fizemos  diretamente pelo nosso código.
 
-![modelo fisico](https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2024-1-e3-proj-mov-t6-petlovers/assets/110791034/1e18cb58-2971-4cb5-b30f-5c50078ab783)
+Abaixo está uma imagem mostrando todas as coleções criadas no Firebase dentro da pasta models, juntamente com um exemplo de código utilizado: <br>
+
+<img width="863" alt="image" src="https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2024-1-e3-proj-mov-t6-petlovers/assets/93337008/5a8be703-ab0e-476e-9449-f7ac16024908">
+
 
 
 
@@ -41,7 +46,7 @@ Entregar um arquivo banco.sql contendo os scripts de criação das tabelas do ba
 
 - Linguagem: JavaScript
 - Biblioteca: React Native
-- Backend- Node.js
+- Backend- Node.js e TypeScript
 - IDE: Visual Studio Code
 - Ferramenta Wireframes: Figma
 - Ferramenta de Comunicação: Whatsapp e Teams
