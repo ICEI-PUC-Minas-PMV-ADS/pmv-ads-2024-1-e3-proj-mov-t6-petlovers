@@ -1,10 +1,13 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { StatusBar } from "expo-status-bar";
 import { StyleSheet, View } from "react-native";
-import { SafeAreaProvider } from "react-native-safe-area-context";
 import Header from "./components/Header";
 import Navigations from "./navigations/Navigations";
 import { initializeApp } from "firebase/app";
+import store from './redux/store';
+import { Provider } from 'react-redux';
+import { getAuth } from "firebase/auth";
+
 
 export default function App() {
  
@@ -16,18 +19,18 @@ export default function App() {
     messagingSenderId: "830194750691",
     appId: "1:830194750691:web:333f00570f025f1cd921d6",
     measurementId: "G-4TKLFHVG8R",
-  };
+  }; 
 
   initializeApp(firebaseConfig);
 
   return (
-    <SafeAreaProvider>
+    <Provider store={store}>
       <View style={styles.container}>
         <StatusBar style="auto" />
         <Header />
         <Navigations />
       </View>
-    </SafeAreaProvider>
+    </Provider>
   );
 }
 
