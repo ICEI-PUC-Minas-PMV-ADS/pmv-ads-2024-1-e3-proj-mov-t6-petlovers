@@ -75,6 +75,7 @@ function getScreenOptions(route, loginName) {
 }
 function TabNavigator() {
   const [userLogado, setUserLogado] = useState(false);
+
   useEffect(() => {
     const auth = getAuth();
     const user = auth.currentUser;
