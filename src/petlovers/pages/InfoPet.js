@@ -34,7 +34,7 @@ async function getTutorWhatsappByPetId(petId, userId) {
 }
 
 export default function InfoPet({ route }) { //rota com os parametros para renderizar o pet clicado 
-  const { imageURL, nome, idade, sexo, cidade, estado, sobre, cor, raca, porte, id } = route.params;
+  const { imageURL, nome, idade, sexo, cidade, estado, sobre, cor, raca, porte, id, tutor} = route.params;
   const auth = getAuth();
   const user = auth.currentUser;
   const userId = user ? user.uid : "";
@@ -126,7 +126,7 @@ export default function InfoPet({ route }) { //rota com os parametros para rende
             <Text style={styles.titletutor}>Tutor</Text>
 
             <View style={styles.iconwhatsapp}>
-              <Text style={[styles.tutor, styles.marginBottom]}>{tutorName}</Text>
+              <Text style={[styles.tutor, styles.marginBottom]}>{tutorName}{tutor}</Text>
               {tutorWhatsapp ? (<View style={styles.whatsapp}>
                 <Whatsapp cellPhone={tutorWhatsapp}></Whatsapp>
               </View>) : ('')}

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Text, StyleSheet, TouchableOpacity, Alert } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
@@ -9,6 +9,9 @@ import * as firebaseAuth from "firebase/auth";
 export default function MinhaConta({ navigation }) {
 
   const auth = firebaseAuth.getAuth();
+  const user = auth.currentUser;
+  const [matchInfo, setMatchInfo] = useState(null);
+  const [userData, setUserData] = useState(null);
 
 
   const goToVerPerfil = () => {
@@ -27,24 +30,29 @@ export default function MinhaConta({ navigation }) {
     navigation.navigate('Login');
   };
   
-  const handleLogout = () => {  
-      return firebaseAuth.signOut(auth).then(() => {
-        goToLogin();
-      }).catch(() => {
-        alert("Erro ao fazer logout");
-      });  
+  const clearAppState = () => {
+    setMatchInfo(null);
+    setUserData(null);
   };
 
-  const user = auth.currentUser;
+  const handleLogout = async () => {  
+      try {
+      await firebaseAuth.signOut(auth);
+      clearAppState();
+      goToLogin();
+    } catch {
+      alert("Erro ao fazer logout");
+    }  
+  };
+
 
     // Função para excluir a conta
   const handleDeleteAccount = async () => {
     try {
       if (!user) {
-        return; // Pare a execução da função para evitar que o código a seguir seja executado
+        return; 
       }
-  
-      // Exibir um alerta de confirmação antes de excluir a conta
+
       Alert.alert(
         "Excluir conta",
         "Tem certeza de que deseja excluir sua conta? Esta ação é irreversível.",
@@ -112,7 +120,7 @@ export default function MinhaConta({ navigation }) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: 'white',
+    backgroundColor: '#F5F5F5',
   },
   scrollViewContent: {
     flexGrow: 1,

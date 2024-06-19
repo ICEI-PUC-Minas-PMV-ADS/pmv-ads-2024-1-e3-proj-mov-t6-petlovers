@@ -105,41 +105,50 @@ const MatchCard = ({ searchTerm, color, handleFavorito }) => {
     }
   }, [userId]);
 
-    //Funcao match
-    const handleYup = (item) => {
-      if (!petId) return;
   
-      fetch(`${baseAPI_URL}/api/match`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          pet1_id: petId,
-          pet2_id: item.id,
-          cor: searchColor,
-        }),
-      })
-      .then(response => response.json())
-      .then(data => {
-        Alert.alert('Gostei!', `Você curtiu ${item.nome}`);
-  
-        AsyncStorage.getItem('favoritos').then((favoritosData) => {
-          const favoritos = favoritosData ? JSON.parse(favoritosData) : [];
-          favoritos.push(item);
-          AsyncStorage.setItem('favoritos', JSON.stringify(favoritos)).then(() => {
-            console.log('Dados do pet curtido salvos em favoritos.');
-          }).catch((error) => {
-            console.error('Erro ao salvar pet curtido em favoritos:', error);
-          });
-        }).catch((error) => {
-          console.error('Erro ao obter favoritos do AsyncStorage:', error);
-        });
-      })
-      .catch(error => {
-        console.error('Erro ao enviar like:', error);
+
+// Função match
+const handleYup = (item) => {
+  if (!petId) return;
+
+  fetch(`${baseAPI_URL}/api/match`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      pet1_id: petId,
+      pet2_id: item.id,
+      cor: searchColor,
+    }),
+  })
+  .then(response => response.json())
+  .then(data => {
+    const { is_match } = data;
+    
+    if (is_match) {
+      Alert.alert('Match!', `Você teve um match com ${item.nome}!`);
+    } else {
+      Alert.alert('Gostei!', `Você curtiu ${item.nome}`);
+    }
+
+    AsyncStorage.getItem('favoritos').then((favoritosData) => {
+      const favoritos = favoritosData ? JSON.parse(favoritosData) : [];
+      favoritos.push(item);
+      AsyncStorage.setItem('favoritos', JSON.stringify(favoritos)).then(() => {
+        console.log('Dados do pet curtido salvos em favoritos.');
+      }).catch((error) => {
+        console.error('Erro ao salvar pet curtido em favoritos:', error);
       });
-    };
+    }).catch((error) => {
+      console.error('Erro ao obter favoritos do AsyncStorage:', error);
+    });
+  })
+  .catch(error => {
+    console.error('Erro ao enviar like:', error);
+  });
+};
+
   
    
     const handleNope = (item) => {
@@ -206,6 +215,8 @@ const MatchCard = ({ searchTerm, color, handleFavorito }) => {
         useNativeDriver={true}
         handleYup={handleYup}
         handleNope={handleNope}
+        showYup={false}   
+        showNope={false}
       />
       )}
     </View>

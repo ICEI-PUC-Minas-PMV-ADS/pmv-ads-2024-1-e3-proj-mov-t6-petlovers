@@ -62,20 +62,13 @@ export default function Sobre() {
             ajuda a encontrar o par perfeito para o seu companheiro canino.
           </Text>
           <Text style={styles.text1}> Como funciona:</Text>
-
-          <Text style={styles.text1}>
-            1. Cadastre-se e crie um perfil para seu pet.{"\n"}
-            2. Busque perfis em nossa comunidade a partir de preferências como
-            cidade, raça e porte.{"\n"}
-            3. Curta os perfis de cães que você acha que combinam com o seu pet.
-            {"\n"}
-            4. Se alguém curtir seu pet de volta, é match! A partir deste
-            momento, você pode entrar em contato com o outro tutor.{"\n"}
-            Lembre de trocar informações sobre seus cães, como detalhes sobre a
-            personalidade e condições médicas relevantes.{"\n"}
-            5. Por fim, avalie sua experiência para que possamos sempre melhorar
-            nosso app!
-          </Text>
+        
+        <Text style={styles.text1}>1. Cadastre-se e crie um perfil para seu pet.</Text>
+        <Text style={styles.text1}>2. Busque perfis em nossa comunidade a partir de preferências como cidade, raça e porte.</Text>
+        <Text style={styles.text1}>3. Curta os perfis de cães que você acha que combinam com o seu pet.</Text>
+        <Text style={styles.text1}>4. Se alguém curtir seu pet de volta, é match! A partir deste momento, você pode entrar em contato com o outro tutor.</Text>
+        <Text style={styles.text1}>5. Lembre de trocar informações sobre seus cães, como detalhes sobre a personalidade e condições médicas relevantes.</Text>
+        <Text style={styles.text1}>6. Por fim, avalie sua experiência para que possamos sempre melhorar nosso app!</Text>
 
           <Text style={styles.text2} onPress={goToTermos}>
             Termos e Condições
@@ -99,15 +92,13 @@ const styles = StyleSheet.create({
   text1: {
     color: "#5F5B5B",
     fontSize: 13,
-    marginTop: 40,
-    fontWeight: "bold",
+    marginTop: 15,
   },
 
   text2: {
     color: "#989A91",
     fontSize: 14,
-    marginTop: 40,
-    fontWeight: "bold",
+    marginTop: 35,
   },
   separator: {
     marginVertical: 20,

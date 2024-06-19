@@ -3,9 +3,13 @@ import { View, Text, StyleSheet, FlatList, TouchableOpacity, Alert, Image } from
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useFocusEffect } from '@react-navigation/native';
 import { Ionicons } from '@expo/vector-icons'; // Importando o ícone do Expo
+import { useNavigation } from '@react-navigation/native';
+
 
 const Favoritos = () => {
   const [favoritos, setFavoritos] = useState([]);
+  const navigation = useNavigation();
+
 
   useFocusEffect(
     React.useCallback(() => {
@@ -57,14 +61,19 @@ const Favoritos = () => {
     );
   };
 
+    // Navegação para a tela Info com os parâmetros salvos
+    const handleCardPress = (userId, nome, idade, cidade, imageURL, estado, sobre, raca, sexo, cor, porte, id) => {
+      navigation.navigate('InfoPet', { userId, nome, idade, cidade, imageURL, estado, sobre, raca, sexo, cor, porte, id});
+    };
+
   return (
     <View style={styles.container}>
-      <Text style={styles.title}></Text>
+      <Text style={styles.title}>Favoritos</Text>
       <FlatList
         data={favoritos}
         keyExtractor={(item, index) => index.toString()}
         renderItem={({ item, index }) => (
-          <TouchableOpacity style={styles.card}>
+          <TouchableOpacity style={styles.card} onPress={() => handleCardPress(item.userId, item.nome, item.idade, item.cidade, item.imageURL, item.estado, item.sobre, item.raca, item.sexo, item.cor, item.porte, item.id)}>
             <Image source={{ uri: item.imageURL }} style={styles.petImage} />
             <View style={styles.petInfo}>
               <Text style={styles.cardText}>{item.nome}</Text>
@@ -86,11 +95,13 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     padding: 20,
-    backgroundColor: '#fff',
+    backgroundColor: '#F5F5F5',
   },
   title: {
+    fontWeight: 'bold',
     fontSize: 24,
-    marginBottom: 10,
+    marginTop: 15,
+    marginBottom: 25,
   },
   card: {
     flexDirection: 'row',
