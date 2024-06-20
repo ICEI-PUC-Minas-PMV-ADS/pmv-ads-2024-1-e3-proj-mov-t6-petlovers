@@ -227,28 +227,22 @@ https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2024-1-e3-proj-mov-t6-petlover
 
 <br><br>
 
-| Caso de Teste         | CT-28  Notificar o usuário quando acontecer um match |
+| Caso de Teste | CT-28 Notificação de match e ícone do whatsapp |
 |----------------------|--------------------------|
-| Requisito Associado   | **RF-006** </br> O sistema deve emitir notificação ao usuário quando acontece um match.	 |
-| Objetivo do Teste | Verificar se o usuário recebe uma notificação se houver um match. |
-| Passos | <br> Na página inicial, clique em ver mais, e na barra de busca  insira o nome ou a característica do pet que deseja encontrar. <br> Clique no botão em Buscar. <br> Desliza para a direita (Like).  |
-| Critério de Êxito |Caso receba um like de volta, o usuário verá na tela de notificações o perfil do pet que deu match. |
-| Evidência |Vídeo de teste abaixo.  |
+| Requisito Associado   | **RF-006** e **RF-007** </br> O sistema deve emitir notificação ao usuário quando acontece um match	, e exibir um ícone de mensagens instantâneas. |
+| Objetivo do Teste |Verificar se o usuário consegue visualizar todos os perfis que deu macth na página de notificações, e se o ícone do WhatsApp redireciona para a janela de conversa do tutor do pet que deu macth.|
+| Passos | 1. Realizar login de usuário; <br> 2. Na página inicial, clicar em "Ver mais" ou em "Buscar"; <br> 3. Na barra de pesquisa, inserir o nome ou a característica do pet que deseja buscar; <br> 4. Deslizar para a direita (Like)  |
+| Critério de Êxito | Se o usuário receber um like de volta, verá na tela de notificações o perfil do pet que deu match, junto com o ícone do WhatsApp. Ao clicar no ícone, a janela de conversa com o tutor do pet se abrirá no WhatsApp. |
+| Evidência | Vídeo de teste abaixo.  |
 
-<br><br>
 
-| Caso de Teste         | CT-29 Exibir um ícone de mensagens  |
-|----------------------|--------------------------|
-| Requisito Associado   | **RF-007** </br> O sistema deve exibir um ícone de mensagens instantâneas para os usuários que deram match.	.	 |
-| Objetivo do Teste | Verificar se o usuário consegue avaliar a experiência corretamente. |
-| Passos |  |
-| Critério de Êxito ||
-| Evidência |Vídeo de teste abaixo.  |
+https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2024-1-e3-proj-mov-t6-petlovers/assets/93337008/ef15e457-1417-45cc-a4fd-9a4d86ead10b
+
 
 <br><br>
 
 
-| Caso de Teste         | CT-30  Avaliar a Experiência |
+| Caso de Teste         | CT-29  Avaliar a Experiência |
 |----------------------|--------------------------|
 | Requisito Associado   | **RF-008** - O sistema deve permitir que o usuário avalie a experiência. |
 | Objetivo do Teste | Verificar se o usuário consegue realizar a avaliação com sucesso. |
