@@ -126,25 +126,17 @@ Critério de Êxito | Os dados do usuário devem ser excluídos do banco de dado
 
 <br>
 
-| Caso de Teste | CT-015  Notificação de match |
+| Caso de Teste | CT-015  Notificação de match e ícone do whatsapp |
 |----------------------|--------------------------|
-| Requisito Associado   | **RF-006** </br> O sistema deve emitir notificação ao usuário quando acontece um match	 |
-| Objetivo do Teste | Verificar se o usuário recebe notificação se houver match |
+| Requisito Associado   | **RF-006** **RF-007** </br> O sistema deve emitir notificação ao usuário quando acontece um match	, e exibir um ícone de mensagens instantâneas. |
+| Objetivo do Teste |Verificar se o usuário consegue visualizar todos os perfis que deu macth na página de notificações, e se o ícone do WhatsApp redireciona para a janela de conversa do tutor do pet que deu macth.|
 | Passos | 1. Realizar login de usuário; <br> 2. Na página inicial, clicar em "Ver mais" ou em "Buscar"; <br> 3. Na barra de pesquisa, inserir o nome ou a característica do pet que deseja buscar; <br> 4. Deslizar para a direita (Like)  |
-| Critério de Êxito | Caso receba um like de volta, o usuário verá na tela de notificações o perfil do pet que deu match |
+| Critério de Êxito | Se o usuário receber um like de volta, verá na tela de notificações o perfil do pet que deu match, junto com o ícone do WhatsApp. Ao clicar no ícone, a janela de conversa com o tutor do pet se abrirá no WhatsApp. |
 
 <br>
 
-| Caso de Teste | CT-016 Exibir ícone de mensagens |
-|----------------------|--------------------------|
-| Requisito Associado   | **RF-007** <br> O sistema deve exibir um ícone de mensagens instantâneas para os usuários que deram match |
-| Objetivo do Teste | Verificar se é exibido o ícone do WhatsApp com link para o contato do tutor quando houver match |
-| Passos | 1. Realizar login de usuário; <br> 2. Na página inicial, clicar em "Ver mais" ou em "Buscar"; <br> 3. Na barra de pesquisa, inserir o nome ou a característica do pet que deseja buscar; <br> 4. Deslizar para a direita (Like); <br> 5. Caso haja match, acessar o perfil do pet e verificar se aparece o ícone do WhatsApp; <br> 6. Clicar no ícone e verificar se é direcionado para conversa no aplicativo com o outro tutor |
-| Critério de Êxito | Quando houver match, o usuário deve ter acesso ao contato do outro tutor, através do ícone do WhatsApp |
 
-<br>
-
-| Caso de Teste | CT-017  Avaliar a experiência |
+| Caso de Teste | CT-016  Avaliar a experiência |
 |----------------------|--------------------------|
 | Requisito Associado   | **RF-008** <br> O sistema deve permitir que o usuário avalie a experiência |
 | Objetivo do Teste | Verificar se o usuário consegue realizar a avaliação com sucesso |
@@ -153,7 +145,7 @@ Critério de Êxito | Os dados do usuário devem ser excluídos do banco de dado
 
 <br>
 
-| Caso de Teste | CT-018  Favoritar e desfavoritar um perfil |
+| Caso de Teste | CT-017  Favoritar e desfavoritar um perfil |
 |----------------------|--------------------------|
 | Requisito Associado | **RF-010** <br> O site deve incluir uma página de favoritos |
 | Objetivo do Teste | Verificar se o usuário consegue favoritar um perfil ou remover dos favoritos |
