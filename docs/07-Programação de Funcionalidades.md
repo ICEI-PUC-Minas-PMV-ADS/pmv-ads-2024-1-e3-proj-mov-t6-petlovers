@@ -11,4 +11,4 @@
 |RF-007|  O sistema deve exibir um ícone de mensagens instantâneas para os usuários que deram <b>match</b>. | Whatsapp.js, Notificacao.js, Server/endpoints/macthes.js|
 |RF-008| O sistema deve permitir que os usuários avaliem a experiência. |CardAvaliacao.js, Avaliacao.js, Avaliacoes.js, Server/endpoints/avaliacao.js  |
 |RF-009| O site deve incluir uma página de login. |Login.js,  FormInput.js, FormButton.js, Navigations.js   |
-|RF-010| O site deve incluir uma página de favoritos. | Favoritos.js,  |
+|RF-010| O site deve incluir uma página de favoritos. | Favoritos.js  |
