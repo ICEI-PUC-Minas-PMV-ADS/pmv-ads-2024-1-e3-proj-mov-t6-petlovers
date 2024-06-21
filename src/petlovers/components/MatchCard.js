@@ -227,6 +227,9 @@ const handleYup = (item) => {
 
 
 const styles = StyleSheet.create({
+  card: {
+    width: 350,
+  },
   cardImage: {
     flex: 1,
   },
