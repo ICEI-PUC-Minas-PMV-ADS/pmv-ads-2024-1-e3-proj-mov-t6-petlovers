@@ -225,7 +225,7 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     fontSize: 24,
     marginLeft: 20,
-    marginTop: 15,
+    marginTop: 35,
   },
   loadingContainer: {
     flex: 1,
@@ -241,6 +241,9 @@ const styles = StyleSheet.create({
     marginTop: -10,
     alignItems: 'center',
   },
+  card: {
+    marginTop: 110,
+  }
 });
 
 
