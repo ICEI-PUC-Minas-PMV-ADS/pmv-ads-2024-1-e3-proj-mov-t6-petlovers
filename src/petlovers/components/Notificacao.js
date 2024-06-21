@@ -17,4 +17,12 @@ const styles = StyleSheet.create ({
         marginTop: 50,     
         
     },
+    texto: {
+       color: '#827397',
+       fontWeight: 'bold',
+       justifyContent: 'center',
+       textAlign: 'center',
+       fontSize: 15,
+       marginTop: 40,
+    }
 })

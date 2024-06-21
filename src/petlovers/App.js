@@ -7,9 +7,14 @@ import { initializeApp } from "firebase/app";
 import store from './redux/store';
 import { Provider } from 'react-redux';
 import { getAuth } from "firebase/auth";
+import { LogBox } from 'react-native';
+
+
 
 
 export default function App() {
+  
+  LogBox.ignoreAllLogs(true);
  
   const firebaseConfig = {
     apiKey: "AIzaSyC7fzOdKdqh16p9KIio1fRJ3P89vK-r3_A",

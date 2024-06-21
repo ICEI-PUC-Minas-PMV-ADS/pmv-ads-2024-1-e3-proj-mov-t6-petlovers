@@ -32,7 +32,7 @@ export default function CardPet() {
     return (
         <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
             <View style={styles.align}>
-                <Text style={styles.text}>Encontre o par ideal</Text>
+                <Text style={styles.title}>Encontre o par ideal</Text>
                 <Text onPress={goToBusca} style={styles.text2}>ver mais</Text>
             </View>
             <FlatList
@@ -59,6 +59,13 @@ export default function CardPet() {
 
 
 const styles = StyleSheet.create({
+    title: {
+        fontWeight: 'bold',
+        fontSize: 18,
+        color: '#5F5B5B',
+        marginTop: 20,
+        marginLeft: -28,
+    },
     text: {
         color: '#5F5B5B',
         fontSize: 18,
@@ -104,8 +111,8 @@ const styles = StyleSheet.create({
     text2: {
         color: '#5F5B5B',
         fontSize: 12,
-        marginTop: 20,
-        marginLeft: 88,
+        marginTop: 23,
+        marginLeft: 92,
     },
 
 })

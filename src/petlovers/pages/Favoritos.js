@@ -76,7 +76,7 @@ const Favoritos = () => {
           <TouchableOpacity style={styles.card} onPress={() => handleCardPress(item.userId, item.nome, item.idade, item.cidade, item.imageURL, item.estado, item.sobre, item.raca, item.sexo, item.cor, item.porte, item.id)}>
             <Image source={{ uri: item.imageURL }} style={styles.petImage} />
             <View style={styles.petInfo}>
-              <Text style={styles.cardText}>{item.nome}</Text>
+              <Text style={styles.nome}>{item.nome}</Text>
               <Text style={styles.cardText}>{item.idade} anos</Text>
               <Text style={styles.cardText}>{item.raca}</Text>
             </View>
@@ -122,7 +122,12 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   cardText: {
-    fontSize: 18,
+    color: '#5F5B5B',
+  },
+  nome: {
+    color: '#5F5B5B',
+    fontWeight: 'bold',
+    fontSize: 16,
   },
   heartButton: {
     // Botão de coração

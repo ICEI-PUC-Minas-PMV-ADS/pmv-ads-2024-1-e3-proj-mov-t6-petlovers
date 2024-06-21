@@ -205,7 +205,7 @@ const handleYup = (item) => {
   return (
     <View style={styles.container}>
          {noResults ? (
-        <Text style={styles.noResultsText}>Nenhum perfil encontrado.</Text>
+        <Text style={styles.noResultsText}>Nenhum perfil encontrado!</Text>
       ) : (
       <SwipeCards
         ref={swiperRef}
@@ -227,6 +227,9 @@ const handleYup = (item) => {
 
 
 const styles = StyleSheet.create({
+  card: {
+    width: 350,
+  },
   cardImage: {
     flex: 1,
   },
@@ -310,6 +313,14 @@ const styles = StyleSheet.create({
     marginLeft: 10,
     marginTop: -200,
     marginBottom: 60,
+  }, 
+  noResultsText: {
+    color: '#827397',
+    fontWeight: 'bold',
+    justifyContent: 'center',
+    textAlign: 'center',
+    fontSize: 18,
+    marginTop: 40,
   }
 });
 
