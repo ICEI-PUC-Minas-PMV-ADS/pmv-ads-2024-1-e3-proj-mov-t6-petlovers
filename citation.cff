@@ -1,0 +1,36 @@
+message: Please cite this software using these metadata.
+title: Dificuldade de encontrar outros tutores para cruzamento responsável entre cachorros.
+authors:
+  - family-names: Leite de Souza
+    given-names: Ana Beatriz 
+  - family-names: Nishihara
+    given-names: Alissa
+  - family-names: Bandeira Pinheiro
+    given-names: Fernanda
+  - family-names: Vieira Santos Nagasawa
+    given-names: Liana Cristina
+  - family-names: Abreu Martins De Paiva Azevedo
+    given-names: Maria Teresa
+  - family-names: Ferreira De Assis
+    given-names: Pedro Victor
+  - name-suffix: Professor
+    affiliation: PUC Minas
+    family-names: Dias Maciel
+    given-names: Wesley
+keywords:
+  - Cachorros
+  - Cruzamento
+  - Pets
+  - Match
+  - Encontro
+  - Animais
+  - App
+  - Mobile
+  - React Native
+  - Javascript
+  - TypeScript
+  - Firebase
+  - Node.js
+repository-code: https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2024-1-e3-proj-mov-t6-petlovers
+version: 1.0.0
+date-released: 2024-06-21
