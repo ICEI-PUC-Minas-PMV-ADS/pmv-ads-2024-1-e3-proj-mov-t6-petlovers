@@ -4,7 +4,9 @@
 
 Definição de como o software é estruturado em termos dos componentes que fazem parte da solução e do ambiente de hospedagem da aplicação.
 
-![TEMPLATE](https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2024-1-e3-proj-mov-t6-petlovers/assets/110791034/f71b2538-55e3-447d-b87e-fe02efbb22e5)
+![template](https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2024-1-e3-proj-mov-t6-petlovers/assets/110791034/436473d2-e650-4330-8000-c5e1e57a0ef9)
+
+
 
 
 ## Diagrama de Classes
