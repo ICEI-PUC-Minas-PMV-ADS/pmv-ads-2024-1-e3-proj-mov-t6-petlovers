@@ -125,18 +125,6 @@ Segue abaixo os critérios do teste heurístico que serão aplicados: <br>
 <br>
 
 
-### Feedback
-
-Os participantes compartilharão suas opiniões sobre a usabilidade do sistema ao responderem um questionário composto por perguntas abertas e fechadas, e também utilizaremos uma escala de resposta que varia de 1 a 5, sendo:
-
-1: Muito Insatisfatório  <br>
-2: Insatisfatório  <br>
-3: Neutro  <br>
-4: Satisfatório  <br>
-5: Muito Satisfatório  <br> <br>
-
-
-
 ### Seleção dos participantes
 
 Nossa pesquisa de usabilidade abrangerá uma ampla gama de participantes, incluindo não apenas os desenvolvedores diretamente envolvidos no projeto, mas também amigos, familiares e outros usuários que se encaixem no perfil do público-alvo do sistema. Essa abordagem diversificada garantirá uma avaliação abrangente da usabilidade do sistema, proporcionando um feedback valioso a partir de diferentes perspectivas e experiências. <br>
