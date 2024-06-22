@@ -1,4 +1,3 @@
-
 // Importa as bibliotecas do express
 import express, { Express } from "express";
 import cors from "cors";
@@ -55,7 +54,7 @@ export function getStorageApi(){
 
 // Cria uma instância servidor com express
 const serverApp: Express = express();
-const port = 3000;
+const port = process.env.PORT || 3000;
 
 // Middleware para analisar o corpo da solicitação JSON
 serverApp.use(express.json());
@@ -115,8 +114,10 @@ serverApp.put("/api/mensagem", updateMensagem);
 serverApp.delete("/api/mensagem", deleteMensagem);
 
 // Prepara o servidor para iniciar na porta, ouvindo em todas as interfaces de rede disponíveis
-serverApp.listen(port, '0.0.0.0', () => {
-  console.log(`[Server]: I am running at http://localhost:${port}`);
+serverApp.listen(port, () => {
+  console.log(`[Server]: I am running at https://petlovers-ls3b.onrender.com`);
+  // Inicia o ping para manter o servidor ativo
+  setInterval(pingServer, 3600000); // 3600000 ms = 1 hora
 });
 
 function authToken(req: any, res: any, next: any) {
@@ -130,17 +131,15 @@ function authToken(req: any, res: any, next: any) {
   });
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+// Função para manter o servidor ativo
+function pingServer() {
+  const url = 'https://petlovers-ls3b.onrender.com/api/allpets' // Rota do Render 
+  fetch(url)
+    .then(response => response.text())
+    .then(body => {
+      console.log('Pinged server:', body);
+    })
+    .catch(err => {
+      console.error('Error pinging server:', err);
+    });
+}
