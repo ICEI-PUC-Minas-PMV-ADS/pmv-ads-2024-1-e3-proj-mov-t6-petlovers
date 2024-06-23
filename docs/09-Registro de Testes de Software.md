@@ -273,7 +273,5 @@ https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2024-1-e3-proj-mov-t6-petlover
 
 ## Avaliação
 
-As funcionalidades de cadastro de usuário, pet vinculado e login de usuário estão funcionando corretamente. Os dados preenchidos nos formulários de cadastro estão sendo enviados à Firestore, e os dados específicos de autenticação (e-mail e senha) estão sendo enviados ao Firebase Authentication. 
-
-Atualmente, algumas validações ainda não estão ocorrendo em tempo real (antes de apertar o botão de enviar) ou com mensagem de erro adequada. No entanto, a aplicação não envia o cadastro e/ou login de usuário com dados inválidos, funcionando apenas em casos de êxito do preenchimento dos formulários. 
+Todos os testes realizados confirmaram que as funcionalidades essenciais do PetLovers estão operando corretamente, com apenas algumas áreas necessitando de ajustes menores. O sistema está bem encaminhado para proporcionar uma experiência satisfatória aos usuários, atendendo às principais expectativas e requisitos definidos.
 
