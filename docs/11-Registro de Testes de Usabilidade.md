@@ -43,9 +43,7 @@ Futuramente podemos melhorar a experiência do usuário e aumentar a funcionalid
 
 - Melhorarando o sistema de notificações para torná-lo mais informativo e permitir ações rápidas, como responder a um match diretamente do alerta de match na tela;
   
-- Implementando filtros avançados na busca de pets, como cor, porte, e cidade/estado, para facilitar a localização de pets específicos;
-
-- Adicionando a funcionalidade de swipe/match nos botões do card, para oferecer aos usuários mais uma opção de curtir ou descartar um pet.
+- Implementando filtros avançados na busca de pets, como cor, porte, e cidade/estado, para facilitar a localização de pets específicos.
    
 <br>
 
