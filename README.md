@@ -24,7 +24,9 @@ Inspirada no conceito do Tinder, nossa aplicação é dedicada aos apaixonados p
 
 ## Instruções de utilização
 
-Assim que a primeira versão do sistema estiver disponível, deverá complementar com as instruções de utilização. Descreva como instalar eventuais dependências e como executar a aplicação.
+O aplicativo pode ser testado em sua versão web, hospedada na Vercel: https://petloversweb.vercel.app/
+
+Recomendamos o uso da ferramenta de responsabilidade do navegador, em formato mobile, para uma melhor visualização das telas. 
 
 # Documentação
 
