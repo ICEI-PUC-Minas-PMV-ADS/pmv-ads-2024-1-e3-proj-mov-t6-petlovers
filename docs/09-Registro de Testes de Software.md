@@ -273,5 +273,5 @@ https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2024-1-e3-proj-mov-t6-petlover
 
 ## Avaliação
 
-Todos os testes realizados confirmaram que as funcionalidades essenciais do PetLovers estão operando corretamente, com apenas algumas áreas necessitando de ajustes menores. O sistema está bem encaminhado para proporcionar uma experiência satisfatória aos usuários, atendendo às principais expectativas e requisitos definidos.
+Todos os testes realizados confirmaram que as funcionalidades essenciais do PetLovers estão operando corretamente. O sistema está bem encaminhado para proporcionar uma experiência satisfatória aos usuários, atendendo às principais expectativas e requisitos definidos.
 
