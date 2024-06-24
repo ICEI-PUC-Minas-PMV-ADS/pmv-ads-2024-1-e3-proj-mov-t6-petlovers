@@ -10,7 +10,7 @@ Pet Lovers
 
 ## Identidade Visual (Marca, Design)
 
-<img width="161" alt="image" src="https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2024-1-e3-proj-mov-t6-petlovers/assets/93337008/ba140a3c-d8fa-46b6-92f2-6aa69f2450ae">
+<img width="216" alt="image" src="https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2024-1-e3-proj-mov-t6-petlovers/assets/93337008/7c568602-87c3-4103-b563-4d0c4bca547d">
 
 
 ## Conjunto de Slides (Estrutura)
