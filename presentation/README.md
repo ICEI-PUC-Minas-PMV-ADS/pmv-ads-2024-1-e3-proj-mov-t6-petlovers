@@ -1,8 +1,9 @@
 # Apresentação da Solução
 
-Faça uma apresentação de um resumo de todos o processo de desenvolvimento e no final apresente a solução desenvolvida, usando um pequeno vídeo.
+O PetLovers permite que os usuários criem perfis detalhados de seus pets, busquem por outros animais compatíveis, curtam e descurtam perfis, recebam notificações de match, e interajam diretamente através do WhatsApp. Além disso, os usuários podem avaliar a experiência e gerenciar seus favoritos de forma simples e intuitiva.
+ 
 
+## Vídeo da apresentação
 
-## Slides da apresentação
+https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2024-1-e3-proj-mov-t6-petlovers/assets/93337008/945ebf21-c81d-46c1-81f1-f187742d10a0
 
-[Apresentação PetLovers.pdf](https://github.com/user-attachments/files/15945752/Apresentacao.PetLovers.pdf)
