@@ -1,5 +1,9 @@
 # Apresentação
 
+
+https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2024-1-e3-proj-mov-t6-petlovers/assets/93337008/945ebf21-c81d-46c1-81f1-f187742d10a0
+
+
 ## Título do Projeto
 
 Pet Lovers
@@ -10,4 +14,7 @@ Pet Lovers
 
 
 ## Conjunto de Slides (Estrutura)
+
+[Apresentação PetLovers.pdf](https://github.com/user-attachments/files/15945752/Apresentacao.PetLovers.pdf)
+
 
